@@ -1,0 +1,189 @@
+{
+  "scope": "Reference schema diagnostics only; allowed operations demonstrate service obligations or design gaps, not working application behavior.",
+  "engine": "PGlite PostgreSQL WASM",
+  "schemaSha256": "5031b0e5e14a8919badaa81d8111da1e2485fcf51b8e5da0d6e63f8a1d590ab7",
+  "tableCount": 56,
+  "tables": [
+    "addresses",
+    "app_releases",
+    "attribute_values",
+    "attributes",
+    "audit_logs",
+    "banners",
+    "branch_unit_prices",
+    "branches",
+    "categories",
+    "category_attributes",
+    "complaints",
+    "courier_branches",
+    "courier_earnings",
+    "courier_profiles",
+    "courier_settlements",
+    "customer_flags",
+    "customer_maintenance",
+    "deletion_requests",
+    "delivery_rules",
+    "governorates",
+    "idempotency_records",
+    "media_objects",
+    "notification_campaigns",
+    "notification_deliveries",
+    "notification_inbox",
+    "order_assignments",
+    "order_events",
+    "order_quotes",
+    "order_request_items",
+    "order_reviews",
+    "orders",
+    "otp_challenges",
+    "outbox_events",
+    "payment_methods",
+    "payments",
+    "permissions",
+    "product_attribute_values",
+    "product_images",
+    "product_units",
+    "products",
+    "promotions",
+    "push_tokens",
+    "quote_items",
+    "report_jobs",
+    "role_permissions",
+    "roles",
+    "sessions",
+    "settings",
+    "settlement_items",
+    "staff_grants",
+    "stock_levels",
+    "stock_movements",
+    "stock_reservations",
+    "stock_transfer_items",
+    "stock_transfers",
+    "users"
+  ],
+  "diagnosticCount": 17,
+  "probes": [
+    {
+      "id": "R01",
+      "label": "A persisted quote cannot precede its order",
+      "expected": "23503",
+      "observed": "23503"
+    },
+    {
+      "id": "R02",
+      "label": "A released historical reservation prevents changing the order branch",
+      "expected": "23503",
+      "observed": "23503"
+    },
+    {
+      "id": "R03",
+      "label": "Superseding a quote can retain its historical acceptance",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R04",
+      "label": "A historical carton conversion remains mutable in SQL",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R05",
+      "label": "Sent quote lines can be edited and diverge from the subtotal",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R06",
+      "label": "Confirmation has no SQL gate for acceptance, payment or live reservations",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R07",
+      "label": "Required attributes need a service-level activation guard",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R08",
+      "label": "Stock reserved counter can differ from active reservation rows",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R09",
+      "label": "Acceptance by a different customer is not rejected by SQL",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R10",
+      "label": "A quote branch can differ from the current order branch",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R11",
+      "label": "An earning can name a courier/order/amount different from its assignment",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R12",
+      "label": "A settlement can allocate another courier earning with a different total",
+      "expected": "allowed",
+      "observed": "allowed"
+    },
+    {
+      "id": "R13",
+      "label": "Re-submitting a rejected receipt with the same method/number is blocked",
+      "expected": "23505",
+      "observed": "23505"
+    },
+    {
+      "id": "R14",
+      "label": "Zero-commission delivery must omit a zero earning row",
+      "expected": "23514",
+      "observed": "23514"
+    },
+    {
+      "id": "R15",
+      "label": "The current quote must belong to the order (deferred FK)",
+      "expected": "23503",
+      "observed": "23503"
+    },
+    {
+      "id": "R16",
+      "label": "Two cartons of 12 plus three pieces need 27; stock 26 rejects reservation",
+      "expected": "23514",
+      "observed": "23514"
+    },
+    {
+      "id": "R17",
+      "label": "Audit entries reject deletion",
+      "expected": "P0001",
+      "observed": "P0001"
+    }
+  ],
+  "baseline_reference_suite": {
+    "command": "npm test",
+    "exit_code": 0,
+    "negative_constraint_tests_passed": 22,
+    "reported_schema_tables": 56,
+    "scope": "schema constraints only, not application/concurrency/device verification"
+  },
+  "runtime": {
+    "node": "v22.23.4",
+    "npm": "10.9.9",
+    "pglite": "0.5.12"
+  },
+  "reviewed_commit": "6dbff74b92005290ca067e263792eb3bc8d84f79",
+  "input_package_verification": {
+    "manifest_files_verified_before_phase_edits": 100,
+    "video_directory": "customer-app/video",
+    "missing_files": [],
+    "note": "This is the input snapshot; remember.md is intentionally updated by phase 00."
+  },
+  "executed_at_utc": "2026-10-28T22:11:21Z"
+}
