@@ -20,3 +20,8 @@ Express يقدم /privacy و/terms و/support و/delete-account بعربية وR
 ## النشر والنسخ الاحتياطي
 HTTPS، CORS محصور، Helmet، حدود body/files، request ID، مراقبة أخطاء دون بيانات حساسة. logs لا تحتوي password/OTP/tokens/receipt URLs. DB user محدود؛ credentials للبيئات منفصلة. Secrets في secret store أو .env غير committed. ربط OTP وFCM/APNs وفحص الإشعارات على أجهزة فعلية.
 نشر الخادم rolling أو blue/green مع readiness ولـhealth endpoints، وإيقاف رشيق وdrain للworker. migrations بأسلوب expand/contract للحفاظ على الإصدارات القديمة، لا حذف أعمدة في أول نشر. نشر migration قبل code المتوافق أو بعده وفق خطة ملموسة. rollback للكود مع schema متوافقة، backup مشفر وتجربة restore؛ نشر بلا انقطاع يحتاج الاستضافة المناسبة وليس ضمانًا من الكود وحده.
+
+## إضافات قرارات متابعة00
+صلاحيات مستقلة مقترحة للتنفيذ: cash.collect للموصل المسند، cash.remit للإدارة المستلمة، cash.adjust وcash.reverse للمخول، financial-exceptions.resolve، مع payments.verify وcommissions.settle وprivacy.manage القائمة. منع قراءة نقد/عمولة موصل آخر أو إثبات مالي لطلب خارج الفرع. لا تعتبر إخفاء زر جمع/توريد حماية.
+تعليمات التحويل قبل عرضه snapshot غير قابل للتعديل؛ ملفات الإيصال والاستثناء والعكس خاصة ومتحقق منها. صورتان لنفس التحويل ليستا دفعتين. لا يحرر حجز receipt_review بالوقت، بل قرار مراجعة مسبب وصلاحية مناسبة، مع إنذارات وضوابط رفع ومحاولات دون مدة مالية جديدة.
+بيانات العنوان/التواصل في order_private_details، والتعمية بعد التحقق والسياسة المقبولة فقط. حارس SQL يسمح بتفريغ أحادي الاتجاه مع أثر تدقيق دون تحرير الدفاتر؛ تخصيص صلاحيات DB للقراءة/التعمية المقيدة في05/11 مطلوب، وليس نشر grants عام. لم تعتمد مدد احتفاظ أو ميزانية نسخ أو RPO/RTO؛ لا وعد بحذف فوري لكل أثر مالي أو تعمية بيانات طلب جارٍ.

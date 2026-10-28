@@ -1,8 +1,20 @@
 {
-  "scope": "Reference schema diagnostics only; allowed operations demonstrate service obligations or design gaps, not working application behavior.",
-  "engine": "PGlite PostgreSQL WASM",
-  "schemaSha256": "5031b0e5e14a8919badaa81d8111da1e2485fcf51b8e5da0d6e63f8a1d590ab7",
-  "tableCount": 56,
+  "phase": "00 owner-decision follow-up",
+  "scope": "Reference schema, documentation and isolated SQL tests only. No production migration, API/service implementation, RBAC, multi-connection, provider or device verification.",
+  "executed_at_utc": "2026-10-28T23:18:37.280721+00:00",
+  "base_commit": "4d6c528446566911c8db15f645a28a936f610fdd",
+  "owner_decisions": {
+    "path": "OWNER_DECISIONS_PHASE00.md",
+    "source_document_date": "2026-10-29",
+    "sha256": "cac26f0be21360c56d087da8292e0cb57ce8838343a5dbcc4248324a7855f2a7"
+  },
+  "runtime": {
+    "node": "v22.23.4",
+    "npm": "10.9.9",
+    "pglite": "0.5.12"
+  },
+  "schema_sha256": "265a32085ac4da1ce1d5b9377bfb9f0bb6e6e155f95b900148a90c9209013137",
+  "table_count": 69,
   "tables": [
     "addresses",
     "app_releases",
@@ -12,17 +24,24 @@
     "banners",
     "branch_unit_prices",
     "branches",
+    "cash_collections",
+    "cash_remittance_items",
+    "cash_remittance_reversals",
+    "cash_remittances",
     "categories",
     "category_attributes",
     "complaints",
     "courier_branches",
     "courier_earnings",
     "courier_profiles",
+    "courier_settlement_reversals",
     "courier_settlements",
     "customer_flags",
     "customer_maintenance",
     "deletion_requests",
     "delivery_rules",
+    "financial_exception_resolutions",
+    "financial_exceptions",
     "governorates",
     "idempotency_records",
     "media_objects",
@@ -30,14 +49,19 @@
     "notification_deliveries",
     "notification_inbox",
     "order_assignments",
+    "order_cancellation_requests",
     "order_events",
+    "order_private_details",
     "order_quotes",
     "order_request_items",
     "order_reviews",
     "orders",
     "otp_challenges",
     "outbox_events",
+    "payment_instructions",
     "payment_methods",
+    "payment_receipt_attempts",
+    "payment_receipt_reviews",
     "payments",
     "permissions",
     "product_attribute_values",
@@ -47,6 +71,7 @@
     "promotions",
     "push_tokens",
     "quote_items",
+    "quote_revalidations",
     "report_jobs",
     "role_permissions",
     "roles",
@@ -61,129 +86,455 @@
     "stock_transfers",
     "users"
   ],
-  "diagnosticCount": 17,
-  "probes": [
+  "explicit_trigger_count": 48,
+  "regression_test_count": 73,
+  "regression_results": [
     {
-      "id": "R01",
-      "label": "A persisted quote cannot precede its order",
-      "expected": "23503",
-      "observed": "23503"
+      "id": "S01",
+      "label": "negative stock rejected",
+      "passed": true
     },
     {
-      "id": "R02",
-      "label": "A released historical reservation prevents changing the order branch",
-      "expected": "23503",
-      "observed": "23503"
+      "id": "S02",
+      "label": "reserved cannot exceed stock",
+      "passed": true
     },
     {
-      "id": "R03",
-      "label": "Superseding a quote can retain its historical acceptance",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S03",
+      "label": "piece conversion must equal one",
+      "passed": true
     },
     {
-      "id": "R04",
-      "label": "A historical carton conversion remains mutable in SQL",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S04",
+      "label": "carton conversion must exceed one",
+      "passed": true
     },
     {
-      "id": "R05",
-      "label": "Sent quote lines can be edited and diverge from the subtotal",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S05",
+      "label": "value belongs to correct attribute",
+      "passed": true
     },
     {
-      "id": "R06",
-      "label": "Confirmation has no SQL gate for acceptance, payment or live reservations",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S06",
+      "label": "tire attribute not allowed for oil",
+      "passed": true
     },
     {
-      "id": "R07",
-      "label": "Required attributes need a service-level activation guard",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S07",
+      "label": "product cannot pretend another category",
+      "passed": true
     },
     {
-      "id": "R08",
-      "label": "Stock reserved counter can differ from active reservation rows",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S08",
+      "label": "quote total arithmetic",
+      "passed": true
     },
     {
-      "id": "R09",
-      "label": "Acceptance by a different customer is not rejected by SQL",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S09",
+      "label": "accepted quote requires owner identity",
+      "passed": true
     },
     {
-      "id": "R10",
-      "label": "A quote branch can differ from the current order branch",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S10",
+      "label": "quantity positive",
+      "passed": true
     },
     {
-      "id": "R11",
-      "label": "An earning can name a courier/order/amount different from its assignment",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S11",
+      "label": "line arithmetic",
+      "passed": true
     },
     {
-      "id": "R12",
-      "label": "A settlement can allocate another courier earning with a different total",
-      "expected": "allowed",
-      "observed": "allowed"
+      "id": "S12",
+      "label": "unit belongs to product",
+      "passed": true
     },
     {
-      "id": "R13",
-      "label": "Re-submitting a rejected receipt with the same method/number is blocked",
-      "expected": "23505",
-      "observed": "23505"
+      "id": "S13",
+      "label": "reservation branch belongs to historical quote",
+      "passed": true
     },
     {
-      "id": "R14",
-      "label": "Zero-commission delivery must omit a zero earning row",
-      "expected": "23514",
-      "observed": "23514"
+      "id": "S14",
+      "label": "one active assignment",
+      "passed": true
     },
     {
-      "id": "R15",
-      "label": "The current quote must belong to the order (deferred FK)",
-      "expected": "23503",
-      "observed": "23503"
+      "id": "S15",
+      "label": "commission uses pre-discount delivery",
+      "passed": true
     },
     {
-      "id": "R16",
-      "label": "Two cartons of 12 plus three pieces need 27; stock 26 rejects reservation",
-      "expected": "23514",
-      "observed": "23514"
+      "id": "S16",
+      "label": "one delivery earning",
+      "passed": true
     },
     {
-      "id": "R17",
-      "label": "Audit entries reject deletion",
-      "expected": "P0001",
-      "observed": "P0001"
+      "id": "S17",
+      "label": "earning allocation cannot be paid twice",
+      "passed": true
+    },
+    {
+      "id": "S18",
+      "label": "financial ledger immutable",
+      "passed": true
+    },
+    {
+      "id": "S19",
+      "label": "inventory ledger immutable",
+      "passed": true
+    },
+    {
+      "id": "S20",
+      "label": "sale movement unique per order/product",
+      "passed": true
+    },
+    {
+      "id": "S21",
+      "label": "canonical Yemen phone format",
+      "passed": true
+    },
+    {
+      "id": "S22",
+      "label": "minimum build cannot exceed latest",
+      "passed": true
+    },
+    {
+      "id": "O01",
+      "label": "2800m bills 2km; 300 + 2*50 = 400",
+      "passed": true
+    },
+    {
+      "id": "O02",
+      "label": "sub-kilometre route charges base only",
+      "passed": true
+    },
+    {
+      "id": "O03",
+      "label": "rounded-up fee rejected",
+      "passed": true
+    },
+    {
+      "id": "O04",
+      "label": "manual route fee needs reason",
+      "passed": true
+    },
+    {
+      "id": "O05",
+      "label": "500 delivery less 100 discount at 20% earns 100",
+      "passed": true
+    },
+    {
+      "id": "O06",
+      "label": "COD confirms with no receipt or transfer and records no cash automatically",
+      "passed": true
+    },
+    {
+      "id": "O07",
+      "label": "transfer cannot confirm without verified money",
+      "passed": true
+    },
+    {
+      "id": "O08",
+      "label": "receipt upload alone does not allow confirmation",
+      "passed": true
+    },
+    {
+      "id": "O09",
+      "label": "exact verified transfer permits confirmation",
+      "passed": true
+    },
+    {
+      "id": "O10",
+      "label": "underpayment and overpayment do not confirm",
+      "passed": true
+    },
+    {
+      "id": "O11",
+      "label": "one promotion cannot discount products and delivery together",
+      "passed": true
+    },
+    {
+      "id": "O12",
+      "label": "discount requires a single promotion snapshot",
+      "passed": true
+    },
+    {
+      "id": "O13",
+      "label": "manager-selected execution branch is distinct from catalog branch",
+      "passed": true
+    },
+    {
+      "id": "O14",
+      "label": "branch change retains old reservation and acceptance; equal total needs fresh acceptance",
+      "passed": true
+    },
+    {
+      "id": "O15",
+      "label": "current quote FK belongs to order",
+      "passed": true
+    },
+    {
+      "id": "O16",
+      "label": "different customer cannot accept quote",
+      "passed": true
+    },
+    {
+      "id": "O17",
+      "label": "sent quote lines and financial facts are immutable",
+      "passed": true
+    },
+    {
+      "id": "O18",
+      "label": "draft lines editable, subtotal checked when sent",
+      "passed": true
+    },
+    {
+      "id": "O19",
+      "label": "used carton conversion cannot change; archive allowed",
+      "passed": true
+    },
+    {
+      "id": "O20",
+      "label": "historical acceptance survives superseded/expired",
+      "passed": true
+    },
+    {
+      "id": "O21",
+      "label": "rejected image reupload preserves single transfer and all attempts",
+      "passed": true
+    },
+    {
+      "id": "O22",
+      "label": "same transfer reference cannot fund another order",
+      "passed": true
+    },
+    {
+      "id": "O23",
+      "label": "wallet edit does not rewrite frozen transfer destination",
+      "passed": true
+    },
+    {
+      "id": "O24",
+      "label": "receipt protects stock without an automatic expiry and prevents repricing",
+      "passed": true
+    },
+    {
+      "id": "O25",
+      "label": "expired initial stock hold cannot confirm COD",
+      "passed": true
+    },
+    {
+      "id": "O26",
+      "label": "confirmed order branch/amount source frozen; cancellation blocked",
+      "passed": true
+    },
+    {
+      "id": "O27",
+      "label": "cancel before confirmation without receipt permitted",
+      "passed": true
+    },
+    {
+      "id": "O28",
+      "label": "cancellation after receipt requires documented admin decision",
+      "passed": true
+    },
+    {
+      "id": "O29",
+      "label": "delivery does not invent a cash collection",
+      "passed": true
+    },
+    {
+      "id": "O30",
+      "label": "cash collection, remittance and commission use separate ledgers",
+      "passed": true
+    },
+    {
+      "id": "O31",
+      "label": "earning must match assignment courier/order/amount and delivery",
+      "passed": true
+    },
+    {
+      "id": "O32",
+      "label": "settlement requires same courier and exact total",
+      "passed": true
+    },
+    {
+      "id": "O33",
+      "label": "reversal creates one reusable credit, keeps original allocation and never re-earns commission",
+      "passed": true
+    },
+    {
+      "id": "O34",
+      "label": "financial resolution requires amount/reason/reference/evidence/actor/date",
+      "passed": true
+    },
+    {
+      "id": "O35",
+      "label": "NULL coverage cannot enable delivery",
+      "passed": true
+    },
+    {
+      "id": "O36",
+      "label": "catalog branch pointer belongs to chosen governorate",
+      "passed": true
+    },
+    {
+      "id": "O37",
+      "label": "privacy redacts personal snapshot without editing financial ledger",
+      "passed": true
+    },
+    {
+      "id": "O38",
+      "label": "cash ledger cannot collect transfer order",
+      "passed": true
+    },
+    {
+      "id": "O39",
+      "label": "cash remittance cannot silently deduct courier commission",
+      "passed": true
+    },
+    {
+      "id": "O40",
+      "label": "audit history remains immutable",
+      "passed": true
+    },
+    {
+      "id": "O41",
+      "label": "two cartons plus three pieces consume 27 and stock 26 rejects",
+      "passed": true
+    },
+    {
+      "id": "O42",
+      "label": "quote revalidation preserves immutable price and acceptance",
+      "passed": true
+    },
+    {
+      "id": "O43",
+      "label": "financial exception cannot close without documented resolution",
+      "passed": true
+    },
+    {
+      "id": "O44",
+      "label": "overpayment resolved externally yields exact net without editing approved money",
+      "passed": true
+    },
+    {
+      "id": "O45",
+      "label": "partial cash remains the actual amount and delivery needs a shortfall exception",
+      "passed": true
+    },
+    {
+      "id": "O46",
+      "label": "cash remittance cannot allocate another courier collection",
+      "passed": true
+    },
+    {
+      "id": "O47",
+      "label": "cash reversal preserves original remittance and reallocates one credit only",
+      "passed": true
+    },
+    {
+      "id": "O48",
+      "label": "delivery must be disabled before rule removal",
+      "passed": true
+    },
+    {
+      "id": "O49",
+      "label": "receipt attempts preserve owner/privacy and sequential reviewed history",
+      "passed": true
+    },
+    {
+      "id": "O50",
+      "label": "protected transfer cannot be bypassed by changing current quote or branch",
+      "passed": true
+    },
+    {
+      "id": "O51",
+      "label": "confirmed acceptance and confirmation timestamp remain historical",
+      "passed": true
     }
   ],
-  "baseline_reference_suite": {
-    "command": "npm test",
+  "time_boundary_checks": [
+    {
+      "id": "T01",
+      "passed": true,
+      "label": "Verified transfer retains protected stock and accepted price across original quote expiry"
+    },
+    {
+      "id": "T02",
+      "passed": true,
+      "label": "Expired COD requires explicit unchanged-price revalidation and reacquired stock"
+    }
+  ],
+  "remaining_service_diagnostics": [
+    {
+      "id": "SV01",
+      "label": "Product activation must validate required attributes",
+      "observed": "allowed",
+      "interpretation": "Future service obligation; not a successful application behavior."
+    },
+    {
+      "id": "SV02",
+      "label": "Inventory service must reconcile reserved counter with active holds",
+      "observed": "allowed",
+      "interpretation": "Future service obligation; not a successful application behavior."
+    },
+    {
+      "id": "SV03",
+      "label": "No implicit inherited attributes or multi-node category cycle guard",
+      "observed": "allowed",
+      "interpretation": "Future service obligation; not a successful application behavior."
+    },
+    {
+      "id": "SV04",
+      "label": "A revalidation record does not itself compare live branch prices",
+      "observed": "allowed",
+      "interpretation": "Future service obligation; not a successful application behavior."
+    }
+  ],
+  "dictionary_check": {
+    "command": "node generate-database-doc.mjs --check",
     "exit_code": 0,
-    "negative_constraint_tests_passed": 22,
-    "reported_schema_tables": 56,
-    "scope": "schema constraints only, not application/concurrency/device verification"
+    "result": "Dictionary matches actual SQL: 69 tables, 48 triggers."
   },
-  "runtime": {
-    "node": "v22.23.4",
-    "npm": "10.9.9",
-    "pglite": "0.5.12"
-  },
-  "reviewed_commit": "6dbff74b92005290ca067e263792eb3bc8d84f79",
-  "input_package_verification": {
-    "manifest_files_verified_before_phase_edits": 100,
-    "video_directory": "customer-app/video",
-    "missing_files": [],
-    "note": "This is the input snapshot; remember.md is intentionally updated by phase 00."
-  },
-  "executed_at_utc": "2026-10-28T22:11:21Z"
+  "commands_passed": [
+    "npm ci --ignore-scripts --no-audit --no-fund",
+    "node --check for four test/documentation scripts",
+    "npm test",
+    "node phase-00-review.mjs",
+    "node generate-database-doc.mjs",
+    "node generate-database-doc.mjs --check"
+  ],
+  "unchanged_videos": [
+    {
+      "path": "customer-app/video/intro-dark.mp4",
+      "sha256": "b3dd01e2d542dececb17b8f36b35eee487f137ef213d4c545cc50c52166f16f6",
+      "unchanged": true
+    },
+    {
+      "path": "customer-app/video/intro-light.mp4",
+      "sha256": "fda7309ec26eb4e4b7aa6338da84f83b964daf755a2809204b2d9efab3b36d9e",
+      "unchanged": true
+    }
+  ],
+  "f11_integration_sources_unchanged": true,
+  "not_run": [
+    "Production migrations or services",
+    "HTTP API/OpenAPI contract tests",
+    "RBAC/ownership over HTTP",
+    "PostgreSQL multi-connection concurrency",
+    "External OTP/R2/Routing/Push integrations",
+    "Expo native builds and Android/iOS device tests"
+  ],
+  "issues_register": "ISSUES.md",
+  "phase_01_started": false,
+  "documentation_validation": {
+    "local_markdown_links_verified": 39,
+    "decision_entries_verified": 21,
+    "tracked_findings_verified": 11,
+    "phase_reference_files_verified": 13,
+    "git_diff_check_exit_code": 0,
+    "no_app_or_service_scaffold": true
+  }
 }
