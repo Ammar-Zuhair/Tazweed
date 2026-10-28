@@ -1,0 +1,55 @@
+{
+  "fontFamily": {
+    "regular": "Tajawal-Regular",
+    "medium": "Tajawal-Medium",
+    "bold": "Tajawal-Bold"
+  },
+  "palette": {
+    "navy": "#082A48",
+    "navyDeep": "#071827",
+    "orange": "#F47A13",
+    "orangeDark": "#B94700",
+    "blue": "#176088",
+    "silver": "#B8C2CC"
+  },
+  "light": {
+    "background": "#FFFFFF",
+    "surface": "#F3F6F9",
+    "text": "#102D46",
+    "textMuted": "#526579",
+    "primary": "#B94700",
+    "accent": "#F47A13",
+    "border": "#D5DFE7"
+  },
+  "dark": {
+    "background": "#071827",
+    "surface": "#102C43",
+    "text": "#F4F7FA",
+    "textMuted": "#BAC9D7",
+    "primary": "#FF9A3D",
+    "accent": "#F47A13",
+    "border": "#29475F"
+  },
+  "spacing": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    48
+  ],
+  "radius": {
+    "small": 8,
+    "medium": 16,
+    "large": 24
+  },
+  "motion": {
+    "fastMs": 160,
+    "normalMs": 240,
+    "introMs": 4000,
+    "respectReduceMotion": true
+  }
+}

@@ -1,0 +1,508 @@
+{
+  "name": "تزويد",
+  "version": "1.1",
+  "date": "2026-10-27",
+  "scope": "planning, stage guide, media assets and integration references",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 98,
+      "sha256": "cc4fd31b309ba1c3b69b8a1fb9f83df026c8ba0fedad885d10c4e655c3dcfcd1"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 785,
+      "sha256": "4c0552ee2d6d6db08a0ed68fb27394cae5bae302d918667e0b334ee298a3fd1d"
+    },
+    {
+      "path": "DECISIONS.md",
+      "bytes": 7018,
+      "sha256": "4784e63f90f690351f30fd472180827d7f54b4a340490b1bf82a3415c9cf4fab"
+    },
+    {
+      "path": "MASTER_PROMPT.md",
+      "bytes": 5527,
+      "sha256": "8dcfcc7deccc5ee34ce445e0b394f234d104c1fcf428989cf2b47aff524e61f4"
+    },
+    {
+      "path": "PHASES.md",
+      "bytes": 1979,
+      "sha256": "7d9e1952de5d5ee6aef267949c5fc3f6b11bd41588858681d06003530a434257"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3871,
+      "sha256": "ed3a49c74595b8daff9c9dfe0e5d5ae7081a6fdfa246b45ebf563f0948593f80"
+    },
+    {
+      "path": "REQUIREMENTS.md",
+      "bytes": 5677,
+      "sha256": "cd4de06fca0e8a8fe515814ffe388772120c5bd5b5ca1d9c6c5114ba08bb4964"
+    },
+    {
+      "path": "START_HERE_AR.md",
+      "bytes": 22159,
+      "sha256": "01eef48a648603efa995555ca18d424a61b816d808ed8b2116ea0f1e8cf06049"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 3890,
+      "sha256": "70a5de595419c690578149b36f80160d6c256253f1bd62fe53953150625e994c"
+    },
+    {
+      "path": "admin-app/.env.example",
+      "bytes": 268,
+      "sha256": "d9a380cc4d433d1cc2d0fcf1445ce0ecdac18652257ce08275c3178eb5c66441"
+    },
+    {
+      "path": "admin-app/README.md",
+      "bytes": 340,
+      "sha256": "0d83d689c2ec1ccd1978701716b8a935e28a033255883d7ea4fbf7de8cd555d3"
+    },
+    {
+      "path": "admin-app/assets/adaptive-foreground.png",
+      "bytes": 541616,
+      "sha256": "ed9b913a3b19a907414b6192b88953eee059c014fffa8b2e695ef0d69aaedd13"
+    },
+    {
+      "path": "admin-app/assets/fonts/OFL.txt",
+      "bytes": 4464,
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "path": "admin-app/assets/fonts/Tajawal-Bold.ttf",
+      "bytes": 59988,
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "path": "admin-app/assets/fonts/Tajawal-Medium.ttf",
+      "bytes": 62280,
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "admin-app/assets/fonts/Tajawal-Regular.ttf",
+      "bytes": 60364,
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "path": "admin-app/assets/icon.png",
+      "bytes": 847205,
+      "sha256": "449110420daba3f45a0dd12c33596184c502028fbef756717150e666556208a1"
+    },
+    {
+      "path": "admin-app/assets/splash-dark.png",
+      "bytes": 543205,
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "path": "admin-app/assets/splash-light.png",
+      "bytes": 558066,
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "path": "admin-app/assets/theme-tokens.json",
+      "bytes": 957,
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "path": "admin-app/docs/SCREENS.md",
+      "bytes": 3020,
+      "sha256": "35388f69976f8f29c315629a0cbfca3462b103c3a9eafdfc734da29ea490c3fc"
+    },
+    {
+      "path": "admin-app/integration/README.md",
+      "bytes": 390,
+      "sha256": "d130bfd16225abe6b18e99760f7cdf77e5d53a58d1825e8b23e10d119b2014f7"
+    },
+    {
+      "path": "admin-app/integration/eas.example.json",
+      "bytes": 388,
+      "sha256": "1b6464893448fa6fecbb23aef322c093273e2ee176374f06cf4e9d5ec0e87bd1"
+    },
+    {
+      "path": "admin-app/integration/expo-config.fragment.json",
+      "bytes": 905,
+      "sha256": "6f8a7a94824f76203d1e8fd7b11796c03e4613bc24797389340e0553ca3e84c5"
+    },
+    {
+      "path": "backend/.env.example",
+      "bytes": 724,
+      "sha256": "1cff49b5e9cfb9cb252494f53cd38e0790c62ba0a7d57a5f70524ca7845bce62"
+    },
+    {
+      "path": "backend/README.md",
+      "bytes": 295,
+      "sha256": "e60d603efd55105ac7a226ed51e56008fd31fb5fdd5b95c18c22018aea8775ed"
+    },
+    {
+      "path": "backend/database/schema.sql",
+      "bytes": 29548,
+      "sha256": "5031b0e5e14a8919badaa81d8111da1e2485fcf51b8e5da0d6e63f8a1d590ab7"
+    },
+    {
+      "path": "backend/docs/ACCEPTANCE.md",
+      "bytes": 5084,
+      "sha256": "85769d1c8192446cba0da326e5864726808d0f0cd57063fd68224cb59da0c149"
+    },
+    {
+      "path": "backend/docs/API.md",
+      "bytes": 4624,
+      "sha256": "ff45e76b1b8ccb538d830e354b394dcd73e713139c143e0c91d419d83a4b3220"
+    },
+    {
+      "path": "backend/docs/ARCHITECTURE.md",
+      "bytes": 3776,
+      "sha256": "8c0914a22bdf83e7f060f20339da1600b27cc92eb24b7a56a985cd130e9ce17f"
+    },
+    {
+      "path": "backend/docs/BUSINESS_RULES.md",
+      "bytes": 7901,
+      "sha256": "4e9afbd321f99a2595374f1554250c294fb5ba0a62abb79d16135bfe4fca8004"
+    },
+    {
+      "path": "backend/docs/DATABASE.md",
+      "bytes": 36924,
+      "sha256": "87fbf0c8e39d91c31260dd01eb98cefbe9b0385d03d84804631d54fd100b8650"
+    },
+    {
+      "path": "backend/docs/RELEASES.md",
+      "bytes": 3256,
+      "sha256": "a39d5d2770b8e648d899c4f21b1897e857e9c45f0698d84db3763afdde1c0e1e"
+    },
+    {
+      "path": "backend/docs/SECURITY_OPERATIONS.md",
+      "bytes": 6060,
+      "sha256": "945e1a1d32cbef91dd7f09102c0651567574eefdecbbf4ea44f31a38c677e99f"
+    },
+    {
+      "path": "backend/docs/SOURCES.md",
+      "bytes": 2427,
+      "sha256": "cbcd4c681635833ea531cdca61161379ba0f5ce272f88d065156a6a0e5d88e51"
+    },
+    {
+      "path": "backend/docs/phases/00.md",
+      "bytes": 2708,
+      "sha256": "301a8f07ee0be1aad6815dd25f5d990d607d3b5ab67e635cab3dc71f465a8177"
+    },
+    {
+      "path": "backend/docs/phases/01.md",
+      "bytes": 2884,
+      "sha256": "371a7db35b58783200278045637180610a56d33f42a0a7628225d69371917e96"
+    },
+    {
+      "path": "backend/docs/phases/02.md",
+      "bytes": 2572,
+      "sha256": "26f59145489f0353ec524b2a582521ee4cb59cb18b4e5bae226fe453354f37f6"
+    },
+    {
+      "path": "backend/docs/phases/03.md",
+      "bytes": 2443,
+      "sha256": "0bf6fcb1aa71994262a2992b103c132ff6e4c00f588d6912608b6f29f3145927"
+    },
+    {
+      "path": "backend/docs/phases/04.md",
+      "bytes": 2454,
+      "sha256": "78db1af8ada9a7594d2d2d7824e4239ce90dfc1d9e4d0a982e9a603a3d361861"
+    },
+    {
+      "path": "backend/docs/phases/05.md",
+      "bytes": 2619,
+      "sha256": "b885f5ee65e6b508d369e48b4e34430f3dc137dca561f8a97d66c53099a930f4"
+    },
+    {
+      "path": "backend/docs/phases/06.md",
+      "bytes": 2584,
+      "sha256": "958945578e04466b014587ffe47aa9ec933513120851a90762cb26d2a5cf5970"
+    },
+    {
+      "path": "backend/docs/phases/07.md",
+      "bytes": 2548,
+      "sha256": "d84def584335d784995e193dce891167ce6a5b5f08c46e9655112eebe8a3af0a"
+    },
+    {
+      "path": "backend/docs/phases/08.md",
+      "bytes": 2589,
+      "sha256": "6b78e701576206f865b891e498112462cbfd10f6cb6ef3b6e0fd5fe4f22096f5"
+    },
+    {
+      "path": "backend/docs/phases/09.md",
+      "bytes": 2477,
+      "sha256": "0ede495eff93d49e57a0f39379edceb340c5a36d07dc8ec6a3435fa0264d2fd9"
+    },
+    {
+      "path": "backend/docs/phases/10.md",
+      "bytes": 2618,
+      "sha256": "9f823be5853859f3c811cd95bf3a5d6a5c335322139b8172f2d1191db0de5baa"
+    },
+    {
+      "path": "backend/docs/phases/11.md",
+      "bytes": 2621,
+      "sha256": "8a16614896904f4fa7417b4ea8f15f9d1240dfeecde5c13d54ea34bb33f7d22b"
+    },
+    {
+      "path": "backend/docs/phases/12.md",
+      "bytes": 2570,
+      "sha256": "f8860cd7fb5e990ee83acf2e450cbac03e29306a72f6e09e718b1aeabd358b72"
+    },
+    {
+      "path": "backend/reference-tests/README.md",
+      "bytes": 644,
+      "sha256": "69736a3d6b437cfb9f370b2ecd271b593e089e4d7f882eafd544fb4dcdc8074d"
+    },
+    {
+      "path": "backend/reference-tests/package.json",
+      "bytes": 206,
+      "sha256": "150cca0b83c824930fad41aeee6db4c404832d42ccb5f90f103f8a0a22217787"
+    },
+    {
+      "path": "backend/reference-tests/schema.test.mjs",
+      "bytes": 8269,
+      "sha256": "ef036f11fe2bb5de288674be13f34af45f3ad16f052019c308b129d82cb92c07"
+    },
+    {
+      "path": "courier-app/.env.example",
+      "bytes": 270,
+      "sha256": "16c099673bea5d56099f260c1d2b7f9e3fe69c595492e1c0a5e23aa652940612"
+    },
+    {
+      "path": "courier-app/README.md",
+      "bytes": 342,
+      "sha256": "e1e80459a1e9851f97dca3f08eacf633481b656eb87a1a7643eb523a06b45ae0"
+    },
+    {
+      "path": "courier-app/assets/adaptive-foreground.png",
+      "bytes": 618344,
+      "sha256": "1e2ce0850eb91fbd0f798ac9d9a60070c4170c225bd1936559588884c5be8f02"
+    },
+    {
+      "path": "courier-app/assets/fonts/OFL.txt",
+      "bytes": 4464,
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "path": "courier-app/assets/fonts/Tajawal-Bold.ttf",
+      "bytes": 59988,
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "path": "courier-app/assets/fonts/Tajawal-Medium.ttf",
+      "bytes": 62280,
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "courier-app/assets/fonts/Tajawal-Regular.ttf",
+      "bytes": 60364,
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "path": "courier-app/assets/icon.png",
+      "bytes": 965880,
+      "sha256": "07e19c79ce1d40fc67a2b8d33b923b1c1d328fd248128436572a75dba8659650"
+    },
+    {
+      "path": "courier-app/assets/splash-dark.png",
+      "bytes": 543205,
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "path": "courier-app/assets/splash-light.png",
+      "bytes": 558066,
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "path": "courier-app/assets/theme-tokens.json",
+      "bytes": 957,
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "path": "courier-app/docs/SCREENS.md",
+      "bytes": 1634,
+      "sha256": "19702dd466857c8fe5f6e6f48c81ca1e3a4efbd161fdb79cffce0498c2151f30"
+    },
+    {
+      "path": "courier-app/integration/README.md",
+      "bytes": 390,
+      "sha256": "d130bfd16225abe6b18e99760f7cdf77e5d53a58d1825e8b23e10d119b2014f7"
+    },
+    {
+      "path": "courier-app/integration/eas.example.json",
+      "bytes": 388,
+      "sha256": "1b6464893448fa6fecbb23aef322c093273e2ee176374f06cf4e9d5ec0e87bd1"
+    },
+    {
+      "path": "courier-app/integration/expo-config.fragment.json",
+      "bytes": 905,
+      "sha256": "14beaa8b9523a7e2007824e4200ade3a1ceb34cf1136cfcad7260cc7e5f5ff5a"
+    },
+    {
+      "path": "customer-app/.env.example",
+      "bytes": 271,
+      "sha256": "c1472b95dd4239b05fc8eacd839a659d2ffba1b616ff17bef05b4bd678c36b5d"
+    },
+    {
+      "path": "customer-app/README.md",
+      "bytes": 343,
+      "sha256": "aba3526750f083a338ee62749b46bbe78dd5549043b82de85b71b84351b6ba60"
+    },
+    {
+      "path": "customer-app/assets/adaptive-foreground.png",
+      "bytes": 555453,
+      "sha256": "8722cdf0a435e3489a542a7ebda2dd38bdf7749a90999bcbb4d190ca3750b07e"
+    },
+    {
+      "path": "customer-app/assets/fonts/OFL.txt",
+      "bytes": 4464,
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "path": "customer-app/assets/fonts/Tajawal-Bold.ttf",
+      "bytes": 59988,
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "path": "customer-app/assets/fonts/Tajawal-Medium.ttf",
+      "bytes": 62280,
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "customer-app/assets/fonts/Tajawal-Regular.ttf",
+      "bytes": 60364,
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "path": "customer-app/assets/icon.png",
+      "bytes": 867203,
+      "sha256": "eb99f3ec1db29792b4d676edfa638e0fc7372b0290fd0688e92b3c17e4f94a01"
+    },
+    {
+      "path": "customer-app/assets/splash-dark.png",
+      "bytes": 543205,
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "path": "customer-app/assets/splash-light.png",
+      "bytes": 558066,
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "path": "customer-app/assets/theme-tokens.json",
+      "bytes": 957,
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "path": "customer-app/brand-source/BRAND.md",
+      "bytes": 4013,
+      "sha256": "1fb4e7e4b52e7089e46db30a75a024ea596a7575840a1eafec889d315918f002"
+    },
+    {
+      "path": "customer-app/brand-source/IMAGE_PROMPTS.md",
+      "bytes": 1966,
+      "sha256": "49aa7651f2f992b914e1fc71b168025a6e0f208550c2ca42e28e205b7948657d"
+    },
+    {
+      "path": "customer-app/brand-source/tazweed-logo-master.png",
+      "bytes": 1235313,
+      "sha256": "39e5843cc666057486faae59485e2874143ffdf3bd4b5f9f02911b6e903ec166"
+    },
+    {
+      "path": "customer-app/docs/SCREENS.md",
+      "bytes": 3312,
+      "sha256": "780024dcfba02cb07f90cc6d0491cf607e55e46b4c4a796dde7d79a5a664ed3c"
+    },
+    {
+      "path": "customer-app/integration/IntroScreen.tsx",
+      "bytes": 3048,
+      "sha256": "7a98604ea9597202c9e2e6caf501c7163ab32ba6a7e0081ec5f09a33bf171838"
+    },
+    {
+      "path": "customer-app/integration/README.md",
+      "bytes": 2371,
+      "sha256": "18a6712ccff83dcc92649f8521ab33e1d2fea723ee0c508fbd5e2a735978fc67"
+    },
+    {
+      "path": "customer-app/integration/eas.example.json",
+      "bytes": 388,
+      "sha256": "1b6464893448fa6fecbb23aef322c093273e2ee176374f06cf4e9d5ec0e87bd1"
+    },
+    {
+      "path": "customer-app/integration/expo-config.fragment.json",
+      "bytes": 907,
+      "sha256": "4f64b7fc86f646595d3bbaba97f32e01e247c92e4c52220541f32508f55b3805"
+    },
+    {
+      "path": "customer-app/integration/updates.ts",
+      "bytes": 695,
+      "sha256": "aef426f5cb8c5a615bd67a16d5157caa2ee56d2ad2a20dfab3524bcb1a82e443"
+    },
+    {
+      "path": "customer-app/media/STORYBOARD.md",
+      "bytes": 1989,
+      "sha256": "c545a59a01669341d4a5caf1fcaa8ba246607c542e10545acdd8272fdcac80a8"
+    },
+    {
+      "path": "customer-app/media/composition-dark.ffgraph",
+      "bytes": 773,
+      "sha256": "0ce0fa831de73c6730b499aa7a281c73fe28a8c1c27fa700e6776b9800f9ebcd"
+    },
+    {
+      "path": "customer-app/media/composition-light.ffgraph",
+      "bytes": 773,
+      "sha256": "0ce0fa831de73c6730b499aa7a281c73fe28a8c1c27fa700e6776b9800f9ebcd"
+    },
+    {
+      "path": "customer-app/media/intro-dark.mp4",
+      "bytes": 1190923,
+      "sha256": "b3dd01e2d542dececb17b8f36b35eee487f137ef213d4c545cc50c52166f16f6"
+    },
+    {
+      "path": "customer-app/media/intro-light.mp4",
+      "bytes": 1238678,
+      "sha256": "fda7309ec26eb4e4b7aa6338da84f83b964daf755a2809204b2d9efab3b36d9e"
+    },
+    {
+      "path": "customer-app/media/layers/background-dark.svg",
+      "bytes": 791,
+      "sha256": "2f41b0c8312065b587e813d3b6d8c5653184dd4996f2fa2f2573a3b082e5a7f2"
+    },
+    {
+      "path": "customer-app/media/layers/background-light.svg",
+      "bytes": 791,
+      "sha256": "8bbd44b05dd9ccaf3b53f76f21d9ead0f5a659c5d949a4a7df8b6a95d3b9b6c0"
+    },
+    {
+      "path": "customer-app/media/layers/energy-arcs.svg",
+      "bytes": 711,
+      "sha256": "0f734b19fedd0d2fda44871477b96126474fbbbdfc24dc73519cc8bccbf2a1a6"
+    },
+    {
+      "path": "customer-app/media/layers/logo-content.png",
+      "bytes": 1021423,
+      "sha256": "28d7c27fa03a7cc173f1c9a39a6cce9c03727332cd7cd771ba78f318f4051dd3"
+    },
+    {
+      "path": "customer-app/media/layers/tire-ring.png",
+      "bytes": 901416,
+      "sha256": "b662472ed4925a26c7b08b816dd551d957d66953e18ab90586ce85919fec1ddb"
+    },
+    {
+      "path": "customer-app/media/rebuild_audio.py",
+      "bytes": 885,
+      "sha256": "1b3680fbfcb023e9551438a758e38139f36cbcf40c4f0aa9487a12bb0d47cbd7"
+    },
+    {
+      "path": "customer-app/media/rebuild_intro.py",
+      "bytes": 949,
+      "sha256": "55c367c1685b7f12f5e1460660a353cc16644fe5b09791056e5b17f873cfc7d0"
+    },
+    {
+      "path": "customer-app/media/tazweed-sonic-logo.wav",
+      "bytes": 768044,
+      "sha256": "b03878ce4a66119df0630fbc97c47927742f82455d993712e59f2109f49df61a"
+    },
+    {
+      "path": "remember.md",
+      "bytes": 1777,
+      "sha256": "346feb0035b4c4acdc179cf697cba997d2c946c184c8493602b4516ddcb0c074"
+    }
+  ]
+}

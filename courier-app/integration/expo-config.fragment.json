@@ -1,0 +1,40 @@
+{
+  "name": "تزويد — الموصل",
+  "slug": "tazweed-courier",
+  "icon": "./assets/icon.png",
+  "userInterfaceStyle": "automatic",
+  "orientation": "portrait",
+  "ios": {
+    "supportsTablet": true,
+    "icon": "./assets/icon.png"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-foreground.png",
+      "backgroundColor": "#FFFFFF"
+    }
+  },
+  "runtimeVersion": {
+    "policy": "fingerprint"
+  },
+  "updates": {
+    "checkAutomatically": "NEVER",
+    "fallbackToCacheTimeout": 0
+  },
+  "plugins": [
+    [
+      "expo-splash-screen",
+      {
+        "image": "./assets/splash-light.png",
+        "imageWidth": 240,
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF",
+        "dark": {
+          "image": "./assets/splash-dark.png",
+          "backgroundColor": "#071827"
+        }
+      }
+    ],
+    "@maplibre/maplibre-react-native"
+  ]
+}

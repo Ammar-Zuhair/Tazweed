@@ -1,0 +1,48 @@
+{
+  "mode": "restore_missing_only",
+  "target": "/workspace",
+  "repair_payload_verified": 21,
+  "restored_files": [
+    "customer-app/assets/icon.png",
+    "customer-app/brand-source/BRAND.md",
+    "customer-app/brand-source/IMAGE_PROMPTS.md",
+    "customer-app/brand-source/tazweed-logo-master.png",
+    "customer-app/docs/SCREENS.md",
+    "customer-app/integration/IntroScreen.tsx",
+    "customer-app/integration/README.md",
+    "customer-app/integration/expo-config.fragment.json",
+    "customer-app/integration/updates.ts",
+    "customer-app/media/STORYBOARD.md",
+    "customer-app/media/composition-dark.ffgraph",
+    "customer-app/media/composition-light.ffgraph",
+    "customer-app/media/layers/background-dark.svg",
+    "customer-app/media/layers/background-light.svg",
+    "customer-app/media/layers/energy-arcs.svg",
+    "customer-app/media/layers/logo-content.png",
+    "customer-app/media/layers/tire-ring.png",
+    "customer-app/media/rebuild_audio.py",
+    "customer-app/media/rebuild_intro.py",
+    "customer-app/media/tazweed-sonic-logo.wav",
+    "remember.md"
+  ],
+  "existing_files_preserved": [],
+  "full_verification": {
+    "manifest_total": 100,
+    "verified_files": 100,
+    "relocated_verified_videos": [
+      {
+        "expected": "customer-app/media/intro-dark.mp4",
+        "found": "customer-app/video/intro-dark.mp4"
+      },
+      {
+        "expected": "customer-app/media/intro-light.mp4",
+        "found": "customer-app/video/intro-light.mp4"
+      }
+    ],
+    "missing_files": [],
+    "existing_different_files_preserved": []
+  },
+  "repair_archive": "tazweed_missing_files_repair.zip",
+  "repair_archive_sha256": "160d1ac058bcce110afbd51d04d1c1277257eae1bbf1b4aa48c0695fab527df7",
+  "repository_commit": "027cfde2e2689852846849a89e64d913af257040"
+}
