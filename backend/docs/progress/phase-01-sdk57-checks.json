@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-10-29T00:37:44.806682+00:00",
+  "startingCommit": "18503321df0a818cef937b46e58f7a2a4c6d5651",
+  "sdk": 57,
+  "projectSlug": "tazweed",
+  "applications": [
+    {
+      "role": "customer",
+      "versions": {
+        "expo": "57.0.31",
+        "react": "19.2.3",
+        "react-native": "0.86.3",
+        "expo-router": "57.0.29",
+        "react-native-web": "0.21.2",
+        "react-native-reanimated": "4.5.1",
+        "react-native-worklets": "0.10.1"
+      },
+      "directVersionsExact": true,
+      "lockMatches": true,
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed",
+      "npmLsAll": "passed",
+      "webExport": "passed",
+      "nativeExports": [
+        {
+          "platform": "android",
+          "bundleSha256": "bca3ef03ded986d3303a17325a24e4c2096adb8e8d74260e8aef0ec5b4bf43bf",
+          "bundleBytes": 2762878,
+          "videos": 2,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "bundleSha256": "116614bb50dae5240ca403fd87ccea2fd5394884f2e14197fa493753d79a5e03",
+          "bundleBytes": 2466617,
+          "videos": 2,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "versions": {
+        "expo": "57.0.31",
+        "react": "19.2.3",
+        "react-native": "0.86.3",
+        "expo-router": "57.0.29",
+        "react-native-web": "0.21.2",
+        "react-native-reanimated": "4.5.1",
+        "react-native-worklets": "0.10.1"
+      },
+      "directVersionsExact": true,
+      "lockMatches": true,
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed",
+      "npmLsAll": "passed",
+      "webExport": "passed",
+      "nativeExports": [
+        {
+          "platform": "android",
+          "bundleSha256": "67519a06e62c9d76901fea3f8e0b12bad3592dc6fdd8869e0b5d38d1fdf9f81d",
+          "bundleBytes": 2749445,
+          "videos": 0,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "bundleSha256": "b217496bac2a63c6047b75f9a7ca06390ad9ceda947fe01f58939c65e21f7387",
+          "bundleBytes": 2452855,
+          "videos": 0,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        }
+      ]
+    },
+    {
+      "role": "courier",
+      "versions": {
+        "expo": "57.0.31",
+        "react": "19.2.3",
+        "react-native": "0.86.3",
+        "expo-router": "57.0.29",
+        "react-native-web": "0.21.2",
+        "react-native-reanimated": "4.5.1",
+        "react-native-worklets": "0.10.1"
+      },
+      "directVersionsExact": true,
+      "lockMatches": true,
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed",
+      "npmLsAll": "passed",
+      "webExport": "passed",
+      "nativeExports": [
+        {
+          "platform": "android",
+          "bundleSha256": "8de0bb804525ac59926f6dbffd201bc92680837207c6cf02d2e3e192b8df0a90",
+          "bundleBytes": 2749435,
+          "videos": 0,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "bundleSha256": "619da7f828a3866b669e73f2715f3d53f73ce73d78879cb7cfbd7d52a233721f",
+          "bundleBytes": 2452831,
+          "videos": 0,
+          "originalFontsAndVideosBundled": true,
+          "nativeBinaryBuilt": false
+        }
+      ]
+    }
+  ],
+  "originalAssetsCompared": 37,
+  "changedAssets": [],
+  "browserEvidence": "phase-01-sdk57-preview-checks.json",
+  "tunnelEvidence": "phase-01-sdk57-tunnels.json",
+  "nativePhoneTested": false,
+  "phase02Started": false
+}

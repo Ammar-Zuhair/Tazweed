@@ -5,7 +5,9 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const workspace = fileURLToPath(new URL('../..', import.meta.url));
-const evidence = resolve(workspace, 'backend/docs/progress/phase-01-evidence');
+const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-01';
+if (!/^phase-01(?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
+const evidence = resolve(workspace, `backend/docs/progress/${prefix}-evidence`);
 await mkdir(evidence, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), viewport: { width: 390, height: 844 }, platform: 'Chromium / Expo web export; not a native-device test', checks: [] };
 const browser = await chromium.launch({ headless: true });
@@ -32,8 +34,8 @@ try {
     await page.screenshot({ path: resolve(evidence, `${role}-light.png`), fullPage: true });
     await page.getByRole('tab', { name: 'الإعدادات' }).click();
     await page.getByRole('radio', { name: 'الوضع المظلم', exact: true }).click();
-    await page.getByTestId('theme-dark').first().waitFor();
-    await page.reload(); await page.getByTestId('theme-dark').first().waitFor();
+    await page.getByTestId('theme-dark').filter({ visible: true }).first().waitFor();
+    await page.reload(); await page.getByTestId('theme-dark').filter({ visible: true }).first().waitFor();
     await page.getByRole('radio', { name: 'الوضع المظلم', exact: true }).waitFor();
     assert.equal(await page.getByRole('radio', { name: 'الوضع المظلم', exact: true }).getAttribute('aria-checked'), 'true');
     await page.getByRole('tab', { name: 'الرئيسية' }).click(); await home(page);
@@ -51,8 +53,8 @@ try {
     await page.getByTestId('state-loading').waitFor(); await home(page);
     await page.getByRole('tab', { name: 'الإعدادات' }).click();
     await page.getByRole('radio', { name: 'حسب الجهاز', exact: true }).click();
-    await page.emulateMedia({ colorScheme: 'light' }); await page.getByTestId('theme-light').first().waitFor();
-    await page.emulateMedia({ colorScheme: 'dark' }); await page.getByTestId('theme-dark').first().waitFor();
+    await page.emulateMedia({ colorScheme: 'light' }); await page.getByTestId('theme-light').filter({ visible: true }).first().waitFor();
+    await page.emulateMedia({ colorScheme: 'dark' }); await page.getByTestId('theme-dark').filter({ visible: true }).first().waitFor();
     assert.equal(await page.getByRole('radio', { name: 'حسب الجهاز', exact: true }).getAttribute('aria-checked'), 'true');
     // Tablet width uses the same layout without overflow.
     await page.setViewportSize({ width: 1024, height: 768 });
@@ -116,5 +118,5 @@ try {
   await context.close();
 } finally { await browser.close(); }
 results.passed = results.checks.every(check => check.passed);
-await writeFile(resolve(evidence, '../phase-01-preview-checks.json'), JSON.stringify(results, null, 2) + '\n');
+await writeFile(resolve(evidence, `../${prefix}-preview-checks.json`), JSON.stringify(results, null, 2) + '\n');
 console.log(JSON.stringify(results, null, 2));

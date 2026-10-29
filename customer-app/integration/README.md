@@ -1,7 +1,7 @@
 # دمج الافتتاح والتحديثات
 في01 أصبح `IntroScreen.tsx` مستخدمًا مباشرة من `src/bootstrap/AppBootstrap.tsx`، ومصدراه `../video/intro-light.mp4` و`../video/intro-dark.mp4`. لم تتغير بايتات الأصول ولم تشغل أداة التوليد؛ إخراجها الآن إلى video أيضًا. أما updates وconfig.fragment فمراجع للمواءمة اللاحقة، وليست خدمات مفعلة. لا يوجد إثبات اختبار جهاز أصلي في الحاوية. راجع [دليل البناء](../../backend/docs/PHASE01_BUILD.md).
 
-1. استخدم `npx expo install expo-video expo-splash-screen expo-updates expo-font` و development build. ثبّت الاعتمادات المتوافقة وقت التنفيذ.
+1. التهيئة الحالية SDK57 ومعاينة Expo Go عبر `npm start`، والاعتماديات متوافقة ومثبتة في package/lock. دليل الهاتف في `backend/docs/EXPO_GO.md`؛ تعليمات البناء المستقل اللاحقة لا تغيّر نمط المعاينة الحالي.
 2. حمّل Tajawal والثيم من التخزين، ثم اعرض IntroScreen مرة واحدة من الـroot layout. حافظ على state `introFinished` في الجذر؛ لا تخزنه دائمًا بين تشغيلين ولا تعيده عند AppState active. JS reload بسبب التطوير أو crash recovery قد يعيد الجذر، وهو ليس رحلة استخدام عادية.
 3. شاشة النظام native splash ثابتة؛ الفيديو يبدأ بعد تهيئة React Native وإخفاء شاشة النظام، لا يمكن وضع ملف MP4 مكان splash.image. اجعل ألوانهما متسقة.
 4. عند مراحل الربط اربط onDone ببوابة إصدار/صيانة/الرئيسية. لا تربطها مباشرة دائمًا بالرئيسية وتتجاوز gates. في حال تعليق الشبكة، اعرض حالة قابلة لإعادة المحاولة؛ لا تطلب تسجيل دخول للتصفح.

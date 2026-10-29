@@ -22,10 +22,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ['expo-localization', { supportedLocales: { ios: ['ar'], android: ['ar'] }, supportsRTL: true, forcesRTL: true }],
       ['expo-splash-screen', { image: './assets/splash-light.png', imageWidth: 240, resizeMode: 'contain', backgroundColor: '#FFFFFF', dark: { image: './assets/splash-dark.png', backgroundColor: '#071827' } }],
       'expo-font',
-      'expo-dev-client',
       ['expo-video', { supportsBackgroundPlayback: false, supportsPictureInPicture: false }],
     ],
-    runtimeVersion: { policy: 'fingerprint' }, updates: { enabled: false, checkAutomatically: 'NEVER', fallbackToCacheTimeout: 0 },
-    extra: { appKind: 'customer', environment, dataMode: 'fake', phase: '01' },
+    updates: { enabled: false, checkAutomatically: 'NEVER', fallbackToCacheTimeout: 0 },
+    extra: { supportsRTL: true, forcesRTL: true, appKind: 'customer', environment, dataMode: 'fake', phase: '01' },
   };
 };

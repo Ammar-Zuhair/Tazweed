@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren } from 'react';
-import { useColorScheme } from 'react-native';
+import { useSystemTheme } from './use-system-theme';
 import { parsePreference, resolveTheme, themeStorageKey, themes, type ThemeColors, type ThemeName, type ThemePreference } from './theme-model';
 
 type ThemeContextValue = { ready: boolean; name: ThemeName; colors: ThemeColors; preference: ThemePreference; persistenceError: boolean; setPreference: (value: ThemePreference) => void };
 const Context = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: PropsWithChildren) {
-  const system = useColorScheme();
+  const system = useSystemTheme();
   const [preference, setStoredPreference] = useState<ThemePreference>('system');
   const [ready, setReady] = useState(false);
   const [persistenceError, setPersistenceError] = useState(false);
