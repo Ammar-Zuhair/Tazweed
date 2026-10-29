@@ -29,6 +29,7 @@ try {
     assert.equal(await page.locator('html').getAttribute('lang'), 'ar');
     assert.equal(await page.locator('html').getAttribute('dir'), 'rtl');
     assert.equal(await page.getByTestId('theme-light').evaluate(element => getComputedStyle(element).direction), 'rtl');
+    await page.evaluate(() => document.fonts.ready);
     const font = await page.getByTestId('fake-label').evaluate(element => ({ font: getComputedStyle(element).fontFamily, loaded: document.fonts.check('16px "Tajawal-Regular"') }));
     assert.match(font.font, /Tajawal-Regular/); assert(font.loaded);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'mobile horizontal overflow');
@@ -104,7 +105,8 @@ try {
     Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'hidden' });
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  await backgroundPage.getByRole('button', { name: 'عدن', exact: true }).waitFor({ timeout: 2000 });
+  await backgroundPage.locator('video').waitFor({ state: 'detached', timeout: 2000 });
+  await backgroundPage.getByRole('button', { name: 'عدن', exact: true }).waitFor();
   assert.equal(await backgroundPage.locator('video').count(), 0);
   results.checks.push({ role: 'customer-synthetic-background', passed: true });
   await backgroundContext.close();

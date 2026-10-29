@@ -1,4 +1,6 @@
-> الحالة الحالية: اكتملت واجهات العميل التجريبية للمرحلة02 على Expo SDK57؛ [التقرير وصور المراجعة](backend/docs/progress/phase-02.md) و[روابط الهاتف](backend/docs/progress/phase-02-tunnels.json) و[دليل Expo Go](backend/docs/EXPO_GO.md). التوقف قبل03؛ لا خدمات تجارية متصلة.
+> التشغيل الحالي للتطبيقات الثلاثة: Expo Go على SDK57 حسب طلب المالك الأحدث، مع إصلاح فيديو البداية. [التقرير](backend/docs/progress/phase-02-native-fix.md) — [دليل التشغيل](backend/docs/EXPO_GO.md). التوقف قبل03.
+
+> الحالة الحالية: اكتملت واجهات العميل التجريبية للمرحلة02 على Expo SDK57؛ [التقرير وصور المراجعة](backend/docs/progress/phase-02.md) و[روابط الهاتف الحالية](backend/docs/progress/phase-02-native-fix-tunnels.json) و[دليل Expo Go](backend/docs/EXPO_GO.md). التوقف قبل03؛ لا خدمات تجارية متصلة.
 
 > مرجع00 وقراراته نافذة: [قرارات المالك](OWNER_DECISIONS_PHASE00.md)، [سجل المشكلات](ISSUES.md). تقريرا01 ومتابعة57 محفوظان كتاريخ التهيئة.
 

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-29T10:08:00.815566+00:00",
+  "sdk": 57,
+  "runtime": "Expo Go for customer/admin/courier",
+  "devClientRemoved": true,
+  "customerTypecheckPassed": true,
+  "customerTestsPassed": 34,
+  "introLifecycleRegressionTests": 5,
+  "expoDependencyCheckPassed": true,
+  "npmTreePassed": true,
+  "browserRegressionChecksPassed": 6,
+  "publicPlatformBundlesPassed": 6,
+  "publicWebSocketChecksPassed": 3,
+  "androidBuildCancelledByOwner": true,
+  "apkDelivered": false,
+  "nativeDeviceRetested": false,
+  "phase03Started": false,
+  "passed": true
+}

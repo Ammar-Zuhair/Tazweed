@@ -5,8 +5,8 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 
-const prefix = process.env.TAZWEED_EVIDENCE_PREFIX ?? 'phase-02';
-if (!/^phase-(?:01-sdk57|02)$/.test(prefix)) throw new Error('Invalid evidence prefix');
+const prefix = process.env.TAZWEED_EVIDENCE_PREFIX ?? 'phase-02-native-fix';
+if (!/^phase-(?:01-sdk57|02(?:-native-fix)?)$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const output = fileURLToPath(new URL(`../docs/progress/${prefix}-evidence/`, import.meta.url));
 await mkdir(output, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), projectSlug: 'tazweed', sdk: 57, nativePhoneTested: false, tunnels: [] };
@@ -38,7 +38,7 @@ for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
   for (const platform of ['android', 'ios']) {
     const manifest = await (await get(origin + '/', { accept: 'application/expo+json', 'expo-platform': platform, 'expo-protocol-version': '1' })).json();
     const client = manifest.extra.expoClient;
-    if (role === 'customer' && prefix === 'phase-02') { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, 'fake'); }
+    if (role === 'customer' && prefix.startsWith('phase-02')) { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, 'fake'); }
     assert.equal(client.sdkVersion, '57.0.0'); assert.equal(manifest.runtimeVersion, 'exposdk:57.0.0');
     assert.equal(client.extra.appKind, role); assert.equal(client.extra.dataMode, 'fake');
     assert.equal(client.extra.supportsRTL, true); assert.equal(client.extra.forcesRTL, true);
@@ -52,7 +52,7 @@ for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
   }
   await checkWebSocket(origin);
   await QRCode.toFile(output + `${role}-qr.png`, link.url, { width: 360, margin: 4, errorCorrectionLevel: 'M' });
-  results.tunnels.push({ role, port, unit, active: true, restarts: 0, provider: 'ngrok via Expo CLI --tunnel', expoGoUrl: link.url, httpsOrigin: origin, publicStatusHttp: 200, publicWebSocket: 'opened', manifests });
+  results.tunnels.push({ role, port, unit, active: true, restarts: 0, provider: 'ngrok via Expo CLI --tunnel', runtime: 'expo', expoGoUrl: link.url, httpsOrigin: origin, publicStatusHttp: 200, publicWebSocket: 'opened', manifests });
 }
 results.passed = true;
 await writeFile(fileURLToPath(new URL(`../docs/progress/${prefix}-tunnels.json`, import.meta.url)), JSON.stringify(results, null, 2) + '\n');

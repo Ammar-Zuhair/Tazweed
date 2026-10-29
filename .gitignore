@@ -13,3 +13,8 @@ dist/
 /*-app/dist-native/
 /*-app/android/
 /*-app/ios/
+
+# Local native toolchain caches and installable development artifacts
+/.android-sdk/
+/.gradle/
+/artifacts/

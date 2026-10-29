@@ -1,0 +1,97 @@
+{
+  "checkedAt": "2026-10-29T10:06:50.688Z",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "platform": "Chromium / Expo web export; not a native-device test",
+  "checks": [
+    {
+      "role": "admin",
+      "passed": true,
+      "startupMs": 1537,
+      "checks": [
+        "Arabic/RTL",
+        "local Tajawal loaded",
+        "light/dark",
+        "saved preference after reload",
+        "system theme changes",
+        "navigation",
+        "loading/empty/error/retry",
+        "390px/1024px no overflow",
+        "no external services",
+        "no page errors"
+      ],
+      "font": {
+        "font": "Tajawal-Regular",
+        "loaded": true
+      }
+    },
+    {
+      "role": "courier",
+      "passed": true,
+      "startupMs": 1957,
+      "checks": [
+        "Arabic/RTL",
+        "local Tajawal loaded",
+        "light/dark",
+        "saved preference after reload",
+        "system theme changes",
+        "navigation",
+        "loading/empty/error/retry",
+        "390px/1024px no overflow",
+        "no external services",
+        "no page errors"
+      ],
+      "font": {
+        "font": "Tajawal-Regular",
+        "loaded": true
+      }
+    },
+    {
+      "role": "customer-intro-light",
+      "passed": true,
+      "media": {
+        "source": "http://127.0.0.1:8081/assets/video/intro-light.bbd17da68bcbd0f4927d799db28024a6.mp4",
+        "duration": 4,
+        "paused": true,
+        "currentTime": 0,
+        "muted": false,
+        "volume": 0.45
+      },
+      "checks": [
+        "4 second local source loaded",
+        "sound not muted; audibility needs a device",
+        "skip",
+        "no navigation/focus replay"
+      ]
+    },
+    {
+      "role": "customer-intro-dark",
+      "passed": true,
+      "media": {
+        "source": "http://127.0.0.1:8081/assets/video/intro-dark.7c636d1ab17744bcef04edd70c7df244.mp4",
+        "duration": 4,
+        "paused": true,
+        "currentTime": 0,
+        "muted": false,
+        "volume": 0.45
+      },
+      "checks": [
+        "4 second local source loaded",
+        "sound not muted; audibility needs a device",
+        "timeout/completion recovery",
+        "no navigation/focus replay"
+      ]
+    },
+    {
+      "role": "customer-synthetic-background",
+      "passed": true
+    },
+    {
+      "role": "customer-video-failure",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

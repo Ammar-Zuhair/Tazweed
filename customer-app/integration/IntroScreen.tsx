@@ -1,8 +1,9 @@
 // Shared by the application bootstrap; assets stay in customer-app/video.
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { AccessibilityInfo, AppState, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useEventListener } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
+import { createIntroLifecycle } from './intro-lifecycle';
 
 type Props = { theme: 'light' | 'dark'; onDone: () => void; soundEnabled?: boolean };
 const light = require('../video/intro-light.mp4');
@@ -12,7 +13,6 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
   // Keep the initial source for this one-shot intro; theme changes apply to the next launch.
   const source = useRef(theme === 'dark' ? dark : light).current;
   const initialTheme = useRef(theme).current;
-  const done = useRef(false);
   const motionChecked = useRef(false);
   const callback = useRef(onDone);
   useEffect(() => { callback.current = onDone; }, [onDone]);
@@ -22,19 +22,16 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
     p.muted = !soundEnabled;
     // Do not override the operating system's silent-mode policy.
   });
-  const finish = useCallback(() => {
-    if (done.current) return;
-    done.current = true;
-    player.pause();
-    callback.current();
-  }, [player]);
+  const lifecycle = useMemo(() => createIntroLifecycle(player, () => callback.current()), [player]);
+  const finish = lifecycle.finish;
   useEventListener(player, 'playToEnd', finish);
   useEventListener(player, 'statusChange', ({ status }) => {
     if (status === 'error') finish();
-    if (status === 'readyToPlay' && motionChecked.current && !done.current && AppState.currentState === 'active') player.play();
+    if (status === 'readyToPlay' && motionChecked.current && AppState.currentState === 'active') lifecycle.playIfReady();
   });
   useEffect(() => {
     let active = true;
+    lifecycle.activate();
     // Fail open if media cannot play; do not trap the user at startup.
     const timer = setTimeout(finish, 4750);
     const app = AppState.addEventListener('change', state => {
@@ -48,19 +45,19 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
       if (!active) return;
       motionChecked.current = true;
       if (enabled) finish();
-      else if (player.status === 'readyToPlay' && !done.current && AppState.currentState === 'active') player.play();
+      else if (AppState.currentState === 'active') lifecycle.playIfReady();
     }).catch(() => {
       motionChecked.current = true;
-      if (active && player.status === 'readyToPlay' && !done.current && AppState.currentState === 'active') player.play();
+      if (active && AppState.currentState === 'active') lifecycle.playIfReady();
     });
     return () => {
       active = false;
+      lifecycle.deactivate();
       clearTimeout(timer);
       app.remove();
       motion.remove();
-      player.pause();
     };
-  }, [finish, player]);
+  }, [finish, lifecycle]);
   return (
     <Pressable onPress={finish} style={[styles.root, { backgroundColor: initialTheme === 'dark' ? '#071827' : '#FFFFFF' }]}
       accessibilityRole="button" accessibilityLabel="تخطي الافتتاحية" accessibilityHint="اضغط للمتابعة إلى التطبيق">

@@ -1,3 +1,5 @@
+> أحدث متابعة: [إصلاح فيديو Android والعودة إلى Expo Go](backend/docs/progress/phase-02-native-fix.md). احتفظ بإصلاح دورة حياة الفيديو؛ لا يزال تأكيد زوال الخطأ على هاتف المالك مطلوبًا.
+
 # تحقق المرحلة02
 
 واجهات العميل المحلية على SDK57، والرحلة والثيمان وRTL وحالات الشبكة والبوابات، موثقة في [تقرير02](backend/docs/progress/phase-02.md) و[أدلة الواجهة](backend/docs/progress/phase-02-evidence/browser-results.json). دليل التشغيل العام في [فحص أنفاق02](backend/docs/progress/phase-02-tunnels.json). لا GPS أو OTP أو رفع أو دفع حقيقي، ولا جهاز أصلي اختبر. تفاصيل الأوامر والحدود في التقرير؛ التوقف قبل03.
