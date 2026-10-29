@@ -3,7 +3,7 @@ import type { ExpoConfig, ConfigContext } from 'expo/config';
 export default ({ config }: ConfigContext): ExpoConfig => {
   const environment = process.env.EXPO_PUBLIC_APP_ENV ?? 'preview';
   if (environment === 'production') {
-    throw new Error('Phase 01 uses fake repositories. Production builds are disabled until real services are implemented.');
+    throw new Error('Phase 02 uses local preview repositories. Production builds are disabled until real services are implemented.');
   }
   return {
     ...config,
@@ -22,9 +22,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ['expo-localization', { supportedLocales: { ios: ['ar'], android: ['ar'] }, supportsRTL: true, forcesRTL: true }],
       ['expo-splash-screen', { image: './assets/splash-light.png', imageWidth: 240, resizeMode: 'contain', backgroundColor: '#FFFFFF', dark: { image: './assets/splash-dark.png', backgroundColor: '#071827' } }],
       'expo-font',
+      ['expo-image-picker', { photosPermission: 'اختر صورة اختبار لإيصال أو بلاغ في معاينة تزويد.', cameraPermission: false, microphonePermission: false }],
       ['expo-video', { supportsBackgroundPlayback: false, supportsPictureInPicture: false }],
     ],
     updates: { enabled: false, checkAutomatically: 'NEVER', fallbackToCacheTimeout: 0 },
-    extra: { supportsRTL: true, forcesRTL: true, appKind: 'customer', environment, dataMode: 'fake', phase: '01' },
+    extra: { supportsRTL: true, forcesRTL: true, appKind: 'customer', environment, dataMode: 'fake', phase: '02' },
   };
 };

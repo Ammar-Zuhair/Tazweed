@@ -1,0 +1,17 @@
+{
+  "sourceFingerprint": "b7d57bfe86772cd5ad7f12a67f304e6d0d00b009f05751ea634f32c5f4e8ff84",
+  "theme": "dark",
+  "width": 1024,
+  "passed": true,
+  "checks": [
+    "first province / home / Arabic RTL / local fonts",
+    "category filters / sort / three product illustrations / independent carton / wholesale / login OTP invalid+valid",
+    "address add / edit / moving map center / denied+granted demo location / accuracy / cancellation of delete",
+    "submit no reservation / manager fixture / wholesale quote / immutable acceptance history / same-total branch reacceptance / local file picker / protected hold / image reupload same payment / explicit verify+confirm+deliver",
+    "all six statuses / rating once / complaint with optional image",
+    "loading skeleton / empty / error / retry / maintenance allows ongoing / optional+mandatory update",
+    "notification read / theme preference / privacy / fresh deletion OTP / local request received"
+  ],
+  "runtimeErrors": [],
+  "externalRequests": []
+}

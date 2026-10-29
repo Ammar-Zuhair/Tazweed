@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-29T01:31:45.676Z",
+  "passed": true,
+  "viewport": {
+    "width": 360,
+    "height": 740
+  },
+  "checks": [
+    "real pointer drag of schematic map changes coordinates",
+    "save address after explicit pin confirmation",
+    "direct cancellation before confirmation without receipt",
+    "unconfigured province empty catalog then change recovery",
+    "terms and about navigation",
+    "system theme live light/dark changes",
+    "explicit dark and province persisted after reload"
+  ],
+  "runtimeErrors": [],
+  "nativeDeviceTested": false
+}

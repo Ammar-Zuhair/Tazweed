@@ -2,7 +2,8 @@ import { Stack, LocaleProvider, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider, useTheme } from '../ui/theme-provider';
-import { FoundationProvider } from '../data/foundation-provider';
+import { Feedback } from '../customer/components';
+import { CustomerProvider } from '../data/customer-provider';
 import { AppBootstrap } from '../bootstrap/AppBootstrap';
 import { View, Text, Pressable } from 'react-native';
 
@@ -11,7 +12,7 @@ export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
 }
 function Navigation() {
   const { name, colors } = useTheme();
-  return <AppBootstrap><FoundationProvider><StatusBar style={name === 'dark' ? 'light' : 'dark'} /><Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }} /></FoundationProvider></AppBootstrap>;
+  return <AppBootstrap><CustomerProvider><View style={{ flex: 1 }}><StatusBar style={name === 'dark' ? 'light' : 'dark'} /><Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }} /><Feedback /></View></CustomerProvider></AppBootstrap>;
 }
 export default function RootLayout() {
   return <SafeAreaProvider><ThemeProvider><LocaleProvider direction="rtl"><Navigation /></LocaleProvider></ThemeProvider></SafeAreaProvider>;

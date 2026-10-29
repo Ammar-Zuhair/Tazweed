@@ -1,0 +1,314 @@
+{
+  "checkedAt": "2026-10-29T01:46:42.188Z",
+  "startingCommit": "73b10b485f833e77a124bcdcf8c035bf26791aa5",
+  "scope": "phase02 customer local UI only",
+  "sdk": 57,
+  "sourceFingerprint": "b7d57bfe86772cd5ad7f12a67f304e6d0d00b009f05751ea634f32c5f4e8ff84",
+  "directDependenciesExactAndLocked": true,
+  "tests": [
+    {
+      "role": "customer",
+      "passed": 29
+    },
+    {
+      "role": "admin",
+      "passed": 4
+    },
+    {
+      "role": "courier",
+      "passed": 4
+    },
+    {
+      "role": "backend",
+      "passed": 1
+    }
+  ],
+  "originalSourceFilesCompared": 43,
+  "changedOriginalFiles": [],
+  "originalFiles": [
+    {
+      "file": "admin-app/assets/adaptive-foreground.png",
+      "sha256": "ed9b913a3b19a907414b6192b88953eee059c014fffa8b2e695ef0d69aaedd13"
+    },
+    {
+      "file": "admin-app/assets/fonts/OFL.txt",
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "file": "admin-app/assets/fonts/Tajawal-Bold.ttf",
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "file": "admin-app/assets/fonts/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "file": "admin-app/assets/fonts/Tajawal-Regular.ttf",
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "file": "admin-app/assets/icon.png",
+      "sha256": "449110420daba3f45a0dd12c33596184c502028fbef756717150e666556208a1"
+    },
+    {
+      "file": "admin-app/assets/splash-dark.png",
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "file": "admin-app/assets/splash-light.png",
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "file": "admin-app/assets/theme-tokens.json",
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "file": "courier-app/assets/adaptive-foreground.png",
+      "sha256": "1e2ce0850eb91fbd0f798ac9d9a60070c4170c225bd1936559588884c5be8f02"
+    },
+    {
+      "file": "courier-app/assets/fonts/OFL.txt",
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "file": "courier-app/assets/fonts/Tajawal-Bold.ttf",
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "file": "courier-app/assets/fonts/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "file": "courier-app/assets/fonts/Tajawal-Regular.ttf",
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "file": "courier-app/assets/icon.png",
+      "sha256": "07e19c79ce1d40fc67a2b8d33b923b1c1d328fd248128436572a75dba8659650"
+    },
+    {
+      "file": "courier-app/assets/splash-dark.png",
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "file": "courier-app/assets/splash-light.png",
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "file": "courier-app/assets/theme-tokens.json",
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "file": "customer-app/assets/adaptive-foreground.png",
+      "sha256": "8722cdf0a435e3489a542a7ebda2dd38bdf7749a90999bcbb4d190ca3750b07e"
+    },
+    {
+      "file": "customer-app/assets/fonts/OFL.txt",
+      "sha256": "9b584984f9db0ee30347391a76eff9c0a6b03dc450c3c6afe3757a2cb3a4db87"
+    },
+    {
+      "file": "customer-app/assets/fonts/Tajawal-Bold.ttf",
+      "sha256": "0342ab6b74b6bd1b4b5bf7beda45a9734a2b3147a31e8a3a45b6a3417a52d9d7"
+    },
+    {
+      "file": "customer-app/assets/fonts/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "file": "customer-app/assets/fonts/Tajawal-Regular.ttf",
+      "sha256": "6882892da3e03527d5db2bbab3b48bde6ef2e878a43f522d1a4eebda90010a19"
+    },
+    {
+      "file": "customer-app/assets/icon.png",
+      "sha256": "eb99f3ec1db29792b4d676edfa638e0fc7372b0290fd0688e92b3c17e4f94a01"
+    },
+    {
+      "file": "customer-app/assets/splash-dark.png",
+      "sha256": "418aaa7e0703154e364a946214f693c2350c7f8c1d39b2a0bc044c7a86e128d0"
+    },
+    {
+      "file": "customer-app/assets/splash-light.png",
+      "sha256": "b349f0c8e35cc7ef690f5cedfd0dd1e9c445377ba7cd00a4eb81064c5628fa7a"
+    },
+    {
+      "file": "customer-app/assets/theme-tokens.json",
+      "sha256": "c3efd93105319c09efee33fcfcf3f2aab0625c35017814db8d7b5f9ea50b5ff8"
+    },
+    {
+      "file": "customer-app/brand-source/BRAND.md",
+      "sha256": "1fb4e7e4b52e7089e46db30a75a024ea596a7575840a1eafec889d315918f002"
+    },
+    {
+      "file": "customer-app/brand-source/IMAGE_PROMPTS.md",
+      "sha256": "49aa7651f2f992b914e1fc71b168025a6e0f208550c2ca42e28e205b7948657d"
+    },
+    {
+      "file": "customer-app/brand-source/tazweed-logo-master.png",
+      "sha256": "39e5843cc666057486faae59485e2874143ffdf3bd4b5f9f02911b6e903ec166"
+    },
+    {
+      "file": "customer-app/media/STORYBOARD.md",
+      "sha256": "c545a59a01669341d4a5caf1fcaa8ba246607c542e10545acdd8272fdcac80a8"
+    },
+    {
+      "file": "customer-app/media/composition-dark.ffgraph",
+      "sha256": "0ce0fa831de73c6730b499aa7a281c73fe28a8c1c27fa700e6776b9800f9ebcd"
+    },
+    {
+      "file": "customer-app/media/composition-light.ffgraph",
+      "sha256": "0ce0fa831de73c6730b499aa7a281c73fe28a8c1c27fa700e6776b9800f9ebcd"
+    },
+    {
+      "file": "customer-app/media/layers/background-dark.svg",
+      "sha256": "2f41b0c8312065b587e813d3b6d8c5653184dd4996f2fa2f2573a3b082e5a7f2"
+    },
+    {
+      "file": "customer-app/media/layers/background-light.svg",
+      "sha256": "8bbd44b05dd9ccaf3b53f76f21d9ead0f5a659c5d949a4a7df8b6a95d3b9b6c0"
+    },
+    {
+      "file": "customer-app/media/layers/energy-arcs.svg",
+      "sha256": "0f734b19fedd0d2fda44871477b96126474fbbbdfc24dc73519cc8bccbf2a1a6"
+    },
+    {
+      "file": "customer-app/media/layers/logo-content.png",
+      "sha256": "28d7c27fa03a7cc173f1c9a39a6cce9c03727332cd7cd771ba78f318f4051dd3"
+    },
+    {
+      "file": "customer-app/media/layers/tire-ring.png",
+      "sha256": "b662472ed4925a26c7b08b816dd551d957d66953e18ab90586ce85919fec1ddb"
+    },
+    {
+      "file": "customer-app/media/rebuild_audio.py",
+      "sha256": "1b3680fbfcb023e9551438a758e38139f36cbcf40c4f0aa9487a12bb0d47cbd7"
+    },
+    {
+      "file": "customer-app/media/rebuild_intro.py",
+      "sha256": "229fcfcd2c53a1e16890935dce6e7c3d10ea01f69a3058b8448c51b334c6a452"
+    },
+    {
+      "file": "customer-app/media/tazweed-sonic-logo.wav",
+      "sha256": "b03878ce4a66119df0630fbc97c47927742f82455d993712e59f2109f49df61a"
+    },
+    {
+      "file": "customer-app/video/intro-dark.mp4",
+      "sha256": "b3dd01e2d542dececb17b8f36b35eee487f137ef213d4c545cc50c52166f16f6"
+    },
+    {
+      "file": "customer-app/video/intro-light.mp4",
+      "sha256": "fda7309ec26eb4e4b7aa6338da84f83b964daf755a2809204b2d9efab3b36d9e"
+    }
+  ],
+  "nativeExports": [
+    {
+      "platform": "android",
+      "bundle": "_expo/static/js/android/entry-4a0b8904e086f43a1dc16ee45ea04daf.hbc",
+      "bytes": 3121400,
+      "sha256": "5d41025b68459885ab0e9c8f7514772c14538e3d8d545f3ea544e10313258d84",
+      "originalFontsAndVideosBundled": true,
+      "apkOrIpaBuilt": false
+    },
+    {
+      "platform": "ios",
+      "bundle": "_expo/static/js/ios/entry-f11b05904ee52d40bae462fc67c78d87.hbc",
+      "bytes": 2825079,
+      "sha256": "ebecd06f268d8312627d3b2aafd769b160ede1b1366e70002cdfb08d81668118",
+      "originalFontsAndVideosBundled": true,
+      "apkOrIpaBuilt": false
+    }
+  ],
+  "browserMatrix": [
+    {
+      "theme": "light",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "passed": true
+    }
+  ],
+  "edgeChecks": [
+    "real pointer drag of schematic map changes coordinates",
+    "save address after explicit pin confirmation",
+    "direct cancellation before confirmation without receipt",
+    "unconfigured province empty catalog then change recovery",
+    "terms and about navigation",
+    "system theme live light/dark changes",
+    "explicit dark and province persisted after reload"
+  ],
+  "regressionChecks": [
+    {
+      "role": "admin",
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "passed": true
+    },
+    {
+      "role": "customer-intro-light",
+      "passed": true
+    },
+    {
+      "role": "customer-intro-dark",
+      "passed": true
+    },
+    {
+      "role": "customer-synthetic-background",
+      "passed": true
+    },
+    {
+      "role": "customer-video-failure",
+      "passed": true
+    }
+  ],
+  "units": [
+    {
+      "unit": "tazweed-customer-preview-8081",
+      "port": 8081,
+      "listener": "LISTEN 0      511    0.0.0.0:8081 0.0.0.0:* users:((\"node\",pid=11701,fd=21))",
+      "status": "NRestarts=0\nActiveState=active\nSubState=running",
+      "localHttp": 200,
+      "routedUrl": "https://tazweed--8081.dev.remote-ammar.duckdns.org/",
+      "publicHttp": 302,
+      "publicProof": "ingress and auth routing only; not an authenticated end-to-end session"
+    },
+    {
+      "unit": "tazweed-admin-preview-8082",
+      "port": 8082,
+      "listener": "LISTEN 0      511    0.0.0.0:8082 0.0.0.0:* users:((\"node\",pid=11714,fd=21))",
+      "status": "NRestarts=0\nActiveState=active\nSubState=running",
+      "localHttp": 200,
+      "routedUrl": "https://tazweed--8082.dev.remote-ammar.duckdns.org/",
+      "publicHttp": 302,
+      "publicProof": "ingress and auth routing only; not an authenticated end-to-end session"
+    },
+    {
+      "unit": "tazweed-courier-preview-8083",
+      "port": 8083,
+      "listener": "LISTEN 0      511    0.0.0.0:8083 0.0.0.0:* users:((\"node\",pid=11725,fd=21))",
+      "status": "NRestarts=0\nActiveState=active\nSubState=running",
+      "localHttp": 200,
+      "routedUrl": "https://tazweed--8083.dev.remote-ammar.duckdns.org/",
+      "publicHttp": 302,
+      "publicProof": "ingress and auth routing only; not an authenticated end-to-end session"
+    }
+  ],
+  "tunnelEvidence": "phase-02-tunnels.json",
+  "nativePhoneTested": false,
+  "productionServicesConnected": false,
+  "phase03Started": false,
+  "passed": true
+}

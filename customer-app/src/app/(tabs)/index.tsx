@@ -1,1 +1,1 @@
-export { HomeScreen as default } from '../../ui/screens';
+export { HomeScreen as default } from '../../customer/screens/catalog-screens';

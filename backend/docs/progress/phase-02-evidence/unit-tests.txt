@@ -1,0 +1,291 @@
+Project: customer
+
+> tazweed-customer@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: province has exactly its configured catalog and prices; unavailable never exposes a stock count
+ok 1 - province has exactly its configured catalog and prices; unavailable never exposes a stock count
+  ---
+  duration_ms: 80.333671
+  type: 'test'
+  ...
+# Subtest: every category offers its own attribute filter with OR within it and AND between filters
+ok 2 - every category offers its own attribute filter with OR within it and AND between filters
+  ---
+  duration_ms: 118.873498
+  type: 'test'
+  ...
+# Subtest: search and numeric price sorting are deterministic
+ok 3 - search and numeric price sorting are deterministic
+  ---
+  duration_ms: 12.71984
+  type: 'test'
+  ...
+# Subtest: carton price is independent; conversion and quantity validation are explicit
+ok 4 - carton price is independent; conversion and quantity validation are explicit
+  ---
+  duration_ms: 27.606954
+  type: 'test'
+  ...
+# Subtest: province change retains cart and flags availability, leaving existing order snapshots intact
+ok 5 - province change retains cart and flags availability, leaving existing order snapshots intact
+  ---
+  duration_ms: 12.646783
+  type: 'test'
+  ...
+# Subtest: phone normalizes Arabic digits and rejects unknown country, malformed and short numbers
+ok 6 - phone normalizes Arabic digits and rejects unknown country, malformed and short numbers
+  ---
+  duration_ms: 18.396192
+  type: 'test'
+  ...
+# Subtest: OTP commits wrong attempts, limits retries/resend and expires; no password is stored
+ok 7 - OTP commits wrong attempts, limits retries/resend and expires; no password is stored
+  ---
+  duration_ms: 78.773868
+  type: 'test'
+  ...
+# Subtest: password reset requires its own verified OTP and does not log the user in
+ok 8 - password reset requires its own verified OTP and does not log the user in
+  ---
+  duration_ms: 5.59962
+  type: 'test'
+  ...
+# Subtest: address actions require local login, valid coordinates, preview boundary and matching province
+ok 9 - address actions require local login, valid coordinates, preview boundary and matching province
+  ---
+  duration_ms: 4.033446
+  type: 'test'
+  ...
+# Subtest: submit starts awaiting manager with no quote/hold; editing address never rewrites sent snapshot
+ok 10 - submit starts awaiting manager with no quote/hold; editing address never rewrites sent snapshot
+  ---
+  duration_ms: 6.696691
+  type: 'test'
+  ...
+# Subtest: wholesale quote is a distinct proposal without automatic retail promotion or mutation of sent lines
+ok 11 - wholesale quote is a distinct proposal without automatic retail promotion or mutation of sent lines
+  ---
+  duration_ms: 6.372719
+  type: 'test'
+  ...
+# Subtest: road flooring, manual fallback and single largest deterministic promotion
+ok 12 - road flooring, manual fallback and single largest deterministic promotion
+  ---
+  duration_ms: 11.098904
+  type: 'test'
+  ...
+# Subtest: same-total branch revision requires fresh acceptance and preserves the original approval snapshot
+ok 13 - same-total branch revision requires fresh acceptance and preserves the original approval snapshot
+  ---
+  duration_ms: 6.98609
+  type: 'test'
+  ...
+# Subtest: declining current quote releases preview hold but retains immutable history
+ok 14 - declining current quote releases preview hold but retains immutable history
+  ---
+  duration_ms: 9.019945
+  type: 'test'
+  ...
+# Subtest: transfer instructions exist before receipt and are copied into the single payment
+ok 15 - transfer instructions exist before receipt and are copied into the single payment
+  ---
+  duration_ms: 4.079482
+  type: 'test'
+  ...
+# Subtest: receipt protects hold indefinitely; reject/reupload uses one payment and preserves old image attempts
+ok 16 - receipt protects hold indefinitely; reject/reupload uses one payment and preserves old image attempts
+  ---
+  duration_ms: 135.240986
+  type: 'test'
+  ...
+# Subtest: receipt does not verify money or allow confirmation, and mismatches remain a financial review
+ok 17 - receipt does not verify money or allow confirmation, and mismatches remain a financial review
+  ---
+  duration_ms: 4.969016
+  type: 'test'
+  ...
+# Subtest: COD confirm is not collection; delivery needs explicit cash collection or documented exception
+ok 18 - COD confirm is not collection; delivery needs explicit cash collection or documented exception
+  ---
+  duration_ms: 3.603786
+  type: 'test'
+  ...
+# Subtest: expired COD needs revalidation of same facts, without rewriting accepted quote
+ok 19 - expired COD needs revalidation of same facts, without rewriting accepted quote
+  ---
+  duration_ms: 5.028828
+  type: 'test'
+  ...
+# Subtest: cancellation before receipt is direct, after receipt only a review request without release
+ok 20 - cancellation before receipt is direct, after receipt only a review request without release
+  ---
+  duration_ms: 7.774948
+  type: 'test'
+  ...
+# Subtest: delivered-only review once, complaint/photo and treatment states
+ok 21 - delivered-only review once, complaint/photo and treatment states
+  ---
+  duration_ms: 4.489123
+  type: 'test'
+  ...
+# Subtest: maintenance blocks new orders but permits ongoing quote/receipt and delete flows
+ok 22 - maintenance blocks new orders but permits ongoing quote/receipt and delete flows
+  ---
+  duration_ms: 6.538197
+  type: 'test'
+  ...
+# Subtest: required update cannot be dismissed; optional update can
+ok 23 - required update cannot be dismissed; optional update can
+  ---
+  duration_ms: 1.172582
+  type: 'test'
+  ...
+# Subtest: offline mutations fail without losing cart and transitions never mutate input snapshots
+ok 24 - offline mutations fail without losing cart and transitions never mutate input snapshots
+  ---
+  duration_ms: 5.832904
+  type: 'test'
+  ...
+# Subtest: local catalog adapter separates empty/error/offline and cancels stale requests
+ok 25 - local catalog adapter separates empty/error/offline and cancels stale requests
+  ---
+  duration_ms: 381.532462
+  type: 'test'
+  ...
+# Subtest: a missing or corrupt preference follows the system; explicit choices survive a system change
+ok 26 - a missing or corrupt preference follows the system; explicit choices survive a system change
+  ---
+  duration_ms: 1.820768
+  type: 'test'
+  ...
+# Subtest: fake data is labelled, empty is separate, and errors can recover through a fresh request
+ok 27 - fake data is labelled, empty is separate, and errors can recover through a fresh request
+  ---
+  duration_ms: 718.419757
+  type: 'test'
+  ...
+# Subtest: cancelled work cannot publish stale data after navigation
+ok 28 - cancelled work cannot publish stale data after navigation
+  ---
+  duration_ms: 6.150055
+  type: 'test'
+  ...
+# Subtest: a production environment cannot use preview repositories
+ok 29 - a production environment cannot use preview repositories
+  ---
+  duration_ms: 0.713869
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7557.142272
+
+Project: admin
+
+> tazweed-admin@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: a missing or corrupt preference follows the system; explicit choices survive a system change
+ok 1 - a missing or corrupt preference follows the system; explicit choices survive a system change
+  ---
+  duration_ms: 1.575221
+  type: 'test'
+  ...
+# Subtest: fake data is labelled, empty is separate, and errors can recover through a fresh request
+ok 2 - fake data is labelled, empty is separate, and errors can recover through a fresh request
+  ---
+  duration_ms: 70.503781
+  type: 'test'
+  ...
+# Subtest: cancelled work cannot publish stale data after navigation
+ok 3 - cancelled work cannot publish stale data after navigation
+  ---
+  duration_ms: 1.05849
+  type: 'test'
+  ...
+# Subtest: a production environment cannot use preview repositories
+ok 4 - a production environment cannot use preview repositories
+  ---
+  duration_ms: 4.945263
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2575.869476
+
+Project: courier
+
+> tazweed-courier@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: a missing or corrupt preference follows the system; explicit choices survive a system change
+ok 1 - a missing or corrupt preference follows the system; explicit choices survive a system change
+  ---
+  duration_ms: 1.379768
+  type: 'test'
+  ...
+# Subtest: fake data is labelled, empty is separate, and errors can recover through a fresh request
+ok 2 - fake data is labelled, empty is separate, and errors can recover through a fresh request
+  ---
+  duration_ms: 32.23397
+  type: 'test'
+  ...
+# Subtest: cancelled work cannot publish stale data after navigation
+ok 3 - cancelled work cannot publish stale data after navigation
+  ---
+  duration_ms: 0.835214
+  type: 'test'
+  ...
+# Subtest: a production environment cannot use preview repositories
+ok 4 - a production environment cannot use preview repositories
+  ---
+  duration_ms: 0.55403
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4027.727534
+
+Project: backend
+
+> tazweed-backend@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: health reports process only, and business routes remain unavailable
+ok 1 - health reports process only, and business routes remain unavailable
+  ---
+  duration_ms: 351.4967
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7107.28883

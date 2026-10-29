@@ -5,8 +5,8 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const workspace = fileURLToPath(new URL('../..', import.meta.url));
-const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-01';
-if (!/^phase-01(?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
+const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-02';
+if (!/^phase-0[12](?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const evidence = resolve(workspace, `backend/docs/progress/${prefix}-evidence`);
 await mkdir(evidence, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), viewport: { width: 390, height: 844 }, platform: 'Chromium / Expo web export; not a native-device test', checks: [] };
@@ -14,6 +14,7 @@ const browser = await chromium.launch({ headless: true });
 const home = async page => { await page.getByTestId('state-ready').waitFor(); await page.getByTestId('fake-label').waitFor(); };
 try {
   for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
+    if (role === 'customer') continue; // Business journey is covered by test-customer-phase02.mjs.
     const origin = `http://127.0.0.1:${8081 + index}`;
     const context = await browser.newContext({ viewport: results.viewport, colorScheme: 'light', reducedMotion: 'reduce' });
     const page = await context.newPage();
@@ -80,14 +81,12 @@ try {
     assert(media.source.includes(`intro-${theme}`), 'intro follows startup theme');
     assert(Number.isFinite(media.duration) && media.duration >= 3.9 && media.duration <= 4.1);
     assert.equal(media.muted, false); assert.equal(media.volume, 0.45);
-    // Seek for an inspectable identity frame even when the browser blocks audible autoplay.
-    await video.evaluate(element => { element.currentTime = 1.6; });
-    await page.waitForFunction(() => { const element = document.querySelector('video'); return element && element.currentTime >= 1.5 && element.readyState >= 2; });
+    // Capture the live frame without seeking past the application's fixed fail-open timer.
     await page.screenshot({ path: resolve(evidence, `customer-intro-${theme}.png`) });
     if (theme === 'light') await skip.click();
     // Dark also proves that a blocked autoplay/startup cannot trap the user beyond the timeout.
-    await home(page);
-    await page.getByRole('tab', { name: 'الإعدادات' }).click();
+    await page.getByRole('button', { name: 'عدن', exact: true }).waitFor();
+    await page.getByRole('tab', { name: 'حسابي' }).click();
     await page.getByRole('tab', { name: 'الرئيسية' }).click();
     assert.equal(await page.locator('video').count(), 0);
     await page.evaluate(() => window.dispatchEvent(new Event('focus')));
@@ -105,7 +104,7 @@ try {
     Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'hidden' });
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  await backgroundPage.getByTestId('state-ready').waitFor({ timeout: 2000 });
+  await backgroundPage.getByRole('button', { name: 'عدن', exact: true }).waitFor({ timeout: 2000 });
   assert.equal(await backgroundPage.locator('video').count(), 0);
   results.checks.push({ role: 'customer-synthetic-background', passed: true });
   await backgroundContext.close();
@@ -113,7 +112,7 @@ try {
   const context = await browser.newContext({ viewport: results.viewport, reducedMotion: 'no-preference' });
   const page = await context.newPage();
   await page.route('**/*.mp4', route => route.abort('failed'));
-  await page.goto('http://127.0.0.1:8081'); await home(page);
+  await page.goto('http://127.0.0.1:8081'); await page.getByRole('button', { name: 'عدن', exact: true }).waitFor();
   results.checks.push({ role: 'customer-video-failure', passed: true });
   await context.close();
 } finally { await browser.close(); }
