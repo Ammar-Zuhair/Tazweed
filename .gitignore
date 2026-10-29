@@ -8,3 +8,8 @@ dist/
 *.jks
 *.p8
 *-service-account.json
+
+# Expo generated builds and native projects (config plugins are the source of truth)
+/*-app/dist-native/
+/*-app/android/
+/*-app/ios/

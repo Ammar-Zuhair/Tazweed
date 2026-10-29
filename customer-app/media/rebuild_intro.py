@@ -12,6 +12,6 @@ for theme in ('light','dark'):
  command+=['-i',str(here/'tazweed-sonic-logo.wav'),'-filter_complex',graph,
   '-map','[out]','-map','4:a','-t','4','-r','30',
   '-c:v','libx264','-preset','medium','-crf','19','-pix_fmt','yuv420p',
-  '-c:a','aac','-b:a','160k','-movflags','+faststart',str(here/f'intro-{theme}.mp4')]
+  '-c:a','aac','-b:a','160k','-movflags','+faststart',str(here.parent/'video'/f'intro-{theme}.mp4')]
  subprocess.run(command,check=True)
  print(theme,'v2 rebuilt',flush=True)

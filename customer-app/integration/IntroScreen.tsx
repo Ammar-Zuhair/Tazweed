@@ -1,18 +1,19 @@
-// Integration reference, not a complete Expo project. Install expo-video with expo install.
+// Shared by the application bootstrap; assets stay in customer-app/video.
 import React, { useCallback, useEffect, useRef } from 'react';
-import { AccessibilityInfo, AppState, Pressable, StyleSheet, View } from 'react-native';
+import { AccessibilityInfo, AppState, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useEventListener } from 'expo';
 import { useVideoPlayer, VideoView } from 'expo-video';
 
 type Props = { theme: 'light' | 'dark'; onDone: () => void; soundEnabled?: boolean };
-const light = require('../media/intro-light.mp4');
-const dark = require('../media/intro-dark.mp4');
+const light = require('../video/intro-light.mp4');
+const dark = require('../video/intro-dark.mp4');
 
 export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
   // Keep the initial source for this one-shot intro; theme changes apply to the next launch.
   const source = useRef(theme === 'dark' ? dark : light).current;
   const initialTheme = useRef(theme).current;
   const done = useRef(false);
+  const motionChecked = useRef(false);
   const callback = useRef(onDone);
   useEffect(() => { callback.current = onDone; }, [onDone]);
   const player = useVideoPlayer(source, p => {
@@ -30,7 +31,7 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
   useEventListener(player, 'playToEnd', finish);
   useEventListener(player, 'statusChange', ({ status }) => {
     if (status === 'error') finish();
-    if (status === 'readyToPlay' && !done.current && AppState.currentState === 'active') player.play();
+    if (status === 'readyToPlay' && motionChecked.current && !done.current && AppState.currentState === 'active') player.play();
   });
   useEffect(() => {
     let active = true;
@@ -39,15 +40,18 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
     const app = AppState.addEventListener('change', state => {
       if (state !== 'active') finish();
     });
+    if (AppState.currentState !== 'active') finish();
     const motion = AccessibilityInfo.addEventListener('reduceMotionChanged', enabled => {
       if (enabled) finish();
     });
     AccessibilityInfo.isReduceMotionEnabled().then(enabled => {
       if (!active) return;
+      motionChecked.current = true;
       if (enabled) finish();
-      else if (player.status === 'readyToPlay' && !done.current) player.play();
+      else if (player.status === 'readyToPlay' && !done.current && AppState.currentState === 'active') player.play();
     }).catch(() => {
-      if (active && player.status === 'readyToPlay' && !done.current) player.play();
+      motionChecked.current = true;
+      if (active && player.status === 'readyToPlay' && !done.current && AppState.currentState === 'active') player.play();
     });
     return () => {
       active = false;
@@ -63,6 +67,9 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
         <VideoView player={player} style={styles.video} contentFit="contain"
           nativeControls={false} allowsPictureInPicture={false} />
+      </View>
+      <View style={{ position: 'absolute', bottom: 54, alignSelf: 'center', borderRadius: 24, paddingHorizontal: 22, paddingVertical: 12, backgroundColor: initialTheme === 'dark' ? '#102C43' : '#F3F6F9' }} pointerEvents="none">
+        <Text style={{ fontFamily: 'Tajawal-Medium', fontSize: 15, color: initialTheme === 'dark' ? '#F4F7FA' : '#102D46' }}>تخطي الافتتاحية</Text>
       </View>
     </Pressable>
   );

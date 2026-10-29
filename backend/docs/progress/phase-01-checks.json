@@ -1,0 +1,257 @@
+{
+  "checkedAt": "2026-10-29T00:03:10.980499+00:00",
+  "startingCommit": "ea50b89b82b11d962807c8527b97f3b633d770f0",
+  "node": "v22.23.4",
+  "npm": "10.9.9",
+  "applications": [
+    {
+      "role": "customer",
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed against live Expo version matrix",
+      "webExport": "passed",
+      "nativeJsExports": [
+        {
+          "platform": "android",
+          "hermesBundle": "_expo/static/js/android/entry-b123e41abdf48414177af39836f4cac1.hbc",
+          "bundleSha256": "29248611c4487519a5d5a022bfdb323871415361ae2f6b0fd0fb346b6e97e13e",
+          "fonts": 4,
+          "videos": 2,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "hermesBundle": "_expo/static/js/ios/entry-de6ec6cf6e83e9e0b1184d3623b02b4c.hbc",
+          "bundleSha256": "048b93e50edb34cb1556e81a5247e9195557002d48cada18201ec718a7400287",
+          "fonts": 4,
+          "videos": 2,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        }
+      ],
+      "versions": {
+        "expo": "58.0.21",
+        "react": "19.3.0",
+        "react-native": "0.88.0",
+        "expo-router": "58.0.28"
+      },
+      "directDependenciesExact": true,
+      "lockfileMatches": true
+    },
+    {
+      "role": "admin",
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed against live Expo version matrix",
+      "webExport": "passed",
+      "nativeJsExports": [
+        {
+          "platform": "android",
+          "hermesBundle": "_expo/static/js/android/entry-98f09e9c25442e7255b5e9e717b43a7d.hbc",
+          "bundleSha256": "363c47948ea8236051f83322d5b7438d0ea57637b62a105c178551958116ddcf",
+          "fonts": 4,
+          "videos": 0,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "hermesBundle": "_expo/static/js/ios/entry-d53faf8b139f7b2eb0e51dea266c02dc.hbc",
+          "bundleSha256": "0536168f37e902fb3b6ae8c1b881c877fa6c14dd80f9b19204a77973fe82ff04",
+          "fonts": 4,
+          "videos": 0,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        }
+      ],
+      "versions": {
+        "expo": "58.0.21",
+        "react": "19.3.0",
+        "react-native": "0.88.0",
+        "expo-router": "58.0.28"
+      },
+      "directDependenciesExact": true,
+      "lockfileMatches": true
+    },
+    {
+      "role": "courier",
+      "typecheck": "passed",
+      "unitTests": {
+        "passed": 4,
+        "failed": 0
+      },
+      "expoInstallCheck": "passed against live Expo version matrix",
+      "webExport": "passed",
+      "nativeJsExports": [
+        {
+          "platform": "android",
+          "hermesBundle": "_expo/static/js/android/entry-b2690ac10f03f7dbb12f472470fe3722.hbc",
+          "bundleSha256": "3f17784d70958d394102caeb96ce9fd195753530c17059f6f743586a02aa673d",
+          "fonts": 4,
+          "videos": 0,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        },
+        {
+          "platform": "ios",
+          "hermesBundle": "_expo/static/js/ios/entry-7012b4dc1bbee8b6ea969fd2e7d6872b.hbc",
+          "bundleSha256": "d3d9d807994d3f6ee9b01964427e2cc38ce1f790d3418e1ab369882b787dc1d4",
+          "fonts": 4,
+          "videos": 0,
+          "originalFontAndVideoBytesPresent": true,
+          "nativeBinaryBuilt": false
+        }
+      ],
+      "versions": {
+        "expo": "58.0.21",
+        "react": "19.3.0",
+        "react-native": "0.88.0",
+        "expo-router": "58.0.28"
+      },
+      "directDependenciesExact": true,
+      "lockfileMatches": true
+    }
+  ],
+  "backend": {
+    "typecheck": "passed",
+    "unitTests": {
+      "passed": 1,
+      "failed": 0
+    },
+    "build": "passed",
+    "express": "5.3.0",
+    "databaseCreated": false,
+    "businessRoutesImplemented": false
+  },
+  "assets": {
+    "checkedAt": "2026-10-28T23:51:55.929860+00:00",
+    "trackedAssetsCompared": 37,
+    "changedAssets": [],
+    "videoSha256": {
+      "customer-app/video/intro-dark.mp4": "b3dd01e2d542dececb17b8f36b35eee487f137ef213d4c545cc50c52166f16f6",
+      "customer-app/video/intro-light.mp4": "fda7309ec26eb4e4b7aa6338da84f83b964daf755a2809204b2d9efab3b36d9e"
+    },
+    "generator": "parsed only; not executed"
+  },
+  "prebuild": [
+    {
+      "role": "customer",
+      "generatedAndroidAndIos": true,
+      "supportsRtl": true,
+      "forcesRtlAndroid": true,
+      "forcesRtlIos": true,
+      "iosLocales": [
+        "ar"
+      ],
+      "launcherIcons": 17,
+      "compiled": false,
+      "updatesEnabled": false,
+      "backgroundAudio": false
+    },
+    {
+      "role": "admin",
+      "generatedAndroidAndIos": true,
+      "supportsRtl": true,
+      "forcesRtlAndroid": true,
+      "forcesRtlIos": true,
+      "iosLocales": [
+        "ar"
+      ],
+      "launcherIcons": 17,
+      "compiled": false
+    },
+    {
+      "role": "courier",
+      "generatedAndroidAndIos": true,
+      "supportsRtl": true,
+      "forcesRtlAndroid": true,
+      "forcesRtlIos": true,
+      "iosLocales": [
+        "ar"
+      ],
+      "launcherIcons": 17,
+      "compiled": false
+    }
+  ],
+  "previewServices": {
+    "checkedAt": "2026-10-28T23:54:31.946147+00:00",
+    "services": [
+      {
+        "role": "customer",
+        "unit": "tazweed-customer-preview-8081.service",
+        "port": 8081,
+        "route": "/",
+        "active": true,
+        "restarts": 0,
+        "http": 200,
+        "unknownHost": 403,
+        "writeMethods": 405,
+        "videoFiles": 2,
+        "rangeChecked": true,
+        "publicIngress": "not-tested: project slug absent"
+      },
+      {
+        "role": "admin",
+        "unit": "tazweed-admin-preview-8082.service",
+        "port": 8082,
+        "route": "/",
+        "active": true,
+        "restarts": 0,
+        "http": 200,
+        "unknownHost": 403,
+        "writeMethods": 405,
+        "videoFiles": 0,
+        "rangeChecked": false,
+        "publicIngress": "not-tested: project slug absent"
+      },
+      {
+        "role": "courier",
+        "unit": "tazweed-courier-preview-8083.service",
+        "port": 8083,
+        "route": "/",
+        "active": true,
+        "restarts": 0,
+        "http": 200,
+        "unknownHost": 403,
+        "writeMethods": 405,
+        "videoFiles": 0,
+        "rangeChecked": false,
+        "publicIngress": "not-tested: project slug absent"
+      }
+    ]
+  },
+  "productionGuards": [
+    {
+      "role": "customer",
+      "productionConfigRejected": true,
+      "exitCode": 1
+    },
+    {
+      "role": "admin",
+      "productionConfigRejected": true,
+      "exitCode": 1
+    },
+    {
+      "role": "courier",
+      "productionConfigRejected": true,
+      "exitCode": 1
+    }
+  ],
+  "versionMatrixNote": {
+    "liveExpoExpectedReactNative": "0.88.0",
+    "bundledAndTemplateRecommendedReactNative": "0.88.1",
+    "selected": "0.88.0",
+    "prebuildWarningRecorded": true,
+    "notExcludedFromVersionChecks": true
+  },
+  "nativeDeviceTesting": "not available; no APK/IPA compiled",
+  "publicIngressTesting": "pending documented project slug",
+  "stoppedBeforePhase": "02"
+}
