@@ -1,4 +1,4 @@
-> أحدث واجهات: العميل02 والإدارة03 والموصل04. [تقرير04](progress/phase-04.md) و[روابط التطبيقات الثلاثة الحالية](progress/phase-04-tunnels.json) وQR داخل phase-04-evidence؛ مراجعة الاتساق في UI_REVIEW.md.
+> أحدث واجهات: العميل02 والإدارة03 والموصل04. [تقرير04](progress/phase-04.md) و[روابط التطبيقات الثلاثة الحالية](progress/customer-ui-refresh-tunnels.json) وQR داخل phase-04-evidence؛ مراجعة الاتساق في UI_REVIEW.md.
 
 > طلب المالك الأحدث أعاد التطبيقات الثلاثة إلى Expo Go على SDK57؛ أزيل إعداد development client للعميل وأبقي إصلاح الفيديو. [التقرير وروابط التشغيل المفحوصة](progress/phase-02-native-fix.md).
 
@@ -8,7 +8,7 @@
 
 ## الروابط الحالية
 
-الروابط ووقت آخر فحص في [دليل الأنفاق الحالي JSON](progress/phase-04-tunnels.json)، ورموز QR في [تقرير04](progress/phase-04.md). افتح رابط `exp://` من الهاتف مع نسخة Expo Go الموافقة لـSDK57، أو امسح QR من داخل Expo Go. يجب أن يبقى الخادم والنفق يعملان؛ هذه ليست إصدارات منشورة أو روابط دائمة.
+الروابط ووقت آخر فحص في [دليل الأنفاق الحالي JSON](progress/customer-ui-refresh-tunnels.json)، ورموز QR في [تقرير تحسين العميل بعد04](progress/customer-ui-refresh.md). افتح رابط `exp://` من الهاتف مع نسخة Expo Go الموافقة لـSDK57، أو امسح QR من داخل Expo Go. يجب أن يبقى الخادم والنفق يعملان؛ هذه ليست إصدارات منشورة أو روابط دائمة.
 
 تحقق من توافق نسخة الهاتف عبر [صفحة Expo Go الرسمية](https://expo.dev/go?sdkVersion=57&platform=android&device=true). على Android يمكن اختيار بناء SDK57 من الصفحة. على iPhone قد تحتاج نسخة Go مناسبة عبر مسار Expo الرسمي لـiOS؛ لا تفترض أن نسخة المتجر تطابق SDK57. [إرشادات اختلاف الإصدارات](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/) تشرح الخيارات. لا نحتاج حسابات أو مفاتيح EAS لإنشاء نفق Android الحالي؛ لا ندعي تجهيز توقيع/نسخة iOS على هاتف المالك.
 

@@ -1,0 +1,26 @@
+{
+  "sourceFingerprint": "6132ef5a5c91d5af733ddc47de89a5add9f00b81ad4679479abf36f31d74ac5e",
+  "checkedAt": "2026-10-31T17:38:24.603Z",
+  "nativeDeviceTested": false,
+  "platform": "Chromium, the customer Expo web export",
+  "runs": [
+    {
+      "sourceFingerprint": "6132ef5a5c91d5af733ddc47de89a5add9f00b81ad4679479abf36f31d74ac5e",
+      "theme": "light",
+      "width": 390,
+      "passed": true,
+      "checks": [
+        "first province / home / Arabic RTL / local fonts",
+        "category filters / sort / three product illustrations / independent carton / wholesale / login OTP invalid+valid",
+        "address add / edit / moving map center / denied+granted demo location / accuracy / cancellation of delete",
+        "submit no reservation / manager fixture / wholesale quote / immutable acceptance history / same-total branch reacceptance / local file picker / protected hold / image reupload same payment / explicit verify+confirm+deliver",
+        "all six statuses / rating once / complaint with optional image",
+        "quote decline / manual fee fallback / COD expiry revalidation / explicit collection+delivery / support clipboard / address deletion / registration / password reset requiring fresh login",
+        "loading skeleton / empty / error / retry / maintenance allows ongoing / optional+mandatory update",
+        "notification read / theme preference / privacy / fresh deletion OTP / local request received"
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

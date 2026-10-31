@@ -1,5 +1,5 @@
-import { useState, type PropsWithChildren } from 'react';
-import { ActivityIndicator, Image, Modal, Pressable, ScrollView, TextInput, View, type TextInputProps } from 'react-native';
+import { useEffect, useState, type PropsWithChildren } from 'react';
+import { ActivityIndicator, Image, Modal, Pressable, ScrollView, TextInput, View, useWindowDimensions, type TextInputProps } from 'react-native';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, G, Path, Rect, Text as SvgText } from 'react-native-svg';
@@ -10,8 +10,8 @@ import { useTheme } from '../ui/theme-provider';
 import { fonts } from '../ui/theme-model';
 import { useCustomer } from '../data/customer-provider';
 import { governorates, governorateById, productById } from '../fixtures/catalog';
-import { priceOf } from '../domain/catalog';
-import type { Product } from '../domain/types';
+import { parseQuantity, priceOf } from '../domain/catalog';
+import type { Product, UnitKind } from '../domain/types';
 
 export const money = (value: number) => `${value.toLocaleString('en-US')} ر.ي`;
 export const unitLabel = (value: string) => value === 'carton' ? 'كرتون' : 'حبة';
@@ -31,8 +31,21 @@ export function Chip({ label, selected = false, onPress, testID }: { label: stri
 }
 export function Chips({ children }: PropsWithChildren) { return <Row style={{ flexWrap: 'wrap', gap: 8 }}>{children}</Row>; }
 export function Pair({ label, value }: { label: string; value: string }) { const { colors } = useTheme(); return <Row style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}><Txt style={{ color: colors.textMuted, flexShrink: 1 }}>{label}</Txt><Txt weight="bold" style={{ flexShrink: 1 }}>{value}</Txt></Row>; }
-export function Quantity({ value, onChange, label = 'الكمية' }: { value: number; onChange: (n: number) => void; label?: string }) {
-  return <View style={{ gap: 8 }}><Txt>{label}</Txt><Row><Chip label="إنقاص الكمية" onPress={() => onChange(Math.max(1, value - 1))} /><Txt weight="bold" accessibilityLabel={`${label}: ${value}`}>{value}</Txt><Chip label="زيادة الكمية" onPress={() => onChange(Math.min(999, value + 1))} /></Row></View>;
+export function Quantity({ value, onChange, label = 'الكمية', minimum = 1, canIncrease = true, onValidityChange }: { value: number; onChange: (n: number) => void; label?: string; minimum?: 0 | 1; canIncrease?: boolean; onValidityChange?: (valid: boolean) => void }) {
+  const { colors, name } = useTheme(); const [draft, setDraft] = useState(String(value)); const [error, setError] = useState('');
+  useEffect(() => { setDraft(String(value)); setError(''); onValidityChange?.(true); }, [value, onValidityChange]);
+  const edit = (text: string) => {
+    setDraft(text); const parsed = parseQuantity(text);
+    const message = parsed === null ? 'أدخل عددًا صحيحًا من 1 إلى 999.' : !canIncrease && parsed > value ? 'غير متوفر؛ يمكنك تقليل الكمية أو حذفها.' : '';
+    setError(message); onValidityChange?.(!message);
+    if (!message && parsed !== null) onChange(parsed);
+  };
+  const step = (next: number) => { setDraft(String(next)); setError(''); onValidityChange?.(true); onChange(next); };
+  return <View style={{ gap: 6 }}><Txt style={{ fontSize: 13 }}>{label}</Txt><Row style={{ gap: 6 }}>
+    <Pressable accessibilityRole="button" accessibilityLabel={`إنقاص ${label}`} accessibilityState={{ disabled: value <= minimum }} disabled={value <= minimum} onPress={() => step(value - 1)} style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: colors.background, alignItems: 'center', justifyContent: 'center', opacity: value <= minimum ? 0.4 : 1 }}><Icon name="remove-outline" /></Pressable>
+    <TextInput accessibilityLabel={label} keyboardType="number-pad" inputMode="numeric" selectTextOnFocus value={draft} onChangeText={edit} style={{ flex: 1, minWidth: 44, height: 44, borderWidth: 1, borderColor: error ? colors.primary : colors.border, borderRadius: 12, color: colors.text, backgroundColor: colors.surface, fontFamily: fonts.bold, fontSize: 18, textAlign: 'center', paddingHorizontal: 4 }} />
+    <Pressable accessibilityRole="button" accessibilityLabel={`زيادة ${label}`} accessibilityState={{ disabled: !canIncrease || value >= 999 }} disabled={!canIncrease || value >= 999} onPress={() => step(value + 1)} style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center', opacity: !canIncrease || value >= 999 ? 0.4 : 1 }}><Icon name="add-outline" color={name === 'dark' ? '#071827' : '#FFFFFF'} /></Pressable>
+  </Row>{!!error && <Txt accessibilityRole="alert" style={{ fontSize: 12, lineHeight: 20, color: colors.text }}>{error}</Txt>}</View>;
 }
 export function Sheet({ visible, title, close, children }: PropsWithChildren<{ visible: boolean; title: string; close: () => void }>) {
   const { colors } = useTheme();
@@ -47,10 +60,24 @@ export function ProductArt({ product, view = 0, height = 135 }: { product: Produ
   </Svg></View>;
 }
 export function ProductCard({ product }: { product: Product }) {
-  const { state } = useCustomer(); const { colors } = useTheme(); const available = !!product.prices[state.governorateId ?? '']?.available;
-  return <Pressable accessibilityRole="button" accessibilityLabel={`تفاصيل ${product.name}`} onPress={() => go(`/product?id=${product.id}`)} style={{ width: '48%', flexGrow: 1, maxWidth: 380, backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 20, padding: 12, gap: 8 }}><ProductArt product={product} /><Txt style={{ fontSize: 13, color: colors.textMuted }}>{product.brand}</Txt><Txt weight="bold" numberOfLines={2} style={{ minHeight: 52 }}>{product.name}</Txt><Txt weight="bold" style={{ color: colors.primary }}>{money(priceOf(product, state.governorateId, 'piece') ?? 0)}</Txt><Txt style={{ fontSize: 13, color: colors.textMuted }}>{available ? 'متوفر' : 'غير متوفر'} · للحبة</Txt></Pressable>;
+  const { state, send } = useCustomer(); const { colors } = useTheme(); const [unit, setUnit] = useState<UnitKind>('piece');
+  const available = !!product.prices[state.governorateId ?? '']?.available; const price = priceOf(product, state.governorateId, unit);
+  const quantity = state.cart.find(line => line.productId === product.id && line.unit === unit)?.quantity ?? 0;
+  const units = state.cart.filter(line => line.productId === product.id);
+  return <View testID={`product-card-${product.id}`} style={{ flex: 1, backgroundColor: colors.surface, borderColor: quantity ? colors.primary : colors.border, borderWidth: 1, borderRadius: 22, padding: 10, gap: 8 }}>
+    <Pressable accessibilityRole="button" accessibilityLabel={`تفاصيل ${product.name}`} onPress={() => go(`/product?id=${product.id}`)} style={{ gap: 6, minHeight: 44 }}><ProductArt product={product} /><Txt style={{ fontSize: 12, color: colors.textMuted }}>{product.brand}</Txt><Txt weight="bold" style={{ minHeight: 54, fontSize: 15 }}>{product.name}</Txt></Pressable>
+    <Txt weight="bold" style={{ color: colors.primary, fontSize: 17 }}>{price == null ? 'سعر غير مهيأ' : money(price)}</Txt>
+    <Txt style={{ fontSize: 12, color: colors.textMuted }}>{available ? 'متوفر' : 'غير متوفر'} · {unitLabel(unit)}</Txt>
+    <Row style={{ gap: 6, flexWrap: 'wrap' }}><Chip label="حبة" selected={unit === 'piece'} onPress={() => setUnit('piece')} />{product.piecesPerCarton && <Chip label="كرتون" selected={unit === 'carton'} onPress={() => setUnit('carton')} />}</Row>
+    {!!product.piecesPerCarton && unit === 'carton' && <Txt style={{ fontSize: 12 }}>الكرتون = {product.piecesPerCarton} حبة</Txt>}
+    <View style={{ marginTop: 'auto', gap: 6 }}>{quantity ? <Quantity key={unit} label={`كمية ${unitLabel(unit)} ${product.name}`} value={quantity} minimum={0} canIncrease={available && price != null} onChange={quantity => send({ type: 'cart-set', productId: product.id, unit, quantity })} /> : <Action title="طلب" testID={`order-${product.id}`} icon="bag-add-outline" disabled={!available || price == null} onPress={() => send({ type: 'cart-set', productId: product.id, unit, quantity: 1 })} />}
+    {!!units.length && <Txt accessibilityLiveRegion="polite" style={{ fontSize: 12, color: colors.textMuted }}>في السلة: {units.map(line => `${line.quantity} ${unitLabel(line.unit)}`).join(' + ')}</Txt>}</View>
+  </View>;
 }
-export function ProductGrid({ products }: { products: Product[] }) { return <Row style={{ flexWrap: 'wrap', alignItems: 'stretch', gap: 12 }}>{products.map(product => <ProductCard key={product.id} product={product} />)}</Row>; }
+export function ProductGrid({ products }: { products: Product[] }) {
+  const { width } = useWindowDimensions(); const columns = width < 390 ? 1 : width < 768 ? 2 : 3;
+  return <View testID="product-grid" style={{ gap: 12 }}>{Array.from({ length: Math.ceil(products.length / columns) }, (_, index) => <Row key={index} style={{ alignItems: 'stretch', gap: 10 }}>{Array.from({ length: columns }, (_, offset) => { const product = products[index * columns + offset]; return product ? <ProductCard key={product.id} product={product} /> : <View key={`empty-${offset}`} style={{ flex: 1 }} />; })}</Row>)}</View>;
+}
 export function Skeleton() { const { colors } = useTheme(); return <View testID="catalog-loading" accessibilityLabel="جارٍ تحميل المنتجات" style={{ gap: 12 }}><ActivityIndicator color={colors.primary} /><Row>{[1, 2].map(id => <View key={id} style={{ flex: 1, height: 215, backgroundColor: colors.border, borderRadius: 20 }} />)}</Row><Txt>نحمّل كتالوج المعاينة…</Txt></View>; }
 export function LoginPrompt() { return <Card><Icon name="person-circle-outline" size={40} /><SectionTitle>أكمل الدخول التجريبي</SectionTitle><Txt>طلباتك وعناوينك وبياناتك الشخصية تظهر بعد التحقق المحلي. لا تستخدم معلومات حساسة.</Txt><Action title="تسجيل الدخول" onPress={() => go('/auth')} /><Action secondary title="إنشاء حساب تجريبي" onPress={() => go('/auth?mode=register')} /></Card>; }
 export function ProvinceContent() {

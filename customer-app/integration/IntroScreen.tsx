@@ -13,7 +13,6 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
   // Keep the initial source for this one-shot intro; theme changes apply to the next launch.
   const source = useRef(theme === 'dark' ? dark : light).current;
   const initialTheme = useRef(theme).current;
-  const motionChecked = useRef(false);
   const callback = useRef(onDone);
   useEffect(() => { callback.current = onDone; }, [onDone]);
   const player = useVideoPlayer(source, p => {
@@ -22,42 +21,31 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
     p.muted = !soundEnabled;
     // Do not override the operating system's silent-mode policy.
   });
-  const lifecycle = useMemo(() => createIntroLifecycle(player, () => callback.current()), [player]);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lifecycle = useMemo(() => createIntroLifecycle(player, () => callback.current(), () => {
+    timer.current = setTimeout(() => lifecycle.finish(), 4750);
+  }), [player]);
   const finish = lifecycle.finish;
   useEventListener(player, 'playToEnd', finish);
-  useEventListener(player, 'statusChange', ({ status }) => {
-    if (status === 'error') finish();
-    if (status === 'readyToPlay' && motionChecked.current && AppState.currentState === 'active') lifecycle.playIfReady();
-  });
+  useEventListener(player, 'statusChange', ({ status }) => lifecycle.statusChanged(status));
   useEffect(() => {
     let active = true;
     lifecycle.activate();
-    // Fail open if media cannot play; do not trap the user at startup.
-    const timer = setTimeout(finish, 4750);
-    const app = AppState.addEventListener('change', state => {
-      if (state !== 'active') finish();
-    });
-    if (AppState.currentState !== 'active') finish();
-    const motion = AccessibilityInfo.addEventListener('reduceMotionChanged', enabled => {
-      if (enabled) finish();
-    });
+    const app = AppState.addEventListener('change', state => lifecycle.appStateChanged(state));
+    lifecycle.appStateChanged(AppState.currentState);
+    const motion = AccessibilityInfo.addEventListener('reduceMotionChanged', enabled => lifecycle.reduceMotionChanged(enabled));
     AccessibilityInfo.isReduceMotionEnabled().then(enabled => {
-      if (!active) return;
-      motionChecked.current = true;
-      if (enabled) finish();
-      else if (AppState.currentState === 'active') lifecycle.playIfReady();
-    }).catch(() => {
-      motionChecked.current = true;
-      if (active && AppState.currentState === 'active') lifecycle.playIfReady();
-    });
+      if (active) lifecycle.reduceMotionChanged(enabled);
+    }).catch(() => { if (active) lifecycle.reduceMotionChanged(false); });
     return () => {
       active = false;
       lifecycle.deactivate();
-      clearTimeout(timer);
+      if (timer.current) clearTimeout(timer.current);
+      timer.current = null;
       app.remove();
       motion.remove();
     };
-  }, [finish, lifecycle]);
+  }, [lifecycle]);
   return (
     <Pressable onPress={finish} style={[styles.root, { backgroundColor: initialTheme === 'dark' ? '#071827' : '#FFFFFF' }]}
       accessibilityRole="button" accessibilityLabel="تخطي الافتتاحية" accessibilityHint="اضغط للمتابعة إلى التطبيق">

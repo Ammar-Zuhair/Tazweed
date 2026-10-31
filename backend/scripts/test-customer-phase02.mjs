@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 const root = fileURLToPath(new URL('../..', import.meta.url));
 const prefix = process.env.TAZWEED_CUSTOMER_EVIDENCE_PREFIX ?? 'phase-02';
-if (!/^phase-0[24]$/.test(prefix)) throw new Error('Invalid evidence prefix');
+if (!/^(?:phase-0[24]|customer-ui-refresh-regression)$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const output = `${root}/backend/docs/progress/${prefix === 'phase-04' ? 'phase-04-customer' : prefix}-evidence`;
 await mkdir(output, { recursive: true });
 const origin = 'http://127.0.0.1:8081';
@@ -37,7 +37,7 @@ try {
     const clear = async () => { const toast = button('إغلاق التنبيه'); if (await toast.isVisible()) await toast.evaluate(element => element.click()).catch(() => {}); };
     const click = async name => { await clear(); console.log('click', theme, width, name, new URL(page.url()).pathname); await button(name).click(); };
     const fill = async (name, value) => { await clear(); await page.getByRole('textbox', { name, exact: true }).filter({ visible: true }).fill(value); };
-    const tab = async name => { await clear(); await page.getByRole('tab', { name, exact: true }).filter({ visible: true }).click(); };
+    const tab = async name => { await clear(); await page.getByRole('tab', { name, exact: true }).filter({ visible: true }).click(); await page.waitForURL(url => url.pathname === ({ 'الرئيسية': '/', 'الأقسام': '/categories', 'طلباتي': '/orders', 'حسابي': '/account' })[name]); await page.waitForTimeout(250); };
     const home = async () => { if (await button('الرئيسية').isVisible()) await click('الرئيسية'); else await tab('الرئيسية'); await page.waitForURL(origin + '/'); };
     const text = async () => page.getByTestId(`theme-${theme}`).filter({ visible: true }).last().innerText();
     const shot = async (name, focus) => { await clear(); if (focus) await page.getByText(focus, { exact: false }).filter({ visible: true }).first().scrollIntoViewIfNeeded(); assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `overflow ${name} ${width}`); await page.screenshot({ path: `${output}/${name}-${theme}-${width}.png` }); };

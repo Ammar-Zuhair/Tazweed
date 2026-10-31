@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const workspace = fileURLToPath(new URL('../..', import.meta.url));
 const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-04';
-if (!/^phase-0[1234](?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
+if (!/^(?:phase-0[1234](?:-[a-z0-9]+)*|customer-ui-refresh)$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const evidence = resolve(workspace, `backend/docs/progress/${prefix}-evidence`);
 await mkdir(evidence, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), viewport: { width: 390, height: 844 }, platform: 'Chromium / Expo web export; not a native-device test', checks: [] };
@@ -14,7 +14,7 @@ const browser = await chromium.launch({ headless: true });
 const home = async page => { await page.getByTestId('state-ready').waitFor(); await page.getByTestId('fake-label').waitFor(); };
 try {
   for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
-    if (prefix.startsWith('phase-04') || role !== 'courier') continue; // Phase04 courier has its own suite; foundation checks remain historical.
+    if (prefix.startsWith('phase-04') || prefix === 'customer-ui-refresh' || role !== 'courier') continue; // Phase04 courier has its own suite; foundation checks remain historical.
     const origin = `http://127.0.0.1:${8081 + index}`;
     const context = await browser.newContext({ viewport: results.viewport, colorScheme: 'light', reducedMotion: 'reduce' });
     const page = await context.newPage();
@@ -96,6 +96,24 @@ try {
     results.checks.push({ role: `customer-intro-${theme}`, passed: true, media, checks: ['4 second local source loaded', 'sound not muted; audibility needs a device', theme === 'light' ? 'skip' : 'timeout/completion recovery', 'no navigation/focus replay'] });
     await context.close();
   }
+  // Expo Go can open the project before the app is reported active. Simulate that startup.
+  const inactiveContext = await browser.newContext({ viewport: results.viewport, reducedMotion: 'no-preference' });
+  await inactiveContext.addInitScript(() => {
+    window.__introVisibility = 'hidden';
+    Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => window.__introVisibility });
+  });
+  const inactivePage = await inactiveContext.newPage();
+  await inactivePage.goto('http://127.0.0.1:8081');
+  await inactivePage.getByRole('button', { name: 'تخطي الافتتاحية', exact: true }).waitFor();
+  await inactivePage.waitForTimeout(5000);
+  assert.equal(await inactivePage.locator('video').count(), 1, 'startup inactivity must not skip intro or start the safety timeout');
+  await inactivePage.evaluate(() => { window.__introVisibility = 'visible'; document.dispatchEvent(new Event('visibilitychange')); });
+  await inactivePage.waitForTimeout(120);
+  assert.equal(await inactivePage.locator('video').count(), 1, 'first active presents the intro');
+  await inactivePage.evaluate(() => { window.__introVisibility = 'hidden'; document.dispatchEvent(new Event('visibilitychange')); });
+  await inactivePage.locator('video').waitFor({ state: 'detached', timeout: 2000 });
+  results.checks.push({ role: 'customer-startup-inactive-then-active', passed: true, checks: ['5s initially hidden does not consume 4.75s safety timeout', 'first active presents intro', 'subsequent background finishes within2s'] });
+  await inactiveContext.close();
   // Synthetic web lifecycle event; device background behavior remains a manual check.
   const backgroundContext = await browser.newContext({ viewport: results.viewport, reducedMotion: 'no-preference' });
   const backgroundPage = await backgroundContext.newPage();

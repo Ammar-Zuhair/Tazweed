@@ -1,0 +1,13 @@
+{
+  "sourceFingerprint": "3538fc52e0ab547ad538ca4513becd024f0a1ae89111bbc6b15b4ccd8c3d7896",
+  "width": 390,
+  "theme": "dark",
+  "passed": true,
+  "checks": [
+    "home order / decorative backdrop / RTL horizontal scrolling / three promotion destinations / battery brand+capacity / oil brand+viscosity+search / catalog category switch then home link returns to requested category",
+    "direct order stays in catalog / editable Arabic quantity / invalid text leaves cart unchanged / max999 / separate piece+carton prices and quantities / detail3→5 replaces / cart sync / zero removes selected unit",
+    "responsive columns1/2/3 / six category links reset filters / governorate-specific daily ranking / unavailable blocks new/increased quantity, allows reduction/removal"
+  ],
+  "runtimeErrors": [],
+  "externalRequests": []
+}

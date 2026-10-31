@@ -67,7 +67,7 @@ export function createInitialState(governorateId: string | null = null, now = Da
 }
 export type PreviewAction =
   | { type: 'governorate'; id: string }
-  | { type: 'cart-add'; line: CartLine } | { type: 'cart-quantity'; productId: string; unit: CartLine['unit']; quantity: number } | { type: 'cart-remove'; productId: string; unit: CartLine['unit'] }
+  | { type: 'cart-add'; line: CartLine } | { type: 'cart-set' | 'cart-quantity'; productId: string; unit: CartLine['unit']; quantity: number } | { type: 'cart-remove'; productId: string; unit: CartLine['unit'] }
   | { type: 'kind'; kind: OrderKind } | { type: 'address-save'; address: Address } | { type: 'address-delete'; id: string }
   | { type: 'auth-start'; purpose: 'login' | 'register' | 'reset' | 'delete'; phone: string; password?: string; name?: string }
   | { type: 'otp-verify'; code: string } | { type: 'otp-resend' } | { type: 'otp-clear' } | { type: 'password-reset'; password: string }
@@ -89,7 +89,7 @@ export function transition(state: CustomerState, action: PreviewAction, now = Da
   const id = (prefix: string) => `${prefix}-${next.nextId++}`;
   const networkMutation = ['submit', 'quote-accept', 'quote-decline', 'receipt', 'review', 'complaint', 'auth-start'];
   if (networkMutation.includes(action.type)) demand(next.scenario !== 'offline' && next.scenario !== 'error', 'تعذر الاتصال في سيناريو المعاينة. أعد المحاولة بعد استعادة الاتصال التجريبي.');
-  if (['cart-add', 'cart-quantity', 'kind', 'submit'].includes(action.type)) demand(next.gate !== 'maintenance' && next.gate !== 'required-update', 'الطلبات الجديدة متوقفة في وضع الصيانة أو التحديث الإجباري.');
+  if (['cart-add', 'cart-set', 'cart-quantity', 'kind', 'submit'].includes(action.type)) demand(next.gate !== 'maintenance' && next.gate !== 'required-update', 'الطلبات الجديدة متوقفة في وضع الصيانة أو التحديث الإجباري.');
   const order = 'orderId' in action ? next.orders.find(row => row.id === action.orderId) : undefined;
   if ('orderId' in action) demand(order && next.profile, 'سجل الدخول التجريبي للوصول إلى هذا الطلب.');
   const event = (label: string) => { order!.events.push({ label, at: now }); next.notifications.unshift({ id: id('notice'), title: 'تحديث طلب تجريبي', body: label, orderId: order!.id, read: false }); };
@@ -105,7 +105,24 @@ export function transition(state: CustomerState, action: PreviewAction, now = Da
       if (line) { line.quantity += action.line.quantity; piecesOf(line); } else next.cart.push({ ...action.line });
       break;
     }
-    case 'cart-quantity': { const line = next.cart.find(row => row.productId === action.productId && row.unit === action.unit); demand(line, 'بند السلة غير موجود.'); line.quantity = action.quantity; piecesOf(line); break; }
+    case 'cart-set':
+    case 'cart-quantity': {
+      const line = next.cart.find(row => row.productId === action.productId && row.unit === action.unit);
+      if (action.type === 'cart-quantity') demand(line, 'بند السلة غير موجود.');
+      demand(Number.isInteger(action.quantity) && action.quantity >= 0 && action.quantity <= 999, 'الكمية من 1 إلى 999، أو صفر لحذف البند.');
+      if (action.quantity === 0) { next.cart = next.cart.filter(row => row !== line); break; }
+      const product = productById(action.productId); demand(product, 'المنتج غير موجود.');
+      piecesOf({ productId: action.productId, unit: action.unit, quantity: action.quantity });
+      // An unavailable line can still be reduced or removed after changing province.
+      if (!line || action.quantity > line.quantity) {
+        demand(next.governorateId && governorateById(next.governorateId)?.catalogBranch, 'اختر محافظة بفرع كتالوج أولًا.');
+        demand(product.prices[next.governorateId]?.available, 'المنتج غير متوفر في فرع الكتالوج المختار.');
+        demand(priceOf(product, next.governorateId, action.unit) != null, 'الوحدة غير متاحة.');
+      }
+      if (line) line.quantity = action.quantity;
+      else next.cart.push({ productId: action.productId, unit: action.unit, quantity: action.quantity });
+      break;
+    }
     case 'cart-remove': next.cart = next.cart.filter(row => row.productId !== action.productId || row.unit !== action.unit); break;
     case 'kind': next.kind = action.kind; break;
     case 'address-save': {

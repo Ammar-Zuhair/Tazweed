@@ -14,9 +14,20 @@ export function Page({ children }: PropsWithChildren) {
   const { colors, name } = useTheme();
   return <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1, backgroundColor: colors.background }}>
     <View {...(Platform.OS === 'web' ? { dir: 'rtl' as const } : {})} testID={`theme-${name}`} style={{ flex: 1, direction: 'rtl' }}>
-      <ScrollView contentContainerStyle={styles.scroll}><View style={styles.page}>{children}</View></ScrollView>
+      <OrangeBackdrop dark={name === 'dark'} /><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scroll}><View style={styles.page}>{children}</View></ScrollView>
     </View>
   </SafeAreaView>;
+}
+/** Decorative layer shared by every customer page; never participates in touch or accessibility. */
+function OrangeBackdrop({ dark }: { dark: boolean }) {
+  const fill = dark ? '#F47A1315' : '#F47A1312';
+  const stroke = dark ? '#FF9B4528' : '#F47A1324';
+  return <View testID="orange-backdrop" pointerEvents="none" accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { overflow: 'hidden' }]}>
+    <View style={{ position: 'absolute', width: 340, height: 340, borderRadius: 170, backgroundColor: fill, top: -110, right: -130 }} />
+    <View style={{ position: 'absolute', width: 230, height: 230, borderRadius: 115, borderWidth: 28, borderColor: stroke, top: '36%', left: -155 }} />
+    <View style={{ position: 'absolute', width: 420, height: 420, borderRadius: 210, backgroundColor: fill, bottom: -210, right: -170 }} />
+    <View style={{ position: 'absolute', width: 70, height: 70, borderRadius: 35, borderWidth: 2, borderColor: stroke, top: '30%', right: 18 }} />
+  </View>;
 }
 export function Row({ children, style, ...props }: ViewProps) {
   return <View {...props} style={[{ flexDirection: 'row', alignItems: 'center', gap: 12 }, style]}>{children}</View>;
@@ -60,4 +71,4 @@ export function StatusPanel({ status, retry }: { status: 'loading' | 'empty' | '
   </Card>;
 }
 
-const styles = StyleSheet.create({ scroll: { flexGrow: 1, paddingBottom: 28 }, page: { width: '100%', maxWidth: 820, alignSelf: 'center', paddingHorizontal: 22, paddingTop: 22 } });
+const styles = StyleSheet.create({ scroll: { flexGrow: 1, paddingBottom: 28 }, page: { width: '100%', maxWidth: 820, alignSelf: 'center', paddingHorizontal: 16, paddingTop: 18 } });

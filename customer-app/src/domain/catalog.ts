@@ -34,6 +34,12 @@ export function filterCatalog(query: CatalogQuery): Product[] {
 }
 export const subtotalOf = (lines: OrderLine[]) => lines.reduce((sum, line) => sum + line.unitPrice * line.quantity, 0);
 export const normalizeDigits = (value: string) => value.replace(/[٠-٩]/g, digit => String('٠١٢٣٤٥٦٧٨٩'.indexOf(digit))).replace(/[۰-۹]/g, digit => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)));
+export function parseQuantity(value: string): number | null {
+  const text = normalizeDigits(value.trim());
+  if (!/^\d+$/.test(text)) return null;
+  const quantity = Number(text);
+  return Number.isInteger(quantity) && quantity >= 1 && quantity <= 999 ? quantity : null;
+}
 export function normalizePhone(value: string) {
   let digits = normalizeDigits(value).replace(/[\s()+-]/g, '');
   if (digits.startsWith('00967')) digits = digits.slice(2);

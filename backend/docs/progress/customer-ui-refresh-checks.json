@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-10-31T17:45:24.932Z",
+  "passed": true,
+  "scope": "approved customer UI follow-up after04; no phase05",
+  "sourceFingerprint": "3538fc52e0ab547ad538ca4513becd024f0a1ae89111bbc6b15b4ccd8c3d7896",
+  "nativeDeviceTested": false,
+  "typecheck": {
+    "passed": true,
+    "outputSha256": "046b5cc0ec518f0ccb2c8b3a90da6c191638dc8cbe045e75709419eeeecc1627"
+  },
+  "tests": {
+    "count": 43,
+    "passed": 43,
+    "failed": 0,
+    "outputSha256": "7bcbdbc4492e22925f2b967ae9717aa9a2a7a24b321bbdbab73e126922bbee98"
+  },
+  "browserRuns": [
+    {
+      "width": 360,
+      "theme": "light",
+      "passed": true
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "passed": true
+    }
+  ],
+  "introScenarios": [
+    "customer-intro-light",
+    "customer-intro-dark",
+    "customer-startup-inactive-then-active",
+    "customer-synthetic-background",
+    "customer-video-failure"
+  ],
+  "customerOrderRegression": true,
+  "nativeExports": [
+    {
+      "platform": "android",
+      "path": "_expo/static/js/android/entry-99debcf1740a51f622b349df1e3cf575.hbc",
+      "bytes": 3137449,
+      "sha256": "a2b5dfa9d096c68be4ff8abf2ed0b0e3c5f6225a57671941ee5ec1e0d61c38af"
+    },
+    {
+      "platform": "ios",
+      "path": "_expo/static/js/ios/entry-dbd10e13975ee53086822c1a77d76238.hbc",
+      "bytes": 2841236,
+      "sha256": "351ff93271b8c40033d1bb891a3cfc64761feeb87e63d8617d76cf578711a420"
+    }
+  ],
+  "webExport": {
+    "bundlePath": "/_expo/static/js/web/entry-aa1feed20ae3f5079ac67cb515b61e64.js",
+    "bytes": 1469201,
+    "sha256": "b2275591060691918ebe7bdff5c33395458e0b028c200ca42798cbee99aa5784"
+  },
+  "expoTunnels": [
+    {
+      "role": "customer",
+      "expoGoUrl": "exp://sfs3nam-anonymous-8091.exp.direct",
+      "unit": "tazweed-customer-expo-8091"
+    },
+    {
+      "role": "admin",
+      "expoGoUrl": "exp://utjz9oi-anonymous-8092.exp.direct",
+      "unit": "tazweed-admin-expo-8092"
+    },
+    {
+      "role": "courier",
+      "expoGoUrl": "exp://vsfhyqu-anonymous-8093.exp.direct",
+      "unit": "tazweed-courier-expo-8093"
+    }
+  ],
+  "services": [
+    {
+      "unit": "tazweed-customer-preview-8081",
+      "status": [
+        "NRestarts=0",
+        "ActiveState=active",
+        "SubState=running"
+      ]
+    },
+    {
+      "unit": "tazweed-customer-expo-8091",
+      "status": [
+        "NRestarts=0",
+        "ActiveState=active",
+        "SubState=running"
+      ]
+    },
+    {
+      "unit": "tazweed-admin-expo-8092",
+      "status": [
+        "NRestarts=1",
+        "ActiveState=active",
+        "SubState=running"
+      ]
+    },
+    {
+      "unit": "tazweed-courier-expo-8093",
+      "status": [
+        "NRestarts=0",
+        "ActiveState=active",
+        "SubState=running"
+      ]
+    }
+  ],
+  "hostValidation": {
+    "invalidHostHttp": 403,
+    "routedHttpsHttp": 302,
+    "authenticatedIngressBrowserTested": false
+  },
+  "unchangedOriginalAssetsAndOtherApps": true,
+  "screenshotCount": 47
+}
