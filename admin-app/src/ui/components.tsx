@@ -35,7 +35,7 @@ export function Action({ title, onPress, icon, secondary = false, disabled = fal
   const ink = secondary ? colors.text : name === 'dark' ? palette.navyDeep : '#FFFFFF';
   return <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={title} accessibilityState={{ disabled }} disabled={disabled} onPress={onPress}
     style={({ pressed }) => ({ minHeight: 52, paddingHorizontal: 18, paddingVertical: 12, borderRadius: 14, borderWidth: 1, borderColor: secondary ? colors.border : colors.primary, backgroundColor: secondary ? colors.surface : colors.primary, opacity: disabled ? 0.45 : pressed ? 0.8 : 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 10 })}>
-    {icon && <Icon name={icon} color={ink} size={20} />}<Txt weight="bold" style={{ color: ink }}>{title}</Txt>
+    {icon && <Icon name={icon} color={ink} size={20} />}<Txt weight="bold" style={{ color: ink, flexShrink: 1, textAlign: 'center' }}>{title}</Txt>
   </Pressable>;
 }
 export function Header({ title, subtitle }: { title: string; subtitle: string }) {

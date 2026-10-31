@@ -1,3 +1,5 @@
+> أحدث واجهات: العميل02 والإدارة03، والموصل أساس01. [تقرير03](progress/phase-03.md) و[فحص الروابط الحالي](progress/phase-03-tunnels.json) وQR داخل phase-03-evidence. لا مكتبة أصلية جديدة في03.
+
 > طلب المالك الأحدث أعاد التطبيقات الثلاثة إلى Expo Go على SDK57؛ أزيل إعداد development client للعميل وأبقي إصلاح الفيديو. [التقرير وروابط التشغيل المفحوصة](progress/phase-02-native-fix.md).
 
 # تشغيل SDK57 على الهاتف عبر الإنترنت
@@ -82,4 +84,7 @@ Expo Go يشغل المشروع داخل تطبيقه الأصلي؛ تغيير 
 
 هذه روابط المتصفح وليست روابط Expo Go. خوادمها `tazweed-{role}-preview-{port}` على0.0.0.0، مع سماح hostname المطابق فقط بالإضافة إلى loopback. قد تتطلب تسجيل الدخول إلى remote.futrx؛302 إلى بوابة المنصة يثبت ingress/auth فقط. اختبرت محتوى التطبيق والمتصفح محليًا، ولم تدّع عبور متصفح المالك لجلسة الدخول. نفق Expo Go العام مستقل عن هذه البوابة.
 
-في02 أضيفت للعميل expo-image-picker57.0.20 وexpo-clipboard57.0.2 وreact-native-svg15.15.4، وهي ضمن Expo Go57. الصورة محلية بلا رفع، والخريطة تخطيطية تجريبية. لا dev-client جديد أو تغيير SDK. لتسجيل دليل جديد مستقل: `TAZWEED_EVIDENCE_PREFIX=phase-02 node backend/scripts/verify-expo-tunnels.mjs`. الدليل الافتراضي أصبح02 لحفظ أدلة01 التاريخية؛ لا تكتب فوقها بفحص جديد.
+في02 أضيفت للعميل expo-image-picker57.0.20 وexpo-clipboard57.0.2 وreact-native-svg15.15.4، وهي ضمن Expo Go57. الصورة محلية بلا رفع، والخريطة تخطيطية تجريبية. لا dev-client جديد أو تغيير SDK. لتسجيل دليل جديد مستقل: `TAZWEED_EVIDENCE_PREFIX=phase-02 node backend/scripts/verify-expo-tunnels.mjs`. الدليل الافتراضي أصبح03 لحفظ أدلة01/02 التاريخية؛ لا تكتب فوقها بفحص جديد.
+
+
+مع الإدارة03، فحص شاشاتها الحالي: `npm --prefix backend run test:admin`، وفحص تراجع الموصل/افتتاح العميل: `node backend/scripts/test-previews.mjs`. لا تعتمد اختبار شاشة الإدارة التأسيسية01 بعد استبدالها. تحفظ الجولات الحالية وQR تحت phase-03-evidence. الدخول محلي:770000001 وكلمة Tazweed123! ثم000000؛ تغير JavaScript يعيد بيانات المعاينة ولا يمثل فقد جلسة خادم.

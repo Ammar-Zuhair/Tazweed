@@ -1,1 +1,1 @@
-export { HomeScreen as default } from '../../ui/screens';
+export { DashboardScreen as default } from "../../admin/screens/session";

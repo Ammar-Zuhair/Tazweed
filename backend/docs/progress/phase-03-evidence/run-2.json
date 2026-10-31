@@ -1,0 +1,41 @@
+{
+  "sourceFingerprint": "f02184515a1181a2634fa45c0143d8e5e58bfe871f7a3cbfceef2d009f2a1e3d",
+  "theme": "light",
+  "width": 1024,
+  "coverage": "screen, state and permission review",
+  "passed": true,
+  "checks": [
+    "staff password and OTP / incorrect attempt / Arabic RTL / local Tajawal / branch and date dashboard / protected late alert",
+    "all admin tools and report concept / same-total branch revision and previous acceptance / private receipt and protected flag panels / delivery failure / error and retry / reviewer restrictions / independent theme persistence / no external requests or page errors"
+  ],
+  "images": [
+    "login-light-1024.png",
+    "dashboard-light-1024.png",
+    "attributes-light-1024.png",
+    "category-filters-light-1024.png",
+    "product-units-light-1024.png",
+    "inventory-light-1024.png",
+    "branch-coverage-light-1024.png",
+    "couriers-light-1024.png",
+    "payment-method-light-1024.png",
+    "commission-ledger-light-1024.png",
+    "promotion-light-1024.png",
+    "banner-preview-light-1024.png",
+    "campaign-light-1024.png",
+    "campaign-preview-light-1024.png",
+    "quality-light-1024.png",
+    "permissions-light-1024.png",
+    "maintenance-light-1024.png",
+    "report-light-1024.png",
+    "audit-light-1024.png",
+    "quote-revision-light-1024.png",
+    "receipt-attempts-light-1024.png",
+    "flag-and-hold-light-1024.png",
+    "delivery-issue-light-1024.png",
+    "read-error-light-1024.png",
+    "reviewer-permissions-light-1024.png",
+    "permission-denied-light-1024.png"
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

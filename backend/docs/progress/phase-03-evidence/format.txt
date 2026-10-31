@@ -1,0 +1,25 @@
+
+> tazweed-admin@0.1.0 format
+> prettier --write src/admin src/domain src/fixtures src/data/admin-provider.tsx src/data/admin-repository.ts src/ui/screens.tsx src/app/_layout.tsx 'src/app/(tabs)/_layout.tsx' tests/admin-model.test.ts app.config.ts
+
+src/admin/components.tsx 647ms (unchanged)
+src/admin/screens/catalog-menu.tsx 61ms (unchanged)
+src/admin/screens/catalog.tsx 649ms (unchanged)
+src/admin/screens/finance.tsx 119ms (unchanged)
+src/admin/screens/inventory.tsx 126ms (unchanged)
+src/admin/screens/marketing.tsx 147ms (unchanged)
+src/admin/screens/operations.tsx 300ms (unchanged)
+src/admin/screens/orders.tsx 518ms (unchanged)
+src/admin/screens/people.tsx 536ms (unchanged)
+src/admin/screens/session.tsx 151ms (unchanged)
+src/domain/admin-model.ts 945ms (unchanged)
+src/domain/labels.ts 10ms (unchanged)
+src/domain/types.ts 327ms (unchanged)
+src/fixtures/admin-fixtures.ts 332ms (unchanged)
+src/data/admin-provider.tsx 54ms
+src/data/admin-repository.ts 19ms (unchanged)
+src/ui/screens.tsx 98ms (unchanged)
+src/app/_layout.tsx 40ms (unchanged)
+src/app/(tabs)/_layout.tsx 11ms (unchanged)
+tests/admin-model.test.ts 300ms (unchanged)
+app.config.ts 10ms (unchanged)

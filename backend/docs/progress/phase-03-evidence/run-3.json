@@ -1,0 +1,41 @@
+{
+  "sourceFingerprint": "f02184515a1181a2634fa45c0143d8e5e58bfe871f7a3cbfceef2d009f2a1e3d",
+  "theme": "dark",
+  "width": 1024,
+  "coverage": "screen, state and permission review",
+  "passed": true,
+  "checks": [
+    "staff password and OTP / incorrect attempt / Arabic RTL / local Tajawal / branch and date dashboard / protected late alert",
+    "all admin tools and report concept / same-total branch revision and previous acceptance / private receipt and protected flag panels / delivery failure / error and retry / reviewer restrictions / independent theme persistence / no external requests or page errors"
+  ],
+  "images": [
+    "login-dark-1024.png",
+    "dashboard-dark-1024.png",
+    "attributes-dark-1024.png",
+    "category-filters-dark-1024.png",
+    "product-units-dark-1024.png",
+    "inventory-dark-1024.png",
+    "branch-coverage-dark-1024.png",
+    "couriers-dark-1024.png",
+    "payment-method-dark-1024.png",
+    "commission-ledger-dark-1024.png",
+    "promotion-dark-1024.png",
+    "banner-preview-dark-1024.png",
+    "campaign-dark-1024.png",
+    "campaign-preview-dark-1024.png",
+    "quality-dark-1024.png",
+    "permissions-dark-1024.png",
+    "maintenance-dark-1024.png",
+    "report-dark-1024.png",
+    "audit-dark-1024.png",
+    "quote-revision-dark-1024.png",
+    "receipt-attempts-dark-1024.png",
+    "flag-and-hold-dark-1024.png",
+    "delivery-issue-dark-1024.png",
+    "read-error-dark-1024.png",
+    "reviewer-permissions-dark-1024.png",
+    "permission-denied-dark-1024.png"
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

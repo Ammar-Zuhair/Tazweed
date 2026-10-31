@@ -1,0 +1,14 @@
+Error: Error reading Expo config at /workspace/admin-app/app.config.ts:
+
+Phase 03 uses local preview repositories. Production builds are disabled until real services are implemented.
+Error: Error reading Expo config at /workspace/admin-app/app.config.ts:
+
+Phase 03 uses local preview repositories. Production builds are disabled until real services are implemented.
+    at exports.default (/workspace/admin-app/app.config.js:6:15)
+    at resolveConfigExport (/workspace/admin-app/node_modules/@expo/config/build/evalConfig.js:69:14)
+    at evalConfig (/workspace/admin-app/node_modules/@expo/config/build/evalConfig.js:43:10)
+    at readConfigFile (/workspace/admin-app/node_modules/@expo/config/build/getConfig.js:43:41)
+    at getDynamicConfig (/workspace/admin-app/node_modules/@expo/config/build/getConfig.js:52:18)
+    at getConfig (/workspace/admin-app/node_modules/@expo/config/build/Config.js:291:43)
+    at configAsync (/workspace/admin-app/node_modules/expo/node_modules/@expo/cli/build/src/config/configAsync.js:155:60)
+    at expoConfig (/workspace/admin-app/node_modules/expo/node_modules/@expo/cli/build/src/config/index.js:93:12)
