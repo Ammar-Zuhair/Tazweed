@@ -1,0 +1,884 @@
+{
+  "checkedAt": "2026-10-31T18:39:20.673Z",
+  "role": "customer",
+  "sourceFingerprint": "1a3b0a67e9938f2a19bc769deffdd4b283bf95f75d64a9742bddb761e2e56859",
+  "nativeDeviceTested": false,
+  "runs": [
+    {
+      "theme": "light",
+      "width": 360,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "passed": true,
+      "screens": [
+        {
+          "name": "home",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cards",
+          "metrics": {
+            "minimumTextSize": 13,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 77,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "ماذا تحتاج اليوم؟",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "product",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 22,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "cart",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 18,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "الكمية",
+                "size": 18,
+                "family": "Tajawal-Bold",
+                "contentHeight": 42,
+                "lineHeight": 21.599999999999998,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "filters",
+          "metrics": {
+            "minimumTextSize": 15,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 11,
+            "clipped": [],
+            "inputs": [],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "auth",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الهاتف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة المرور",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

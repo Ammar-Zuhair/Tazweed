@@ -8,7 +8,12 @@ import { appInfo } from '../config';
 
 export function Txt({ style, weight = 'regular', ...props }: TextProps & { weight?: keyof typeof fonts }) {
   const { colors } = useTheme();
-  return <Text {...(Platform.OS === 'web' ? { lang: 'ar' } : {})} {...props} style={[{ fontFamily: fonts[weight], color: colors.text, fontSize: 16, lineHeight: 27, textAlign: Platform.OS === 'web' ? 'right' : 'left', writingDirection: 'rtl' }, style]} />;
+  const resolved = StyleSheet.flatten(style);
+  const size = resolved?.fontSize ?? 16;
+  const fontSize = size <= 12 ? size + 2 : size <= 16 ? size + 1 : size;
+  const lineHeight = size <= 16 ? Math.max(resolved?.lineHeight ?? 27, Math.ceil(fontSize * 1.5)) : resolved?.lineHeight ?? 27;
+  const face = weight === 'regular' ? 'medium' : weight;
+  return <Text {...(Platform.OS === 'web' ? { lang: 'ar' } : {})} {...props} style={[{ color: colors.text, textAlign: Platform.OS === 'web' ? 'right' : 'left', writingDirection: 'rtl' }, style, { fontFamily: fonts[face], fontSize, lineHeight }]} />;
 }
 export function Page({ children }: PropsWithChildren) {
   const { colors, name } = useTheme();

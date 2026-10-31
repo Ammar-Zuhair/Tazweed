@@ -1,14 +1,20 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ActivityIndicator, Image, Platform, Pressable, ScrollView, StyleSheet, Text, View, type TextProps, type ViewProps } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import type { PropsWithChildren } from 'react';
+import { useId, type PropsWithChildren } from 'react';
+import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 import { fonts, palette } from './theme-model';
 import { useTheme } from './theme-provider';
 import { appInfo } from '../config';
 
 export function Txt({ style, weight = 'regular', ...props }: TextProps & { weight?: keyof typeof fonts }) {
   const { colors } = useTheme();
-  return <Text {...(Platform.OS === 'web' ? { lang: 'ar' } : {})} {...props} style={[{ fontFamily: fonts[weight], color: colors.text, fontSize: 16, lineHeight: 27, textAlign: Platform.OS === 'web' ? 'right' : 'left', writingDirection: 'rtl' }, style]} />;
+  const resolved = StyleSheet.flatten(style);
+  const size = resolved?.fontSize ?? 16;
+  const fontSize = size <= 12 ? size + 2 : size <= 16 ? size + 1 : size;
+  const lineHeight = size <= 16 ? Math.max(resolved?.lineHeight ?? 27, Math.ceil(fontSize * 1.5)) : resolved?.lineHeight ?? 27;
+  const face = weight === 'regular' ? 'medium' : weight;
+  return <Text {...(Platform.OS === 'web' ? { lang: 'ar' } : {})} {...props} style={[{ color: colors.text, textAlign: Platform.OS === 'web' ? 'right' : 'left', writingDirection: 'rtl' }, style, { fontFamily: fonts[face], fontSize, lineHeight }]} />;
 }
 export function Page({ children }: PropsWithChildren) {
   const { colors, name } = useTheme();
@@ -20,13 +26,22 @@ export function Page({ children }: PropsWithChildren) {
 }
 /** Decorative layer shared by every customer page; never participates in touch or accessibility. */
 function OrangeBackdrop({ dark }: { dark: boolean }) {
-  const fill = dark ? '#F47A1315' : '#F47A1312';
-  const stroke = dark ? '#FF9B4528' : '#F47A1324';
+  const id = useId().replace(/:/g, '');
+  const ring = dark ? '#FFA13D80' : '#F47A136B';
+  const glow = (size: number, suffix: string) => <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+    <Defs><RadialGradient id={`${id}-${suffix}`} cx="48%" cy="45%" r="55%">
+      <Stop offset="0" stopColor="#FFD077" stopOpacity={dark ? 0.42 : 0.36} />
+      <Stop offset="0.48" stopColor="#FF941F" stopOpacity={dark ? 0.32 : 0.28} />
+      <Stop offset="1" stopColor="#F47A13" stopOpacity={dark ? 0.10 : 0.08} />
+    </RadialGradient></Defs>
+    <Circle cx={size / 2} cy={size / 2} r={size / 2 - 1} fill={`url(#${id}-${suffix})`} />
+    <Circle cx={size / 2} cy={size / 2} r={size * 0.36} fill="none" stroke="#FFB04A" strokeOpacity={dark ? 0.30 : 0.24} strokeWidth="1.5" />
+  </Svg>;
   return <View testID="orange-backdrop" pointerEvents="none" accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { overflow: 'hidden' }]}>
-    <View style={{ position: 'absolute', width: 340, height: 340, borderRadius: 170, backgroundColor: fill, top: -110, right: -130 }} />
-    <View style={{ position: 'absolute', width: 230, height: 230, borderRadius: 115, borderWidth: 28, borderColor: stroke, top: '36%', left: -155 }} />
-    <View style={{ position: 'absolute', width: 420, height: 420, borderRadius: 210, backgroundColor: fill, bottom: -210, right: -170 }} />
-    <View style={{ position: 'absolute', width: 70, height: 70, borderRadius: 35, borderWidth: 2, borderColor: stroke, top: '30%', right: 18 }} />
+    <View style={{ position: 'absolute', width: 340, height: 340, top: -110, right: -130 }}>{glow(340, 'top')}</View>
+    <View style={{ position: 'absolute', width: 230, height: 230, borderRadius: 115, borderWidth: 28, borderColor: ring, top: '36%', left: -155 }} />
+    <View style={{ position: 'absolute', width: 420, height: 420, bottom: -210, right: -170 }}>{glow(420, 'bottom')}</View>
+    <View style={{ position: 'absolute', width: 70, height: 70, borderRadius: 35, borderWidth: 2, borderColor: dark ? '#FFBD688C' : '#F47A1380', top: '30%', right: 18 }} />
   </View>;
 }
 export function Row({ children, style, ...props }: ViewProps) {

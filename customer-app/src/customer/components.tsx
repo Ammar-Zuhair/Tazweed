@@ -23,7 +23,7 @@ export function Hint({ children, warning = false }: PropsWithChildren<{ warning?
 }
 export function Field({ label, ...props }: TextInputProps & { label: string }) {
   const { colors } = useTheme();
-  return <View style={{ gap: 6 }}><Txt weight="medium">{label}</Txt><TextInput accessibilityLabel={label} placeholderTextColor={colors.textMuted} {...props} style={[{ fontFamily: fonts.regular, fontSize: 16, color: colors.text, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 13, paddingHorizontal: 15, paddingVertical: 13, minHeight: 52, textAlign: 'right', writingDirection: 'rtl' }, props.style]} /></View>;
+  return <View style={{ gap: 6 }}><Txt weight="medium">{label}</Txt><TextInput accessibilityLabel={label} placeholderTextColor={colors.textMuted} {...props} style={[{ fontFamily: fonts.medium, fontSize: 17, lineHeight: 26, color: colors.text, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 13, paddingHorizontal: 15, paddingVertical: 13, minHeight: 52, textAlign: 'right', writingDirection: 'rtl' }, props.style]} /></View>;
 }
 export function Chip({ label, selected = false, onPress, testID }: { label: string; selected?: boolean; onPress: () => void; testID?: string }) {
   const { colors } = useTheme();

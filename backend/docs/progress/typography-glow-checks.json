@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-10-31T18:44:04.264127+00:00",
+  "passed": true,
+  "scope": "customer/admin typography and customer background only; after04, before05",
+  "nativeDeviceTested": false,
+  "typechecks": {
+    "customer": "passed",
+    "admin": "passed"
+  },
+  "webExports": [
+    {
+      "role": "customer",
+      "path": "/_expo/static/js/web/entry-acb4b6f65c157e90bb776098a56954a7.js",
+      "sha256": "890a89c04d885eb1d50f086f6336fdd00e39aa767fea628af64af0f93cf0174e"
+    },
+    {
+      "role": "admin",
+      "path": "/_expo/static/js/web/entry-3d63ae4aa1eb788ca54b309ad05db224.js",
+      "sha256": "345d43ea9566bda413b8aa307ad5b71fa6fcd5683ce02c00c1037c5650b6f0f5"
+    }
+  ],
+  "browserRuns": 12,
+  "screens": 72,
+  "imagesAndQr": 75,
+  "textClipping": 0,
+  "buttonTextOverflow": 0,
+  "fieldLabelOverlaps": 0,
+  "sourceRuns": [
+    {
+      "role": "customer",
+      "sourceFingerprint": "1a3b0a67e9938f2a19bc769deffdd4b283bf95f75d64a9742bddb761e2e56859",
+      "runs": [
+        {
+          "theme": "light",
+          "width": 360,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 360,
+          "screens": 6
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "screens": 6
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "screens": 6
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "sourceFingerprint": "783ad20a3f0685459d9bc893ea7e374381e598ee385752fb52fff85d6f8068da",
+      "runs": [
+        {
+          "theme": "light",
+          "width": 360,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 360,
+          "screens": 6
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "screens": 6
+        },
+        {
+          "theme": "light",
+          "width": 1024,
+          "screens": 6
+        },
+        {
+          "theme": "dark",
+          "width": 1024,
+          "screens": 6
+        }
+      ]
+    }
+  ],
+  "expoTunnelsVerified": true,
+  "evidence": "typography-glow-evidence/README.md"
+}

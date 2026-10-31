@@ -54,7 +54,7 @@ export function IntroScreen({ theme, onDone, soundEnabled = true }: Props) {
           nativeControls={false} allowsPictureInPicture={false} />
       </View>
       <View style={{ position: 'absolute', bottom: 54, alignSelf: 'center', borderRadius: 24, paddingHorizontal: 22, paddingVertical: 12, backgroundColor: initialTheme === 'dark' ? '#102C43' : '#F3F6F9' }} pointerEvents="none">
-        <Text style={{ fontFamily: 'Tajawal-Medium', fontSize: 15, color: initialTheme === 'dark' ? '#F4F7FA' : '#102D46' }}>تخطي الافتتاحية</Text>
+        <Text style={{ fontFamily: 'Tajawal-Bold', fontSize: 16, color: initialTheme === 'dark' ? '#F4F7FA' : '#102D46' }}>تخطي الافتتاحية</Text>
       </View>
     </Pressable>
   );

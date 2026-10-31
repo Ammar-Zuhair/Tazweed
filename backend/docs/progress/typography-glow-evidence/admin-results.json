@@ -1,0 +1,1514 @@
+{
+  "checkedAt": "2026-10-31T18:39:21.942Z",
+  "role": "admin",
+  "sourceFingerprint": "783ad20a3f0685459d9bc893ea7e374381e598ee385752fb52fff85d6f8068da",
+  "nativeDeviceTested": false,
+  "runs": [
+    {
+      "theme": "light",
+      "width": 360,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 360,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "passed": true,
+      "screens": [
+        {
+          "name": "login",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 14,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "رقم الموظف",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "كلمة مرور الاختبار",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "dashboard",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 38,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اليوم — UTC للمعاينة",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "products",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 43,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "بحث اسم أو SKU",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "SKU ثابت *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "وصف المنتج *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "بلد المنشأ *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "معامل الوحدة 1",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الوحدة 1 بالريال",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سعر الفرع للوحدة 1 — فارغ للأساسي",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "inventory",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 32,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "عدد الكراتين",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "عدد الحبات",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب حركة المخزون *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "finance",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 39,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "مرجع القيد أو المعالجة *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "سبب القيد أو العكس *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 70,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        },
+        {
+          "name": "staff",
+          "metrics": {
+            "minimumTextSize": 14,
+            "families": [
+              "Tajawal-Bold",
+              "Tajawal-Medium"
+            ],
+            "textCount": 62,
+            "clipped": [],
+            "inputs": [
+              {
+                "label": "اسم الدور *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "اسم الموظف *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              },
+              {
+                "label": "هاتف الموظف التجريبي *",
+                "size": 17,
+                "family": "Tajawal-Medium",
+                "contentHeight": 26,
+                "lineHeight": 26,
+                "labelOverlap": false
+              }
+            ],
+            "buttonOverflow": []
+          }
+        }
+      ],
+      "runtimeErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

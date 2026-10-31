@@ -26,7 +26,8 @@ export default function TabLayout() {
         },
         tabBarLabelStyle: {
           fontFamily: fonts.bold,
-          fontSize: 11,
+          fontSize: 13,
+          lineHeight: 21,
           marginTop: 3,
         },
         sceneStyle: { backgroundColor: colors.background },
