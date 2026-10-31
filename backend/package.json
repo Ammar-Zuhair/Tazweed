@@ -1,6 +1,6 @@
 {
   "name": "tazweed-backend",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,17 +8,35 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test tests/*.test.ts",
+    "test": "node scripts/test-phase05.mjs",
     "test:preview": "node scripts/test-previews.mjs && node scripts/test-customer-phase02.mjs && node scripts/test-customer-edges-phase02.mjs",
     "test:admin": "node scripts/test-admin-phase03.mjs",
-    "test:courier": "node scripts/test-courier-phase04.mjs"
+    "test:courier": "node scripts/test-courier-phase04.mjs",
+    "test:phase05": "node scripts/test-phase05.mjs",
+    "db:local": "node scripts/setup-local-db.mjs",
+    "db:migrate": "node --env-file=.env.local --import tsx src/migrate.ts",
+    "db:grants": "node --env-file=.env.local scripts/apply-runtime-grants.mjs",
+    "bootstrap:admin": "node --env-file=.env.local --import tsx src/bootstrap.ts",
+    "openapi": "node --import tsx scripts/export-openapi.ts",
+    "openapi:check": "node --import tsx scripts/export-openapi.ts --check",
+    "auth:prune": "node --env-file=.env.local --import tsx src/prune-auth.ts"
   },
   "dependencies": {
-    "express": "5.3.0"
+    "argon2": "0.45.1",
+    "cors": "2.8.6",
+    "express": "5.3.0",
+    "helmet": "8.3.0",
+    "jose": "6.2.14",
+    "pg": "8.23.1",
+    "zod": "4.6.7"
   },
   "devDependencies": {
+    "@types/cors": "2.8.19",
     "@types/express": "5.0.6",
     "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
     "playwright": "1.64.1",
     "qrcode": "1.5.4",
     "tsx": "4.23.15",

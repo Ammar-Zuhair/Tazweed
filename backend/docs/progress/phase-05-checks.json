@@ -1,0 +1,774 @@
+{
+  "phase": "05",
+  "checkedAt": "2026-10-31T19:44:28.090Z",
+  "scope": "Identity/database/access only. No phase06 business services or real OTP/mobile integration.",
+  "commands": {
+    "typecheck": "npm run typecheck",
+    "build": "npm run build",
+    "openapi": "npm run openapi:check",
+    "acceptance": "npm test (scripts/test-phase05.mjs)",
+    "dictionary": "node reference-tests/generate-database-doc.mjs --check"
+  },
+  "tests": {
+    "passed": 44,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 104382.624705,
+    "cases": [
+      {
+        "name": "configuration rejects incomplete secrets, wildcard origins and production test providers",
+        "passed": true
+      },
+      {
+        "name": "Yemen mobile normalization accepts Arabic digits and rejects country substitution",
+        "passed": true
+      },
+      {
+        "name": "migrations retain all 69 tables and guards and reapplication is empty",
+        "passed": true
+      },
+      {
+        "name": "migration checksum tampering and a failing additive migration are rejected atomically",
+        "passed": true
+      },
+      {
+        "name": "runtime DB role cannot mutate financial ledgers, read private snapshots, redact, or assume privacy role",
+        "passed": true
+      },
+      {
+        "name": "NOLOGIN privacy role has only column redaction rights and no financial UPDATE",
+        "passed": true
+      },
+      {
+        "name": "registration creates no active account before OTP and stores only keyed/encrypted challenge material",
+        "passed": true
+      },
+      {
+        "name": "public signup rejects staff/admin app and mass assigned identity fields",
+        "passed": true
+      },
+      {
+        "name": "OTP is single-use under concurrent independent HTTP connections",
+        "passed": true
+      },
+      {
+        "name": "challenge binding rejects wrong purpose, app, device and preauth without consuming a valid challenge",
+        "passed": true
+      },
+      {
+        "name": "five wrong OTP attempts commit atomically, block correct code, and cannot be reset by resend",
+        "passed": true
+      },
+      {
+        "name": "expired OTP fails; resend enforces cooldown and invalidates previous code while preserving attempts",
+        "passed": true
+      },
+      {
+        "name": "repeated starts enforce phone cooldown even with changed device; duplicate signup stays generic",
+        "passed": true
+      },
+      {
+        "name": "provider failure leaves no active account, session or consumed/new challenge",
+        "passed": true
+      },
+      {
+        "name": "password + OTP is required for customer, internal staff and courier; X-App cannot elevate",
+        "passed": true
+      },
+      {
+        "name": "unknown account, wrong password, disabled user and wrong app share login failure",
+        "passed": true
+      },
+      {
+        "name": "refresh rotates hashed tokens without OTP; replay revokes the entire family immediately",
+        "passed": true
+      },
+      {
+        "name": "parallel refresh permits one rotation then detects reuse and revokes that family",
+        "passed": true
+      },
+      {
+        "name": "wrong refresh app/device cannot steal or revoke the valid family",
+        "passed": true
+      },
+      {
+        "name": "logout invalidates access and refresh; token tampering and unsigned JWT fail",
+        "passed": true
+      },
+      {
+        "name": "password reset has its own purpose, revokes all sessions and outstanding challenges, and requires login again",
+        "passed": true
+      },
+      {
+        "name": "unknown password reset has the same accepted shape and cannot create an account",
+        "passed": true
+      },
+      {
+        "name": "profile and addresses enforce ownership and reject mass assignment; concurrent defaults serialize",
+        "passed": true
+      },
+      {
+        "name": "branch-scoped staff cannot read another branch, list global roles, provision accounts, or self-escalate",
+        "passed": true
+      },
+      {
+        "name": "cross-branch action guard requires every source/destination branch and the exact permission",
+        "passed": true
+      },
+      {
+        "name": "role CRUD and grants work internally; live permission changes apply to an existing access token",
+        "passed": true
+      },
+      {
+        "name": "disabling staff revokes access/refresh/challenges and customer tokens never authorize admin routes",
+        "passed": true
+      },
+      {
+        "name": "audit is immutable, branch-filtered including null/global events, and contains no identity secrets",
+        "passed": true
+      },
+      {
+        "name": "rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypass IP limits",
+        "passed": true
+      },
+      {
+        "name": "Helmet, exact CORS, JSON/body validation and request IDs remain safe; no phase06 endpoints",
+        "passed": true
+      },
+      {
+        "name": "readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP",
+        "passed": true
+      },
+      {
+        "name": "OpenAPI exposes the implemented subset with strict inputs and no code/debug backdoor",
+        "passed": true
+      },
+      {
+        "name": "every protected sub-route rejects missing identity before any read or mutation",
+        "passed": true
+      },
+      {
+        "name": "last general admin grant and role cannot be removed or disabled by another manager",
+        "passed": true
+      },
+      {
+        "name": "readiness fails closed for unconfigured OTP, unavailable DB and unsafe migration owner",
+        "passed": true
+      },
+      {
+        "name": "failed resend preserves the old OTP and pending registration instead of reporting delivery success",
+        "passed": true
+      },
+      {
+        "name": "deleted identities, revoked sessions and expired refresh families reject access",
+        "passed": true
+      },
+      {
+        "name": "grant provisioning removes stale column-level privacy privileges as well as table privileges",
+        "passed": true
+      },
+      {
+        "name": "environment rejects wildcard CORS and accepts an empty unused gateway URL without enabling a provider",
+        "passed": true
+      },
+      {
+        "name": "address PATCH changes only supplied fields and rejects an empty patch or forged owner",
+        "passed": true
+      },
+      {
+        "name": "real HTTP responses exercised by the suite conform to the published OpenAPI schemas",
+        "passed": true
+      },
+      {
+        "name": "explicit bootstrap provisions one pending general admin without a default password or bypassing OTP",
+        "passed": true
+      },
+      {
+        "name": "operator auth housekeeping clears expired secrets and rate buckets while retaining audit and identities",
+        "passed": true
+      },
+      {
+        "name": "HTTPS gateway transport enforces TLS, rejects redirects/errors/timeouts and does not forward passwords",
+        "passed": true
+      }
+    ],
+    "realPostgresApi": true,
+    "otpProvider": "isolated in-memory capture; gateway unit contract only"
+  },
+  "reference": {
+    "scope": "Reference SQL constraints/triggers only; no API, authorization, real-provider, multi-connection or device tests.",
+    "engine": "Real PostgreSQL TCP connection (baseline regression)",
+    "schemaSha256": "265a32085ac4da1ce1d5b9377bfb9f0bb6e6e155f95b900148a90c9209013137",
+    "tableCount": 69,
+    "tables": [
+      "addresses",
+      "app_releases",
+      "attribute_values",
+      "attributes",
+      "audit_logs",
+      "banners",
+      "branch_unit_prices",
+      "branches",
+      "cash_collections",
+      "cash_remittance_items",
+      "cash_remittance_reversals",
+      "cash_remittances",
+      "categories",
+      "category_attributes",
+      "complaints",
+      "courier_branches",
+      "courier_earnings",
+      "courier_profiles",
+      "courier_settlement_reversals",
+      "courier_settlements",
+      "customer_flags",
+      "customer_maintenance",
+      "deletion_requests",
+      "delivery_rules",
+      "financial_exception_resolutions",
+      "financial_exceptions",
+      "governorates",
+      "idempotency_records",
+      "media_objects",
+      "notification_campaigns",
+      "notification_deliveries",
+      "notification_inbox",
+      "order_assignments",
+      "order_cancellation_requests",
+      "order_events",
+      "order_private_details",
+      "order_quotes",
+      "order_request_items",
+      "order_reviews",
+      "orders",
+      "otp_challenges",
+      "outbox_events",
+      "payment_instructions",
+      "payment_methods",
+      "payment_receipt_attempts",
+      "payment_receipt_reviews",
+      "payments",
+      "permissions",
+      "product_attribute_values",
+      "product_images",
+      "product_units",
+      "products",
+      "promotions",
+      "push_tokens",
+      "quote_items",
+      "quote_revalidations",
+      "report_jobs",
+      "role_permissions",
+      "roles",
+      "sessions",
+      "settings",
+      "settlement_items",
+      "staff_grants",
+      "stock_levels",
+      "stock_movements",
+      "stock_reservations",
+      "stock_transfer_items",
+      "stock_transfers",
+      "users"
+    ],
+    "passed": 73,
+    "results": [
+      {
+        "id": "S01",
+        "label": "negative stock rejected",
+        "passed": true
+      },
+      {
+        "id": "S02",
+        "label": "reserved cannot exceed stock",
+        "passed": true
+      },
+      {
+        "id": "S03",
+        "label": "piece conversion must equal one",
+        "passed": true
+      },
+      {
+        "id": "S04",
+        "label": "carton conversion must exceed one",
+        "passed": true
+      },
+      {
+        "id": "S05",
+        "label": "value belongs to correct attribute",
+        "passed": true
+      },
+      {
+        "id": "S06",
+        "label": "tire attribute not allowed for oil",
+        "passed": true
+      },
+      {
+        "id": "S07",
+        "label": "product cannot pretend another category",
+        "passed": true
+      },
+      {
+        "id": "S08",
+        "label": "quote total arithmetic",
+        "passed": true
+      },
+      {
+        "id": "S09",
+        "label": "accepted quote requires owner identity",
+        "passed": true
+      },
+      {
+        "id": "S10",
+        "label": "quantity positive",
+        "passed": true
+      },
+      {
+        "id": "S11",
+        "label": "line arithmetic",
+        "passed": true
+      },
+      {
+        "id": "S12",
+        "label": "unit belongs to product",
+        "passed": true
+      },
+      {
+        "id": "S13",
+        "label": "reservation branch belongs to historical quote",
+        "passed": true
+      },
+      {
+        "id": "S14",
+        "label": "one active assignment",
+        "passed": true
+      },
+      {
+        "id": "S15",
+        "label": "commission uses pre-discount delivery",
+        "passed": true
+      },
+      {
+        "id": "S16",
+        "label": "one delivery earning",
+        "passed": true
+      },
+      {
+        "id": "S17",
+        "label": "earning allocation cannot be paid twice",
+        "passed": true
+      },
+      {
+        "id": "S18",
+        "label": "financial ledger immutable",
+        "passed": true
+      },
+      {
+        "id": "S19",
+        "label": "inventory ledger immutable",
+        "passed": true
+      },
+      {
+        "id": "S20",
+        "label": "sale movement unique per order/product",
+        "passed": true
+      },
+      {
+        "id": "S21",
+        "label": "canonical Yemen phone format",
+        "passed": true
+      },
+      {
+        "id": "S22",
+        "label": "minimum build cannot exceed latest",
+        "passed": true
+      },
+      {
+        "id": "O01",
+        "label": "2800m bills 2km; 300 + 2*50 = 400",
+        "passed": true
+      },
+      {
+        "id": "O02",
+        "label": "sub-kilometre route charges base only",
+        "passed": true
+      },
+      {
+        "id": "O03",
+        "label": "rounded-up fee rejected",
+        "passed": true
+      },
+      {
+        "id": "O04",
+        "label": "manual route fee needs reason",
+        "passed": true
+      },
+      {
+        "id": "O05",
+        "label": "500 delivery less 100 discount at 20% earns 100",
+        "passed": true
+      },
+      {
+        "id": "O06",
+        "label": "COD confirms with no receipt or transfer and records no cash automatically",
+        "passed": true
+      },
+      {
+        "id": "O07",
+        "label": "transfer cannot confirm without verified money",
+        "passed": true
+      },
+      {
+        "id": "O08",
+        "label": "receipt upload alone does not allow confirmation",
+        "passed": true
+      },
+      {
+        "id": "O09",
+        "label": "exact verified transfer permits confirmation",
+        "passed": true
+      },
+      {
+        "id": "O10",
+        "label": "underpayment and overpayment do not confirm",
+        "passed": true
+      },
+      {
+        "id": "O11",
+        "label": "one promotion cannot discount products and delivery together",
+        "passed": true
+      },
+      {
+        "id": "O12",
+        "label": "discount requires a single promotion snapshot",
+        "passed": true
+      },
+      {
+        "id": "O13",
+        "label": "manager-selected execution branch is distinct from catalog branch",
+        "passed": true
+      },
+      {
+        "id": "O14",
+        "label": "branch change retains old reservation and acceptance; equal total needs fresh acceptance",
+        "passed": true
+      },
+      {
+        "id": "O15",
+        "label": "current quote FK belongs to order",
+        "passed": true
+      },
+      {
+        "id": "O16",
+        "label": "different customer cannot accept quote",
+        "passed": true
+      },
+      {
+        "id": "O17",
+        "label": "sent quote lines and financial facts are immutable",
+        "passed": true
+      },
+      {
+        "id": "O18",
+        "label": "draft lines editable, subtotal checked when sent",
+        "passed": true
+      },
+      {
+        "id": "O19",
+        "label": "used carton conversion cannot change; archive allowed",
+        "passed": true
+      },
+      {
+        "id": "O20",
+        "label": "historical acceptance survives superseded/expired",
+        "passed": true
+      },
+      {
+        "id": "O21",
+        "label": "rejected image reupload preserves single transfer and all attempts",
+        "passed": true
+      },
+      {
+        "id": "O22",
+        "label": "same transfer reference cannot fund another order",
+        "passed": true
+      },
+      {
+        "id": "O23",
+        "label": "wallet edit does not rewrite frozen transfer destination",
+        "passed": true
+      },
+      {
+        "id": "O24",
+        "label": "receipt protects stock without an automatic expiry and prevents repricing",
+        "passed": true
+      },
+      {
+        "id": "O25",
+        "label": "expired initial stock hold cannot confirm COD",
+        "passed": true
+      },
+      {
+        "id": "O26",
+        "label": "confirmed order branch/amount source frozen; cancellation blocked",
+        "passed": true
+      },
+      {
+        "id": "O27",
+        "label": "cancel before confirmation without receipt permitted",
+        "passed": true
+      },
+      {
+        "id": "O28",
+        "label": "cancellation after receipt requires documented admin decision",
+        "passed": true
+      },
+      {
+        "id": "O29",
+        "label": "delivery does not invent a cash collection",
+        "passed": true
+      },
+      {
+        "id": "O30",
+        "label": "cash collection, remittance and commission use separate ledgers",
+        "passed": true
+      },
+      {
+        "id": "O31",
+        "label": "earning must match assignment courier/order/amount and delivery",
+        "passed": true
+      },
+      {
+        "id": "O32",
+        "label": "settlement requires same courier and exact total",
+        "passed": true
+      },
+      {
+        "id": "O33",
+        "label": "reversal creates one reusable credit, keeps original allocation and never re-earns commission",
+        "passed": true
+      },
+      {
+        "id": "O34",
+        "label": "financial resolution requires amount/reason/reference/evidence/actor/date",
+        "passed": true
+      },
+      {
+        "id": "O35",
+        "label": "NULL coverage cannot enable delivery",
+        "passed": true
+      },
+      {
+        "id": "O36",
+        "label": "catalog branch pointer belongs to chosen governorate",
+        "passed": true
+      },
+      {
+        "id": "O37",
+        "label": "privacy redacts personal snapshot without editing financial ledger",
+        "passed": true
+      },
+      {
+        "id": "O38",
+        "label": "cash ledger cannot collect transfer order",
+        "passed": true
+      },
+      {
+        "id": "O39",
+        "label": "cash remittance cannot silently deduct courier commission",
+        "passed": true
+      },
+      {
+        "id": "O40",
+        "label": "audit history remains immutable",
+        "passed": true
+      },
+      {
+        "id": "O41",
+        "label": "two cartons plus three pieces consume 27 and stock 26 rejects",
+        "passed": true
+      },
+      {
+        "id": "O42",
+        "label": "quote revalidation preserves immutable price and acceptance",
+        "passed": true
+      },
+      {
+        "id": "O43",
+        "label": "financial exception cannot close without documented resolution",
+        "passed": true
+      },
+      {
+        "id": "O44",
+        "label": "overpayment resolved externally yields exact net without editing approved money",
+        "passed": true
+      },
+      {
+        "id": "O45",
+        "label": "partial cash remains the actual amount and delivery needs a shortfall exception",
+        "passed": true
+      },
+      {
+        "id": "O46",
+        "label": "cash remittance cannot allocate another courier collection",
+        "passed": true
+      },
+      {
+        "id": "O47",
+        "label": "cash reversal preserves original remittance and reallocates one credit only",
+        "passed": true
+      },
+      {
+        "id": "O48",
+        "label": "delivery must be disabled before rule removal",
+        "passed": true
+      },
+      {
+        "id": "O49",
+        "label": "receipt attempts preserve owner/privacy and sequential reviewed history",
+        "passed": true
+      },
+      {
+        "id": "O50",
+        "label": "protected transfer cannot be bypassed by changing current quote or branch",
+        "passed": true
+      },
+      {
+        "id": "O51",
+        "label": "confirmed acceptance and confirmation timestamp remain historical",
+        "passed": true
+      }
+    ]
+  },
+  "database": {
+    "version": "16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)",
+    "catalog": {
+      "tables": 72,
+      "triggers": 49,
+      "users": 0,
+      "products": 0,
+      "sessions": 0
+    },
+    "migrations": [
+      {
+        "name": "0001_reference_69.sql",
+        "sha256": "a4d39075b4293ed089e69af032ab03f9fd6d839f7e77fba147b3e210459976b4"
+      },
+      {
+        "name": "0002_identity_security.sql",
+        "sha256": "a6d50278db671e9923e02f029a37a2938fcff515734026c3fa59433c8ff10896"
+      }
+    ],
+    "runtime": {
+      "role": "tazweed_app",
+      "rolsuper": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolbypassrls": false,
+      "commission_mutation": false,
+      "cash_mutation": false,
+      "private_read": false,
+      "private_update": false,
+      "privacy_membership": false
+    },
+    "privacy": {
+      "rolcanlogin": false,
+      "redact": true,
+      "revision_mutation": false,
+      "financial_mutation": false
+    },
+    "production": false
+  },
+  "services": {
+    "backend": {
+      "unit": "tazweed-backend-8084",
+      "port": 8084,
+      "NRestarts": "0",
+      "ExecMainStatus": "0",
+      "ActiveState": "active",
+      "SubState": "running",
+      "boundAllInterfaces": true
+    },
+    "postgres": {
+      "unit": "tazweed-postgres-55432",
+      "port": 55432,
+      "NRestarts": "0",
+      "ExecMainStatus": "0",
+      "ActiveState": "active",
+      "SubState": "running",
+      "loopbackOnly": true
+    }
+  },
+  "http": {
+    "live": {
+      "status": 200,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "05",
+        "status": "ok",
+        "businessServices": "identity-only"
+      }
+    },
+    "ready": {
+      "status": 503,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "05",
+        "status": "not-ready",
+        "database": "connected",
+        "migrations": "current",
+        "runtimeRole": "limited",
+        "otp": "unconfigured"
+      }
+    },
+    "otpStart": {
+      "status": 503,
+      "code": "OTP_UNAVAILABLE"
+    },
+    "openapiMatchesFile": true,
+    "ingress": {
+      "url": "https://tazweed--8084.dev.remote-ammar.duckdns.org/health/live",
+      "status": 302,
+      "meaning": "remote.futrx auth routing only; no authenticated end-to-end claim"
+    }
+  },
+  "secrets": {
+    "runtimeContainsMigrationCredential": false,
+    "operatorFileMode": "600",
+    "runtimeFileMode": "600"
+  },
+  "dictionary": {
+    "tables": 69,
+    "triggers": 48,
+    "checkPassed": true
+  },
+  "sources": {
+    "backend/src/app.ts": "0dec3591218477b4a18240e1fb0d3ea39bd836bc514154638f3840cec4b34c31",
+    "backend/src/config.ts": "9cac18057b7867deb9d53051e24f9360927affc3cf67d78aa2f2fd2143d7b778",
+    "backend/src/db.ts": "8b2eee583c4892497d7edda4673f6357d511b8a93ca818c5dd0553bafe8a932e",
+    "backend/src/http.ts": "679800ec3abf7e358b0f9d9d9bbfc7fe399ff0133477840215c407ccf392ae52",
+    "backend/src/migrate.ts": "a7adb177585ba7cd233b1675f06dd55fb93de04af7f8d85693c57bdac989e147",
+    "backend/src/readiness.ts": "6ecd75d5cd626e062281568972460f8312c1035eefdd6279b6ebaff52e0fa841",
+    "backend/src/server.ts": "3e7ecc18b291a08d7ef21522c39847e723fe97b415283947882185568c828e83",
+    "backend/src/identity/auth.ts": "419f1e2d1a7fead26cb954ba8041bdfcc518f2c1b4bf8288d95bc05025c1026b",
+    "backend/src/identity/access.ts": "127967fed2b4765e1e54a5eb06f548d822edd63e7a626a2e61b0e1ab54a1d0df",
+    "backend/src/identity/audit.ts": "3b6e58c2db061b633f8f73229691e01fb6f55b427240b8f7fcf0baec8f430548",
+    "backend/src/identity/contracts.ts": "7a9b5fef7f6ec71757d435539e151e0e8bd7865ac2b5cad6b6e3029a86ec4cfb",
+    "backend/src/identity/provider.ts": "cb319ecd48c7c167c03ddd1ca79b194db45eab9e3d604e201c35a7270ee8d7a0",
+    "backend/src/identity/rate-limit.ts": "61e2571e13a1984d33ccd86be90d5bc19a7e40dd304d330da5f02f1b6fafc0d1",
+    "backend/src/identity/routes.ts": "6ce66a92055070e5272dc25082667a20c1f0c539344a61eb13bf772e14251e5b",
+    "backend/src/identity/security.ts": "6ce07e0427be81816268429b09abd767ea9c23568cfbe03a38adc469b4d803f6",
+    "backend/src/identity/responses.ts": "a31539ec4fb3ae3eb0102f35136b09cf00de51c05eb72958566e5f8d3f442612",
+    "backend/src/openapi.ts": "ab270630111ff8fb58a9897c11da03b9294caa44dde439485eac4818fb495225",
+    "backend/tests/phase05.test.ts": "9f328daf333aba7992ec6511f1ae26cfdc945e49c86d65747bf23abe06f06edd",
+    "backend/tests/phase05/helpers.ts": "8f85a84e35032e1f66da862291bec2de4022208436a253d70354fbd40d70f49f",
+    "backend/tests/phase05/contracts.ts": "898d7879fe6500be2c565a8197a2c93e6e1e088d5df5085fef42e9b4561f5f73",
+    "backend/tests/provider.test.ts": "263ce88802974cb99719f1a9a15a39b1d450399a2506edec2543893c09629e5d",
+    "backend/tests/health.test.ts": "3778b63bdd1cd989740a5fb877df596ee167cad771e240b2dba7287683bbb251",
+    "backend/package-lock.json": "772c017c1ea58f1ef7f7ed24b0c546dbbdea7f2afb3efb93884f3dc101803e45"
+  },
+  "mobileApps": {
+    "sourceChanges": [],
+    "binding": "local previews remain separate; no new device or Expo tunnel verification in05"
+  }
+}

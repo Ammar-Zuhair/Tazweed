@@ -1475,7 +1475,7 @@ try {
   const summary = {
     scope:
       "Reference SQL constraints/triggers only; no API, authorization, real-provider, multi-connection or device tests.",
-    engine: "PGlite PostgreSQL WASM",
+    engine: process.env.REFERENCE_DATABASE_URL ? "Real PostgreSQL TCP connection (baseline regression)" : "PGlite PostgreSQL WASM",
     schemaSha256: createHash("sha256").update(schema).digest("hex"),
     tableCount: tables.length,
     tables,

@@ -1,0 +1,128 @@
+Phase05 acceptance (sanitized)
+PostgreSQL 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)
+Identity/API: 44 passed; 0 failed
+PASS configuration rejects incomplete secrets, wildcard origins and production test providers
+PASS Yemen mobile normalization accepts Arabic digits and rejects country substitution
+PASS migrations retain all 69 tables and guards and reapplication is empty
+PASS migration checksum tampering and a failing additive migration are rejected atomically
+PASS runtime DB role cannot mutate financial ledgers, read private snapshots, redact, or assume privacy role
+PASS NOLOGIN privacy role has only column redaction rights and no financial UPDATE
+PASS registration creates no active account before OTP and stores only keyed/encrypted challenge material
+PASS public signup rejects staff/admin app and mass assigned identity fields
+PASS OTP is single-use under concurrent independent HTTP connections
+PASS challenge binding rejects wrong purpose, app, device and preauth without consuming a valid challenge
+PASS five wrong OTP attempts commit atomically, block correct code, and cannot be reset by resend
+PASS expired OTP fails; resend enforces cooldown and invalidates previous code while preserving attempts
+PASS repeated starts enforce phone cooldown even with changed device; duplicate signup stays generic
+PASS provider failure leaves no active account, session or consumed/new challenge
+PASS password + OTP is required for customer, internal staff and courier; X-App cannot elevate
+PASS unknown account, wrong password, disabled user and wrong app share login failure
+PASS refresh rotates hashed tokens without OTP; replay revokes the entire family immediately
+PASS parallel refresh permits one rotation then detects reuse and revokes that family
+PASS wrong refresh app/device cannot steal or revoke the valid family
+PASS logout invalidates access and refresh; token tampering and unsigned JWT fail
+PASS password reset has its own purpose, revokes all sessions and outstanding challenges, and requires login again
+PASS unknown password reset has the same accepted shape and cannot create an account
+PASS profile and addresses enforce ownership and reject mass assignment; concurrent defaults serialize
+PASS branch-scoped staff cannot read another branch, list global roles, provision accounts, or self-escalate
+PASS cross-branch action guard requires every source/destination branch and the exact permission
+PASS role CRUD and grants work internally; live permission changes apply to an existing access token
+PASS disabling staff revokes access/refresh/challenges and customer tokens never authorize admin routes
+PASS audit is immutable, branch-filtered including null/global events, and contains no identity secrets
+PASS rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypass IP limits
+PASS Helmet, exact CORS, JSON/body validation and request IDs remain safe; no phase06 endpoints
+PASS readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP
+PASS OpenAPI exposes the implemented subset with strict inputs and no code/debug backdoor
+PASS every protected sub-route rejects missing identity before any read or mutation
+PASS last general admin grant and role cannot be removed or disabled by another manager
+PASS readiness fails closed for unconfigured OTP, unavailable DB and unsafe migration owner
+PASS failed resend preserves the old OTP and pending registration instead of reporting delivery success
+PASS deleted identities, revoked sessions and expired refresh families reject access
+PASS grant provisioning removes stale column-level privacy privileges as well as table privileges
+PASS environment rejects wildcard CORS and accepts an empty unused gateway URL without enabling a provider
+PASS address PATCH changes only supplied fields and rejects an empty patch or forged owner
+PASS real HTTP responses exercised by the suite conform to the published OpenAPI schemas
+PASS explicit bootstrap provisions one pending general admin without a default password or bypassing OTP
+PASS operator auth housekeeping clears expired secrets and rate buckets while retaining audit and identities
+PASS HTTPS gateway transport enforces TLS, rejects redirects/errors/timeouts and does not forward passwords
+Baseline: 73 passed / 69 tables / PostgreSQL TCP
+PASS S01 negative stock rejected
+PASS S02 reserved cannot exceed stock
+PASS S03 piece conversion must equal one
+PASS S04 carton conversion must exceed one
+PASS S05 value belongs to correct attribute
+PASS S06 tire attribute not allowed for oil
+PASS S07 product cannot pretend another category
+PASS S08 quote total arithmetic
+PASS S09 accepted quote requires owner identity
+PASS S10 quantity positive
+PASS S11 line arithmetic
+PASS S12 unit belongs to product
+PASS S13 reservation branch belongs to historical quote
+PASS S14 one active assignment
+PASS S15 commission uses pre-discount delivery
+PASS S16 one delivery earning
+PASS S17 earning allocation cannot be paid twice
+PASS S18 financial ledger immutable
+PASS S19 inventory ledger immutable
+PASS S20 sale movement unique per order/product
+PASS S21 canonical Yemen phone format
+PASS S22 minimum build cannot exceed latest
+PASS O01 2800m bills 2km; 300 + 2*50 = 400
+PASS O02 sub-kilometre route charges base only
+PASS O03 rounded-up fee rejected
+PASS O04 manual route fee needs reason
+PASS O05 500 delivery less 100 discount at 20% earns 100
+PASS O06 COD confirms with no receipt or transfer and records no cash automatically
+PASS O07 transfer cannot confirm without verified money
+PASS O08 receipt upload alone does not allow confirmation
+PASS O09 exact verified transfer permits confirmation
+PASS O10 underpayment and overpayment do not confirm
+PASS O11 one promotion cannot discount products and delivery together
+PASS O12 discount requires a single promotion snapshot
+PASS O13 manager-selected execution branch is distinct from catalog branch
+PASS O14 branch change retains old reservation and acceptance; equal total needs fresh acceptance
+PASS O15 current quote FK belongs to order
+PASS O16 different customer cannot accept quote
+PASS O17 sent quote lines and financial facts are immutable
+PASS O18 draft lines editable, subtotal checked when sent
+PASS O19 used carton conversion cannot change; archive allowed
+PASS O20 historical acceptance survives superseded/expired
+PASS O21 rejected image reupload preserves single transfer and all attempts
+PASS O22 same transfer reference cannot fund another order
+PASS O23 wallet edit does not rewrite frozen transfer destination
+PASS O24 receipt protects stock without an automatic expiry and prevents repricing
+PASS O25 expired initial stock hold cannot confirm COD
+PASS O26 confirmed order branch/amount source frozen; cancellation blocked
+PASS O27 cancel before confirmation without receipt permitted
+PASS O28 cancellation after receipt requires documented admin decision
+PASS O29 delivery does not invent a cash collection
+PASS O30 cash collection, remittance and commission use separate ledgers
+PASS O31 earning must match assignment courier/order/amount and delivery
+PASS O32 settlement requires same courier and exact total
+PASS O33 reversal creates one reusable credit, keeps original allocation and never re-earns commission
+PASS O34 financial resolution requires amount/reason/reference/evidence/actor/date
+PASS O35 NULL coverage cannot enable delivery
+PASS O36 catalog branch pointer belongs to chosen governorate
+PASS O37 privacy redacts personal snapshot without editing financial ledger
+PASS O38 cash ledger cannot collect transfer order
+PASS O39 cash remittance cannot silently deduct courier commission
+PASS O40 audit history remains immutable
+PASS O41 two cartons plus three pieces consume 27 and stock 26 rejects
+PASS O42 quote revalidation preserves immutable price and acceptance
+PASS O43 financial exception cannot close without documented resolution
+PASS O44 overpayment resolved externally yields exact net without editing approved money
+PASS O45 partial cash remains the actual amount and delivery needs a shortfall exception
+PASS O46 cash remittance cannot allocate another courier collection
+PASS O47 cash reversal preserves original remittance and reallocates one credit only
+PASS O48 delivery must be disabled before rule removal
+PASS O49 receipt attempts preserve owner/privacy and sequential reviewed history
+PASS O50 protected transfer cannot be bypassed by changing current quote or branch
+PASS O51 confirmed acceptance and confirmation timestamp remain historical
+TypeScript typecheck/build: PASS
+Generated OpenAPI matches contracts: PASS
+Generated reference dictionary: 69 tables, 48 triggers, PASS
+Live health: 200
+Readiness: 503 / DB connected / limited runtime / OTP unconfigured
+Public ingress: 302 remote.futrx auth gate only
+No provider message or device integration claimed.

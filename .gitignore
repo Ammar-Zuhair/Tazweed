@@ -18,3 +18,7 @@ dist/
 /.android-sdk/
 /.gradle/
 /artifacts/
+
+# Phase05 local DB, secret configuration and temporary evidence work
+.postgresql/
+.phase05-work/

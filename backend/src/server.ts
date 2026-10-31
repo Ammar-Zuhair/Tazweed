@@ -1,10 +1,50 @@
-import { createApp } from './app.js';
-const port = Number(process.env.PORT ?? 8084);
-if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('PORT must be an integer between 1024 and 65535');
-// Private by default. No mobile services are exposed in this phase.
-const host = process.env.HOST ?? '127.0.0.1';
-const server = createApp().listen(port, host, () => console.log(`Tazweed phase 01 health listening on ${host}:${port}`));
-for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => {
-  server.close(error => { process.exitCode = error ? 1 : 0; });
-  setTimeout(() => process.exit(1), 5000).unref();
-});
+import { createApp } from "./app.js";
+import { readConfig } from "./config.js";
+import { createPool } from "./db.js";
+import { Security } from "./identity/security.js";
+import { providerFromConfig } from "./identity/provider.js";
+import { databaseReadiness } from "./readiness.js";
+try {
+  const config = readConfig(),
+    pool = createPool(config.DATABASE_URL),
+    security = await Security.create(config);
+  const state = await databaseReadiness(pool);
+  if (!state.migrations || !state.runtimeRole) {
+    await pool.end();
+    throw new Error(
+      "Apply migrations and least-privilege runtime grants before serving",
+    );
+  }
+  const server = createApp({
+    config,
+    pool,
+    security,
+    provider: providerFromConfig(config),
+    log: (entry) => console.log(JSON.stringify(entry)),
+  }).listen(config.PORT, config.HOST, () =>
+    console.log(
+      JSON.stringify({ event: "listening", port: config.PORT, phase: "05" }),
+    ),
+  );
+  server.requestTimeout = 15000;
+  server.headersTimeout = 10000;
+  let stopping = false;
+  for (const signal of ["SIGTERM", "SIGINT"])
+    process.on(signal, () => {
+      if (stopping) return;
+      stopping = true;
+      const timer = setTimeout(() => process.exit(1), 10000);
+      timer.unref();
+      server.close(() => {
+        void pool.end().then(() => {
+          clearTimeout(timer);
+          process.exit(0);
+        });
+      });
+    });
+} catch {
+  console.error(
+    "Backend initialization failed: validate environment, signing keys and service configuration.",
+  );
+  process.exitCode = 1;
+}

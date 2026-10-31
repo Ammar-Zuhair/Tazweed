@@ -7,7 +7,15 @@ export const schema = readFileSync(
   "utf8",
 );
 export async function makeFixture() {
-  const db = new PGlite();
+  let db;
+  if (process.env.REFERENCE_DATABASE_URL) {
+    const url = new URL(process.env.REFERENCE_DATABASE_URL);
+    if (!/^tazweed_test_reference_[a-f0-9]+$/.test(url.pathname.slice(1))) throw new Error("Disposable reference database required");
+    const { default: pg } = await import("pg");
+    const client = new pg.Client({ connectionString: url.toString() });
+    await client.connect();
+    db = { query: (sql, args) => client.query(sql, args), exec: (sql) => client.query(sql), close: () => client.end() };
+  } else db = new PGlite();
   await db.exec(schema);
   const insert = async (table, data) => {
     const keys = Object.keys(data);
