@@ -1,0 +1,36 @@
+
+> tazweed-courier@0.1.0 export:web
+> expo export --platform web --max-workers 2
+
+Using src/app as the root directory for Expo Router.
+Starting Metro Bundler
+
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/web/static-rendering/
+| (node:9652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+Web Bundled 9843ms node_modules/expo-router/entry.js (877 modules)
+λ Bundled 11737ms node_modules/expo/node_modules/@expo/cli/node_modules/@expo/router-server/node/render.js (910 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-782ac30d66bd46b8fba7681af56c6b43.js (1.3MB)
+
+› Static routes (17):
+/cash (19KB)
+/task (19KB)
+/login (19KB)
+/ (index) (19KB)
+/report (19KB)
+/pending (19KB)
+/account (19KB)
+/policies (19KB)
+/_sitemap (17KB)
+/earnings (19KB)
+/+not-found (19KB)
+/appearance (19KB)
+/preview-lab (19KB)
+/(tabs) (19KB)
+/notifications (19KB)
+/(tabs)/account (19KB)
+/(tabs)/earnings (19KB)
+
+Exported: dist

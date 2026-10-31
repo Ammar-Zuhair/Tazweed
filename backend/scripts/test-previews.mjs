@@ -5,8 +5,8 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const workspace = fileURLToPath(new URL('../..', import.meta.url));
-const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-03';
-if (!/^phase-0[123](?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
+const prefix = process.env.PHASE01_EVIDENCE_PREFIX ?? 'phase-04';
+if (!/^phase-0[1234](?:-[a-z0-9]+)*$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const evidence = resolve(workspace, `backend/docs/progress/${prefix}-evidence`);
 await mkdir(evidence, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), viewport: { width: 390, height: 844 }, platform: 'Chromium / Expo web export; not a native-device test', checks: [] };
@@ -14,7 +14,7 @@ const browser = await chromium.launch({ headless: true });
 const home = async page => { await page.getByTestId('state-ready').waitFor(); await page.getByTestId('fake-label').waitFor(); };
 try {
   for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
-    if (role !== 'courier') continue; // Current customer/admin journeys have dedicated phase02/phase03 scripts.
+    if (prefix.startsWith('phase-04') || role !== 'courier') continue; // Phase04 courier has its own suite; foundation checks remain historical.
     const origin = `http://127.0.0.1:${8081 + index}`;
     const context = await browser.newContext({ viewport: results.viewport, colorScheme: 'light', reducedMotion: 'reduce' });
     const page = await context.newPage();

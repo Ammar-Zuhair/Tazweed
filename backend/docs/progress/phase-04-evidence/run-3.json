@@ -1,0 +1,31 @@
+{
+  "index": 3,
+  "theme": "dark",
+  "width": 1024,
+  "checks": [
+    "internal password and OTP / multiple assigned tasks / no private other courier / RTL Tajawal / no video",
+    "daily commission and frozen rate / independent cash ledger and reversal / local foreground sound request and mute / policies / saved and system theme / reload clears session",
+    "empty/error/loading/retry / assignment expiry removes private data / protected deep link / confirmed logout clears cache"
+  ],
+  "images": [
+    "login-dark-1024.png",
+    "tasks-dark-1024.png",
+    "task-address-dark-1024.png",
+    "navigation-dark-1024.png",
+    "on-the-way-dark-1024.png",
+    "earnings-dark-1024.png",
+    "cash-ledger-dark-1024.png",
+    "notifications-dark-1024.png",
+    "policies-dark-1024.png",
+    "appearance-dark-1024.png",
+    "lab-dark-1024.png",
+    "empty-dark-1024.png",
+    "error-dark-1024.png",
+    "assignment-expired-dark-1024.png",
+    "signed-out-dark-1024.png"
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "passed": true,
+  "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9"
+}

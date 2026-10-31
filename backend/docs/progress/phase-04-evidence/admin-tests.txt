@@ -1,0 +1,272 @@
+
+> tazweed-admin@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: staff login has password then purpose-bound one-use OTP; no command without a session
+ok 1 - staff login has password then purpose-bound one-use OTP; no command without a session
+  ---
+  duration_ms: 657.900048
+  type: 'test'
+  ...
+# Subtest: OTP attempts/expiry/resend enforce limits while wrong attempts remain in state
+ok 2 - OTP attempts/expiry/resend enforce limits while wrong attempts remain in state
+  ---
+  duration_ms: 94.839957
+  type: 'test'
+  ...
+# Subtest: permissions pair action with its own grant branch, never union action and scope from different roles
+ok 3 - permissions pair action with its own grant branch, never union action and scope from different roles
+  ---
+  duration_ms: 53.934891
+  type: 'test'
+  ...
+# Subtest: new attributes enforce unique keys and value lists; historical keys/values are preserved
+ok 4 - new attributes enforce unique keys and value lists; historical keys/values are preserved
+  ---
+  duration_ms: 40.891421
+  type: 'test'
+  ...
+# Subtest: category links own required/filterable/order; cycles and duplicate links are rejected
+ok 5 - category links own required/filterable/order; cycles and duplicate links are rejected
+  ---
+  duration_ms: 19.751551
+  type: 'test'
+  ...
+# Subtest: product requires category values from the right active lists, not free text or inherited fields
+ok 6 - product requires category values from the right active lists, not free text or inherited fields
+  ---
+  duration_ms: 8.870405
+  type: 'test'
+  ...
+# Subtest: used conversion and SKU cannot change, future prices and archived units can
+ok 7 - used conversion and SKU cannot change, future prices and archived units can
+  ---
+  duration_ms: 20.83856
+  type: 'test'
+  ...
+# Subtest: stock receipt 2 cartons x12 +3 pieces is27 and every balance change has movement evidence
+ok 8 - stock receipt 2 cartons x12 +3 pieces is27 and every balance change has movement evidence
+  ---
+  duration_ms: 18.424228
+  type: 'test'
+  ...
+# Subtest: count writes a delta and transfer preserves totals; reserved pieces and two-branch permission enforced
+ok 9 - count writes a delta and transfer preserves totals; reserved pieces and two-branch permission enforced
+  ---
+  duration_ms: 268.414847
+  type: 'test'
+  ...
+# Subtest: critical operations require extra confirmation and a reason
+ok 10 - critical operations require extra confirmation and a reason
+  ---
+  duration_ms: 91.084306
+  type: 'test'
+  ...
+# Subtest: quote issuance reserves whole-order pieces and custom wholesale prices never change catalog
+ok 11 - quote issuance reserves whole-order pieces and custom wholesale prices never change catalog
+  ---
+  duration_ms: 8.014896
+  type: 'test'
+  ...
+# Subtest: branch change at the same total still creates revision and requires new acceptance with old acceptance retained
+ok 12 - branch change at the same total still creates revision and requires new acceptance with old acceptance retained
+  ---
+  duration_ms: 4.831618
+  type: 'test'
+  ...
+# Subtest: stale expectedVersion rejects revisions atomically
+ok 13 - stale expectedVersion rejects revisions atomically
+  ---
+  duration_ms: 3.442059
+  type: 'test'
+  ...
+# Subtest: floor_km stores original road meters and manual fallback needs reason and acceptance
+ok 14 - floor_km stores original road meters and manual fallback needs reason and acceptance
+  ---
+  duration_ms: 3.727198
+  type: 'test'
+  ...
+# Subtest: one eligible promotion chooses greatest saving with stable id tie and no wholesale auto-discount
+ok 15 - one eligible promotion chooses greatest saving with stable id tie and no wholesale auto-discount
+  ---
+  duration_ms: 21.163071
+  type: 'test'
+  ...
+# Subtest: receipt-protected holds cannot expire or be superseded after clock advance
+ok 16 - receipt-protected holds cannot expire or be superseded after clock advance
+  ---
+  duration_ms: 3.338388
+  type: 'test'
+  ...
+# Subtest: image rejection keeps the same payment, instructions and reservation across a corrected photo
+ok 17 - image rejection keeps the same payment, instructions and reservation across a corrected photo
+  ---
+  duration_ms: 2.793085
+  type: 'test'
+  ...
+# Subtest: editing future method never changes previously issued beneficiary instructions
+ok 18 - editing future method never changes previously issued beneficiary instructions
+  ---
+  duration_ms: 1.761109
+  type: 'test'
+  ...
+# Subtest: duplicate transfer number from another order and changed amount on re-upload are blocked
+ok 19 - duplicate transfer number from another order and changed amount on re-upload are blocked
+  ---
+  duration_ms: 9.130288
+  type: 'test'
+  ...
+# Subtest: transfer confirmation needs externally verified exact net amount and acknowledged flag
+ok 20 - transfer confirmation needs externally verified exact net amount and acknowledged flag
+  ---
+  duration_ms: 26.933302
+  type: 'test'
+  ...
+# Subtest: overpayment creates exception; only documented external adjustment permits exact-net confirmation
+ok 21 - overpayment creates exception; only documented external adjustment permits exact-net confirmation
+  ---
+  duration_ms: 15.356143
+  type: 'test'
+  ...
+# Subtest: cash confirms without any receipt and consumes reservation exactly once without collecting money
+ok 22 - cash confirms without any receipt and consumes reservation exactly once without collecting money
+  ---
+  duration_ms: 17.043254
+  type: 'test'
+  ...
+# Subtest: expired cash needs revalidation; snapshot is immutable and live rate/price changes need revision
+ok 23 - expired cash needs revalidation; snapshot is immutable and live rate/price changes need revision
+  ---
+  duration_ms: 30.667854
+  type: 'test'
+  ...
+# Subtest: assignment requires active courier branch/rate; commission freezes pre-discount, no reassign on the road
+ok 24 - assignment requires active courier branch/rate; commission freezes pre-discount, no reassign on the road
+  ---
+  duration_ms: 16.051204
+  type: 'test'
+  ...
+# Subtest: delivery records explicit cash or a shortfall exception, with one commission earning only
+ok 25 - delivery records explicit cash or a shortfall exception, with one commission earning only
+  ---
+  duration_ms: 5.989809
+  type: 'test'
+  ...
+# Subtest: cash remittance and commission settlement are separate complete allocations, with no implicit netting
+ok 26 - cash remittance and commission settlement are separate complete allocations, with no implicit netting
+  ---
+  duration_ms: 38.97808
+  type: 'test'
+  ...
+# Subtest: reversal is once, preserves original allocations, and funds resettlement via a credit without extra earning
+ok 27 - reversal is once, preserves original allocations, and funds resettlement via a credit without extra earning
+  ---
+  duration_ms: 7.447714
+  type: 'test'
+  ...
+# Subtest: branch and delivery configuration require proper coverage; no automatic second active branch in same province
+ok 28 - branch and delivery configuration require proper coverage; no automatic second active branch in same province
+  ---
+  duration_ms: 6.171775
+  type: 'test'
+  ...
+# Subtest: general maintenance and releases require global scope; builds compare numerically, data stays a preview
+ok 29 - general maintenance and releases require global scope; builds compare numerically, data stays a preview
+  ---
+  duration_ms: 10.118662
+  type: 'test'
+  ...
+# Subtest: staff changes cannot lock the current owner out, and private quality cannot be read by a reviewer
+ok 30 - staff changes cannot lock the current owner out, and private quality cannot be read by a reviewer
+  ---
+  duration_ms: 86.339328
+  type: 'test'
+  ...
+# Subtest: local repository distinguishes empty/error/offline, cancels stale work, and recovers
+ok 31 - local repository distinguishes empty/error/offline, cancels stale work, and recovers
+  ---
+  duration_ms: 471.388085
+  type: 'test'
+  ...
+# Subtest: payment instructions exist before receipt and later method edits cannot change their snapshot
+ok 32 - payment instructions exist before receipt and later method edits cannot change their snapshot
+  ---
+  duration_ms: 99.241658
+  type: 'test'
+  ...
+# Subtest: clock releases only expired timed holds and reconciles reserved counters without changing protected holds
+ok 33 - clock releases only expired timed holds and reconciles reserved counters without changing protected holds
+  ---
+  duration_ms: 9.978822
+  type: 'test'
+  ...
+# Subtest: rejecting a transfer requires external verification, while image rejection makes no money claim
+ok 34 - rejecting a transfer requires external verification, while image rejection makes no money claim
+  ---
+  duration_ms: 10.472538
+  type: 'test'
+  ...
+# Subtest: a delivery promotion with category/product restrictions needs a matching item
+ok 35 - a delivery promotion with category/product restrictions needs a matching item
+  ---
+  duration_ms: 2.300881
+  type: 'test'
+  ...
+# Subtest: delivery failure review preserves confirmed price, assignment and all ledgers
+ok 36 - delivery failure review preserves confirmed price, assignment and all ledgers
+  ---
+  duration_ms: 9.667635
+  type: 'test'
+  ...
+# Subtest: a branch manager cannot edit a shared courier's other branch, and cross-product unit ownership is checked
+ok 37 - a branch manager cannot edit a shared courier's other branch, and cross-product unit ownership is checked
+  ---
+  duration_ms: 18.112529
+  type: 'test'
+  ...
+# Subtest: cash reversal preserves full remittance allocation and can be allocated once without touching earnings
+ok 38 - cash reversal preserves full remittance allocation and can be allocated once without touching earnings
+  ---
+  duration_ms: 4.383136
+  type: 'test'
+  ...
+# Subtest: a prior flag from another branch shows an alert without exposing its private text
+ok 39 - a prior flag from another branch shows an alert without exposing its private text
+  ---
+  duration_ms: 11.061662
+  type: 'test'
+  ...
+# Subtest: a missing or corrupt preference follows the system; explicit choices survive a system change
+ok 40 - a missing or corrupt preference follows the system; explicit choices survive a system change
+  ---
+  duration_ms: 14.905568
+  type: 'test'
+  ...
+# Subtest: fake data is labelled, empty is separate, and errors can recover through a fresh request
+ok 41 - fake data is labelled, empty is separate, and errors can recover through a fresh request
+  ---
+  duration_ms: 134.356043
+  type: 'test'
+  ...
+# Subtest: cancelled work cannot publish stale data after navigation
+ok 42 - cancelled work cannot publish stale data after navigation
+  ---
+  duration_ms: 4.703901
+  type: 'test'
+  ...
+# Subtest: a production environment cannot use preview repositories
+ok 43 - a production environment cannot use preview repositories
+  ---
+  duration_ms: 5.601988
+  type: 'test'
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6488.407475

@@ -5,8 +5,8 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 
-const prefix = process.env.TAZWEED_EVIDENCE_PREFIX ?? 'phase-03';
-if (!/^phase-(?:01-sdk57|02(?:-native-fix)?|03)$/.test(prefix)) throw new Error('Invalid evidence prefix');
+const prefix = process.env.TAZWEED_EVIDENCE_PREFIX ?? 'phase-04';
+if (!/^phase-(?:01-sdk57|02(?:-native-fix)?|03|04)$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const output = fileURLToPath(new URL(`../docs/progress/${prefix}-evidence/`, import.meta.url));
 await mkdir(output, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), projectSlug: 'tazweed', sdk: 57, nativePhoneTested: false, tunnels: [] };
@@ -38,8 +38,9 @@ for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
   for (const platform of ['android', 'ios']) {
     const manifest = await (await get(origin + '/', { accept: 'application/expo+json', 'expo-platform': platform, 'expo-protocol-version': '1' })).json();
     const client = manifest.extra.expoClient;
-    if (role === 'customer' && (prefix.startsWith('phase-02') || prefix === 'phase-03')) { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, 'fake'); }
-    if (role === 'admin' && prefix === 'phase-03') assert.equal(client.extra.phase, '03');
+    if (role === 'customer' && (prefix.startsWith('phase-02') || ['phase-03', 'phase-04'].includes(prefix))) { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, 'fake'); }
+    if (role === 'admin' && ['phase-03', 'phase-04'].includes(prefix)) assert.equal(client.extra.phase, '03');
+    if (role === 'courier' && prefix === 'phase-04') assert.equal(client.extra.phase, '04');
     assert.equal(client.sdkVersion, '57.0.0'); assert.equal(manifest.runtimeVersion, 'exposdk:57.0.0');
     assert.equal(client.extra.appKind, role); assert.equal(client.extra.dataMode, 'fake');
     assert.equal(client.extra.supportsRTL, true); assert.equal(client.extra.forcesRTL, true);

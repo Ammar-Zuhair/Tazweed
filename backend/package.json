@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
     "test:preview": "node scripts/test-previews.mjs && node scripts/test-customer-phase02.mjs && node scripts/test-customer-edges-phase02.mjs",
-    "test:admin": "node scripts/test-admin-phase03.mjs"
+    "test:admin": "node scripts/test-admin-phase03.mjs",
+    "test:courier": "node scripts/test-courier-phase04.mjs"
   },
   "dependencies": {
     "express": "5.3.0"

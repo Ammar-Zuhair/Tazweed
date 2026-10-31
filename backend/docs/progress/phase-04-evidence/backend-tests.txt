@@ -1,0 +1,20 @@
+
+> tazweed-backend@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: health reports process only, and business routes remain unavailable
+ok 1 - health reports process only, and business routes remain unavailable
+  ---
+  duration_ms: 747.676645
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12350.921506

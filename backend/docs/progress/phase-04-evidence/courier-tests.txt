@@ -1,0 +1,200 @@
+
+> tazweed-courier@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: internal preview login only, OTP is single use with five attempts and expiry
+ok 1 - internal preview login only, OTP is single use with five attempts and expiry
+  ---
+  duration_ms: 3.895121
+  type: 'test'
+  ...
+# Subtest: resend has a deadline and issues a fresh limited challenge
+ok 2 - resend has a deadline and issues a fresh limited challenge
+  ---
+  duration_ms: 0.438864
+  type: 'test'
+  ...
+# Subtest: projection exposes only current assigned private snapshots, not another courier or expired assignment
+ok 3 - projection exposes only current assigned private snapshots, not another courier or expired assignment
+  ---
+  duration_ms: 2.062308
+  type: 'test'
+  ...
+# Subtest: cache expires fully and task expiry prunes dependent reports and notices
+ok 4 - cache expires fully and task expiry prunes dependent reports and notices
+  ---
+  duration_ms: 1.040922
+  type: 'test'
+  ...
+# Subtest: invalid ownership, assignment replacement and version conflicts cannot mutate orders
+ok 5 - invalid ownership, assignment replacement and version conflicts cannot mutate orders
+  ---
+  duration_ms: 3.414578
+  type: 'test'
+  ...
+# Subtest: start preserves frozen total and assignment commission; no reject or accept command
+ok 6 - start preserves frozen total and assignment commission; no reject or accept command
+  ---
+  duration_ms: 0.68407
+  type: 'test'
+  ...
+# Subtest: deliver requires on the way; no cash auto-created by start or delivery
+ok 7 - deliver requires on the way; no cash auto-created by start or delivery
+  ---
+  duration_ms: 1.562801
+  type: 'test'
+  ...
+# Subtest: transfer delivery never exposes receipt or invents collection; earns once from fee before discount
+ok 8 - transfer delivery never exposes receipt or invents collection; earns once from fee before discount
+  ---
+  duration_ms: 1.241324
+  type: 'test'
+  ...
+# Subtest: cash collection is explicit exact amount and reference, independent from earning/delivery
+ok 9 - cash collection is explicit exact amount and reference, independent from earning/delivery
+  ---
+  duration_ms: 1.621941
+  type: 'test'
+  ...
+# Subtest: invalid amount or reference never writes cash; a transfer cannot collect cash
+ok 10 - invalid amount or reference never writes cash; a transfer cannot collect cash
+  ---
+  duration_ms: 5.55458
+  type: 'test'
+  ...
+# Subtest: collection idempotency replays same payload, rejects changed contents and duplicate references
+ok 11 - collection idempotency replays same payload, rejects changed contents and duplicate references
+  ---
+  duration_ms: 2.632726
+  type: 'test'
+  ...
+# Subtest: explicit cash_uncollected allows actual delivery without hiding financial exception
+ok 12 - explicit cash_uncollected allows actual delivery without hiding financial exception
+  ---
+  duration_ms: 1.081518
+  type: 'test'
+  ...
+# Subtest: explicit cash_shortfall allows actual delivery without hiding financial exception
+ok 13 - explicit cash_shortfall allows actual delivery without hiding financial exception
+  ---
+  duration_ms: 1.05596
+  type: 'test'
+  ...
+# Subtest: explicit overpayment allows actual delivery without hiding financial exception
+ok 14 - explicit overpayment allows actual delivery without hiding financial exception
+  ---
+  duration_ms: 1.444571
+  type: 'test'
+  ...
+# Subtest: stale zero-cash exception cannot hide a later unmatched collection
+ok 15 - stale zero-cash exception cannot hide a later unmatched collection
+  ---
+  duration_ms: 1.474346
+  type: 'test'
+  ...
+# Subtest: exact cash delivery earns 100 on base 500 despite discount 100; never nets cash
+ok 16 - exact cash delivery earns 100 on base 500 despite discount 100; never nets cash
+  ---
+  duration_ms: 6.342002
+  type: 'test'
+  ...
+# Subtest: zero commission does not create a zero earning
+ok 17 - zero commission does not create a zero earning
+  ---
+  duration_ms: 0.873331
+  type: 'test'
+  ...
+# Subtest: daily totals use earning delivery date, reversal is unpaid credit rather than new earnings
+ok 18 - daily totals use earning delivery date, reversal is unpaid credit rather than new earnings
+  ---
+  duration_ms: 1.835316
+  type: 'test'
+  ...
+# Subtest: report with optional local image never blocks customer or changes total/status
+ok 19 - report with optional local image never blocks customer or changes total/status
+  ---
+  duration_ms: 0.774078
+  type: 'test'
+  ...
+# Subtest: report validates detail and refuses remote images or ownership bypass
+ok 20 - report validates detail and refuses remote images or ownership bypass
+  ---
+  duration_ms: 1.483523
+  type: 'test'
+  ...
+# Subtest: external routes preserve exact address pin and Yemen phone; no location permission
+ok 21 - external routes preserve exact address pin and Yemen phone; no location permission
+  ---
+  duration_ms: 1.05568
+  type: 'test'
+  ...
+# Subtest: fake reads distinguish empty/error/offline and cancel old reads
+ok 22 - fake reads distinguish empty/error/offline and cancel old reads
+  ---
+  duration_ms: 177.527688
+  type: 'test'
+  ...
+# Subtest: network pending is not success; retry after lost ack applies exactly once
+ok 23 - network pending is not success; retry after lost ack applies exactly once
+  ---
+  duration_ms: 78.032832
+  type: 'test'
+  ...
+# Subtest: assignment expiration while queued refuses action and prevents cache resurrection
+ok 24 - assignment expiration while queued refuses action and prevents cache resurrection
+  ---
+  duration_ms: 6.611592
+  type: 'test'
+  ...
+# Subtest: production fake adapter is blocked
+ok 25 - production fake adapter is blocked
+  ---
+  duration_ms: 0.486012
+  type: 'test'
+  ...
+# Subtest: lost delivery acknowledgement cannot duplicate cash, commission or timestamps
+ok 26 - lost delivery acknowledgement cannot duplicate cash, commission or timestamps
+  ---
+  duration_ms: 16.832053
+  type: 'test'
+  ...
+# Subtest: forged reject/accept action cannot be executed at runtime
+ok 27 - forged reject/accept action cannot be executed at runtime
+  ---
+  duration_ms: 0.939735
+  type: 'test'
+  ...
+# Subtest: a missing or corrupt preference follows the system; explicit choices survive a system change
+ok 28 - a missing or corrupt preference follows the system; explicit choices survive a system change
+  ---
+  duration_ms: 1.454018
+  type: 'test'
+  ...
+# Subtest: fake data is labelled, empty is separate, and errors can recover through a fresh request
+ok 29 - fake data is labelled, empty is separate, and errors can recover through a fresh request
+  ---
+  duration_ms: 28.337299
+  type: 'test'
+  ...
+# Subtest: cancelled work cannot publish stale data after navigation
+ok 30 - cancelled work cannot publish stale data after navigation
+  ---
+  duration_ms: 0.887538
+  type: 'test'
+  ...
+# Subtest: a production environment cannot use preview repositories
+ok 31 - a production environment cannot use preview repositories
+  ---
+  duration_ms: 0.510939
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7129.645142

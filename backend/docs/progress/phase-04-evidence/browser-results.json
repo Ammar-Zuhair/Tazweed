@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-10-31T13:01:44.303Z",
+  "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9",
+  "platform": "Chromium / Expo web export",
+  "nativeDeviceTested": false,
+  "runs": [
+    {
+      "index": 0,
+      "theme": "light",
+      "width": 390,
+      "checks": [
+        "internal password and OTP / multiple assigned tasks / no private other courier / RTL Tajawal / no video",
+        "confirmation cancellation / delivery blocked before cash / actual cash 24400 separate / shortfall 400 explicit / commission earned only once",
+        "local image and report reply / client maintenance keeps courier open / offline does not confirm / same-key retry / transfer delivers without cash receipt",
+        "daily commission and frozen rate / independent cash ledger and reversal / local foreground sound request and mute / policies / saved and system theme / reload clears session",
+        "empty/error/loading/retry / assignment expiry removes private data / protected deep link / confirmed logout clears cache"
+      ],
+      "images": [
+        "login-light-390.png",
+        "tasks-light-390.png",
+        "task-address-light-390.png",
+        "navigation-light-390.png",
+        "on-the-way-light-390.png",
+        "cash-required-light-390.png",
+        "cash-collected-light-390.png",
+        "delivered-light-390.png",
+        "cash-shortfall-light-390.png",
+        "report-compose-light-390.png",
+        "report-sent-light-390.png",
+        "report-reply-light-390.png",
+        "pending-offline-light-390.png",
+        "queue-light-390.png",
+        "earnings-light-390.png",
+        "cash-ledger-light-390.png",
+        "notifications-light-390.png",
+        "policies-light-390.png",
+        "appearance-light-390.png",
+        "lab-light-390.png",
+        "empty-light-390.png",
+        "error-light-390.png",
+        "assignment-expired-light-390.png",
+        "signed-out-light-390.png"
+      ],
+      "pageErrors": [],
+      "externalRequests": [],
+      "passed": true,
+      "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9"
+    },
+    {
+      "index": 1,
+      "theme": "dark",
+      "width": 390,
+      "checks": [
+        "internal password and OTP / multiple assigned tasks / no private other courier / RTL Tajawal / no video",
+        "daily commission and frozen rate / independent cash ledger and reversal / local foreground sound request and mute / policies / saved and system theme / reload clears session",
+        "empty/error/loading/retry / assignment expiry removes private data / protected deep link / confirmed logout clears cache"
+      ],
+      "images": [
+        "login-dark-390.png",
+        "tasks-dark-390.png",
+        "task-address-dark-390.png",
+        "navigation-dark-390.png",
+        "on-the-way-dark-390.png",
+        "earnings-dark-390.png",
+        "cash-ledger-dark-390.png",
+        "notifications-dark-390.png",
+        "policies-dark-390.png",
+        "appearance-dark-390.png",
+        "lab-dark-390.png",
+        "empty-dark-390.png",
+        "error-dark-390.png",
+        "assignment-expired-dark-390.png",
+        "signed-out-dark-390.png"
+      ],
+      "pageErrors": [],
+      "externalRequests": [],
+      "passed": true,
+      "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9"
+    },
+    {
+      "index": 2,
+      "theme": "light",
+      "width": 1024,
+      "checks": [
+        "internal password and OTP / multiple assigned tasks / no private other courier / RTL Tajawal / no video",
+        "daily commission and frozen rate / independent cash ledger and reversal / local foreground sound request and mute / policies / saved and system theme / reload clears session",
+        "empty/error/loading/retry / assignment expiry removes private data / protected deep link / confirmed logout clears cache"
+      ],
+      "images": [
+        "login-light-1024.png",
+        "tasks-light-1024.png",
+        "task-address-light-1024.png",
+        "navigation-light-1024.png",
+        "on-the-way-light-1024.png",
+        "earnings-light-1024.png",
+        "cash-ledger-light-1024.png",
+        "notifications-light-1024.png",
+        "policies-light-1024.png",
+        "appearance-light-1024.png",
+        "lab-light-1024.png",
+        "empty-light-1024.png",
+        "error-light-1024.png",
+        "assignment-expired-light-1024.png",
+        "signed-out-light-1024.png"
+      ],
+      "pageErrors": [],
+      "externalRequests": [],
+      "passed": true,
+      "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9"
+    },
+    {
+      "index": 3,
+      "theme": "dark",
+      "width": 1024,
+      "checks": [
+        "internal password and OTP / multiple assigned tasks / no private other courier / RTL Tajawal / no video",
+        "daily commission and frozen rate / independent cash ledger and reversal / local foreground sound request and mute / policies / saved and system theme / reload clears session",
+        "empty/error/loading/retry / assignment expiry removes private data / protected deep link / confirmed logout clears cache"
+      ],
+      "images": [
+        "login-dark-1024.png",
+        "tasks-dark-1024.png",
+        "task-address-dark-1024.png",
+        "navigation-dark-1024.png",
+        "on-the-way-dark-1024.png",
+        "earnings-dark-1024.png",
+        "cash-ledger-dark-1024.png",
+        "notifications-dark-1024.png",
+        "policies-dark-1024.png",
+        "appearance-dark-1024.png",
+        "lab-dark-1024.png",
+        "empty-dark-1024.png",
+        "error-dark-1024.png",
+        "assignment-expired-dark-1024.png",
+        "signed-out-dark-1024.png"
+      ],
+      "pageErrors": [],
+      "externalRequests": [],
+      "passed": true,
+      "sourceFingerprint": "ef9db59cb306a7ba3b15fdc586c61170ed5ccf0c20e3e88853840f215ba40ef9"
+    }
+  ],
+  "passed": true
+}
