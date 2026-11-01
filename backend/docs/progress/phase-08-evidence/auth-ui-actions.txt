@@ -1,0 +1,9 @@
+Auth UI08 action: متابعة
+Auth UI08 action: تحقق ومتابعة
+Auth UI08 action: متابعة التسوق
+Auth UI08 action: تحديث الطلبات
+Auth UI08 action: تسجيل الخروج
+Auth UI08 action: متابعة
+Auth UI08 action: تحقق ومتابعة
+Auth UI08 action: تحديث الطلبات
+{"passed":true,"lateRefreshAccountIsolation":true}

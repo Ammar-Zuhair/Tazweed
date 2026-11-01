@@ -128,6 +128,7 @@ export const upload = z.strictObject({
     "complaint",
     "customer_flag",
     "report",
+    "financial_proof",
   ]),
   mime: z.enum(["image/jpeg", "image/png", "image/webp"]),
   size: z

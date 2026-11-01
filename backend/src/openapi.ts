@@ -1,3 +1,4 @@
+import { addOrdersOpenapi } from "./orders/openapi.js";
 import { addCheckoutOpenapi } from "./checkout/openapi.js";
 import { z } from "zod";
 import * as c from "./identity/contracts.js";
@@ -325,76 +326,78 @@ export function openapi() {
       "application/json": { schema: { $ref: "#/components/schemas/Ready" } },
     },
   };
-  return addCheckoutOpenapi(
-    addCatalogOpenapi({
-      openapi: "3.1.0",
-      info: {
-        title: "Tazweed Phase05 identity and access",
-        version: "0.5.0",
-        description:
-          "Real PostgreSQL identity API. Apps remain local previews. Catalog/orders/payment services are deferred. OTP needs configured HTTPS gateway; no test codes returned.",
-      },
-      servers: [{ url: "/" }],
-      paths,
-      components: {
-        securitySchemes: {
-          bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
+  return addOrdersOpenapi(
+    addCheckoutOpenapi(
+      addCatalogOpenapi({
+        openapi: "3.1.0",
+        info: {
+          title: "Tazweed Phase05 identity and access",
+          version: "0.5.0",
+          description:
+            "Real PostgreSQL identity API. Apps remain local previews. Catalog/orders/payment services are deferred. OTP needs configured HTTPS gateway; no test codes returned.",
         },
-        schemas: {
-          ...responseSchemas,
-          Challenge: {
-            type: "object",
-            required: [
-              "challengeId",
-              "preauthToken",
-              "expiresIn",
-              "resendAfter",
-              "message",
-            ],
-            properties: {
-              challengeId: { type: "string", format: "uuid" },
-              preauthToken: { type: "string" },
-              expiresIn: { const: 300 },
-              resendAfter: { const: 60 },
-              message: { type: "string" },
-            },
+        servers: [{ url: "/" }],
+        paths,
+        components: {
+          securitySchemes: {
+            bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
           },
-          Tokens: {
-            type: "object",
-            required: [
-              "sessionId",
-              "accessToken",
-              "refreshToken",
-              "tokenType",
-              "expiresIn",
-            ],
-            properties: {
-              sessionId: { type: "string", format: "uuid" },
-              accessToken: { type: "string" },
-              refreshToken: { type: "string" },
-              tokenType: { const: "Bearer" },
-              expiresIn: { const: 900 },
+          schemas: {
+            ...responseSchemas,
+            Challenge: {
+              type: "object",
+              required: [
+                "challengeId",
+                "preauthToken",
+                "expiresIn",
+                "resendAfter",
+                "message",
+              ],
+              properties: {
+                challengeId: { type: "string", format: "uuid" },
+                preauthToken: { type: "string" },
+                expiresIn: { const: 300 },
+                resendAfter: { const: 60 },
+                message: { type: "string" },
+              },
             },
-          },
-          Result: { type: "object" },
-          Error: {
-            type: "object",
-            required: ["error"],
-            properties: {
-              error: {
-                type: "object",
-                required: ["code", "message", "details", "requestId"],
-                properties: {
-                  code: { type: "string" },
-                  message: { type: "string" },
-                  details: {},
-                  requestId: { type: "string", format: "uuid" },
+            Tokens: {
+              type: "object",
+              required: [
+                "sessionId",
+                "accessToken",
+                "refreshToken",
+                "tokenType",
+                "expiresIn",
+              ],
+              properties: {
+                sessionId: { type: "string", format: "uuid" },
+                accessToken: { type: "string" },
+                refreshToken: { type: "string" },
+                tokenType: { const: "Bearer" },
+                expiresIn: { const: 900 },
+              },
+            },
+            Result: { type: "object" },
+            Error: {
+              type: "object",
+              required: ["error"],
+              properties: {
+                error: {
+                  type: "object",
+                  required: ["code", "message", "details", "requestId"],
+                  properties: {
+                    code: { type: "string" },
+                    message: { type: "string" },
+                    details: {},
+                    requestId: { type: "string", format: "uuid" },
+                  },
                 },
               },
             },
           },
         },
-      },
-    }),
+      }),
+    ),
   );
 }

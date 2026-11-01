@@ -6,6 +6,7 @@ import { Page, Txt, Card, Action } from "../ui/components";
 import { api, Input, useAuth, LoginPanel } from "./connection";
 import { useCart } from "./cart-state";
 import MapPicker from "./MapPicker";
+import { useOperation } from "./operations";
 const reasons: Record<string, string> = {
   ROUTING_UNCONFIGURED:
     "خدمة الطريق غير مهيأة؛ تحتاج الرسوم إلى مراجعة الإدارة.",
@@ -24,6 +25,8 @@ function CheckoutScreen() {
   const cart = useCart(),
     auth = useAuth(),
     router = useRouter();
+  const op = useOperation(auth.user?.id);
+  const [paymentKind, setPaymentKind] = useState("cash_on_delivery");
   const [addresses, setAddresses] = useState<any[]>([]),
     [kind, setKind] = useState<"retail" | "wholesale">("retail"),
     [result, setResult] = useState<any>(null),
@@ -68,8 +71,10 @@ function CheckoutScreen() {
   const selected = addresses.find(
       (a) => a.id === cart.addressId && a.governorate_id === cart.gov,
     ),
-    entries = Object.entries(cart.draft).filter(([, q]) => q === "" || Number(q) > 0),
-    incompleteQuantity=entries.some(([,q])=>q==='');
+    entries = Object.entries(cart.draft).filter(
+      ([, q]) => q === "" || Number(q) > 0,
+    ),
+    incompleteQuantity = entries.some(([, q]) => q === "");
   async function calculate() {
     const current = ++seq.current,
       fp = latest.current;
@@ -142,7 +147,11 @@ function CheckoutScreen() {
           />
         </Card>
       ))}
-      {incompleteQuantity&&<Txt accessibilityRole="alert">أدخل كمية من1 إلى999 للبنود الفارغة أو أزلها.</Txt>}
+      {incompleteQuantity && (
+        <Txt accessibilityRole="alert">
+          أدخل كمية من1 إلى999 للبنود الفارغة أو أزلها.
+        </Txt>
+      )}
       {!auth.user ? (
         <LoginPanel />
       ) : (
@@ -188,9 +197,99 @@ function CheckoutScreen() {
           )}
           <Action
             title={busy ? "جارٍ حساب المعاينة…" : "حساب المعاينة من الخادم"}
-            disabled={busy || !entries.length || !selected || incompleteQuantity}
+            disabled={
+              busy || !entries.length || !selected || incompleteQuantity
+            }
             onPress={calculate}
           />
+          <Card>
+            <Txt weight="bold">طريقة دفع الطلب</Txt>
+            <Action
+              secondary={paymentKind !== "cash_on_delivery"}
+              title="نقد عند الاستلام"
+              onPress={() => setPaymentKind("cash_on_delivery")}
+            />
+            <Action
+              secondary={paymentKind !== "transfer"}
+              title="تحويل بنكي"
+              onPress={() => setPaymentKind("transfer")}
+            />
+            <Txt>
+              إرسال الطلب لا يحجز المخزون ولا يأذن بالدفع؛ يعرض المتجر تسعيرة
+              نهائية وقبولًا مستقلًا.
+            </Txt>
+            {op.command && op.command.path !== "/orders" && (
+              <Action
+                secondary
+                title="متابعة العملية المعلقة في الطلب"
+                onPress={() =>
+                  router.push({
+                    pathname: "/order",
+                    params: { id: op.command!.path.split("/")[2] },
+                  })
+                }
+              />
+            )}
+            {op.command && (
+              <Txt>
+                إرسال سابق غير محسوم؛ ستعاد المحاولة المحفوظة بالمفتاح نفسه.
+              </Txt>
+            )}
+            <Action
+              title={
+                op.command
+                  ? "إعادة إرسال الطلب المحفوظ"
+                  : "إرسال الطلب إلى المتجر"
+              }
+              disabled={
+                op.busy ||
+                !op.ready ||
+                (!!op.command && op.command.path !== "/orders") ||
+                (!op.command &&
+                  (!selected || !entries.length || incompleteQuantity))
+              }
+              onPress={() => {
+                setError("");
+                void op
+                  .execute(
+                    op.command ? undefined : "/orders",
+                    op.command
+                      ? undefined
+                      : {
+                          governorateId: cart.gov,
+                          addressId: cart.addressId,
+                          kind,
+                          paymentKind,
+                          items: entries.map(([unitId, q]) => ({
+                            unitId,
+                            quantity: Number(q),
+                          })),
+                        },
+                  )
+                  .then((r) => {
+                    cart.setDraft((old) => {
+                      const next = { ...old };
+                      const sent =
+                        (
+                          op.command?.body as
+                            | { items?: { unitId: string; quantity: number }[] }
+                            | undefined
+                        )?.items ??
+                        entries.map(([unitId, q]) => ({
+                          unitId,
+                          quantity: Number(q),
+                        }));
+                      for (const item of sent)
+                        if (next[item.unitId] === String(item.quantity))
+                          delete next[item.unitId];
+                      return next;
+                    });
+                    router.push({ pathname: "/order", params: { id: r.id } });
+                  })
+                  .catch((e) => setError(e.message));
+              }}
+            />
+          </Card>
         </>
       )}
       {!!error && <Txt accessibilityRole="alert">{error}</Txt>}
@@ -256,9 +355,7 @@ function CheckoutScreen() {
             </Txt>
           )}
           <Txt>{result.notice}</Txt>
-          <Txt>
-            فرع التنفيذ: بانتظار اختيار المدير. إرسال الطلب متاح عند تنفيذ08.
-          </Txt>
+          <Txt>فرع التنفيذ: بانتظار اختيار المدير بعد إرسال الطلب.</Txt>
         </Card>
       )}
     </Page>

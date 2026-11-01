@@ -14,6 +14,7 @@ import type { Config } from "../config.js";
 import { ApiError, parse, notFound, forbidden } from "../http.js";
 import {
   authenticate,
+  accessScope,
   requirePermission,
   type Identity,
 } from "../identity/access.js";
@@ -263,6 +264,9 @@ export function mediaRouter(
       );
     else if (v.purpose === "receipt" || v.purpose === "complaint") {
       if (i.kind !== "customer") throw forbidden();
+    } else if (v.purpose === "financial_proof") {
+      const scope = await accessScope(pool, i, "financial-exceptions.resolve");
+      if (!scope.global && !scope.branchIds.length) throw forbidden();
     } else
       throw new ApiError(
         422,
@@ -379,25 +383,55 @@ export function mediaRouter(
         )
       ).rows[0];
     if (!m) throw notFound();
-    if (m.owner_id !== i.id) {
+    if (m.owner_id !== i.id || m.purpose === "financial_proof") {
       if (m.visibility === "public") {
         await requirePermission(pool, i, "catalog.write", null);
       } else {
-        if (m.purpose !== "receipt") throw notFound();
-        const orders = (
-          await pool.query(
-            "SELECT DISTINCT o.branch_id FROM payment_receipt_attempts a JOIN payments p ON p.id=a.payment_id JOIN orders o ON o.id=p.order_id WHERE a.media_id=$1",
-            [id],
-          )
-        ).rows;
-        if (!orders.length || orders.some((o) => !o.branch_id))
-          throw notFound();
-        await requirePermission(
-          pool,
-          i,
-          "payments.verify",
-          orders.map((o) => o.branch_id),
-        );
+        if (m.purpose === "financial_proof") {
+          const rows = (
+            await pool.query(
+              `SELECT e.branch_id,o.branch_id current_branch,o.catalog_branch_id FROM financial_exception_resolutions r JOIN financial_exceptions e ON e.id=r.exception_id JOIN orders o ON o.id=e.order_id WHERE r.proof_media_id=$1`,
+              [id],
+            )
+          ).rows;
+          if (!rows.length) {
+            if (m.owner_id !== i.id) throw notFound();
+            const scope = await accessScope(
+              pool,
+              i,
+              "financial-exceptions.resolve",
+            );
+            if (!scope.global && !scope.branchIds.length) throw forbidden();
+          } else
+            await requirePermission(
+              pool,
+              i,
+              "financial-exceptions.resolve",
+              rows.flatMap((r) => [
+                r.branch_id ?? r.catalog_branch_id,
+                r.current_branch ?? r.catalog_branch_id,
+              ]),
+            );
+        } else {
+          if (m.purpose !== "receipt") throw notFound();
+          const orders = (
+            await pool.query(
+              "SELECT DISTINCT q.branch_id,o.branch_id current_branch,o.catalog_branch_id FROM payment_receipt_attempts a JOIN payments p ON p.id=a.payment_id JOIN order_quotes q ON q.id=p.quote_id JOIN orders o ON o.id=p.order_id WHERE a.media_id=$1",
+              [id],
+            )
+          ).rows;
+          if (!orders.length || orders.some((o) => !o.branch_id))
+            throw notFound();
+          await requirePermission(
+            pool,
+            i,
+            "payments.verify",
+            orders.flatMap((o) => [
+              o.branch_id,
+              o.current_branch ?? o.catalog_branch_id,
+            ]),
+          );
+        }
       }
     }
     try {

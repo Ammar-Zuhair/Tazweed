@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-11-01T21:28:49.659Z",
+  "database": "isolated real PostgreSQL",
+  "otp": "in-process CaptureProvider",
+  "routing": "in-process TestRouting, not real roads",
+  "storage": "in-process TestStore; image verification/processing is real, not R2",
+  "nativePhoneTested": false,
+  "externalProviderRequests": 0,
+  "pageErrors": [],
+  "screenshots": 22,
+  "lostAcknowledgements": 1,
+  "results": [
+    {
+      "scenario": "retail transfer revision/acceptance/frozen instructions/upload/image correction/verification/confirmation",
+      "passed": true
+    },
+    {
+      "scenario": "wholesale COD without receipt and lost acknowledgement retry creates one order",
+      "passed": true
+    },
+    {
+      "scenario": "underpayment external settlement/private proof/exception closure and confirmation via admin UI",
+      "passed": true
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "light",
+      "width": 360,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "light",
+      "width": 390,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "light",
+      "width": 1024,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "dark",
+      "width": 360,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "dark",
+      "width": 390,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer/admin order review responsive",
+      "theme": "dark",
+      "width": 1024,
+      "passed": true,
+      "horizontalOverflow": false
+    }
+  ]
+}

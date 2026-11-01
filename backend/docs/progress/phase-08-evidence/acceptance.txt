@@ -1,0 +1,730 @@
+
+> tazweed-backend@0.8.0 test
+> node scripts/test-phase05.mjs
+
+TAP version 13
+# Subtest: customer JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+ok 1 - customer JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+  ---
+  duration_ms: 215.458605
+  type: 'test'
+  ...
+# Subtest: admin JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+ok 2 - admin JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+  ---
+  duration_ms: 75.524488
+  type: 'test'
+  ...
+# Subtest: configuration rejects incomplete secrets, wildcard origins and production test providers
+ok 3 - configuration rejects incomplete secrets, wildcard origins and production test providers
+  ---
+  duration_ms: 11.043056
+  type: 'test'
+  ...
+# Subtest: Yemen mobile normalization accepts Arabic digits and rejects country substitution
+ok 4 - Yemen mobile normalization accepts Arabic digits and rejects country substitution
+  ---
+  duration_ms: 1.630432
+  type: 'test'
+  ...
+# Subtest: migrations retain all 69 tables and guards and reapplication is empty
+ok 5 - migrations retain all 69 tables and guards and reapplication is empty
+  ---
+  duration_ms: 5259.59344
+  type: 'test'
+  ...
+# Subtest: migration checksum tampering and a failing additive migration are rejected atomically
+ok 6 - migration checksum tampering and a failing additive migration are rejected atomically
+  ---
+  duration_ms: 206.468745
+  type: 'test'
+  ...
+# Subtest: runtime DB role cannot mutate financial ledgers, redact snapshots, or assume privacy role; phase08 snapshot reads use API ownership/scope
+ok 7 - runtime DB role cannot mutate financial ledgers, redact snapshots, or assume privacy role; phase08 snapshot reads use API ownership/scope
+  ---
+  duration_ms: 221.784784
+  type: 'test'
+  ...
+# Subtest: NOLOGIN privacy role has only column redaction rights and no financial UPDATE
+ok 8 - NOLOGIN privacy role has only column redaction rights and no financial UPDATE
+  ---
+  duration_ms: 74.360324
+  type: 'test'
+  ...
+# Subtest: registration creates no active account before OTP and stores only keyed/encrypted challenge material
+ok 9 - registration creates no active account before OTP and stores only keyed/encrypted challenge material
+  ---
+  duration_ms: 1632.16646
+  type: 'test'
+  ...
+# Subtest: public signup rejects staff/admin app and mass assigned identity fields
+ok 10 - public signup rejects staff/admin app and mass assigned identity fields
+  ---
+  duration_ms: 454.5786
+  type: 'test'
+  ...
+# Subtest: OTP is single-use under concurrent independent HTTP connections
+ok 11 - OTP is single-use under concurrent independent HTTP connections
+  ---
+  duration_ms: 666.866557
+  type: 'test'
+  ...
+# Subtest: challenge binding rejects wrong purpose, app, device and preauth without consuming a valid challenge
+ok 12 - challenge binding rejects wrong purpose, app, device and preauth without consuming a valid challenge
+  ---
+  duration_ms: 774.741238
+  type: 'test'
+  ...
+# Subtest: five wrong OTP attempts commit atomically, block correct code, and cannot be reset by resend
+ok 13 - five wrong OTP attempts commit atomically, block correct code, and cannot be reset by resend
+  ---
+  duration_ms: 1155.207392
+  type: 'test'
+  ...
+# Subtest: expired OTP fails; resend enforces cooldown and invalidates previous code while preserving attempts
+ok 14 - expired OTP fails; resend enforces cooldown and invalidates previous code while preserving attempts
+  ---
+  duration_ms: 866.381883
+  type: 'test'
+  ...
+# Subtest: repeated starts enforce phone cooldown even with changed device; duplicate signup stays generic
+ok 15 - repeated starts enforce phone cooldown even with changed device; duplicate signup stays generic
+  ---
+  duration_ms: 1827.493383
+  type: 'test'
+  ...
+# Subtest: provider failure leaves no active account, session or consumed/new challenge
+ok 16 - provider failure leaves no active account, session or consumed/new challenge
+  ---
+  duration_ms: 638.357355
+  type: 'test'
+  ...
+# Subtest: password + OTP is required for customer, internal staff and courier; X-App cannot elevate
+ok 17 - password + OTP is required for customer, internal staff and courier; X-App cannot elevate
+  ---
+  duration_ms: 2413.797237
+  type: 'test'
+  ...
+# Subtest: unknown account, wrong password, disabled user and wrong app share login failure
+ok 18 - unknown account, wrong password, disabled user and wrong app share login failure
+  ---
+  duration_ms: 2054.348303
+  type: 'test'
+  ...
+# Subtest: refresh rotates hashed tokens without OTP; replay revokes the entire family immediately
+ok 19 - refresh rotates hashed tokens without OTP; replay revokes the entire family immediately
+  ---
+  duration_ms: 939.050424
+  type: 'test'
+  ...
+# Subtest: parallel refresh permits one rotation then detects reuse and revokes that family
+ok 20 - parallel refresh permits one rotation then detects reuse and revokes that family
+  ---
+  duration_ms: 1630.346589
+  type: 'test'
+  ...
+# Subtest: wrong refresh app/device cannot steal or revoke the valid family
+ok 21 - wrong refresh app/device cannot steal or revoke the valid family
+  ---
+  duration_ms: 918.772903
+  type: 'test'
+  ...
+# Subtest: logout invalidates access and refresh; token tampering and unsigned JWT fail
+ok 22 - logout invalidates access and refresh; token tampering and unsigned JWT fail
+  ---
+  duration_ms: 687.048599
+  type: 'test'
+  ...
+# Subtest: password reset has its own purpose, revokes all sessions and outstanding challenges, and requires login again
+ok 23 - password reset has its own purpose, revokes all sessions and outstanding challenges, and requires login again
+  ---
+  duration_ms: 4514.313007
+  type: 'test'
+  ...
+# Subtest: unknown password reset has the same accepted shape and cannot create an account
+ok 24 - unknown password reset has the same accepted shape and cannot create an account
+  ---
+  duration_ms: 2098.275293
+  type: 'test'
+  ...
+# Subtest: profile and addresses enforce ownership and reject mass assignment; concurrent defaults serialize
+ok 25 - profile and addresses enforce ownership and reject mass assignment; concurrent defaults serialize
+  ---
+  duration_ms: 2672.428696
+  type: 'test'
+  ...
+# Subtest: branch-scoped staff cannot read another branch, list global roles, provision accounts, or self-escalate
+ok 26 - branch-scoped staff cannot read another branch, list global roles, provision accounts, or self-escalate
+  ---
+  duration_ms: 2745.236535
+  type: 'test'
+  ...
+# Subtest: cross-branch action guard requires every source/destination branch and the exact permission
+ok 27 - cross-branch action guard requires every source/destination branch and the exact permission
+  ---
+  duration_ms: 3609.960383
+  type: 'test'
+  ...
+# Subtest: role CRUD and grants work internally; live permission changes apply to an existing access token
+ok 28 - role CRUD and grants work internally; live permission changes apply to an existing access token
+  ---
+  duration_ms: 2963.988913
+  type: 'test'
+  ...
+# Subtest: disabling staff revokes access/refresh/challenges and customer tokens never authorize admin routes
+ok 29 - disabling staff revokes access/refresh/challenges and customer tokens never authorize admin routes
+  ---
+  duration_ms: 3003.208695
+  type: 'test'
+  ...
+# Subtest: audit is immutable, branch-filtered including null/global events, and contains no identity secrets
+ok 30 - audit is immutable, branch-filtered including null/global events, and contains no identity secrets
+  ---
+  duration_ms: 2729.799605
+  type: 'test'
+  ...
+# Subtest: rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypass IP limits
+ok 31 - rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypass IP limits
+  ---
+  duration_ms: 6091.37321
+  type: 'test'
+  ...
+# Subtest: Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase08 order contract
+ok 32 - Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase08 order contract
+  ---
+  duration_ms: 198.842725
+  type: 'test'
+  ...
+# Subtest: readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP
+ok 33 - readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP
+  ---
+  duration_ms: 221.860914
+  type: 'test'
+  ...
+# Subtest: OpenAPI exposes the implemented subset with strict inputs and no code/debug backdoor
+ok 34 - OpenAPI exposes the implemented subset with strict inputs and no code/debug backdoor
+  ---
+  duration_ms: 134.256275
+  type: 'test'
+  ...
+# Subtest: every protected sub-route rejects missing identity before any read or mutation
+ok 35 - every protected sub-route rejects missing identity before any read or mutation
+  ---
+  duration_ms: 384.224144
+  type: 'test'
+  ...
+# Subtest: last general admin grant and role cannot be removed or disabled by another manager
+ok 36 - last general admin grant and role cannot be removed or disabled by another manager
+  ---
+  duration_ms: 982.60771
+  type: 'test'
+  ...
+# Subtest: readiness fails closed for unconfigured OTP, unavailable DB and unsafe migration owner
+ok 37 - readiness fails closed for unconfigured OTP, unavailable DB and unsafe migration owner
+  ---
+  duration_ms: 386.670498
+  type: 'test'
+  ...
+# Subtest: failed resend preserves the old OTP and pending registration instead of reporting delivery success
+ok 38 - failed resend preserves the old OTP and pending registration instead of reporting delivery success
+  ---
+  duration_ms: 1469.465281
+  type: 'test'
+  ...
+# Subtest: deleted identities, revoked sessions and expired refresh families reject access
+ok 39 - deleted identities, revoked sessions and expired refresh families reject access
+  ---
+  duration_ms: 1028.292487
+  type: 'test'
+  ...
+# Subtest: grant provisioning removes stale column-level privacy privileges as well as table privileges
+ok 40 - grant provisioning removes stale column-level privacy privileges as well as table privileges
+  ---
+  duration_ms: 510.729243
+  type: 'test'
+  ...
+# Subtest: environment rejects wildcard CORS and accepts an empty unused gateway URL without enabling a provider
+ok 41 - environment rejects wildcard CORS and accepts an empty unused gateway URL without enabling a provider
+  ---
+  duration_ms: 49.493308
+  type: 'test'
+  ...
+# Subtest: address PATCH changes only supplied fields and rejects an empty patch or forged owner
+ok 42 - address PATCH changes only supplied fields and rejects an empty patch or forged owner
+  ---
+  duration_ms: 994.70271
+  type: 'test'
+  ...
+# Subtest: real HTTP responses exercised by the suite conform to the published OpenAPI schemas
+ok 43 - real HTTP responses exercised by the suite conform to the published OpenAPI schemas
+  ---
+  duration_ms: 258.249618
+  type: 'test'
+  ...
+# Subtest: explicit bootstrap provisions one pending general admin without a default password or bypassing OTP
+ok 44 - explicit bootstrap provisions one pending general admin without a default password or bypassing OTP
+  ---
+  duration_ms: 5927.983523
+  type: 'test'
+  ...
+# Subtest: operator auth housekeeping clears expired secrets and rate buckets while retaining audit and identities
+ok 45 - operator auth housekeeping clears expired secrets and rate buckets while retaining audit and identities
+  ---
+  duration_ms: 1356.193697
+  type: 'test'
+  ...
+# Subtest: category properties are authoritative; oils reject tire size and required omissions
+ok 46 - category properties are authoritative; oils reject tire size and required omissions
+  ---
+  duration_ms: 7042.925246
+  type: 'test'
+  ...
+# Subtest: piece/carton share one ledger: 2 cartons plus3 pieces is27 and overselling26 rejects atomically
+ok 47 - piece/carton share one ledger: 2 cartons plus3 pieces is27 and overselling26 rejects atomically
+  ---
+  duration_ms: 3811.138801
+  type: 'test'
+  ...
+# Subtest: catalog uses only configured branch prices and booleans, never aggregates or exposes stock counts
+ok 48 - catalog uses only configured branch prices and booleans, never aggregates or exposes stock counts
+  ---
+  duration_ms: 5047.779696
+  type: 'test'
+  ...
+# Subtest: inventory adjustments replay exactly once and a changed body with same key rejects
+ok 49 - inventory adjustments replay exactly once and a changed body with same key rejects
+  ---
+  duration_ms: 3939.995089
+  type: 'test'
+  ...
+# Subtest: concurrent withdrawals on final stock permit one, with no counter/ledger drift
+ok 50 - concurrent withdrawals on final stock permit one, with no counter/ledger drift
+  ---
+  duration_ms: 8310.454155
+  type: 'test'
+  ...
+# Subtest: transfer is atomic and idempotent; requires both branches and preserves total pieces
+ok 51 - transfer is atomic and idempotent; requires both branches and preserves total pieces
+  ---
+  duration_ms: 4861.899358
+  type: 'test'
+  ...
+# Subtest: catalog prevents category cycles, unconfigured governorate fallback and cross-governorate pointers
+ok 52 - catalog prevents category cycles, unconfigured governorate fallback and cross-governorate pointers
+  ---
+  duration_ms: 1922.254899
+  type: 'test'
+  ...
+# Subtest: pagination has a stable cursor, filters do not cross categories, and inactive products disappear
+ok 53 - pagination has a stable cursor, filters do not cross categories, and inactive products disappear
+  ---
+  duration_ms: 2931.702112
+  type: 'test'
+  ...
+# Subtest: protected holds never expire, timed expiry reconciles counters, and history fixes carton conversion
+ok 54 - protected holds never expire, timed expiry reconciles counters, and history fixes carton conversion
+  ---
+  duration_ms: 2785.920912
+  type: 'test'
+  ...
+# Subtest: maintenance affects public catalog only; authentication and admin remain available
+ok 55 - maintenance affects public catalog only; authentication and admin remain available
+  ---
+  duration_ms: 3516.023568
+  type: 'test'
+  ...
+# Subtest: direct private uploads verify real image bytes, strip EXIF, create thumbnails, and enforce owner access
+ok 56 - direct private uploads verify real image bytes, strip EXIF, create thumbnails, and enforce owner access
+  ---
+  duration_ms: 4009.501356
+  type: 'test'
+  ...
+# Subtest: MIME spoofing, oversized declaration and expired upload are rejected without publishing
+ok 57 - MIME spoofing, oversized declaration and expired upload are rejected without publishing
+  ---
+  duration_ms: 3251.411073
+  type: 'test'
+  ...
+# Subtest: abandoned uploads clean only expired pending keys and preserve verified receipts
+ok 58 - abandoned uploads clean only expired pending keys and preserve verified receipts
+  ---
+  duration_ms: 4239.373283
+  type: 'test'
+  ...
+# Subtest: branch-scoped stock options and price writes require their exact branch permission
+ok 59 - branch-scoped stock options and price writes require their exact branch permission
+  ---
+  duration_ms: 3694.930114
+  type: 'test'
+  ...
+# Subtest: 07 read-only coherent preview prices 2 cartons + 3 pieces from one explicit catalog branch, without any write
+ok 60 - 07 read-only coherent preview prices 2 cartons + 3 pieces from one explicit catalog branch, without any write
+  ---
+  duration_ms: 3939.920169
+  type: 'test'
+  ...
+# Subtest: 07 floor_km handles sub-km, 2.8km and fractional meters below next km with exact bigint fees
+ok 61 - 07 floor_km handles sub-km, 2.8km and fractional meters below next km with exact bigint fees
+  ---
+  duration_ms: 4712.698484
+  type: 'test'
+  ...
+# Subtest: 07 greatest saving across products and delivery, stable id ASC tie, one multi-product promotion and no usage cap
+ok 62 - 07 greatest saving across products and delivery, stable id ASC tie, one multi-product promotion and no usage cap
+  ---
+  duration_ms: 4127.983825
+  type: 'test'
+  ...
+# Subtest: 07 promotion eligibility respects governorate, exact category/product, dates, inactive, percentage and caps to eligible base
+ok 63 - 07 promotion eligibility respects governorate, exact category/product, dates, inactive, percentage and caps to eligible base
+  ---
+  duration_ms: 4405.136926
+  type: 'test'
+  ...
+# Subtest: 07 wholesale reference never combines retail promotions or claims a manager price
+ok 64 - 07 wholesale reference never combines retail promotions or claims a manager price
+  ---
+  duration_ms: 7584.897803
+  type: 'test'
+  ...
+# Subtest: 07 changing governorate reprices explicitly without aggregation or silent item loss; address mismatch rejects
+ok 65 - 07 changing governorate reprices explicitly without aggregation or silent item loss; address mismatch rejects
+  ---
+  duration_ms: 8366.855929
+  type: 'test'
+  ...
+# Subtest: 07 missing/no/failed road leaves total null; never replaces road with straight distance or stacks partial promotions
+ok 66 - 07 missing/no/failed road leaves total null; never replaces road with straight distance or stacks partial promotions
+  ---
+  duration_ms: 4663.5607
+  type: 'test'
+  ...
+# Subtest: 07 coverage and unrounded route limit gate pricing; disabled delivery has no fee; NULL cannot enable
+ok 67 - 07 coverage and unrounded route limit gate pricing; disabled delivery has no fee; NULL cannot enable
+  ---
+  duration_ms: 5115.983129
+  type: 'test'
+  ...
+# Subtest: 07 preview rejects other owner/archived addresses, unauthenticated/staff and spoofed fields
+ok 68 - 07 preview rejects other owner/archived addresses, unauthenticated/staff and spoofed fields
+  ---
+  duration_ms: 7628.817732
+  type: 'test'
+  ...
+# Subtest: 07 quantities combine piece/carton availability, reject duplicates/inactive/required attributes without leaking counts
+ok 69 - 07 quantities combine piece/carton availability, reject duplicates/inactive/required attributes without leaking counts
+  ---
+  duration_ms: 6543.615472
+  type: 'test'
+  ...
+# Subtest: 07 snapshot is immutable response data; next preview observes new tariff and price; parallel previews do not reserve
+ok 70 - 07 snapshot is immutable response data; next preview observes new tariff and price; parallel previews do not reserve
+  ---
+  duration_ms: 6295.831245
+  type: 'test'
+  ...
+# Subtest: 07 maintenance blocks customer preview and catalog promotions but preserves addresses and admin promotion management
+ok 71 - 07 maintenance blocks customer preview and catalog promotions but preserves addresses and admin promotion management
+  ---
+  duration_ms: 3303.279725
+  type: 'test'
+  ...
+# Subtest: 07 promotion writes require global action grant, validate dates/scope/percent and cannot write orders or holds
+ok 72 - 07 promotion writes require global action grant, validate dates/scope/percent and cannot write orders or holds
+  ---
+  duration_ms: 5250.353213
+  type: 'test'
+  ...
+# Subtest: 07 maps endpoint serves pinned MapLibre assets, explicit attribution and no provider key or arbitrary URL proxy
+ok 73 - 07 maps endpoint serves pinned MapLibre assets, explicit attribution and no provider key or arbitrary URL proxy
+  ---
+  duration_ms: 5472.257696
+  type: 'test'
+  ...
+# Subtest: 07 OSRM HTTP contract: lng/lat, no alternatives, bounded snap, server Bearer, malformed/timeout/no-route fail closed
+ok 74 - 07 OSRM HTTP contract: lng/lat, no alternatives, bounded snap, server Bearer, malformed/timeout/no-route fail closed
+  ---
+  duration_ms: 8454.882191
+  type: 'test'
+  ...
+# Subtest: 07 one category promotion covers multiple SKUs on the order, excludes unrelated scope and rounds percentage half-up
+ok 75 - 07 one category promotion covers multiple SKUs on the order, excludes unrelated scope and rounds percentage half-up
+  ---
+  duration_ms: 10808.200274
+  type: 'test'
+  ...
+# Subtest: 07 overflowing configured amounts fail before they can become a future bigint quote; no preview writes
+ok 76 - 07 overflowing configured amounts fail before they can become a future bigint quote; no preview writes
+  ---
+  duration_ms: 5088.231086
+  type: 'test'
+  ...
+# Subtest: receipt normalization accepts Arabic/Persian digits; money contracts reject fractional or forged fields
+ok 77 - receipt normalization accepts Arabic/Persian digits; money contracts reject fractional or forged fields
+  ---
+  duration_ms: 10313.137044
+  type: 'test'
+  ...
+# Subtest: manual road failure needs explicit fee and reason; quote address revision preserves old private snapshot
+ok 78 - manual road failure needs explicit fee and reason; quote address revision preserves old private snapshot
+  ---
+  duration_ms: 4604.997662
+  type: 'test'
+  ...
+# Subtest: receipt limit is enforced without saving an extra transfer
+ok 79 - receipt limit is enforced without saving an extra transfer
+  ---
+  duration_ms: 5276.131945
+  type: 'test'
+  ...
+# Subtest: same normalized bank transfer cannot be reused on another order
+ok 80 - same normalized bank transfer cannot be reused on another order
+  ---
+  duration_ms: 6776.00715
+  type: 'test'
+  ...
+# Subtest: confirmed invoice cannot be changed by exception settlement; proof and monetary ledger remain private/append-only
+ok 81 - confirmed invoice cannot be changed by exception settlement; proof and monetary ledger remain private/append-only
+  ---
+  duration_ms: 10247.257261
+  type: 'test'
+  ...
+# Subtest: rejected corrected image after explicit release opens a late-transfer exception without restoring stock
+ok 82 - rejected corrected image after explicit release opens a late-transfer exception without restoring stock
+  ---
+  duration_ms: 13983.459975
+  type: 'test'
+  ...
+# Subtest: duplicate external monetary reference cannot be recorded twice with a different key
+ok 83 - duplicate external monetary reference cannot be recorded twice with a different key
+  ---
+  duration_ms: 6857.246188
+  type: 'test'
+  ...
+# Subtest: linked private proof and an idempotent settlement replay recheck live branch grants even for the uploader
+ok 84 - linked private proof and an idempotent settlement replay recheck live branch grants even for the uploader
+  ---
+  duration_ms: 5922.984328
+  type: 'test'
+  ...
+# Subtest: reviewed funded branch replacement requires explicit carry, new acceptance and preserves protected stock without a fictitious refund
+ok 85 - reviewed funded branch replacement requires explicit carry, new acceptance and preserves protected stock without a fictitious refund
+  ---
+  duration_ms: 7699.720864
+  type: 'test'
+  ...
+# Subtest: submission has no hold; issue creates exact 30 minute hold and outbox atomically
+ok 86 - submission has no hold; issue creates exact 30 minute hold and outbox atomically
+  ---
+  duration_ms: 4902.980766
+  type: 'test'
+  ...
+# Subtest: COD confirms without any transfer or receipt and never records collected cash/commission/assignment
+ok 87 - COD confirms without any transfer or receipt and never records collected cash/commission/assignment
+  ---
+  duration_ms: 5183.738429
+  type: 'test'
+  ...
+# Subtest: wholesale prices are explicit and quote retains requested retail unit identity
+ok 88 - wholesale prices are explicit and quote retains requested retail unit identity
+  ---
+  duration_ms: 4713.962697
+  type: 'test'
+  ...
+# Subtest: equal-price branch change produces new revision requiring a fresh customer acceptance; old acceptance retained
+ok 89 - equal-price branch change produces new revision requiring a fresh customer acceptance; old acceptance retained
+  ---
+  duration_ms: 4564.12857
+  type: 'test'
+  ...
+# Subtest: immutable instructions retain destination after payment method edit
+ok 90 - immutable instructions retain destination after payment method edit
+  ---
+  duration_ms: 9735.47907
+  type: 'test'
+  ...
+# Subtest: verified exact transfer confirms once; repeated idempotency key cannot double sale or outbox
+ok 91 - verified exact transfer confirms once; repeated idempotency key cannot double sale or outbox
+  ---
+  duration_ms: 6433.972673
+  type: 'test'
+  ...
+# Subtest: receipt protects stock and price beyond initial deadline; overdue alert is deduplicated
+ok 92 - receipt protects stock and price beyond initial deadline; overdue alert is deduplicated
+  ---
+  duration_ms: 8399.497628
+  type: 'test'
+  ...
+# Subtest: image rejection keeps protected hold; correction appends image to same transfer and preserves review history
+ok 93 - image rejection keeps protected hold; correction appends image to same transfer and preserves review history
+  ---
+  duration_ms: 8087.680093
+  type: 'test'
+  ...
+# Subtest: verified 400 under/excess cannot confirm before documented external settlement
+ok 94 - verified 400 under/excess cannot confirm before documented external settlement
+  ---
+  duration_ms: 5647.992648
+  type: 'test'
+  ...
+# Subtest: verified 600 under/excess cannot confirm before documented external settlement
+ok 95 - verified 600 under/excess cannot confirm before documented external settlement
+  ---
+  duration_ms: 5612.814181
+  type: 'test'
+  ...
+# Subtest: normalized duplicate transfer is rejected globally; duplicate image and foreign image are rejected
+ok 96 - normalized duplicate transfer is rejected globally; duplicate image and foreign image are rejected
+  ---
+  duration_ms: 3999.107285
+  type: 'test'
+  ...
+# Subtest: protected receipt prevents quote replacement even after image rejection until explicit release action
+ok 97 - protected receipt prevents quote replacement even after image rejection until explicit release action
+  ---
+  duration_ms: 5816.275693
+  type: 'test'
+  ...
+# Subtest: last stock concurrent quotes never over-reserve and losing transaction leaves no partial quote
+ok 98 - last stock concurrent quotes never over-reserve and losing transaction leaves no partial quote
+  ---
+  duration_ms: 2832.182685
+  type: 'test'
+  ...
+# Subtest: expired COD with unchanged facts revalidates and reserves atomically before confirmation
+ok 99 - expired COD with unchanged facts revalidates and reserves atomically before confirmation
+  ---
+  duration_ms: 5281.15972
+  type: 'test'
+  ...
+# Subtest: expired quote with changed price cannot silently revalidate; requires new acceptance
+ok 100 - expired quote with changed price cannot silently revalidate; requires new acceptance
+  ---
+  duration_ms: 10506.288643
+  type: 'test'
+  ...
+# Subtest: late receipt records liability without recreating an expired hold
+ok 101 - late receipt records liability without recreating an expired hold
+  ---
+  duration_ms: 4918.09595
+  type: 'test'
+  ...
+# Subtest: client cancels before receipt; after receipt only an admin request; after confirmation cannot cancel
+ok 102 - client cancels before receipt; after receipt only an admin request; after confirmation cannot cancel
+  ---
+  duration_ms: 5573.953857
+  type: 'test'
+  ...
+# Subtest: receipt rejection with explicit release permits admin cancellation and retains history
+ok 103 - receipt rejection with explicit release permits admin cancellation and retains history
+  ---
+  duration_ms: 6729.20063
+  type: 'test'
+  ...
+# Subtest: maintenance blocks submission but allows ongoing tracking and cancellation
+ok 104 - maintenance blocks submission but allows ongoing tracking and cancellation
+  ---
+  duration_ms: 4550.862797
+  type: 'test'
+  ...
+# Subtest: other customer and courier cannot read or mutate order; runtime cannot mutate financial history
+ok 105 - other customer and courier cannot read or mutate order; runtime cannot mutate financial history
+  ---
+  duration_ms: 7459.815468
+  type: 'test'
+  ...
+# Subtest: staff branch scope blocks new branch issue and historical receipt disclosure after branch changes
+ok 106 - staff branch scope blocks new branch issue and historical receipt disclosure after branch changes
+  ---
+  duration_ms: 9173.222915
+  type: 'test'
+  ...
+# Subtest: HTTPS gateway transport enforces TLS, rejects redirects/errors/timeouts and does not forward passwords
+ok 107 - HTTPS gateway transport enforces TLS, rejects redirects/errors/timeouts and does not forward passwords
+  ---
+  duration_ms: 202.586042
+  type: 'test'
+  ...
+1..107
+# tests 107
+# suites 0
+# pass 107
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 452395.784684
+PASS S01 negative stock rejected
+PASS S02 reserved cannot exceed stock
+PASS S03 piece conversion must equal one
+PASS S04 carton conversion must exceed one
+PASS S05 value belongs to correct attribute
+PASS S06 tire attribute not allowed for oil
+PASS S07 product cannot pretend another category
+PASS S08 quote total arithmetic
+PASS S09 accepted quote requires owner identity
+PASS S10 quantity positive
+PASS S11 line arithmetic
+PASS S12 unit belongs to product
+PASS S13 reservation branch belongs to historical quote
+PASS S14 one active assignment
+PASS S15 commission uses pre-discount delivery
+PASS S16 one delivery earning
+PASS S17 earning allocation cannot be paid twice
+PASS S18 financial ledger immutable
+PASS S19 inventory ledger immutable
+PASS S20 sale movement unique per order/product
+PASS S21 canonical Yemen phone format
+PASS S22 minimum build cannot exceed latest
+PASS O01 2800m bills 2km; 300 + 2*50 = 400
+PASS O02 sub-kilometre route charges base only
+PASS O03 rounded-up fee rejected
+PASS O04 manual route fee needs reason
+PASS O05 500 delivery less 100 discount at 20% earns 100
+PASS O06 COD confirms with no receipt or transfer and records no cash automatically
+PASS O07 transfer cannot confirm without verified money
+PASS O08 receipt upload alone does not allow confirmation
+PASS O09 exact verified transfer permits confirmation
+PASS O10 underpayment and overpayment do not confirm
+PASS O11 one promotion cannot discount products and delivery together
+PASS O12 discount requires a single promotion snapshot
+PASS O13 manager-selected execution branch is distinct from catalog branch
+PASS O14 branch change retains old reservation and acceptance; equal total needs fresh acceptance
+PASS O15 current quote FK belongs to order
+PASS O16 different customer cannot accept quote
+PASS O17 sent quote lines and financial facts are immutable
+PASS O18 draft lines editable, subtotal checked when sent
+PASS O19 used carton conversion cannot change; archive allowed
+PASS O20 historical acceptance survives superseded/expired
+PASS O21 rejected image reupload preserves single transfer and all attempts
+PASS O22 same transfer reference cannot fund another order
+PASS O23 wallet edit does not rewrite frozen transfer destination
+PASS O24 receipt protects stock without an automatic expiry and prevents repricing
+PASS O25 expired initial stock hold cannot confirm COD
+PASS O26 confirmed order branch/amount source frozen; cancellation blocked
+PASS O27 cancel before confirmation without receipt permitted
+PASS O28 cancellation after receipt requires documented admin decision
+PASS O29 delivery does not invent a cash collection
+PASS O30 cash collection, remittance and commission use separate ledgers
+PASS O31 earning must match assignment courier/order/amount and delivery
+PASS O32 settlement requires same courier and exact total
+PASS O33 reversal creates one reusable credit, keeps original allocation and never re-earns commission
+PASS O34 financial resolution requires amount/reason/reference/evidence/actor/date
+PASS O35 NULL coverage cannot enable delivery
+PASS O36 catalog branch pointer belongs to chosen governorate
+PASS O37 privacy redacts personal snapshot without editing financial ledger
+PASS O38 cash ledger cannot collect transfer order
+PASS O39 cash remittance cannot silently deduct courier commission
+PASS O40 audit history remains immutable
+PASS O41 two cartons plus three pieces consume 27 and stock 26 rejects
+PASS O42 quote revalidation preserves immutable price and acceptance
+PASS O43 financial exception cannot close without documented resolution
+PASS O44 overpayment resolved externally yields exact net without editing approved money
+PASS O45 partial cash remains the actual amount and delivery needs a shortfall exception
+PASS O46 cash remittance cannot allocate another courier collection
+PASS O47 cash reversal preserves original remittance and reallocates one credit only
+PASS O48 delivery must be disabled before rule removal
+PASS O49 receipt attempts preserve owner/privacy and sequential reviewed history
+PASS O50 protected transfer cannot be bypassed by changing current quote or branch
+PASS O51 confirmed acceptance and confirmation timestamp remain historical
+{"scope":"Reference SQL constraints/triggers only; no API, authorization, real-provider, multi-connection or device tests.","engine":"Real PostgreSQL TCP connection (baseline regression)","schemaSha256":"265a32085ac4da1ce1d5b9377bfb9f0bb6e6e155f95b900148a90c9209013137","tableCount":69,"tables":["addresses","app_releases","attribute_values","attributes","audit_logs","banners","branch_unit_prices","branches","cash_collections","cash_remittance_items","cash_remittance_reversals","cash_remittances","categories","category_attributes","complaints","courier_branches","courier_earnings","courier_profiles","courier_settlement_reversals","courier_settlements","customer_flags","customer_maintenance","deletion_requests","delivery_rules","financial_exception_resolutions","financial_exceptions","governorates","idempotency_records","media_objects","notification_campaigns","notification_deliveries","notification_inbox","order_assignments","order_cancellation_requests","order_events","order_private_details","order_quotes","order_request_items","order_reviews","orders","otp_challenges","outbox_events","payment_instructions","payment_methods","payment_receipt_attempts","payment_receipt_reviews","payments","permissions","product_attribute_values","product_images","product_units","products","promotions","push_tokens","quote_items","quote_revalidations","report_jobs","role_permissions","roles","sessions","settings","settlement_items","staff_grants","stock_levels","stock_movements","stock_reservations","stock_transfer_items","stock_transfers","users"],"passed":73,"results":[{"id":"S01","label":"negative stock rejected","passed":true},{"id":"S02","label":"reserved cannot exceed stock","passed":true},{"id":"S03","label":"piece conversion must equal one","passed":true},{"id":"S04","label":"carton conversion must exceed one","passed":true},{"id":"S05","label":"value belongs to correct attribute","passed":true},{"id":"S06","label":"tire attribute not allowed for oil","passed":true},{"id":"S07","label":"product cannot pretend another category","passed":true},{"id":"S08","label":"quote total arithmetic","passed":true},{"id":"S09","label":"accepted quote requires owner identity","passed":true},{"id":"S10","label":"quantity positive","passed":true},{"id":"S11","label":"line arithmetic","passed":true},{"id":"S12","label":"unit belongs to product","passed":true},{"id":"S13","label":"reservation branch belongs to historical quote","passed":true},{"id":"S14","label":"one active assignment","passed":true},{"id":"S15","label":"commission uses pre-discount delivery","passed":true},{"id":"S16","label":"one delivery earning","passed":true},{"id":"S17","label":"earning allocation cannot be paid twice","passed":true},{"id":"S18","label":"financial ledger immutable","passed":true},{"id":"S19","label":"inventory ledger immutable","passed":true},{"id":"S20","label":"sale movement unique per order/product","passed":true},{"id":"S21","label":"canonical Yemen phone format","passed":true},{"id":"S22","label":"minimum build cannot exceed latest","passed":true},{"id":"O01","label":"2800m bills 2km; 300 + 2*50 = 400","passed":true},{"id":"O02","label":"sub-kilometre route charges base only","passed":true},{"id":"O03","label":"rounded-up fee rejected","passed":true},{"id":"O04","label":"manual route fee needs reason","passed":true},{"id":"O05","label":"500 delivery less 100 discount at 20% earns 100","passed":true},{"id":"O06","label":"COD confirms with no receipt or transfer and records no cash automatically","passed":true},{"id":"O07","label":"transfer cannot confirm without verified money","passed":true},{"id":"O08","label":"receipt upload alone does not allow confirmation","passed":true},{"id":"O09","label":"exact verified transfer permits confirmation","passed":true},{"id":"O10","label":"underpayment and overpayment do not confirm","passed":true},{"id":"O11","label":"one promotion cannot discount products and delivery together","passed":true},{"id":"O12","label":"discount requires a single promotion snapshot","passed":true},{"id":"O13","label":"manager-selected execution branch is distinct from catalog branch","passed":true},{"id":"O14","label":"branch change retains old reservation and acceptance; equal total needs fresh acceptance","passed":true},{"id":"O15","label":"current quote FK belongs to order","passed":true},{"id":"O16","label":"different customer cannot accept quote","passed":true},{"id":"O17","label":"sent quote lines and financial facts are immutable","passed":true},{"id":"O18","label":"draft lines editable, subtotal checked when sent","passed":true},{"id":"O19","label":"used carton conversion cannot change; archive allowed","passed":true},{"id":"O20","label":"historical acceptance survives superseded/expired","passed":true},{"id":"O21","label":"rejected image reupload preserves single transfer and all attempts","passed":true},{"id":"O22","label":"same transfer reference cannot fund another order","passed":true},{"id":"O23","label":"wallet edit does not rewrite frozen transfer destination","passed":true},{"id":"O24","label":"receipt protects stock without an automatic expiry and prevents repricing","passed":true},{"id":"O25","label":"expired initial stock hold cannot confirm COD","passed":true},{"id":"O26","label":"confirmed order branch/amount source frozen; cancellation blocked","passed":true},{"id":"O27","label":"cancel before confirmation without receipt permitted","passed":true},{"id":"O28","label":"cancellation after receipt requires documented admin decision","passed":true},{"id":"O29","label":"delivery does not invent a cash collection","passed":true},{"id":"O30","label":"cash collection, remittance and commission use separate ledgers","passed":true},{"id":"O31","label":"earning must match assignment courier/order/amount and delivery","passed":true},{"id":"O32","label":"settlement requires same courier and exact total","passed":true},{"id":"O33","label":"reversal creates one reusable credit, keeps original allocation and never re-earns commission","passed":true},{"id":"O34","label":"financial resolution requires amount/reason/reference/evidence/actor/date","passed":true},{"id":"O35","label":"NULL coverage cannot enable delivery","passed":true},{"id":"O36","label":"catalog branch pointer belongs to chosen governorate","passed":true},{"id":"O37","label":"privacy redacts personal snapshot without editing financial ledger","passed":true},{"id":"O38","label":"cash ledger cannot collect transfer order","passed":true},{"id":"O39","label":"cash remittance cannot silently deduct courier commission","passed":true},{"id":"O40","label":"audit history remains immutable","passed":true},{"id":"O41","label":"two cartons plus three pieces consume 27 and stock 26 rejects","passed":true},{"id":"O42","label":"quote revalidation preserves immutable price and acceptance","passed":true},{"id":"O43","label":"financial exception cannot close without documented resolution","passed":true},{"id":"O44","label":"overpayment resolved externally yields exact net without editing approved money","passed":true},{"id":"O45","label":"partial cash remains the actual amount and delivery needs a shortfall exception","passed":true},{"id":"O46","label":"cash remittance cannot allocate another courier collection","passed":true},{"id":"O47","label":"cash reversal preserves original remittance and reallocates one credit only","passed":true},{"id":"O48","label":"delivery must be disabled before rule removal","passed":true},{"id":"O49","label":"receipt attempts preserve owner/privacy and sequential reviewed history","passed":true},{"id":"O50","label":"protected transfer cannot be bypassed by changing current quote or branch","passed":true},{"id":"O51","label":"confirmed acceptance and confirmation timestamp remain historical","passed":true}]}

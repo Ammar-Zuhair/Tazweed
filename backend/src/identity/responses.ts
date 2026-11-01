@@ -88,13 +88,15 @@ export const responseSchemas: Record<string, any> = {
   ),
   Live: object({
     service: { const: "tazweed-backend" },
-    phase: { const: "07" },
+    phase: { const: "08" },
     status: { const: "ok" },
-    businessServices: { const: "identity-catalog-inventory-media-routing-preview" },
+    businessServices: {
+      const: "identity-catalog-inventory-media-routing-orders-payments",
+    },
   }),
   Ready: object({
     service: { const: "tazweed-backend" },
-    phase: { const: "07" },
+    phase: { const: "08" },
     status: { enum: ["ready", "not-ready"] },
     database: { enum: ["connected", "unavailable"] },
     migrations: { enum: ["current", "unavailable"] },

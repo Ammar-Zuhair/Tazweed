@@ -6,6 +6,7 @@ import { providerFromConfig } from "./identity/provider.js";
 import { databaseReadiness } from "./readiness.js";
 import { storeFromConfig } from "./catalog/media.js";
 import { startStockExpiry, startMediaCleanup } from "./catalog/worker.js";
+import { startReceiptAlerts } from "./orders/worker.js";
 try {
   const config = readServerConfig(),
     pool = createPool(config.DATABASE_URL),
@@ -28,11 +29,12 @@ try {
     log: (entry) => console.log(JSON.stringify(entry)),
   }).listen(config.PORT, config.HOST, () =>
     console.log(
-      JSON.stringify({ event: "listening", port: config.PORT, phase: "07" }),
+      JSON.stringify({ event: "listening", port: config.PORT, phase: "08" }),
     ),
   );
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
+  const stopAlerts = startReceiptAlerts(pool, config.RECEIPT_REVIEW_ALERT_MINUTES);
   const stopExpiry = startStockExpiry(pool);
   let stopping = false;
   for (const signal of ["SIGTERM", "SIGINT"])
@@ -40,6 +42,7 @@ try {
       if (stopping) return;
       stopping = true;
       stopExpiry();
+      stopAlerts();
       stopMedia();
       const timer = setTimeout(() => process.exit(1), 10000);
       timer.unref();

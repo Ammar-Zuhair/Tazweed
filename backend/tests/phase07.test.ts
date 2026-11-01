@@ -462,7 +462,7 @@ test("07 promotion writes require global action grant, validate dates/scope/perc
         "SELECT has_table_privilege(current_user,'orders','INSERT') ok",
       )
     ).rows[0].ok,
-    false,
+    true,
   );
   assert.equal(
     (
@@ -470,7 +470,7 @@ test("07 promotion writes require global action grant, validate dates/scope/perc
         "SELECT has_table_privilege(current_user,'stock_reservations','INSERT') ok",
       )
     ).rows[0].ok,
-    false,
+    true,
   );
 });
 test("07 maps endpoint serves pinned MapLibre assets, explicit attribution and no provider key or arbitrary URL proxy", async () => {

@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useState, useEffect } from "react";
 import { View, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
@@ -102,7 +103,7 @@ export default function Workspace() {
   return <WorkspaceScreen key={user?.id ?? "signed-out"} />;
 }
 function WorkspaceScreen() {
-  const auth = useAuth();
+  const auth = useAuth(), router=useRouter();
   const { preference, setPreference } = useTheme();
   const [section, setSection] = useState("governorates"),
     [data, setData] = useState<Record<string, any[]>>({}),
@@ -500,6 +501,8 @@ function WorkspaceScreen() {
         </Txt>
       ) : (
         <>
+          <Action title="إدارة الطلبات والدفع" onPress={()=>router.push("/orders")}/>
+          <Action secondary title="وسائل التحويل" onPress={()=>router.push("/methods")}/>
           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
             {menus.map(([key, label]) => (
               <Action

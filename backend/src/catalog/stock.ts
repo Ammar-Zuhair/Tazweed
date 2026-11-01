@@ -89,7 +89,7 @@ export async function reconcile(
     );
   return s;
 }
-async function expire(db: pg.PoolClient, b: string, p: string) {
+export async function expire(db: pg.PoolClient, b: string, p: string) {
   const r = await db.query(
     `UPDATE stock_reservations SET state='expired' WHERE branch_id=$1 AND product_id=$2 AND state='active' AND hold_kind='timed' AND expires_at<=now() RETURNING pieces`,
     [b, p],

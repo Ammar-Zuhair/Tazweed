@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: customer: native persistence delay cannot turn a double tap into two submission keys
+ok 1 - customer: native persistence delay cannot turn a double tap into two submission keys
+  ---
+  duration_ms: 17.977447
+  type: 'test'
+  ...
+# Subtest: customer: lost acknowledgement persists content/key across controller recreation and retries the same operation
+ok 2 - customer: lost acknowledgement persists content/key across controller recreation and retries the same operation
+  ---
+  duration_ms: 2.033261
+  type: 'test'
+  ...
+# Subtest: customer: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+ok 3 - customer: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+  ---
+  duration_ms: 1.568207
+  type: 'test'
+  ...
+# Subtest: admin: native persistence delay cannot turn a double tap into two submission keys
+ok 4 - admin: native persistence delay cannot turn a double tap into two submission keys
+  ---
+  duration_ms: 2.984464
+  type: 'test'
+  ...
+# Subtest: admin: lost acknowledgement persists content/key across controller recreation and retries the same operation
+ok 5 - admin: lost acknowledgement persists content/key across controller recreation and retries the same operation
+  ---
+  duration_ms: 0.907473
+  type: 'test'
+  ...
+# Subtest: admin: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+ok 6 - admin: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+  ---
+  duration_ms: 0.548838
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 492.494028

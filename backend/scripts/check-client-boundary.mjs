@@ -14,6 +14,8 @@ const names = [
   "R2_SECRET_ACCESS_KEY",
   "EXPO_ACCESS_TOKEN",
   "ROUTING_API_KEY",
+  "RECEIPT_ATTEMPT_LIMIT_PER_HOUR",
+  "RECEIPT_REVIEW_ALERT_MINUTES",
 ];
 const secrets = [];
 for (const file of [".env.runtime.local", ".env.local", ".env"]) {

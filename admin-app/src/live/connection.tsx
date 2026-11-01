@@ -25,16 +25,32 @@ export function apiBase() {
 let tokens: any = null,
   device = Crypto.randomUUID();
 let refreshing: Promise<any> | null = null;
+let accountId: string | null = null,
+  authEpoch = 0;
+let storageWrites: Promise<void> = Promise.resolve();
+const accountChanged = () => Error("تغير الحساب؛ تابع العملية من حساب صاحبها");
 let sessionCleared = () => {};
 async function save(value: any) {
+  if (!value) {
+    authEpoch++;
+    accountId = null;
+    refreshing = null;
+  }
   tokens = value;
+  const epoch = authEpoch;
   if (Platform.OS !== "web") {
-    if (value)
-      await SecureStore.setItemAsync(
-        "tazweed.session.v1",
-        JSON.stringify(value),
-      );
-    else await SecureStore.deleteItemAsync("tazweed.session.v1");
+    storageWrites = storageWrites
+      .catch(() => {})
+      .then(async () => {
+        if (epoch !== authEpoch) return;
+        if (value)
+          await SecureStore.setItemAsync(
+            "tazweed.session.v1",
+            JSON.stringify(value),
+          );
+        else await SecureStore.deleteItemAsync("tazweed.session.v1");
+      });
+    await storageWrites;
   }
 }
 async function send(path: string, body: unknown, method: string, key?: string) {
@@ -55,23 +71,32 @@ async function send(path: string, body: unknown, method: string, key?: string) {
 }
 async function rotate() {
   if (!refreshing) {
-    const refreshToken = tokens?.refreshToken;
-    refreshing = (async () => {
+    const refreshToken = tokens?.refreshToken,
+      epoch = authEpoch;
+    const task = (async () => {
       try {
         const { r, data } = await send(
           "/auth/refresh",
           { app: clientApp, deviceId: device, refreshToken },
           "POST",
         );
+        if (epoch !== authEpoch) throw accountChanged();
         if (!r.ok) throw Error("انتهت الجلسة؛ سجل الدخول");
         await save(data);
+        if (epoch !== authEpoch) throw accountChanged();
         return data;
       } catch (e) {
-        await save(null);
-        sessionCleared();
+        if (epoch === authEpoch) {
+          await save(null);
+          sessionCleared();
+        }
         throw e;
       }
-    })().finally(() => (refreshing = null));
+    })();
+    const shared = task.finally(() => {
+      if (refreshing === shared) refreshing = null;
+    });
+    refreshing = shared;
   }
   return refreshing;
 }
@@ -80,14 +105,37 @@ export async function api(
   body?: unknown,
   method = body === undefined ? "GET" : "POST",
   key?: string,
+  expectedUserId?: string,
 ): Promise<any> {
+  const epoch = authEpoch;
+  const publicRead =
+    method === "GET" &&
+    ["/catalog/", "/public/", "/delivery/catalog-context"].some((prefix) =>
+      path.startsWith(prefix),
+    );
+  const checkOwner = () => {
+    if (
+      (!publicRead && epoch !== authEpoch) ||
+      (expectedUserId && expectedUserId !== accountId)
+    )
+      throw accountChanged();
+  };
+  checkOwner();
   let result = await send(path, body, method, key);
+  checkOwner();
   if (result.r.status === 401 && tokens && !path.startsWith("/auth/")) {
     await rotate();
+    checkOwner();
     result = await send(path, body, method, key);
   }
-  if (!result.r.ok)
-    throw Error(result.data?.error?.message ?? "تعذر الاتصال بالخادم");
+  checkOwner();
+  if (!result.r.ok) {
+    const error = Object.assign(
+      Error(result.data?.error?.message ?? "تعذر الاتصال بالخادم"),
+      { status: result.r.status, code: result.data?.error?.code },
+    );
+    throw error;
+  }
   return result.data;
 }
 const Context = createContext<any>(null);
@@ -105,7 +153,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
     if (tokens) {
       try {
         await rotate();
-        setUser(await api("/me"));
+        const profile = await api("/me");
+        accountId = profile.id;
+        setUser(profile);
       } catch {
         await save(null);
         setUser(null);
@@ -129,15 +179,26 @@ export function AuthProvider({ children }: PropsWithChildren) {
     ready,
     deviceId: device,
     accept: async (v: any) => {
+      authEpoch++;
+      accountId = null;
+      refreshing = null;
+      const epoch = authEpoch;
       await save(v);
-      setUser(await api("/me"));
+      if (epoch !== authEpoch) throw accountChanged();
+      const profile = await api("/me");
+      if (epoch !== authEpoch) throw accountChanged();
+      accountId = profile.id;
+      setUser(profile);
     },
     logout: async () => {
+      const epoch = authEpoch;
       try {
         await api("/auth/logout", {});
       } finally {
-        await save(null);
-        setUser(null);
+        if (epoch === authEpoch) {
+          await save(null);
+          setUser(null);
+        }
       }
     },
   };
@@ -164,7 +225,17 @@ export function Input({
       <TextInput
         accessibilityLabel={label}
         value={value}
-        onChangeText={onChange}
+        onChangeText={(v) =>
+          onChange(
+            numeric
+              ? v.replace(/[٠-٩۰-۹]/g, (c) =>
+                  String(
+                    c.charCodeAt(0) - (c.charCodeAt(0) > 1775 ? 1776 : 1632),
+                  ),
+                )
+              : v,
+          )
+        }
         secureTextEntry={secure}
         keyboardType={numeric ? "numeric" : "default"}
         style={{

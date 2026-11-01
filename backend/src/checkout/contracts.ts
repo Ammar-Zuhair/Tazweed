@@ -36,7 +36,9 @@ export const promotion = z
     "نهاية العرض بعد بدايته",
   )
   .refine(
-    (v) => v.discount_kind !== "percent" || BigInt(v.value) <= 10000n,
+    (v) =>
+      v.discount_kind !== "percent" ||
+      (money.safeParse(v.value).success && BigInt(v.value) <= 10000n),
     "النسبة بنقاط الأساس من0 إلى10000",
   )
   .refine((v) => !v.category_id || !v.product_id, "اختر نطاق القسم أو المنتج");

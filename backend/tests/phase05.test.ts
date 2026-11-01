@@ -136,11 +136,10 @@ test("migration checksum tampering and a failing additive migration are rejected
     await rm(dir, { recursive: true, force: true });
   }
 });
-test("runtime DB role cannot mutate financial ledgers, read private snapshots, redact, or assume privacy role", async () => {
+test("runtime DB role cannot mutate financial ledgers, redact snapshots, or assume privacy role; phase08 snapshot reads use API ownership/scope", async () => {
   for (const sql of [
     "UPDATE courier_earnings SET amount_yer=1",
     "DELETE FROM cash_collections",
-    "SELECT * FROM order_private_details",
     "UPDATE order_private_details SET address_snapshot='{}'",
     "SET ROLE tazweed_privacy",
     "CREATE TABLE unauthorized(id int)",
@@ -1030,10 +1029,10 @@ test("rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypas
   );
   assert(!JSON.stringify(db).includes(u.phone_e164));
 });
-test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase07 preview contract", async () => {
+test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase08 order contract", async () => {
   const live = await f.request("GET", "/health/live");
   assert.equal(live.status, 200);
-  assert.equal(live.body.phase, "07");
+  assert.equal(live.body.phase, "08");
   assert(live.headers.get("content-security-policy"));
   assert.equal(live.headers.get("x-powered-by"), null);
   assert.equal(live.headers.get("cache-control"), "no-store");
@@ -1126,7 +1125,7 @@ test("OpenAPI exposes the implemented subset with strict inputs and no code/debu
       "application/json"
     ].schema.additionalProperties === false,
   );
-  assert(r.body.paths[route+"/catalog/products"]);
+  assert(r.body.paths[route + "/catalog/products"]);
   assert.equal((await f.request("GET", route + "/auth/debug-otp")).status, 404);
 });
 test("every protected sub-route rejects missing identity before any read or mutation", async () => {

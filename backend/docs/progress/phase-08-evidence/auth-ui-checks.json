@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-01T21:29:38.984Z",
+  "passed": true,
+  "scenario": "held real refresh acknowledgement after account A logout cannot restore A over account B or expose its order",
+  "database": "isolated real PostgreSQL",
+  "fault": "one injected 401 then delayed real refresh response; no business DTO fixtures",
+  "pageErrors": [],
+  "nativePhoneTested": false,
+  "screenshots": 1
+}

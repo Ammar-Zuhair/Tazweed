@@ -39,6 +39,18 @@ const envSchema = z.object({
     z.url().optional(),
   ),
   OTP_PROVIDER_TOKEN: z.string().optional(),
+  RECEIPT_ATTEMPT_LIMIT_PER_HOUR: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(30)
+    .default(6),
+  RECEIPT_REVIEW_ALERT_MINUTES: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(1440)
+    .default(60),
   ROUTING_PROVIDER: z.enum(["UNCONFIGURED", "osrm"]).default("UNCONFIGURED"),
   ROUTING_BASE_URL: z.preprocess(
     (v) => (v === "" ? undefined : v),

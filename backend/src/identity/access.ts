@@ -11,6 +11,7 @@ export type Identity = {
   sessionId: string;
   name_ar: string;
   phone_e164: string;
+  requestId?: string;
 };
 export function authenticate(db: Db, security: Security): RequestHandler {
   return async (req, res, next) => {
@@ -43,6 +44,7 @@ export function authenticate(db: Db, security: Security): RequestHandler {
       name_ar: row.name_ar,
       phone_e164: row.phone_e164,
       app: a.data,
+      requestId: res.locals.requestId,
       sessionId: row.session_id,
     } satisfies Identity;
     next();

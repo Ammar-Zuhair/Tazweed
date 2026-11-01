@@ -44,3 +44,25 @@ GRANT SELECT(id,branch_id) ON orders TO tazweed_app;
 
 -- Phase07: promotion management and read-only pricing. Still no order/quote/hold inserts.
 GRANT SELECT,INSERT,UPDATE ON promotions TO tazweed_app;
+
+-- Phase08: immutable monetary facts are INSERT only. No dispatch, cash or commission writes.
+GRANT SELECT ON orders,order_private_details,payment_methods,payment_instructions,
+ quote_revalidations,order_cancellation_requests,financial_exceptions,financial_exception_resolutions,
+ order_events,customer_flags TO tazweed_app;
+GRANT INSERT ON orders,order_request_items,order_private_details,order_quotes,quote_items,
+ stock_reservations,payment_methods,payment_instructions,payments,payment_receipt_attempts,
+ payment_receipt_reviews,quote_revalidations,order_cancellation_requests,financial_exceptions,
+ financial_exception_resolutions,order_events TO tazweed_app;
+GRANT UPDATE(branch_id,branch_selected_by,branch_selected_at,payment_kind,status,review_stage,
+ current_quote_id,version,confirmed_at,closed_reason) ON orders TO tazweed_app;
+GRANT UPDATE(status,accepted_by,accepted_at) ON order_quotes TO tazweed_app;
+GRANT UPDATE(hold_kind,expires_at,protected_at) ON stock_reservations TO tazweed_app;
+GRANT UPDATE(status,reviewer_id,reviewed_at,review_note,approved_amount_yer) ON payments TO tazweed_app;
+GRANT UPDATE(status,reviewed_by,review_note,reviewed_at) ON order_cancellation_requests TO tazweed_app;
+GRANT UPDATE(status) ON financial_exceptions TO tazweed_app;
+GRANT UPDATE ON payment_methods TO tazweed_app;
+GRANT USAGE ON SEQUENCE orders_order_number_seq TO tazweed_app;
+GRANT EXECUTE ON FUNCTION guard_quote_items(),guard_quote_history(),guard_instruction_issue(),
+ guard_payment_update(),guard_receipt_attempt(),protect_reported_transfer(),guard_receipt_review(),
+ apply_receipt_review(),guard_protected_reservation(),guard_order_state(),guard_exception_closure(),
+ guard_private_evidence() TO tazweed_app;

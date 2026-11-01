@@ -1,3 +1,5 @@
+> تنفيذ08: [OpenAPI08](openapi.phase08.json) هو العقد الحالي، و[دورة الطلب](ORDERS.md) تشرح المعاملات والمال والخصوصية. حقول الأوامر `expectedVersion` و`Idempotency-Key`، والرد معرّف وإصدار مقتضبان ثمGET للتفاصيل. الطلبات والعروض والحجوزات والإيصالات والاستثناءات متصلة؛ الإسناد والتحصيل والعمولات في09 غير متاحة بعد. ملاحظات07 أدناه تاريخ المعاينة التي بقيتREAD ONLY.
+
 > تنفيذ07: [OpenAPI07](openapi.phase07.json) هو العقد الحالي. أضيفت `/public/maps` و`/delivery/catalog-context` و`/catalog/promotions`، وCRUD العروض بصلاحية عامة `promotions.write`، و`POST /checkout/preview` لعميل بعنوان مملوك. خريطة العميل وCRUD العناوين يستعملان خدمة05. المعاينة READ ONLY: executionBranchId=null وawaiting_branch وpreviewOnly=true وreservationCreated=false، دون quoteId أو تعليمات تحويل. فشل الطريق يجعل total_yer=null وreview_required، وخارج التغطية outside_coverage. عرض واحد saving DESC/id ASC، دون جمع أو عروض تجزئة للجملة. إرسال الطلبات وإصدار العرض والحجز في08.
 
 > تنفيذ05: الهوية والحساب والعناوين الداخلية والأدوار والمنح والتدقيق وhealth أصبحت API فعلية. العقد التفصيلي المنفذ [openapi.phase05.json](openapi.phase05.json)، مع أمثلة وschemas واختباراتHTTP/PostgreSQL؛ بقية هذه الوثيقة نطاق مرجعي لمراحل لاحقة. لا مزودOTP حقيقي مثبت، ولا ربط تلقائي للتطبيقات المحلية. الخطأ الفعلي مغلف: `{error:{code,message,details,requestId}}`.
@@ -22,16 +24,16 @@ Base `/api/v1`؛ JSON؛ Bearer؛ وقت UTC ISO8601؛ pagination cursor+limit≤
 | جغرافيا وتغطية | CRUD /admin/governorates و/branches؛ PUT /admin/governorates/:id/catalog-branch؛ PUT /admin/branches/:id/delivery-rule؛ PATCH /admin/branches/:id/delivery-enabled. لا تفعيل دون نطاق وحد طريق وتعرفة؛ لا أقرب فرع آلي. |
 | مخزون | GET /admin/inventory و/movements؛ POST /admin/inventory/receipts و/adjustments و/transfers؛ النقل يحتاج صلاحية الفرعين. |
 | معاينة | POST /checkout/preview (governorateId,addressId,kind,items[{unitId,quantity}])؛ لا حجز/عرض دائم. |
-| تقديم طلب | POST /orders (governorateId,addressId,kind,items,paymentKind اختياري)؛ ينشئ طلبًا منتظرًا اختيار المدير وبنوده الخاصة فقط. |
-| عميل طلبات | GET /orders و/orders/:id؛ POST /orders/:id/quotes/:revision/accept أو/decline؛ POST /orders/:id/cancel؛ POST /orders/:id/cancellation-requests؛ GET /orders/:id/cancellation-requests. |
-| وسيلة الدفع | PUT /orders/:id/payment-kind (transfer أو cash_on_delivery) قبل التأكيد ودون تجاهل تحويل مبلغ عنه. GET /orders/:id/payment-methods للتحويل فقط. |
-| تعليمات التحويل | POST /orders/:id/payment-instructions (quoteRevision,methodId)؛ يحفظ snapshot قبل إرجاع الرقم والمستفيد، ويعيد instructionId/revision/expectedAmount/snapshot. |
-| تحويل | POST /orders/:id/payments (instructionId,receiptNumber,reportedAmount,mediaId)؛ سجل تحويل واحد ومحاولة أولى؛ POST /orders/:id/payments/:paymentId/receipt-attempts (mediaId) لإعادة صورة مرفوضة دون تحويل جديد. |
+| تقديم طلب | POST /orders (governorateId,addressId,kind,items,paymentKind مطلوب)؛ ينشئ طلبًا منتظرًا اختيار المدير وبنوده الخاصة فقط. |
+| عميل طلبات | GET /orders و/orders/:id؛ POST /orders/:id/decision (quoteId,accept,expectedVersion)؛ POST /orders/:id/cancel يلغي مباشرة بلا إيصال أو يسجل طلب مراجعة بعده؛ الطلبات وسجلها ضمنGET التفاصيل. |
+| وسيلة الدفع | POST /orders/:id/payment-kind (transfer أو cash_on_delivery) قبل التأكيد ودون تجاهل تحويل مبلغ عنه. GET /orders/:id/payment-methods للتحويل فقط. |
+| تعليمات التحويل | POST /orders/:id/instructions (methodId,expectedVersion)؛ يحفظ snapshot قبل إظهار الرقم والمستفيد. يعيدinstructionId ثمGET التفاصيل يعيد النسخة المثبتة. |
+| تحويل | POST /orders/:id/receipts (instructionId,receiptNumber,amountYer,mediaId,expectedVersion)؛ سجل تحويل واحد ومحاولة أولى؛ POST /orders/:id/payments/:paymentId/images (mediaId,expectedVersion) لإعادة صورة مرفوضة دون تحويل جديد. |
 | إدارة طلب | GET /admin/orders و/:id (تنبيه بلاغات للمخول)؛ POST /admin/orders/:id/quotes و/:id/confirm و/:id/reject و/:id/assign. |
-| تغيير فرع/عنوان | POST /admin/orders/:id/quotes يحدد branchId صراحة ويعيد حقائق العنوان/السعر من الخادم؛ أي تغيير فرع يولد revision وقبولًا جديدًا. POST /admin/orders/:id/quote-revalidations للتحقق من نفس السعر بعد انتهاء حجز نقدي دون تغيير snapshot. |
-| مراجعة إيصال | POST /admin/payments/:id/receipt-reviews (attemptId,outcome,verifiedAmount إن تحقق,reason,stockHoldAction,expectedOrderVersion). GET /admin/payments/:id/receipt-attempts. لا مراجعة لمحاولة قديمة ولا اعتماد مكرر. |
-| إلغاء إداري | GET /admin/cancellation-requests؛ POST /admin/cancellation-requests/:id/approve أو/deny مع السبب والتحقق من المال. |
-| استثناء مالي | GET/POST /admin/financial-exceptions؛ GET /admin/financial-exceptions/:id؛ POST /admin/financial-exceptions/:id/resolutions (direction,amount,reason,reference,proofMediaId,occurredAt)؛ POST /:id/resolve بعد تحقق الحالة. يجيز تسجيل التحويل المتأخر حتى للطلب الملغي. |
+| تغيير فرع/عنوان | POST /admin/orders/:id/quotes يحدد branchId صراحة ويعيد حقائق العنوان/السعر من الخادم؛ أي تغيير فرع يولد revision وقبولًا جديدًا. أمرconfirm يعيد التحقق والحجز الذري ويسجلquote_revalidations عند انتهاء عرض مقبول بلا حماية إيصال؛ لا endpoint يحجز منفصلًا ثم يترك سباقًا قبل التأكيد. |
+| مراجعة إيصال | POST /admin/orders/:id/payments/:paymentId/review (attemptId,outcome,verifiedAmountYer إن تحقق,note,stockAction,expectedVersion). المحاولات والمراجعات ضمنGET التفاصيل بالنطاق المخول. لا مراجعة لمحاولة قديمة ولا اعتماد مكرر. |
+| إلغاء إداري | طلبات الإلغاء ضمنGET /admin/orders/:id؛ POST /admin/orders/:id/cancel-review (requestId,approve,reason,expectedVersion) مع التحقق من المال. |
+| استثناء مالي | القراءة ضمنGET /admin/orders/:id؛ POST /admin/orders/:id/exceptions؛ POST /admin/orders/:id/settlements (exceptionId,direction,amountYer,reason,reference,proofMediaId,occurredAt,expectedVersion)؛ POST /admin/orders/:id/resolve بعد تحقق الحالة. يجيز تسجيل التحويل المتأخر حتى للطلب الملغي. |
 | إدارة وسائل التحويل | CRUD /admin/payment-methods (name,beneficiary,destinationNumber,instructions,branchScope,active)؛ التعديل للمستقبل، والتعليمات السابقة ثابتة. |
 | موصل | GET /courier/orders و/orders/:id؛ POST /courier/orders/:id/start و/deliver؛ GET /courier/earnings?from&to. لا reject/accept للإسناد. |
 | تحصيل نقد | POST /courier/orders/:id/cash-collections (amount,reference,collectedAt,expectedVersion)؛ POST /courier/orders/:id/cash-exceptions (amount,reason)؛ GET /courier/cash-balance؛ لا يسجل deliver مبلغًا تلقائيًا. |
@@ -71,3 +73,11 @@ outcome=image_rejected لا يعلن أن المال غير موجود، ويس�
 public config/support/privacy/deletion ومتابعة الطلب الجاري وتفاعلاته الضرورية مسموحة أثناء صيانة العميل؛ الكتالوج وpreview وsubmit محجوبة. المدير والموصل غير محجوبين. لا تعتمد header وحده لتحديد الهوية. صلاحيات cash.collect وcash.remit وcash.adjust وcash.reverse وpayments.verify وcommissions.settle وprivacy.manage منفصلة.
 عناوين وبيانات التواصل في order_private_details مرتبطة بالعرض؛ لا endpoint تعديل عام لها بعد إرسال العرض. تعمية البيانات لاحقًا خدمة مقيدة وفق السياسة، ولا ترفع حظر UPDATE على دفاتر المال. لا مدد احتفاظ مخترعة.
 يجب تحويل هذا المرجع إلى OpenAPI بأمثلة نجاح/فشل واختبارات عقود وRBAC وتزامن قبل الربط. لا استجابة موصوفة هنا تعني أن API منفذ في المرحلة00.
+
+## ملحق08 المنفذ
+
+- GET/POST `/admin/payment-methods` وPUT `/admin/payment-methods/:id`؛ صلاحيةpayment-methods.write مستقلة، العام يحتاج نطاقًا عامًا.
+- الاستثناءات وتسوياتها ضمنGET تفاصيل الطلب مع النطاق المناسب. POST `/admin/orders/:id/exceptions` يفتح سجلًا؛ `/settlements` يوثق direction/amountYer/reason/reference/proofMediaId/occurredAt؛ `/resolve` يغلقه بعد التحقق والإثبات. كلها تحتاجexpectedVersion ومفتاحًا ثابتًا. لا محفظة أو استرداد آلي.
+- GET التفاصيل يعيدcatalogBranchId/executionBranchId/quoteRevision/paymentKind/paymentStatus/quoteValidity/allowedActions من الخادم. لا أعداد مخزون المتجر؛ holds تخص بنود الطلب نفسه. لا نص بلاغ أو بيانات إيصال تاريخي خارج صلاحيات الفروع.
+- snapshot الطريق المالي لا يكرر إحداثيات العميل؛ privateDetailsId يربطه بالنسخة الخاصة. `addressId` الاختياري عند إصدار العرض يحتاج عنوانًا مملوكًا للعميل في محافظة الطلب، ويصدر نسخة خاصة وعرضًا وقبولًا جديدًا.
+- PUT/POST للمزودات الحقيقية لم تختبر في08؛ نجاح المحولات المعزولة لا يعني تهيئتها.

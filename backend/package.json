@@ -1,6 +1,6 @@
 {
   "name": "tazweed-backend",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -24,7 +24,9 @@
     "test:phase06:ui": "node scripts/test-phase05.mjs --ui",
     "check:client-boundary": "node scripts/check-client-boundary.mjs",
     "test:phase07": "node scripts/test-phase05.mjs",
-    "test:phase07:ui": "node scripts/test-phase05.mjs --ui07"
+    "test:phase07:ui": "node scripts/test-phase05.mjs --ui07",
+    "test:phase08": "node scripts/test-phase05.mjs",
+    "test:phase08:ui": "node scripts/test-phase05.mjs --ui08"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1161.0",

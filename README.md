@@ -1,4 +1,4 @@
-> الحالة الحالية: اكتملت واجهات العميل02 والإدارة03 والموصل04 محليًا على Expo Go وSDK57. [تقرير04](backend/docs/progress/phase-04.md)، [مراجعة الواجهات](UI_REVIEW.md)، [الفحوص](backend/docs/progress/phase-04-checks.json)، [روابط التطبيقات الثلاثة](backend/docs/progress/phase-04-tunnels.json). التوقف قبل05 ومراجعة المالك؛ لا خدمات أعمال متصلة.
+> الحالة الحالية: اكتملت08 فقط؛ العميل والإدارة متصلان بطلبات وعروض وقبول وتحويل يدوي ونقد عند الاستلام منbackend/PostgreSQL، والموصل ينتظر09. Expo Go57 محفوظ. [تقرير08](backend/docs/progress/phase-08.md)، [الفحوص](backend/docs/progress/phase-08-checks.json)، [الأدلة وروابط التشغيل](backend/docs/progress/phase-08-evidence/README.md). التوقف قبل09؛ المزودات الحقيقية والهاتف باقية وفق طلب المالك.
 
 > إصلاح فيديو العميل محفوظ؛ [تقرير متابعة02](backend/docs/progress/phase-02-native-fix.md) و[دليل Expo Go](backend/docs/EXPO_GO.md).
 
