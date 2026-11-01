@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-01T11:13:25.977Z",
+  "database": "isolated real PostgreSQL",
+  "routing": "in-process TestRouting; straight fixture geometry is not a real road",
+  "map": "real pinned MapLibre GL JS engine with empty isolated style; no real map tiles/store locations",
+  "otp": "in-process CaptureProvider",
+  "nativePhoneTested": false,
+  "geolocation": "browser permission denial then Playwright synthetic coordinates, not device GPS",
+  "externalProviderRequests": 0,
+  "pageErrors": [],
+  "screenshots": 27,
+  "results": [
+    {
+      "scenario": "real PG + API: promotion create, pin bridge + address save, independent units, preview/floor/promo,3to5,wholesale,no-route,governorate repricing,no holds",
+      "passed": true
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "light",
+      "width": 360,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "light",
+      "width": 390,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "light",
+      "width": 1024,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "dark",
+      "width": 360,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "dark",
+      "width": 390,
+      "passed": true,
+      "horizontalOverflow": false
+    },
+    {
+      "scenario": "customer maps/checkout and admin promotions responsive",
+      "theme": "dark",
+      "width": 1024,
+      "passed": true,
+      "horizontalOverflow": false
+    }
+  ]
+}

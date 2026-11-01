@@ -6,7 +6,7 @@ export async function databaseReadiness(db: Db) {
   has_schema_privilege(current_user,'public','CREATE') AS can_create,
   EXISTS(SELECT 1 FROM pg_auth_members WHERE member=r.oid) AS memberships,
   EXISTS(SELECT 1 FROM pg_tables t WHERE t.schemaname='public' AND t.tablename NOT IN
-   ('governorates','branches','categories','attributes','attribute_values','category_attributes','products','product_attribute_values','product_images','product_units','branch_unit_prices','stock_levels','stock_movements','stock_transfers','stock_transfer_items','stock_reservations','delivery_rules','media_objects','outbox_events','idempotency_records','users','roles','role_permissions','staff_grants','courier_profiles','otp_challenges','sessions','session_refresh_tokens','auth_rate_buckets','addresses','audit_logs')
+   ('promotions','governorates','branches','categories','attributes','attribute_values','category_attributes','products','product_attribute_values','product_images','product_units','branch_unit_prices','stock_levels','stock_movements','stock_transfers','stock_transfer_items','stock_reservations','delivery_rules','media_objects','outbox_events','idempotency_records','users','roles','role_permissions','staff_grants','courier_profiles','otp_challenges','sessions','session_refresh_tokens','auth_rate_buckets','addresses','audit_logs')
    AND (has_table_privilege(current_user,quote_ident(t.schemaname)||'.'||quote_ident(t.tablename),'INSERT,UPDATE,DELETE,TRUNCATE')
      OR has_any_column_privilege(current_user,quote_ident(t.schemaname)||'.'||quote_ident(t.tablename),'INSERT,UPDATE'))) AS unauthorized_writes,
   (has_table_privilege(current_user,'audit_logs','UPDATE,DELETE,TRUNCATE') OR has_any_column_privilege(current_user,'audit_logs','UPDATE')) AS audit_mutation,
@@ -21,6 +21,7 @@ export async function databaseReadiness(db: Db) {
         "0001_reference_69.sql",
         "0002_identity_security.sql",
         "0003_catalog_media.sql",
+        "0004_checkout_read_models.sql",
       ]),
     runtimeRole:
       !!row &&

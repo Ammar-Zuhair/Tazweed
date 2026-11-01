@@ -28,7 +28,7 @@ try {
     log: (entry) => console.log(JSON.stringify(entry)),
   }).listen(config.PORT, config.HOST, () =>
     console.log(
-      JSON.stringify({ event: "listening", port: config.PORT, phase: "06" }),
+      JSON.stringify({ event: "listening", port: config.PORT, phase: "07" }),
     ),
   );
   server.requestTimeout = 15000;

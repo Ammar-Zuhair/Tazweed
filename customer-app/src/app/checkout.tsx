@@ -1,1 +1,1 @@
-export { Deferred as default } from '../live/catalog';
+export { default } from "../live/checkout";

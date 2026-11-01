@@ -13,6 +13,7 @@ const names = [
   "R2_ACCESS_KEY_ID",
   "R2_SECRET_ACCESS_KEY",
   "EXPO_ACCESS_TOKEN",
+  "ROUTING_API_KEY",
 ];
 const secrets = [];
 for (const file of [".env.runtime.local", ".env.local", ".env"]) {
@@ -56,7 +57,6 @@ for (const role of ["customer", "admin", "courier"]) {
       "EXPO_PUBLIC_APP_ENV",
       "EXPO_PUBLIC_APP_KIND",
       "EXPO_PUBLIC_EAS_PROJECT_ID",
-      "EXPO_PUBLIC_MAP_STYLE_URL",
     ];
     if (
       Object.keys(env).some((n) => !publicNames.includes(n)) ||
@@ -89,6 +89,8 @@ for (const role of ["customer", "admin", "courier"]) {
     }
   }
 }
+// Map HTML/JS/CSS/fonts are served to the frontend by the backend as well.
+await scan(resolve(root, "backend/public"), true);
 if (bad.length)
   throw Error(
     "Forbidden backend credentials or names found in: " + bad.join(", "),

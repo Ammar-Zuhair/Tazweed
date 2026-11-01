@@ -41,3 +41,6 @@ GRANT UPDATE(state) ON stock_reservations TO tazweed_app;
 -- Existing guards need these exact referenced facts; no financial/private snapshots exposed.
 GRANT SELECT ON order_quotes,quote_items,order_request_items,payments,payment_receipt_attempts,payment_receipt_reviews TO tazweed_app;
 GRANT SELECT(id,branch_id) ON orders TO tazweed_app;
+
+-- Phase07: promotion management and read-only pricing. Still no order/quote/hold inserts.
+GRANT SELECT,INSERT,UPDATE ON promotions TO tazweed_app;

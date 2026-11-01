@@ -88,7 +88,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       appKind: "courier",
       environment,
       dataMode: "deferred",
-      phase: "06",
+      phase: "07",
     },
   };
 };

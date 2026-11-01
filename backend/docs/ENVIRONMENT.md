@@ -1,4 +1,4 @@
-# إعداد الخادم للمرحلة06
+# إعداد الخادم للمرحلة07
 
 الملف المحلي المطلوب للمالك هو `backend/.env`، غير مرفوع إلى Git وصلاحيته600. أضيفت أسماء الإعدادات الناقصة دون تغيير أي قيمة موجودة. المثال الآمن المرفوع هو `.env.example`. لا تنسخ مفاتيح خدمات أو قاعدة بيانات أو توقيع إلى التطبيقات أو إلى متغيرات `EXPO_PUBLIC_*`.
 
@@ -20,14 +20,22 @@
 
 `DATABASE_URL` المحدود و`JWT_PRIVATE_KEY` و`JWT_PUBLIC_KEY` و`OTP_HMAC_SECRET` مولدة محليًا وجاهزة في `.env.runtime.local`، ولا يلزم استبدالها لملء OTP/R2. القيم الفارغة في `.env` تتركها كما هي. اتصال مالك migrations موجود في `.env.local` للمشغل فقط ولا يحمّله HTTP. `PUBLIC_BASE_URL/CORS_ALLOWED_ORIGINS` إعدادات عامة للخادم؛ اضبطهما للنطاق المعتمد عند تشغيل مستقل. لا تجعل `.env` نسخة من ملف المالك.
 
-أسماء محجوزة لمراحل لاحقة وليست خدمات منفذة في06: `ROUTING_BASE_URL` في07، `EXPO_ACCESS_TOKEN` في10، `STORE_SUPPORT_PHONE/PRIVACY_CONTACT_EMAIL` لنصوص التشغيل، وقرار الاحتفاظ في11. `OTP_SENDER_ID/WHATSAPP_AUTH_TEMPLATE` في المثال معلومات محول مستقبلي إن تطلبها المزود؛ العقد العام لا يستهلكها.
+أسماء محجوزة لمراحل لاحقة وليست خدمات منفذة في06: `EXPO_ACCESS_TOKEN` في10، `STORE_SUPPORT_PHONE/PRIVACY_CONTACT_EMAIL` لنصوص التشغيل، وقرار الاحتفاظ في11. `OTP_SENDER_ID/WHATSAPP_AUTH_TEMPLATE` في المثال معلومات محول مستقبلي إن تطلبها المزود؛ العقد العام لا يستهلكها.
 
 ## التحميل وإعادة التشغيل
 
 `node dist/server.js` يقرأ `.env.runtime.local` كإعداد أساسي، ثم القيم غير الفارغة من `.env`، ثم متغيرات العملية المصدرة إن وجدت. لا تبدأ HTTP باستخدام `--env-file=.env.local` أو اتصال مالك migrations. الخدمة الحالية بدأت دون `--env-file=.env.runtime.local` كي لا يحجب تحميله المسبق القيم الجديدة من `.env`.
 
-بعد إضافة المفاتيح أخبر الوكيل لاختبار الخدمات كما اتفقنا. إعادة تشغيل `tazweed-backend-8084` تعيد قراءة `.env`؛ التهيئة ليست إثبات إرسال OTP أو نجاح R2. `GET /health/ready` يذكر OTP وstorage ويرجع503 عند نقص أيهما؛ حتى200 يثبت التهيئة وDB فقط، لا نجاح مزود خارجي.
+بعد إضافة المفاتيح أخبر الوكيل لاختبار الخدمات كما اتفقنا. إعادة تشغيل `tazweed-backend-8084` تعيد قراءة `.env`؛ التهيئة ليست إثبات إرسال OTP أو نجاح R2. `GET /health/ready` يذكر OTP وstorage وrouting ويرجع503 عند نقص أي منها؛ حتى200 يثبت التهيئة وDB فقط، لا نجاح مزود خارجي.
 
 التطبيقات تتلقى access/refresh خاصين بجلسة المستخدم بعد OTP. تحفظ النسخة الأصلية بيانات الجلسة في SecureStore، والويب يحتفظ بها في الذاكرة فقط؛ لا تُحفظ كلمات المرور أو OTP. هذه بيانات جلسة ضرورية وليست مفاتيح خدمة أو صلاحيات خادم.
 
 مراجع: [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/)، [R2 CORS](https://developers.cloudflare.com/r2/buckets/cors/)، [Expo SecureStore](https://docs.expo.dev/versions/v57.0.0/sdk/securestore/). الروابط الموقعة تُنشأ من الخادم، وهي صلاحية مؤقتة لكائن واحد؛ قد تحمل معرّف access key في التوقيع، دون نقل secret access key إلى التطبيق.
+
+## إعداد الطريق الجديد في07
+
+`ROUTING_BASE_URL` كان محجوزًا؛ أضيفت أسماء `ROUTING_PROVIDER=UNCONFIGURED` و`ROUTING_API_KEY=` و`ROUTING_PROFILE=driving` و`ROUTING_TIMEOUT_MS=5000` و`ROUTING_MAX_SNAP_M=200` دون تغيير قيم موجودة. بعد تجهيز OSRM مملوك، اضبط PROVIDER إلى `osrm` وBASE_URL إلى جذر HTTPS. المفتاح اختياري لبوابة Bearer؛ OSRM الخام لا يحتاج مفتاحًا بطبيعته. لا تستخدم خادم demo أو URL يحتوي سرًا. [ROUTING](ROUTING.md) يوضح الاستضافة والتكلفة وحدود المحول.
+
+لا مفتاح عرض مطلوب لـOpenFreeMap العام. `/public/maps` يعيد اختيار الخريطة من الخادم دون مفتاح Routing. يعرض MapLibre GL JS داخل WebView متوافق مع Go؛ لم تُضف MapLibre Native. أصول الخريطة ملفات محددة وCSP مقيدة، دون proxy لمصادر عشوائية. موقع الجهاز عند الاستخدام فقط، والعناوين والمعاينة تتحقق من الملكية في الخادم. مواقع الفروع والتغطية والتعرفة في DB، وليست قيمًا تشغيلية داخل.env أو fixtures.
+
+**لا تختبر OTP/R2/Routing الحقيقيين الآن.** المالك سيملأ الإعدادات ويطلب فحص الخدمات مرة واحدة. إعادة التهيئة وready لا يثبتان نجاح المزود أو المواقع الحقيقية.

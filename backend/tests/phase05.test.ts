@@ -1030,10 +1030,10 @@ test("rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypas
   );
   assert(!JSON.stringify(db).includes(u.phone_e164));
 });
-test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase06 catalog contract", async () => {
+test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase07 preview contract", async () => {
   const live = await f.request("GET", "/health/live");
   assert.equal(live.status, 200);
-  assert.equal(live.body.phase, "06");
+  assert.equal(live.body.phase, "07");
   assert(live.headers.get("content-security-policy"));
   assert.equal(live.headers.get("x-powered-by"), null);
   assert.equal(live.headers.get("cache-control"), "no-store");

@@ -1,0 +1,46 @@
+@font-face {
+  font-family: Tajawal;
+  src: url("/api/v1/maps/Tajawal-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+html,
+body,
+#map {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: #f9eee1;
+  color: #142d43;
+  font:
+    500 16px Tajawal,
+    sans-serif;
+}
+#map {
+  height: calc(100% - 44px);
+}
+nav {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  padding: 6px;
+  text-align: center;
+  min-height: 32px;
+  font-size: 12px;
+  line-height: 16px;
+}
+a {
+  color: #163e63;
+}
+#status {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  left: 8px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  pointer-events: none;
+}

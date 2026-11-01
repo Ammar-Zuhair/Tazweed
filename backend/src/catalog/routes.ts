@@ -378,6 +378,19 @@ export function catalogRouter(pool: pg.Pool, security: Security) {
     await transaction(pool, async (db) => {
       await db.query("SELECT pg_advisory_xact_lock(606,1)");
       await requirePermission(db, res.locals.identity, "branches.write", [id]);
+      const branch = (
+        await db.query(
+          "SELECT b.coverage_radius_m,d.max_distance_m FROM branches b LEFT JOIN delivery_rules d ON d.branch_id=b.id WHERE b.id=$1",
+          [id],
+        )
+      ).rows[0];
+      if (!branch) throw notFound();
+      if (v.enabled && (!branch.coverage_radius_m || !branch.max_distance_m))
+        throw new ApiError(
+          409,
+          "DELIVERY_UNCONFIGURED",
+          "أكمل نطاق التغطية والتعرفة وحد الطريق قبل تفعيل التوصيل",
+        );
       if (
         !(
           await db.query(

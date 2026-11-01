@@ -1,3 +1,4 @@
+import { mapsRouter } from "./checkout/maps.js";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
@@ -17,7 +18,10 @@ import {
   storeFromConfig,
   type ObjectStore,
 } from "./catalog/media.js";
+import { checkoutRouter } from "./checkout/routes.js";
+import { routingFromConfig, type RoutingProvider } from "./checkout/routing.js";
 export type AppOptions = {
+  routingProvider?: RoutingProvider;
   config: Config;
   pool: pg.Pool;
   security: Security;
@@ -31,6 +35,7 @@ export function createApp({
   security,
   provider,
   objectStore,
+  routingProvider,
   log = () => {},
 }: AppOptions) {
   if (
@@ -46,6 +51,12 @@ export function createApp({
     (config.NODE_ENV !== "test" || config.production)
   )
     throw new Error("Test media store restricted");
+  const routing = routingProvider ?? routingFromConfig(config);
+  if (
+    routing.mode === "test" &&
+    (config.NODE_ENV !== "test" || config.production)
+  )
+    throw new Error("Test routing restricted");
   const app = express();
   app.disable("x-powered-by");
   app.set("trust proxy", false);
@@ -86,9 +97,9 @@ export function createApp({
   app.use(express.json({ limit: "16kb", strict: true }));
   const live = {
     service: "tazweed-backend",
-    phase: "06",
+    phase: "07",
     status: "ok",
-    businessServices: "identity-catalog-inventory-media",
+    businessServices: "identity-catalog-inventory-media-routing-preview",
   };
   app.get(["/health", "/health/live"], (_req, res) => res.json(live));
   app.get("/health/ready", async (_req, res) => {
@@ -103,16 +114,18 @@ export function createApp({
       migrations &&
       runtimeRole &&
       provider.mode !== "unconfigured" &&
-      store.mode !== "unconfigured";
+      store.mode !== "unconfigured" &&
+      routing.mode !== "unconfigured";
     res.status(ready ? 200 : 503).json({
       service: "tazweed-backend",
-      phase: "06",
+      phase: "07",
       status: ready ? "ready" : "not-ready",
       database: database ? "connected" : "unavailable",
       migrations: migrations ? "current" : "unavailable",
       runtimeRole: runtimeRole ? "limited" : "unsafe-or-unavailable",
       otp: provider.mode,
       storage: store.mode,
+      routing: routing.mode,
     });
   });
   app.get("/api/v1/openapi.json", (_req, res) => res.json(openapi()));
@@ -124,6 +137,8 @@ export function createApp({
     "/api/v1",
     catalogRouter(pool, security),
     mediaRouter(pool, security, store),
+    checkoutRouter(pool, security, routing),
+    mapsRouter(),
   );
   app.use((_req, _res, next) =>
     next(new ApiError(404, "NOT_FOUND", "المسار غير موجود")),

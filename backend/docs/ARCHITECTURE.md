@@ -1,6 +1,8 @@
 # المعمارية
 
-> تنفيذ06: وحدات `src/catalog/{routes,contracts,stock,media,worker,openapi}.ts` فوق هوية05. PostgreSQL المصدر الوحيد لحقائق الكتالوج والأسعار والمخزون؛ لاfallback أو نجاح محلي عند تعذرالخادم. `ObjectStore` محولR2 حقيقي/غيرمهيأ؛ المحول التجريبي داخلtests فقط. proxy تطوير ثابت للـAPI عبرMetro، وSecureStore للجلسة الأصلية، ومسودةكمية محلية بلا سعر نهائي أوحجز. لاخدمات07/09. راجع [تقرير06](progress/phase-06.md).
+> تنفيذ07: وحدات `checkout/{routing,pricing,service,routes,maps,openapi}`، ومعاينة `REPEATABLE READ READ ONLY` بملكية عنوان، ورسوم طريق من محول OSRM أو حالة غير مهيأة، وعرض واحد بأكبر توفير. لا كتابة طلب أو تسعيرة أو حجز. MapLibre GL JS داخل WebView يحافظ على Expo Go57 وإسناد البيانات ظاهر. [الحدود والاستضافة](ROUTING.md).
+
+> تنفيذ06: وحدات `src/catalog/{routes,contracts,stock,media,worker,openapi}.ts` فوق هوية05. PostgreSQL المصدر الوحيد لحقائق الكتالوج والأسعار والمخزون؛ لاfallback أو نجاح محلي عند تعذرالخادم. `ObjectStore` محولR2 حقيقي/غيرمهيأ؛ المحول التجريبي داخلtests فقط. proxy تطوير ثابت للـAPI عبرMetro، وSecureStore للجلسة الأصلية، ومسودةكمية محلية بلا سعر نهائي أوحجز. لاخدمات08/09. راجع [تقرير06](progress/phase-06.md).
 
 ## المنفذ حتى المرحلة05
 التطبيقات الثلاثة Expo Go57 بواجهات محلية02–04 وتحسينات العميل والخط اللاحقة. نفذت05 خادم هوية مستقلًا معPostgreSQL16 محلي حقيقي؛ لم تربط معاينات التطبيقات بحسابات الخادم ولا بدأت خدمات06. [تقرير05](progress/phase-05.md) و[OpenAPI المنفذ](openapi.phase05.json) و[التشغيل](../README.md).
@@ -26,9 +28,11 @@ auth, access-control, geography, branches, catalog, attributes, inventory, deliv
 Pagination بالمؤشر، فهارس على نطاق الفرع والحالة والتاريخ، thumbnails وصور مضغوطة قبل النشر. CDN للكتالوج العام، private signed GET للإيصالات. Redis ليس شرطًا للبداية؛ استخدم worker بصفوف outbox وSKIP LOCKED مع backoff وdead-letter. لا تنشئ مستخدم × كل إشعار دون batching للرسائل الكبيرة.
 
 ## الخرائط
-هذا هدف الربط لاحقًا وليس تنفيذ02. خريطة02 تخطيطية دون MapLibre/GPS/مزود طريق. المرجع التالي يشترط development build ويتعارض مع الاكتفاء بـExpo Go الذي طلبه المالك لاحقًا؛ يلزم حسم طريقة التشغيل/البديل قبل07، ولا تحسمه المحاكاة أو تغير التقنية صامتًا. انظر P02-02.
+طلب المالك المستمر Expo Go57 مقدم على اقتراح development build السابق. يعرض07 MapLibre GL JS6.16.0 المثبت في backend عبر WebView13.16.1، وإطار في الويب، مع OpenFreeMap Liberty وإسناد OpenFreeMap/OpenMapTiles/OSM. أُبلغ اختيار البديل وسُجلP07-01؛ ليس MapLibre Native داخل Go.
 
-عرض MapLibre native + OpenFreeMap مع إسناد البيانات ظاهرًا. استعمل development build، لا Expo Go لهذه المكتبة. لا حاجة للترميز الجغرافي لتثبيت الدبوس: الإحداثيات هي الحقيقة، ووصف المكان/معلم قريب إضافة مفيدة. الموقع عند الاستخدام فقط، بلا صلاحية خلفية. افتح الملاحة برابط Maps URL من جهاز الموصل دون Directions API مدفوع. التسعير يحتاج Routing منفصلًا مثل OSRM مستضاف ذاتيًا ببيانات اليمن؛ تكلفة الاستضافة قائمة ولو كان البرنامج مفتوح المصدر. لا SLA مفترض لمزود عرض مجاني، اختبر التغطية والعربية والمناطق الفعلية.
+الخريطة تستقبل نقاطًا وهندسة محدودة فقط، دون جلسة أو سر خدمة أو إحداثيات في query. CSP وملفات محددة، وbridge يتحقق من origin/source/type والمدى. Location57 عند ضغط العميل وبإذن foreground؛ لا خلفية أو تتبع. الإدخال اليدوي متاح عند فشل WebGL أو البيانات أو الإذن.
+
+Routing منفصل بمحول OSRM قابل للتبديل، HTTPS مملوك، وحد مهلة وحجم وsnap. النطاق الهندسي فلتر فقط ثم يفحص حد الطريق الخام؛ لا مسافة مستقيمة كسعر طريق. تحفظ بيانات المعاينة floor_km وbase/perKm/version/source/raw_m؛ ليست طلبًا أو إذن دفع.08 ستعيد الحساب والتثبيت فيquote على طلب قائم بعد اختيار المدير. لا تنسخ إحداثيات الوجهة إلى snapshot مالي؛ مكانها `order_private_details`. [ROUTING](ROUTING.md) يوضح التكلفة والإعداد والفحص الحقيقي المؤجل.
 
 ## الاستقلال البيئي
 قواعد بيانات وR2 buckets/keys وExpo application IDs وOTP sender/credentials منفصلة لstaging وproduction. لا تصل نسخة التجربة ببيانات إنتاج. وثق إعداد EAS projects الثلاثة وFCM لكل Android وAPNs لـiOS.

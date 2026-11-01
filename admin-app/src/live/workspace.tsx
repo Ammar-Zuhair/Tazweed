@@ -19,8 +19,20 @@ const menus = [
   ["movements", "سجل الحركات"],
   ["transfers", "نقل مخزون"],
   ["media", "الصور"],
+  ["promotions", "العروض الترويجية"],
 ] as const;
 const emptyFields: Record<string, string[]> = {
+  promotions: [
+    "name_ar",
+    "governorate_id",
+    "category_id",
+    "product_id",
+    "target",
+    "discount_kind",
+    "value",
+    "starts_at",
+    "ends_at",
+  ],
   governorates: ["name_ar", "catalog_branch_id"],
   branches: [
     "name_ar",
@@ -54,6 +66,11 @@ const emptyFields: Record<string, string[]> = {
   ],
 };
 const labels: Record<string, string> = {
+  target: "نوع الخصم",
+  discount_kind: "طريقة الخصم",
+  value: "قيمة الخصم (النسبة بنقاط الأساس؛1000=10٪)",
+  starts_at: "بداية العرض UTC (2026-11-01T00:00:00Z)",
+  ends_at: "نهاية العرض UTC",
   name_ar: "الاسم",
   catalog_branch_id: "فرع الكتالوج",
   governorate_id: "المحافظة",
@@ -80,7 +97,10 @@ const labels: Record<string, string> = {
   to_branch_id: "إلى فرع",
   reason: "السبب",
 };
-export default function Workspace(){const {user}=useAuth();return <WorkspaceScreen key={user?.id??"signed-out"}/>;}
+export default function Workspace() {
+  const { user } = useAuth();
+  return <WorkspaceScreen key={user?.id ?? "signed-out"} />;
+}
 function WorkspaceScreen() {
   const auth = useAuth();
   const { preference, setPreference } = useTheme();
@@ -199,6 +219,16 @@ function WorkspaceScreen() {
         { id: "piece", name_ar: "حبة" },
         { id: "carton", name_ar: "كرتون" },
       ];
+    if (k === "target")
+      return [
+        { id: "products", name_ar: "منتجات" },
+        { id: "delivery", name_ar: "توصيل" },
+      ];
+    if (k === "discount_kind")
+      return [
+        { id: "fixed", name_ar: "مبلغ ثابت" },
+        { id: "percent", name_ar: "نسبة" },
+      ];
     if (k === "unit_id") return data.units;
     return null;
   }
@@ -255,7 +285,11 @@ function WorkspaceScreen() {
   async function categoryRules(id: string) {
     try {
       const v = await api("/admin/categories/" + id + "/attributes");
-      setFilterable(Object.fromEntries(v.items.map((x:any)=>[x.attribute_id,x.filterable])));
+      setFilterable(
+        Object.fromEntries(
+          v.items.map((x: any) => [x.attribute_id, x.filterable]),
+        ),
+      );
       setRequired(
         Object.fromEntries(
           v.items.map((x: any) => [x.attribute_id, x.required]),
@@ -273,6 +307,19 @@ function WorkspaceScreen() {
       let path = "/admin/" + section,
         method = edit ? "PUT" : "POST",
         v: any = {};
+      if (section === "promotions")
+        v = {
+          name_ar: f.name_ar,
+          governorate_id: f.governorate_id || null,
+          category_id: f.category_id || null,
+          product_id: f.product_id || null,
+          target: f.target,
+          discount_kind: f.discount_kind,
+          value: f.value,
+          starts_at: f.starts_at,
+          ends_at: f.ends_at,
+          active,
+        };
       if (section === "governorates")
         v = {
           name_ar: f.name_ar,

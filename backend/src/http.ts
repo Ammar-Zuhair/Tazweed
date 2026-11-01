@@ -48,7 +48,7 @@ export function errorHandler(
       e = new ApiError(400, "INVALID_JSON", "صيغة JSON غير صالحة");
     else if (v.code === "23505")
       e = new ApiError(409, "CONFLICT", "تعارض مع بيانات موجودة");
-    else if (v.code === "P0001")
+    else if (v.code === "P0001" || v.code === "23514")
       e = new ApiError(
         409,
         "STATE_CONFLICT",

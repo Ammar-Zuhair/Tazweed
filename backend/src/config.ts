@@ -39,6 +39,18 @@ const envSchema = z.object({
     z.url().optional(),
   ),
   OTP_PROVIDER_TOKEN: z.string().optional(),
+  ROUTING_PROVIDER: z.enum(["UNCONFIGURED", "osrm"]).default("UNCONFIGURED"),
+  ROUTING_BASE_URL: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.url().optional(),
+  ),
+  ROUTING_API_KEY: z.string().optional(),
+  ROUTING_PROFILE: z
+    .string()
+    .regex(/^[a-z][a-z0-9_-]{0,30}$/)
+    .default("driving"),
+  ROUTING_TIMEOUT_MS: z.coerce.number().int().min(500).max(10000).default(5000),
+  ROUTING_MAX_SNAP_M: z.coerce.number().int().min(1).max(1000).default(200),
 });
 export function readConfig(input: NodeJS.ProcessEnv = process.env) {
   const parsed = envSchema.safeParse(input);
@@ -94,6 +106,28 @@ export function readConfig(input: NodeJS.ProcessEnv = process.env) {
       new URL(e.R2_PUBLIC_BASE_URL).hash)
   )
     throw new Error("R2 public URL requires HTTPS");
+  if (e.ROUTING_PROVIDER === "osrm") {
+    if (!e.ROUTING_BASE_URL) throw new Error("OSRM requires ROUTING_BASE_URL");
+    const u = new URL(e.ROUTING_BASE_URL);
+    const privateHttp =
+      e.APP_ENV !== "production" &&
+      !production &&
+      u.protocol === "http:" &&
+      ["127.0.0.1", "localhost", "[::1]"].includes(u.hostname);
+    if (
+      (u.protocol !== "https:" && !privateHttp) ||
+      u.username ||
+      u.password ||
+      u.search ||
+      u.hash ||
+      ["router.project-osrm.org", "routing.openstreetmap.de"].includes(
+        u.hostname,
+      )
+    )
+      throw new Error(
+        "Routing requires an owned HTTPS endpoint (private loopback HTTP in non-production only), without credentials/query/demo servers",
+      );
+  }
   return {
     ...e,
     production,

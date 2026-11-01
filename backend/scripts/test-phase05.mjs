@@ -60,13 +60,13 @@ try {
     psql(
       `CREATE DATABASE ${n} OWNER tazweed_owner; REVOKE ALL ON DATABASE ${n} FROM PUBLIC; GRANT CONNECT ON DATABASE ${n} TO tazweed_owner,tazweed_app;`,
     );
-  await run(process.argv.includes("--ui")?["--import","tsx","scripts/test-phase06-ui.ts"]:["--import", "tsx", "--test","--test-concurrency=1", "tests/*.test.ts"], {
+  await run(process.argv.includes("--ui07")?["--import","tsx","scripts/test-phase07-ui.ts"]:process.argv.includes("--ui")?["--import","tsx","scripts/test-phase06-ui.ts"]:["--import", "tsx", "--test","--test-concurrency=1", "tests/*.test.ts"], {
     NODE_ENV: "test",
     APP_ENV: "test",
     TEST_MIGRATION_DATABASE_URL: url(owner, names[0]),
     TEST_DATABASE_URL: url(runtime, names[0]),
   });
-  if(!process.argv.includes("--ui"))await run(["reference-tests/schema.test.mjs"], {
+  if(!process.argv.includes("--ui")&&!process.argv.includes("--ui07"))await run(["reference-tests/schema.test.mjs"], {
     REFERENCE_DATABASE_URL: url(owner, names[1]),
   });
 } catch {

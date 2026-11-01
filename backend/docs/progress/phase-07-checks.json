@@ -1,0 +1,537 @@
+{
+  "checkedAt": "2026-11-01T11:15:31.283Z",
+  "phase": "07",
+  "passed": true,
+  "backendAndTransportTests": 77,
+  "baselineSqlTests": 73,
+  "totalTests": 150,
+  "uiScenarios": 7,
+  "screenshots": 27,
+  "expoQrs": 3,
+  "checks": [
+    {
+      "command": "types-backend",
+      "passed": true
+    },
+    {
+      "command": "types-customer",
+      "passed": true
+    },
+    {
+      "command": "types-admin",
+      "passed": true
+    },
+    {
+      "command": "types-courier",
+      "passed": true
+    },
+    {
+      "command": "build-backend",
+      "passed": true
+    },
+    {
+      "command": "export-customer-web",
+      "passed": true
+    },
+    {
+      "command": "export-admin-web",
+      "passed": true
+    },
+    {
+      "command": "export-courier-web",
+      "passed": true
+    },
+    {
+      "command": "export-customer-native",
+      "passed": true
+    },
+    {
+      "command": "export-admin-native",
+      "passed": true
+    },
+    {
+      "command": "export-courier-native",
+      "passed": true
+    },
+    {
+      "command": "expo-check",
+      "passed": true
+    }
+  ],
+  "database": {
+    "name": "tazweed_staging",
+    "tables": 72,
+    "triggers": 49,
+    "users": 0,
+    "products": 0,
+    "addresses": 0,
+    "orders": 0,
+    "quotes": 0,
+    "holds": 0,
+    "migrations": [
+      {
+        "name": "0001_reference_69.sql",
+        "sha256": "a4d39075b4293ed089e69af032ab03f9fd6d839f7e77fba147b3e210459976b4"
+      },
+      {
+        "name": "0002_identity_security.sql",
+        "sha256": "a6d50278db671e9923e02f029a37a2938fcff515734026c3fa59433c8ff10896"
+      },
+      {
+        "name": "0003_catalog_media.sql",
+        "sha256": "16006fdac55183aa0f044eacd5aea377e1efbca65e1f70f09774fb7ddeaa14a7"
+      },
+      {
+        "name": "0004_checkout_read_models.sql",
+        "sha256": "aedad6b26d1d2eadad6e35515668cd06ae1b6b9d80885d65046d1b457aa0a9eb"
+      }
+    ],
+    "isolatedTestDatabasesRemaining": 0
+  },
+  "services": [
+    {
+      "unit": "tazweed-backend-8084",
+      "port": 8084,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-postgres-55432",
+      "port": 55432,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-customer-expo-8091",
+      "port": 8091,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-admin-expo-8092",
+      "port": 8092,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-courier-expo-8093",
+      "port": 8093,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-customer-preview-8081",
+      "port": 8081,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-admin-preview-8082",
+      "port": 8082,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-courier-preview-8083",
+      "port": 8083,
+      "active": true,
+      "restarts": 0
+    }
+  ],
+  "health": {
+    "/health/live": {
+      "http": 200,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "07",
+        "status": "ok",
+        "businessServices": "identity-catalog-inventory-media-routing-preview"
+      }
+    },
+    "/health/ready": {
+      "http": 503,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "07",
+        "status": "not-ready",
+        "database": "connected",
+        "migrations": "current",
+        "runtimeRole": "limited",
+        "otp": "unconfigured",
+        "storage": "unconfigured",
+        "routing": "unconfigured"
+      }
+    }
+  },
+  "ingress": [
+    {
+      "url": "https://tazweed--8081.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8082.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8083.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8084.dev.remote-ammar.duckdns.org/health/live",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    }
+  ],
+  "expoApi": [
+    {
+      "role": "customer",
+      "publicConfigHttp": 200,
+      "mapPageHttp": 200,
+      "providerCredentialsReturned": false
+    },
+    {
+      "role": "admin",
+      "publicConfigHttp": 200,
+      "mapPageHttp": 200,
+      "providerCredentialsReturned": false
+    }
+  ],
+  "clientSecretBoundary": {
+    "passed": true,
+    "backendSecretNames": [
+      "DATABASE_URL",
+      "MIGRATION_DATABASE_URL",
+      "JWT_PRIVATE_KEY",
+      "JWT_PUBLIC_KEY",
+      "OTP_HMAC_SECRET",
+      "OTP_PROVIDER_TOKEN",
+      "R2_ACCESS_KEY_ID",
+      "R2_SECRET_ACCESS_KEY",
+      "EXPO_ACCESS_TOKEN",
+      "ROUTING_API_KEY"
+    ],
+    "secretValuesChecked": 9,
+    "files": 460,
+    "bundles": 293
+  },
+  "backendEnv": {
+    "path": "backend/.env",
+    "mode": "600",
+    "ignored": true,
+    "requiredNames": [
+      "ROUTING_PROVIDER",
+      "ROUTING_BASE_URL",
+      "ROUTING_API_KEY",
+      "ROUTING_PROFILE",
+      "ROUTING_TIMEOUT_MS",
+      "ROUTING_MAX_SNAP_M"
+    ],
+    "newNames": [
+      "ROUTING_PROVIDER",
+      "ROUTING_API_KEY",
+      "ROUTING_PROFILE",
+      "ROUTING_TIMEOUT_MS",
+      "ROUTING_MAX_SNAP_M"
+    ],
+    "valuesExcluded": true
+  },
+  "realProvidersTested": false,
+  "realStoreLocationsTested": false,
+  "nativePhoneTested": false,
+  "mapPreview": "MapLibre GL JS + isolated empty style; no real tiles",
+  "geoPreview": "browser permission denied then synthetic Playwright coordinates",
+  "stoppedBeforePhase": "08",
+  "sources": [
+    {
+      "path": "backend/src/app.ts",
+      "sha256": "e651b4482bd04736b1b419f6a27dd9140e8bfbdca517e1039f7c7251447dbfed"
+    },
+    {
+      "path": "backend/src/bootstrap.ts",
+      "sha256": "1ca80d1530892745cafb20dba3331783c780f34471c0db51d2c70e51f1226980"
+    },
+    {
+      "path": "backend/src/catalog/contracts.ts",
+      "sha256": "a89765d576142b25f282a5968ec5f6468f3533dd6fe10084535b6ed72147fe18"
+    },
+    {
+      "path": "backend/src/catalog/media.ts",
+      "sha256": "35c8cdcd4adc99892bdfa95edbea5445217302745a52a127bdf2b468aa2e0b96"
+    },
+    {
+      "path": "backend/src/catalog/openapi.ts",
+      "sha256": "5b74878ccf2c524f48e69aeea84aa76ec981da85fded6dc9fabb05c7e606b999"
+    },
+    {
+      "path": "backend/src/catalog/routes.ts",
+      "sha256": "22de3b7bae8f4ddd3e185b0229f7c118fcc8b226f2ef113adcd91c8380b7ffc0"
+    },
+    {
+      "path": "backend/src/catalog/stock.ts",
+      "sha256": "14d76ad75048a7b68495e2d353f900db7ba81181acbc4b4d5c8a18bcf87dc215"
+    },
+    {
+      "path": "backend/src/catalog/worker.ts",
+      "sha256": "8a5b32ee166894b8b6829ecee47757b3fd8679e9d49591433fc486c47d86c07a"
+    },
+    {
+      "path": "backend/src/checkout/contracts.ts",
+      "sha256": "08e66e8c34bb4fe4f963c164437f88734f54864fd1ef04648087dc8f57b24e12"
+    },
+    {
+      "path": "backend/src/checkout/maps.ts",
+      "sha256": "105b8c02f7f6bee541227a4722c380fd6abf3421f154822957f9aa0e5ec66a70"
+    },
+    {
+      "path": "backend/src/checkout/openapi.ts",
+      "sha256": "ff7147a8af6e482328f2e65f872a9d7295c698b391c49ca22060ca1d38c91266"
+    },
+    {
+      "path": "backend/src/checkout/pricing.ts",
+      "sha256": "99481548af9c8c9723a4d99fe2a33f708d1e105ed9fb1574874d4fff6e3e5a6e"
+    },
+    {
+      "path": "backend/src/checkout/routes.ts",
+      "sha256": "38048250cb1e3e5682805108c9d44a55d71199f9bdcddc0ffc8996f7f99ef440"
+    },
+    {
+      "path": "backend/src/checkout/routing.ts",
+      "sha256": "c4d507d50cc95968ebc6c09fff463eda11a0a3ec583f01019a64ff915c26dcd5"
+    },
+    {
+      "path": "backend/src/checkout/service.ts",
+      "sha256": "1ec0452a24a3060db6291b75c8a3aee0265b91bd85589a3752687edab726380e"
+    },
+    {
+      "path": "backend/src/config.ts",
+      "sha256": "98501564e359b52d72f700b674f2a427526dcd996f7285233c049382db7aa92e"
+    },
+    {
+      "path": "backend/src/db.ts",
+      "sha256": "8b2eee583c4892497d7edda4673f6357d511b8a93ca818c5dd0553bafe8a932e"
+    },
+    {
+      "path": "backend/src/http.ts",
+      "sha256": "562a34300596c2cd2d0acfd27395d8354ef56d8f85dc3e569404e2470a12d627"
+    },
+    {
+      "path": "backend/src/identity/access.ts",
+      "sha256": "127967fed2b4765e1e54a5eb06f548d822edd63e7a626a2e61b0e1ab54a1d0df"
+    },
+    {
+      "path": "backend/src/identity/audit.ts",
+      "sha256": "3b6e58c2db061b633f8f73229691e01fb6f55b427240b8f7fcf0baec8f430548"
+    },
+    {
+      "path": "backend/src/identity/auth.ts",
+      "sha256": "419f1e2d1a7fead26cb954ba8041bdfcc518f2c1b4bf8288d95bc05025c1026b"
+    },
+    {
+      "path": "backend/src/identity/contracts.ts",
+      "sha256": "7a9b5fef7f6ec71757d435539e151e0e8bd7865ac2b5cad6b6e3029a86ec4cfb"
+    },
+    {
+      "path": "backend/src/identity/provider.ts",
+      "sha256": "cb319ecd48c7c167c03ddd1ca79b194db45eab9e3d604e201c35a7270ee8d7a0"
+    },
+    {
+      "path": "backend/src/identity/rate-limit.ts",
+      "sha256": "61e2571e13a1984d33ccd86be90d5bc19a7e40dd304d330da5f02f1b6fafc0d1"
+    },
+    {
+      "path": "backend/src/identity/responses.ts",
+      "sha256": "6762b2e5a63545637c8aa91a17ba2f6ea0dceddfaf9dfe732ae2345d586b85c5"
+    },
+    {
+      "path": "backend/src/identity/routes.ts",
+      "sha256": "6ce66a92055070e5272dc25082667a20c1f0c539344a61eb13bf772e14251e5b"
+    },
+    {
+      "path": "backend/src/identity/security.ts",
+      "sha256": "6ce07e0427be81816268429b09abd767ea9c23568cfbe03a38adc469b4d803f6"
+    },
+    {
+      "path": "backend/src/migrate.ts",
+      "sha256": "a7adb177585ba7cd233b1675f06dd55fb93de04af7f8d85693c57bdac989e147"
+    },
+    {
+      "path": "backend/src/openapi.ts",
+      "sha256": "afa6771a0d3e1c71effd3444a3aa507188b22c1e830c4636e0206aca5e363a6c"
+    },
+    {
+      "path": "backend/src/prune-auth.ts",
+      "sha256": "22abc03a4441903ef35bc4c9df87928ec6f3231b4a6939853032c230877fbaa5"
+    },
+    {
+      "path": "backend/src/readiness.ts",
+      "sha256": "283688b25c0996de71cabac75fec0fae70af4f9bd3155225a027e77f4aba599c"
+    },
+    {
+      "path": "backend/src/server.ts",
+      "sha256": "e88a8732d4d83303404b332815399616fe64440b65b2cbe9497a84b75b02efea"
+    },
+    {
+      "path": "backend/public/maps/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "backend/public/maps/picker.css",
+      "sha256": "586d9775682055fb44b7b8f1306f7468780e3f8da779759dee3e06b7b9eb1ee9"
+    },
+    {
+      "path": "backend/public/maps/picker.html",
+      "sha256": "86966f5025bfdf43e9fc26b8c164116ec4e07134e72ea7a63bfb1d8fc1de916b"
+    },
+    {
+      "path": "backend/public/maps/picker.js",
+      "sha256": "6ffd76d22b8d870099556b443a4544c6682bfb9de66bf951d856fb4abc6c473d"
+    },
+    {
+      "path": "backend/database/migrations/0001_reference_69.sql",
+      "sha256": "a4d39075b4293ed089e69af032ab03f9fd6d839f7e77fba147b3e210459976b4"
+    },
+    {
+      "path": "backend/database/migrations/0002_identity_security.sql",
+      "sha256": "a6d50278db671e9923e02f029a37a2938fcff515734026c3fa59433c8ff10896"
+    },
+    {
+      "path": "backend/database/migrations/0003_catalog_media.sql",
+      "sha256": "16006fdac55183aa0f044eacd5aea377e1efbca65e1f70f09774fb7ddeaa14a7"
+    },
+    {
+      "path": "backend/database/migrations/0004_checkout_read_models.sql",
+      "sha256": "aedad6b26d1d2eadad6e35515668cd06ae1b6b9d80885d65046d1b457aa0a9eb"
+    },
+    {
+      "path": "customer-app/src/live/MapPicker.tsx",
+      "sha256": "8f55fdd1bb07a09265a768014eee5c4490473b4185db7364a725ae5fdaeb5d01"
+    },
+    {
+      "path": "customer-app/src/live/MapPicker.web.tsx",
+      "sha256": "010b4ec230701f326845edea79ce61c2cb92422f467cc3d157712b5b9c6da3d6"
+    },
+    {
+      "path": "customer-app/src/live/addresses.tsx",
+      "sha256": "fc9a88f025724388fef1b27993735a70ce274f7a7cd357a0460f79774bb807a5"
+    },
+    {
+      "path": "customer-app/src/live/cart-state.tsx",
+      "sha256": "b35e4839a7129c1c6e9623ffbac470be12204441a7357791ee770da2c5da6a2a"
+    },
+    {
+      "path": "customer-app/src/live/catalog.tsx",
+      "sha256": "f7f853443ec7ead3c534bf711111d63cbde246f30aea98543eb35e7c50a203f5"
+    },
+    {
+      "path": "customer-app/src/live/checkout.tsx",
+      "sha256": "8ed0e5a61242283c484e98a7678bc90f1dbf4169724a8ba5a6ec4b51c237b7fe"
+    },
+    {
+      "path": "customer-app/src/live/connection.tsx",
+      "sha256": "256b560e9007679dc4b3bf01f5d388d3c0738f83f46155bde1a924b57bca22fc"
+    },
+    {
+      "path": "customer-app/src/live/preferences.tsx",
+      "sha256": "0c41dca21cbb9c7d1e7bc001897f29f18c124142d9b07d99c5cc8039b50e05ee"
+    },
+    {
+      "path": "customer-app/src/live/transport.ts",
+      "sha256": "cf35e3ed30073491a8b2bf4b41676bc5009a111b5d2a65aa651a1e2d90eb6046"
+    },
+    {
+      "path": "admin-app/src/live/connection.tsx",
+      "sha256": "b85b5a370bf4a714f51fbeb085602ad42729cbe77d735059c3b27b49a2265428"
+    },
+    {
+      "path": "admin-app/src/live/transport.ts",
+      "sha256": "cf35e3ed30073491a8b2bf4b41676bc5009a111b5d2a65aa651a1e2d90eb6046"
+    },
+    {
+      "path": "admin-app/src/live/workspace.tsx",
+      "sha256": "0ebb67b0fccfb9a1738b308f10c66a3239226eaf46805b9c6c5d004ca7caab15"
+    },
+    {
+      "path": "courier-app/src/live/standby.tsx",
+      "sha256": "f8f6e43248e45ee537f511c9b0b3c030d31af0540e67d96dd6228bd1da69e08a"
+    },
+    {
+      "path": "backend/database/runtime-grants.sql",
+      "sha256": "61660452979b27dfe3f31aa3df66eda5f88c9f0257705919aea396160d7ab974"
+    },
+    {
+      "path": "customer-app/app.config.ts",
+      "sha256": "9a8527d5113f2fd4540c0dd737a436e2f62cb5563856113e4928b3f0c6c6a9b3"
+    },
+    {
+      "path": "admin-app/app.config.ts",
+      "sha256": "b4adaaa52323204f3731b6f483b58924707bb6a86461814a6a73aadc7e52a302"
+    },
+    {
+      "path": "courier-app/app.config.ts",
+      "sha256": "adc6f414e62268d787d5f023b18b74f8f3c706bf5e054db7c8c87af60afa2e5d"
+    },
+    {
+      "path": "customer-app/src/app/_layout.tsx",
+      "sha256": "fdfa31e29a5ec36f46d5009e512b5812787a228cfd2c0e5693be4c96a3ffa1ac"
+    },
+    {
+      "path": "customer-app/src/app/addresses.tsx",
+      "sha256": "82b6d965e1e9fc1c54513804efd774d73410b1a198be7ec7f2b5347c53b189b2"
+    },
+    {
+      "path": "customer-app/src/app/address.tsx",
+      "sha256": "82b6d965e1e9fc1c54513804efd774d73410b1a198be7ec7f2b5347c53b189b2"
+    },
+    {
+      "path": "customer-app/src/app/checkout.tsx",
+      "sha256": "0aa30cab333f792a478267e40c0c97d9dcb8f22b91699058834be8305f317ec8"
+    },
+    {
+      "path": "customer-app/src/app/cart.tsx",
+      "sha256": "0aa30cab333f792a478267e40c0c97d9dcb8f22b91699058834be8305f317ec8"
+    },
+    {
+      "path": "backend/scripts/check-client-boundary.mjs",
+      "sha256": "ebeb9cf942469b2ba37e38d992f1fb37a1c02557050e83dff289cf4d14ca8e27"
+    },
+    {
+      "path": "backend/scripts/capture-phase07-checks.mjs",
+      "sha256": "2f3a71bcd8420a6d14f22c53af9b3694b95d34cdd46f9b6ff023f58c3e3d8c06"
+    },
+    {
+      "path": "backend/scripts/export-openapi.ts",
+      "sha256": "14ba814d3c0691040636a1e69f2c54e0fa3245e8166008d733a7598d4a251a02"
+    },
+    {
+      "path": "backend/scripts/test-phase05.mjs",
+      "sha256": "deca2833e0b3f7a6fa9f5d1a6ada21105e31b6e90c0f8fcc028a88420ea3f2f9"
+    },
+    {
+      "path": "backend/scripts/verify-expo-tunnels.mjs",
+      "sha256": "18992b425ecbf6bd99375f051bd1b6e2037f6c97516779ecd28c583f1049c840"
+    },
+    {
+      "path": "backend/tests/phase07/routing.ts",
+      "sha256": "2af248ec0aeb4de990719dee8bb495839f28153fa511541317619e710640dadf"
+    },
+    {
+      "path": "backend/tests/phase07.test.ts",
+      "sha256": "3956973d70350ab7803694c48335b641d4a1e1e7774b5a408e8e9e9a9dafa179"
+    },
+    {
+      "path": "backend/scripts/test-phase07-ui.ts",
+      "sha256": "3ddb55bc65c33c59bc9f1166dd7bbf12130e1f7b2cad0227d850a60576b07121"
+    },
+    {
+      "path": "backend/package-lock.json",
+      "sha256": "17d977d4149ffa622ae93f1d1c6c801c05c0862c1415edd950761144d6bf1101"
+    },
+    {
+      "path": "customer-app/package-lock.json",
+      "sha256": "47b2c3b578ce8fdc65e2f0e4e9ab9e5d871f9c244035fb0cfcc22bc43f10b32e"
+    }
+  ]
+}

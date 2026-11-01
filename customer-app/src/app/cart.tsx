@@ -1,1 +1,1 @@
-export { default as default } from '../live/catalog';
+export { default } from "../live/checkout";

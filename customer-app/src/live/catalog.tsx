@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "expo-router";
-import { View, Image, Pressable } from "react-native";
+import { View, Image, Pressable, FlatList } from "react-native";
 import { Page, Txt, Card, Action } from "../ui/components";
 import { useTheme } from "../ui/theme-provider";
 import { api, Input, LoginPanel } from "./connection";
+import { useCart } from "./cart-state";
 function Photo({ id }: { id: string }) {
   const [url, setUrl] = useState("");
   useEffect(() => {
@@ -31,9 +32,12 @@ function Photo({ id }: { id: string }) {
 }
 export default function LiveCatalog() {
   const { colors } = useTheme();
+  const router = useRouter(),
+    cart = useCart(),
+    { gov, setGov, draft, setDraft } = cart;
+  const [promos, setPromos] = useState<any[]>([]);
   const [governorates, setGovs] = useState<any[]>([]),
     [categories, setCats] = useState<any[]>([]),
-    [gov, setGov] = useState(""),
     [category, setCategory] = useState(""),
     [search, setSearch] = useState(""),
     [filters, setFilters] = useState<any[]>([]),
@@ -43,9 +47,31 @@ export default function LiveCatalog() {
     [error, setError] = useState(""),
     [loading, setLoading] = useState(false),
     [rev, setRev] = useState(0),
-    [draft, setDraft] = useState<Record<string, string>>({}),
     [detail, setDetail] = useState<string | null>(null);
   const sequence = useRef(0);
+  useEffect(() => {
+    let alive = true;
+    setPromos([]);
+    if (gov)
+      api("/catalog/promotions?governorateId=" + gov + "&limit=100")
+        .then((v) => {
+          if (alive) setPromos(v.items);
+        })
+        .catch((e) => {
+          if (alive) setError(e.message);
+        });
+    return () => {
+      alive = false;
+    };
+  }, [gov, rev]);
+  useEffect(() => {
+    for (const p of products)
+      for (const u of p.units)
+        cart.remember(
+          u.id,
+          p.name_ar + " · " + (u.kind === "piece" ? "حبة" : "كرتون"),
+        );
+  }, [products]);
   useEffect(() => {
     let alive = true;
     Promise.all([
@@ -138,7 +164,6 @@ export default function LiveCatalog() {
               title={g.name_ar}
               onPress={() => {
                 setGov(g.id);
-                setDraft({});
               }}
             />
           ))}
@@ -147,10 +172,69 @@ export default function LiveCatalog() {
       </Card>
       <Card>
         <Txt weight="bold">العروض</Txt>
-        <Txt style={{ color: colors.textMuted }}>
-          ستظهر هنا العروض المتاحة عند تفعيلها.
-        </Txt>
+        {promos.length ? (
+          <FlatList
+            horizontal
+            data={promos}
+            keyExtractor={(p) => p.id}
+            showsHorizontalScrollIndicator
+            renderItem={({ item: p }) => (
+              <View
+                style={{
+                  width: 260,
+                  padding: 16,
+                  margin: 6,
+                  gap: 8,
+                  borderRadius: 18,
+                  backgroundColor: colors.surface,
+                }}
+              >
+                <Txt weight="bold">{p.name_ar}</Txt>
+                <Txt>
+                  {p.target === "delivery" ? "خصم توصيل" : "خصم منتجات"} ·{" "}
+                  {p.discount_kind === "percent"
+                    ? Number(p.value) / 100 + "٪"
+                    : p.value + " ر.ي"}
+                </Txt>
+                <Action
+                  secondary
+                  title="عرض المنتجات"
+                  onPress={async () => {
+                    setSelected([]);
+                    setError("");
+                    try {
+                      if (p.product_id) {
+                        const product = await api(
+                          "/catalog/products/" +
+                            p.product_id +
+                            "?governorateId=" +
+                            gov,
+                        );
+                        setCategory(product.category_id);
+                        setSearch(product.sku);
+                        setDetail(product.id);
+                      } else {
+                        setCategory(p.category_id ?? "");
+                        setSearch("");
+                      }
+                    } catch (e) {
+                      setError((e as Error).message);
+                    }
+                  }}
+                />
+              </View>
+            )}
+          />
+        ) : (
+          <Txt style={{ color: colors.textMuted }}>
+            لا عروض فعالة لهذه المحافظة حاليًا.
+          </Txt>
+        )}
       </Card>
+      <Action
+        title="فتح السلة ومعاينة السعر"
+        onPress={() => router.push("/checkout")}
+      />
       <Txt weight="bold">الأقسام</Txt>
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
         <Action
@@ -260,7 +344,7 @@ export default function LiveCatalog() {
                 />
               </View>
               <Action
-                title={Number(draft[u.id]) ? "حفظ كمية القائمة" : "طلب"}
+                title={Number(draft[u.id]) ? "كمية السلة" : "طلب"}
                 disabled={!u.available}
                 onPress={() => qty(u.id, Number(draft[u.id]) ? 0 : 1)}
               />
@@ -277,8 +361,8 @@ export default function LiveCatalog() {
         />
       )}
       <Txt style={{ fontSize: 12 }}>
-        الكميات قائمة اختيار محلية فقط. إرسال الطلب وتسعيرته النهائية لم يتاحا
-        بعد؛ لا حجز أو تأكيد من هذه الشاشة.
+        الكميات مسودة سلة. افتح السلة لمعاينة السعر من الخادم بلا حجز؛ يحدد
+        المدير فرع التنفيذ والعرض النهائي لاحقًا.
       </Txt>
     </Page>
   );
@@ -288,21 +372,38 @@ export function LiveAccount() {
   return (
     <Page>
       <Txt weight="bold">حسابي</Txt>
+      <Action
+        secondary
+        title="متابعة التسوق"
+        onPress={() => router.push("/")}
+      />
       <LoginPanel />
-      {(["settings", "privacy", "terms", "about", "support"] as const).map(
-        (path, n) => (
-          <Action
-            key={path}
-            secondary
-            title={
-              ["المظهر والإعدادات", "الخصوصية", "الشروط", "عن تزويد", "الدعم"][
-                n
-              ]!
-            }
-            onPress={() => router.push(("/" + path) as any)}
-          />
-        ),
-      )}
+      {(
+        [
+          "addresses",
+          "settings",
+          "privacy",
+          "terms",
+          "about",
+          "support",
+        ] as const
+      ).map((path, n) => (
+        <Action
+          key={path}
+          secondary
+          title={
+            [
+              "عناوين التوصيل",
+              "المظهر والإعدادات",
+              "الخصوصية",
+              "الشروط",
+              "عن تزويد",
+              "الدعم",
+            ][n]!
+          }
+          onPress={() => router.push(("/" + path) as any)}
+        />
+      ))}
     </Page>
   );
 }

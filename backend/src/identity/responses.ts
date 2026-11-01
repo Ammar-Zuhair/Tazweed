@@ -88,19 +88,20 @@ export const responseSchemas: Record<string, any> = {
   ),
   Live: object({
     service: { const: "tazweed-backend" },
-    phase: { const: "06" },
+    phase: { const: "07" },
     status: { const: "ok" },
-    businessServices: { const: "identity-catalog-inventory-media" },
+    businessServices: { const: "identity-catalog-inventory-media-routing-preview" },
   }),
   Ready: object({
     service: { const: "tazweed-backend" },
-    phase: { const: "06" },
+    phase: { const: "07" },
     status: { enum: ["ready", "not-ready"] },
     database: { enum: ["connected", "unavailable"] },
     migrations: { enum: ["current", "unavailable"] },
     runtimeRole: { enum: ["limited", "unsafe-or-unavailable"] },
     otp: { enum: ["unconfigured", "https-gateway", "test"] },
     storage: { enum: ["unconfigured", "r2", "test"] },
+    routing: { enum: ["unconfigured", "osrm", "test"] },
   }),
 };
 export function responseName(method: string, path: string) {

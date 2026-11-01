@@ -2,6 +2,7 @@ import { Stack, LocaleProvider, type ErrorBoundaryProps } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider, useTheme } from "../ui/theme-provider";
+import { CartProvider } from "../live/cart-state";
 import { AuthProvider } from "../live/connection";
 
 import { AppBootstrap } from "../bootstrap/AppBootstrap";
@@ -31,15 +32,17 @@ function Navigation() {
   return (
     <AppBootstrap>
       <AuthProvider>
-        <View style={{ flex: 1 }}>
-          <StatusBar style={name === "dark" ? "light" : "dark"} />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: { backgroundColor: colors.background },
-            }}
-          />
-        </View>
+        <CartProvider>
+          <View style={{ flex: 1 }}>
+            <StatusBar style={name === "dark" ? "light" : "dark"} />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: colors.background },
+              }}
+            />
+          </View>
+        </CartProvider>
       </AuthProvider>
     </AppBootstrap>
   );
