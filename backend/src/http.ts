@@ -48,6 +48,12 @@ export function errorHandler(
       e = new ApiError(400, "INVALID_JSON", "صيغة JSON غير صالحة");
     else if (v.code === "23505")
       e = new ApiError(409, "CONFLICT", "تعارض مع بيانات موجودة");
+    else if (v.code === "P0001")
+      e = new ApiError(
+        409,
+        "STATE_CONFLICT",
+        "العملية تتعارض مع الحالة أو السجل المحفوظ",
+      );
     else if (v.code === "23503")
       e = new ApiError(422, "INVALID_REFERENCE", "مرجع غير صالح");
   }
@@ -71,14 +77,12 @@ export function errorHandler(
         : new ApiError(500, "INTERNAL_ERROR", "تعذر إكمال العملية");
   }
   if (e.status === 429) res.set("Retry-After", "60");
-  res
-    .status(e.status)
-    .json({
-      error: {
-        code: e.code,
-        message: e.message,
-        details: e.details,
-        requestId: res.locals.requestId,
-      },
-    });
+  res.status(e.status).json({
+    error: {
+      code: e.code,
+      message: e.message,
+      details: e.details,
+      requestId: res.locals.requestId,
+    },
+  });
 }

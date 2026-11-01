@@ -1,5 +1,7 @@
 > تنفيذ05: الهوية والحساب والعناوين الداخلية والأدوار والمنح والتدقيق وhealth أصبحت API فعلية. العقد التفصيلي المنفذ [openapi.phase05.json](openapi.phase05.json)، مع أمثلة وschemas واختباراتHTTP/PostgreSQL؛ بقية هذه الوثيقة نطاق مرجعي لمراحل لاحقة. لا مزودOTP حقيقي مثبت، ولا ربط تلقائي للتطبيقات المحلية. الخطأ الفعلي مغلف: `{error:{code,message,details,requestId}}`.
 
+> المنفذ حتى06: `/public/governorates` و`/public/branches`، `/catalog/*`، وCRUDالإدارة للكتالوج والخصائص والوحدات، وأسعار الفروع والمخزون والحركات والنقل، `/media/uploads/complete/access/public`. العقد الحالي [OpenAPI06](openapi.phase06.json)، والتفاصيل [تقرير06](progress/phase-06.md). بقيةالمسارات التالية تصميم للمراحل اللاحقة ما لم يذكر تقرير منفذ خلاف ذلك.
+
 # عقد REST المرجعي — متابعة00
 
 Base `/api/v1`؛ JSON؛ Bearer؛ وقت UTC ISO8601؛ pagination cursor+limit≤100. الأموال في JSON سلاسل عشرية صحيحة بالريال لتجنب فقد bigint، وbps أعداد صحيحة. الخطأ `{code,message,details,requestId}`؛ 401/403/409/422/429/503 وفق السبب. هذا عقد نطاق وتدفقات، وليس OpenAPI مكتملًا أو API منفذًا.

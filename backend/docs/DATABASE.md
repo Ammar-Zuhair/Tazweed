@@ -1,5 +1,7 @@
 # تصميم قاعدة البيانات المرجعي — متابعة00
 
+> إضافة06: `0003_catalog_media.sql` يضيف إلىmedia_objects حقولupload_expires_at/staging_key/thumbnail_key/width/height وفهارسpg_trgm للبحث وفهارسالتصفح/الحجوزات. لم يتغيرقاموس69جدولًا أدناه أوحراسbaseline؛ مجموعالخادم72معإضافتَي05 وmetadata،49trigger. الدفترappend-only والحجزالمحميبلاانتهاءوقتي. راجع [تقرير06](progress/phase-06.md).
+
 المصدر التجاري: [قرارات المالك](../../OWNER_DECISIONS_PHASE00.md). المرجع التنفيذي للقيود هو [schema.sql](../database/schema.sql)، تصميم مراجعة فقط لا migration إنتاجية ولا خادمًا منشورًا. اختبر في PGlite داخل الذاكرة؛ لم يعتمد إصدار PostgreSQL إنتاجي بعد.
 
 ## تنفيذ05 — migrations وإضافات الهوية

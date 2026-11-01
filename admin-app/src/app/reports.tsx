@@ -1,1 +1,1 @@
-export { ReportsScreen as default } from "../admin/screens/operations";
+export { default } from '../live/workspace';

@@ -2,6 +2,7 @@ import { z } from "zod";
 import * as c from "./identity/contracts.js";
 import { responseSchemas, responseName } from "./identity/responses.js";
 // Generated from the input contracts used by the actual handlers.
+import {addCatalogOpenapi} from "./catalog/openapi.js";
 export function openapi() {
   const paths: Record<string, any> = {};
   const add = (
@@ -323,7 +324,7 @@ export function openapi() {
       "application/json": { schema: { $ref: "#/components/schemas/Ready" } },
     },
   };
-  return {
+  return addCatalogOpenapi({
     openapi: "3.1.0",
     info: {
       title: "Tazweed Phase05 identity and access",
@@ -392,5 +393,5 @@ export function openapi() {
         },
       },
     },
-  };
+  });
 }

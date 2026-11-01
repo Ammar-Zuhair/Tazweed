@@ -1,1 +1,1 @@
-export { InventoryScreen as default } from "../admin/screens/inventory";
+export { default } from '../live/workspace';

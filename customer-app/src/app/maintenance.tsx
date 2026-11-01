@@ -1,2 +1,1 @@
-import { GateContent, Shell } from '../customer/components';
-export default function Screen() { return <Shell title="بوابة التشغيل" utility><GateContent /></Shell>; }
+export { Deferred as default } from '../live/catalog';

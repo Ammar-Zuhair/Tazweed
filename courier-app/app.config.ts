@@ -87,8 +87,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       forcesRTL: true,
       appKind: "courier",
       environment,
-      dataMode: "fake",
-      phase: "04",
+      dataMode: "deferred",
+      phase: "06",
     },
   };
 };

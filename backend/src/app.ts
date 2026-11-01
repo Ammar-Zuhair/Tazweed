@@ -11,11 +11,18 @@ import type { OtpProvider } from "./identity/provider.js";
 import { identityRouter } from "./identity/routes.js";
 import { openapi } from "./openapi.js";
 import { databaseReadiness } from "./readiness.js";
+import { catalogRouter } from "./catalog/routes.js";
+import {
+  mediaRouter,
+  storeFromConfig,
+  type ObjectStore,
+} from "./catalog/media.js";
 export type AppOptions = {
   config: Config;
   pool: pg.Pool;
   security: Security;
   provider: OtpProvider;
+  objectStore?: ObjectStore;
   log?: (entry: Record<string, unknown>) => void;
 };
 export function createApp({
@@ -23,6 +30,7 @@ export function createApp({
   pool,
   security,
   provider,
+  objectStore,
   log = () => {},
 }: AppOptions) {
   if (
@@ -32,6 +40,12 @@ export function createApp({
     throw new Error("Test OTP provider restricted to isolated tests");
   if (config.production && provider.mode === "unconfigured")
     throw new Error("Production OTP must be configured");
+  const store = objectStore ?? storeFromConfig(config);
+  if (
+    store.mode === "test" &&
+    (config.NODE_ENV !== "test" || config.production)
+  )
+    throw new Error("Test media store restricted");
   const app = express();
   app.disable("x-powered-by");
   app.set("trust proxy", false);
@@ -61,15 +75,20 @@ export function createApp({
       },
       credentials: false,
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Authorization", "Content-Type", "X-Client-App"],
+      allowedHeaders: [
+        "Authorization",
+        "Content-Type",
+        "X-Client-App",
+        "Idempotency-Key",
+      ],
     }),
   );
   app.use(express.json({ limit: "16kb", strict: true }));
   const live = {
     service: "tazweed-backend",
-    phase: "05",
+    phase: "06",
     status: "ok",
-    businessServices: "identity-only",
+    businessServices: "identity-catalog-inventory-media",
   };
   app.get(["/health", "/health/live"], (_req, res) => res.json(live));
   app.get("/health/ready", async (_req, res) => {
@@ -80,23 +99,31 @@ export function createApp({
       ({ database, migrations, runtimeRole } = await databaseReadiness(pool));
     } catch {}
     const ready =
-      database && migrations && runtimeRole && provider.mode !== "unconfigured";
-    res
-      .status(ready ? 200 : 503)
-      .json({
-        service: "tazweed-backend",
-        phase: "05",
-        status: ready ? "ready" : "not-ready",
-        database: database ? "connected" : "unavailable",
-        migrations: migrations ? "current" : "unavailable",
-        runtimeRole: runtimeRole ? "limited" : "unsafe-or-unavailable",
-        otp: provider.mode,
-      });
+      database &&
+      migrations &&
+      runtimeRole &&
+      provider.mode !== "unconfigured" &&
+      store.mode !== "unconfigured";
+    res.status(ready ? 200 : 503).json({
+      service: "tazweed-backend",
+      phase: "06",
+      status: ready ? "ready" : "not-ready",
+      database: database ? "connected" : "unavailable",
+      migrations: migrations ? "current" : "unavailable",
+      runtimeRole: runtimeRole ? "limited" : "unsafe-or-unavailable",
+      otp: provider.mode,
+      storage: store.mode,
+    });
   });
   app.get("/api/v1/openapi.json", (_req, res) => res.json(openapi()));
   app.use(
     "/api/v1",
     identityRouter(new AuthService(pool, security, provider), pool),
+  );
+  app.use(
+    "/api/v1",
+    catalogRouter(pool, security),
+    mediaRouter(pool, security, store),
   );
   app.use((_req, _res, next) =>
     next(new ApiError(404, "NOT_FOUND", "المسار غير موجود")),

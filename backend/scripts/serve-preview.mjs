@@ -11,7 +11,8 @@ if (publicHost && !/^[a-z0-9-]+\.dev\.remote-ammar\.duckdns\.org$/.test(publicHo
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)), `${role}-app/dist`);
 const allowedHosts = new Set(['localhost', '127.0.0.1', ...(publicHost ? [publicHost] : [])]);
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.ico': 'image/x-icon', '.svg': 'image/svg+xml', '.ttf': 'font/ttf', '.mp4': 'video/mp4' };
-const server = http.createServer(async (request, response) => {
+const apiProxy=(await import('./metro-api-proxy.cjs')).default;
+const handler=apiProxy(async (request, response) => {
   let hostname;
   try { hostname = new URL(`http://${request.headers.host}`).hostname; } catch { response.writeHead(400).end(); return; }
   if (!allowedHosts.has(hostname)) { response.writeHead(403).end('Host not allowed'); return; }
@@ -38,5 +39,6 @@ const server = http.createServer(async (request, response) => {
     response.end(request.method === 'HEAD' ? undefined : body);
   } catch { response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('الصفحة غير موجودة'); }
 });
+const server=http.createServer((request,response)=>{if(!allowedHosts.has((request.headers.host??'').split(':')[0])){response.writeHead(403).end();return;}handler(request,response);});
 server.listen(port, '0.0.0.0', () => console.log(`Tazweed ${role} preview on port ${port}; allowed public host: ${publicHost ?? 'pending-project-slug'}`));
 for (const signal of ['SIGTERM', 'SIGINT']) process.once(signal, () => server.close());

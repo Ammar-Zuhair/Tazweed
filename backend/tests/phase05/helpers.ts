@@ -26,7 +26,7 @@ export class CaptureProvider implements OtpProvider {
     return m.code;
   }
 }
-export async function fixture() {
+export async function fixture(extra:Record<string,any>={}) {
   const ownerUrl = process.env.TEST_MIGRATION_DATABASE_URL,
     url = process.env.TEST_DATABASE_URL;
   assert(
@@ -62,6 +62,7 @@ export async function fixture() {
     provider = new CaptureProvider(),
     logs: Record<string, unknown>[] = [];
   const app = createApp({
+    ...extra,
     config,
     pool,
     security,

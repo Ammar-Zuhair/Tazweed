@@ -1,1 +1,1 @@
-export { PreviewScreen as default } from '../customer/screens/preview-screen';
+export { Deferred as default } from '../live/catalog';

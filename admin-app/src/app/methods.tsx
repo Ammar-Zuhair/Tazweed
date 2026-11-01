@@ -1,1 +1,1 @@
-export { MethodsScreen as default } from "../admin/screens/finance";
+export { default } from '../live/workspace';

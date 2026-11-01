@@ -1,1 +1,1 @@
-export { CategoriesScreen as default } from "../admin/screens/catalog";
+export { default } from '../live/workspace';

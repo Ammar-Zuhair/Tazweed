@@ -1,6 +1,6 @@
 {
   "name": "tazweed-backend",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,15 +19,21 @@
     "bootstrap:admin": "node --env-file=.env.local --import tsx src/bootstrap.ts",
     "openapi": "node --import tsx scripts/export-openapi.ts",
     "openapi:check": "node --import tsx scripts/export-openapi.ts --check",
-    "auth:prune": "node --env-file=.env.local --import tsx src/prune-auth.ts"
+    "auth:prune": "node --env-file=.env.local --import tsx src/prune-auth.ts",
+    "test:phase06": "node scripts/test-phase05.mjs",
+    "test:phase06:ui": "node scripts/test-phase05.mjs --ui",
+    "check:client-boundary": "node scripts/check-client-boundary.mjs"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1161.0",
+    "@aws-sdk/s3-request-presigner": "3.1161.0",
     "argon2": "0.45.1",
     "cors": "2.8.6",
     "express": "5.3.0",
     "helmet": "8.3.0",
     "jose": "6.2.14",
     "pg": "8.23.1",
+    "sharp": "0.35.5",
     "zod": "4.6.7"
   },
   "devDependencies": {

@@ -1,1 +1,1 @@
-export { DashboardScreen as default } from "../../admin/screens/session";
+export { default } from '../../live/workspace';

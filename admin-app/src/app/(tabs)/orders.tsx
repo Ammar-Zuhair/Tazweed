@@ -1,1 +1,1 @@
-export { OrdersScreen as default } from "../../admin/screens/orders";
+export { default } from '../../live/workspace';

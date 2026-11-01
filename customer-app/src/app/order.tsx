@@ -1,1 +1,1 @@
-export { OrderScreen as default } from '../customer/screens/order-screens';
+export { Deferred as default } from '../live/catalog';

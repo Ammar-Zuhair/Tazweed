@@ -1,1 +1,1 @@
-export { StaffScreen as default } from "../admin/screens/people";
+export { default } from '../live/workspace';

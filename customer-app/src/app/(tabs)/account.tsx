@@ -1,1 +1,1 @@
-export { AccountScreen as default } from '../../customer/screens/account-screens';
+export { LiveAccount as default } from '../../live/catalog';

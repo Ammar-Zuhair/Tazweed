@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { parseEnv } from "node:util";
 import { z } from "zod";
 const envSchema = z.object({
   NODE_ENV: z
@@ -20,6 +22,19 @@ const envSchema = z.object({
     .enum(["UNCONFIGURED", "https-gateway"])
     .default("UNCONFIGURED"),
   OTP_PROVIDER_URL: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.url().optional(),
+  ),
+  R2_ACCOUNT_ID: z
+    .string()
+    .regex(/^[a-f0-9]{32}$/)
+    .optional()
+    .or(z.literal("")),
+  R2_ACCESS_KEY_ID: z.string().optional(),
+  R2_SECRET_ACCESS_KEY: z.string().optional(),
+  R2_PUBLIC_BUCKET: z.string().optional(),
+  R2_PRIVATE_BUCKET: z.string().optional(),
+  R2_PUBLIC_BASE_URL: z.preprocess(
     (v) => (v === "" ? undefined : v),
     z.url().optional(),
   ),
@@ -68,6 +83,17 @@ export function readConfig(input: NodeJS.ProcessEnv = process.env) {
       new URL(e.OTP_PROVIDER_URL).password)
   )
     throw new Error("OTP gateway requires HTTPS and a server token");
+  if (e.R2_PUBLIC_BUCKET && e.R2_PUBLIC_BUCKET === e.R2_PRIVATE_BUCKET)
+    throw new Error("R2 buckets must be separate");
+  if (
+    e.R2_PUBLIC_BASE_URL &&
+    (!e.R2_PUBLIC_BASE_URL.startsWith("https://") ||
+      new URL(e.R2_PUBLIC_BASE_URL).username ||
+      new URL(e.R2_PUBLIC_BASE_URL).password ||
+      new URL(e.R2_PUBLIC_BASE_URL).search ||
+      new URL(e.R2_PUBLIC_BASE_URL).hash)
+  )
+    throw new Error("R2 public URL requires HTTPS");
   return {
     ...e,
     production,
@@ -77,3 +103,26 @@ export function readConfig(input: NodeJS.ProcessEnv = process.env) {
   };
 }
 export type Config = ReturnType<typeof readConfig>;
+
+export function readServerConfig() {
+  const file = (name: string) => {
+    try {
+      return parseEnv(
+        readFileSync(new URL("../" + name, import.meta.url), "utf8"),
+      );
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code === "ENOENT") return {};
+      throw new Error("Server environment file could not be loaded");
+    }
+  };
+  const configured = Object.fromEntries(
+    Object.entries(file(".env")).filter(
+      ([, v]) => typeof v === "string" && v.trim() !== "",
+    ),
+  );
+  return readConfig({
+    ...file(".env.runtime.local"),
+    ...configured,
+    ...process.env,
+  });
+}

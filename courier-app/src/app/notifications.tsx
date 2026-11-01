@@ -1,1 +1,1 @@
-export { NotificationsScreen as default } from "../courier/screens";
+export {default} from '../live/standby';

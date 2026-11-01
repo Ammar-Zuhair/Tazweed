@@ -22,3 +22,5 @@ dist/
 # Phase05 local DB, secret configuration and temporary evidence work
 .postgresql/
 .phase05-work/
+
+.phase06-work/

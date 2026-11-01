@@ -1,1 +1,1 @@
-export { CartScreen as default } from '../customer/screens/order-screens';
+export { default as default } from '../live/catalog';

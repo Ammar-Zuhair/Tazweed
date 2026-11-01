@@ -1030,10 +1030,10 @@ test("rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypas
   );
   assert(!JSON.stringify(db).includes(u.phone_e164));
 });
-test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; no phase06 endpoints", async () => {
+test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase06 catalog contract", async () => {
   const live = await f.request("GET", "/health/live");
   assert.equal(live.status, 200);
-  assert.equal(live.body.phase, "05");
+  assert.equal(live.body.phase, "06");
   assert(live.headers.get("content-security-policy"));
   assert.equal(live.headers.get("x-powered-by"), null);
   assert.equal(live.headers.get("cache-control"), "no-store");
@@ -1067,7 +1067,8 @@ test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; no p
 });
 test("readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP", async () => {
   const ready = await f.request("GET", "/health/ready");
-  assert.equal(ready.status, 200);
+  assert.equal(ready.status, 503);
+  assert.equal(ready.body.storage, "unconfigured");
   assert.equal(ready.body.database, "connected");
   assert.equal(ready.body.runtimeRole, "limited");
   const auth = new AuthService(
@@ -1125,7 +1126,7 @@ test("OpenAPI exposes the implemented subset with strict inputs and no code/debu
       "application/json"
     ].schema.additionalProperties === false,
   );
-  assert(!Object.keys(r.body.paths).some((p) => p.includes("catalog")));
+  assert(r.body.paths[route+"/catalog/products"]);
   assert.equal((await f.request("GET", route + "/auth/debug-otp")).status, 404);
 });
 test("every protected sub-route rejects missing identity before any read or mutation", async () => {

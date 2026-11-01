@@ -1,1 +1,1 @@
-export { CatalogScreen as default } from '../../customer/screens/catalog-screens';
+export { default as default } from '../../live/catalog';

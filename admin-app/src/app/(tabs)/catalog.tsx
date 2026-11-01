@@ -1,1 +1,1 @@
-export { CatalogScreen as default } from "../../admin/screens/catalog-menu";
+export { default } from '../../live/workspace';

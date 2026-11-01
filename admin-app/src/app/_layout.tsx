@@ -2,9 +2,8 @@ import { Stack, LocaleProvider, type ErrorBoundaryProps } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider, useTheme } from "../ui/theme-provider";
-import { AdminProvider, useAdmin } from "../data/admin-provider";
-import { actor } from "../domain/admin-model";
-import { Feedback } from "../admin/components";
+import { AuthProvider } from "../live/connection";
+
 import { AppBootstrap } from "../bootstrap/AppBootstrap";
 import { View, Text, Pressable } from "react-native";
 
@@ -29,27 +28,6 @@ export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
 }
 function Routes() {
   const { name, colors } = useTheme();
-  const { state } = useAdmin();
-  const signedIn = !!actor(state);
-  const protectedScreens = [
-    "(tabs)",
-    "attributes",
-    "audit",
-    "branches",
-    "campaigns",
-    "categories",
-    "couriers",
-    "finance",
-    "inventory",
-    "marketing",
-    "methods",
-    "operations",
-    "order",
-    "products",
-    "quality",
-    "reports",
-    "staff",
-  ];
   return (
     <>
       <StatusBar style={name === "dark" ? "light" : "dark"} />
@@ -58,26 +36,16 @@ function Routes() {
           headerShown: false,
           contentStyle: { backgroundColor: colors.background },
         }}
-      >
-        <Stack.Protected guard={!signedIn}>
-          <Stack.Screen name="login" />
-        </Stack.Protected>
-        <Stack.Protected guard={signedIn}>
-          {protectedScreens.map((name) => (
-            <Stack.Screen key={name} name={name} />
-          ))}
-        </Stack.Protected>
-      </Stack>
+      />
     </>
   );
 }
 function Navigation() {
   return (
     <AppBootstrap>
-      <AdminProvider>
+      <AuthProvider>
         <Routes />
-        <Feedback />
-      </AdminProvider>
+      </AuthProvider>
     </AppBootstrap>
   );
 }

@@ -1,0 +1,146 @@
+ok 1 - configuration rejects incomplete secrets, wildcard origins and production test providers
+ok 2 - Yemen mobile normalization accepts Arabic digits and rejects country substitution
+ok 3 - migrations retain all 69 tables and guards and reapplication is empty
+ok 4 - migration checksum tampering and a failing additive migration are rejected atomically
+ok 5 - runtime DB role cannot mutate financial ledgers, read private snapshots, redact, or assume privacy role
+ok 6 - NOLOGIN privacy role has only column redaction rights and no financial UPDATE
+ok 7 - registration creates no active account before OTP and stores only keyed/encrypted challenge material
+ok 8 - public signup rejects staff/admin app and mass assigned identity fields
+ok 9 - OTP is single-use under concurrent independent HTTP connections
+ok 10 - challenge binding rejects wrong purpose, app, device and preauth without consuming a valid challenge
+ok 11 - five wrong OTP attempts commit atomically, block correct code, and cannot be reset by resend
+ok 12 - expired OTP fails; resend enforces cooldown and invalidates previous code while preserving attempts
+ok 13 - repeated starts enforce phone cooldown even with changed device; duplicate signup stays generic
+ok 14 - provider failure leaves no active account, session or consumed/new challenge
+ok 15 - password + OTP is required for customer, internal staff and courier; X-App cannot elevate
+ok 16 - unknown account, wrong password, disabled user and wrong app share login failure
+ok 17 - refresh rotates hashed tokens without OTP; replay revokes the entire family immediately
+ok 18 - parallel refresh permits one rotation then detects reuse and revokes that family
+ok 19 - wrong refresh app/device cannot steal or revoke the valid family
+ok 20 - logout invalidates access and refresh; token tampering and unsigned JWT fail
+ok 21 - password reset has its own purpose, revokes all sessions and outstanding challenges, and requires login again
+ok 22 - unknown password reset has the same accepted shape and cannot create an account
+ok 23 - profile and addresses enforce ownership and reject mass assignment; concurrent defaults serialize
+ok 24 - branch-scoped staff cannot read another branch, list global roles, provision accounts, or self-escalate
+ok 25 - cross-branch action guard requires every source/destination branch and the exact permission
+ok 26 - role CRUD and grants work internally; live permission changes apply to an existing access token
+ok 27 - disabling staff revokes access/refresh/challenges and customer tokens never authorize admin routes
+ok 28 - audit is immutable, branch-filtered including null/global events, and contains no identity secrets
+ok 29 - rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypass IP limits
+ok 30 - Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase06 catalog contract
+ok 31 - readiness checks real DB role and OTP independently; an unconfigured provider cannot issue OTP
+ok 32 - OpenAPI exposes the implemented subset with strict inputs and no code/debug backdoor
+ok 33 - every protected sub-route rejects missing identity before any read or mutation
+ok 34 - last general admin grant and role cannot be removed or disabled by another manager
+ok 35 - readiness fails closed for unconfigured OTP, unavailable DB and unsafe migration owner
+ok 36 - failed resend preserves the old OTP and pending registration instead of reporting delivery success
+ok 37 - deleted identities, revoked sessions and expired refresh families reject access
+ok 38 - grant provisioning removes stale column-level privacy privileges as well as table privileges
+ok 39 - environment rejects wildcard CORS and accepts an empty unused gateway URL without enabling a provider
+ok 40 - address PATCH changes only supplied fields and rejects an empty patch or forged owner
+ok 41 - real HTTP responses exercised by the suite conform to the published OpenAPI schemas
+ok 42 - explicit bootstrap provisions one pending general admin without a default password or bypassing OTP
+ok 43 - operator auth housekeeping clears expired secrets and rate buckets while retaining audit and identities
+ok 44 - category properties are authoritative; oils reject tire size and required omissions
+ok 45 - piece/carton share one ledger: 2 cartons plus3 pieces is27 and overselling26 rejects atomically
+ok 46 - catalog uses only configured branch prices and booleans, never aggregates or exposes stock counts
+ok 47 - inventory adjustments replay exactly once and a changed body with same key rejects
+ok 48 - concurrent withdrawals on final stock permit one, with no counter/ledger drift
+ok 49 - transfer is atomic and idempotent; requires both branches and preserves total pieces
+ok 50 - catalog prevents category cycles, unconfigured governorate fallback and cross-governorate pointers
+ok 51 - pagination has a stable cursor, filters do not cross categories, and inactive products disappear
+ok 52 - protected holds never expire, timed expiry reconciles counters, and history fixes carton conversion
+ok 53 - maintenance affects public catalog only; authentication and admin remain available
+ok 54 - direct private uploads verify real image bytes, strip EXIF, create thumbnails, and enforce owner access
+ok 55 - MIME spoofing, oversized declaration and expired upload are rejected without publishing
+ok 56 - abandoned uploads clean only expired pending keys and preserve verified receipts
+ok 57 - branch-scoped stock options and price writes require their exact branch permission
+ok 58 - HTTPS gateway transport enforces TLS, rejects redirects/errors/timeouts and does not forward passwords
+# tests 58
+# pass 58
+# fail 0
+# cancelled 0
+# skipped 0
+# duration_ms 397287.844578
+PASS S01 negative stock rejected
+PASS S02 reserved cannot exceed stock
+PASS S03 piece conversion must equal one
+PASS S04 carton conversion must exceed one
+PASS S05 value belongs to correct attribute
+PASS S06 tire attribute not allowed for oil
+PASS S07 product cannot pretend another category
+PASS S08 quote total arithmetic
+PASS S09 accepted quote requires owner identity
+PASS S10 quantity positive
+PASS S11 line arithmetic
+PASS S12 unit belongs to product
+PASS S13 reservation branch belongs to historical quote
+PASS S14 one active assignment
+PASS S15 commission uses pre-discount delivery
+PASS S16 one delivery earning
+PASS S17 earning allocation cannot be paid twice
+PASS S18 financial ledger immutable
+PASS S19 inventory ledger immutable
+PASS S20 sale movement unique per order/product
+PASS S21 canonical Yemen phone format
+PASS S22 minimum build cannot exceed latest
+PASS O01 2800m bills 2km; 300 + 2*50 = 400
+PASS O02 sub-kilometre route charges base only
+PASS O03 rounded-up fee rejected
+PASS O04 manual route fee needs reason
+PASS O05 500 delivery less 100 discount at 20% earns 100
+PASS O06 COD confirms with no receipt or transfer and records no cash automatically
+PASS O07 transfer cannot confirm without verified money
+PASS O08 receipt upload alone does not allow confirmation
+PASS O09 exact verified transfer permits confirmation
+PASS O10 underpayment and overpayment do not confirm
+PASS O11 one promotion cannot discount products and delivery together
+PASS O12 discount requires a single promotion snapshot
+PASS O13 manager-selected execution branch is distinct from catalog branch
+PASS O14 branch change retains old reservation and acceptance; equal total needs fresh acceptance
+PASS O15 current quote FK belongs to order
+PASS O16 different customer cannot accept quote
+PASS O17 sent quote lines and financial facts are immutable
+PASS O18 draft lines editable, subtotal checked when sent
+PASS O19 used carton conversion cannot change; archive allowed
+PASS O20 historical acceptance survives superseded/expired
+PASS O21 rejected image reupload preserves single transfer and all attempts
+PASS O22 same transfer reference cannot fund another order
+PASS O23 wallet edit does not rewrite frozen transfer destination
+PASS O24 receipt protects stock without an automatic expiry and prevents repricing
+PASS O25 expired initial stock hold cannot confirm COD
+PASS O26 confirmed order branch/amount source frozen; cancellation blocked
+PASS O27 cancel before confirmation without receipt permitted
+PASS O28 cancellation after receipt requires documented admin decision
+PASS O29 delivery does not invent a cash collection
+PASS O30 cash collection, remittance and commission use separate ledgers
+PASS O31 earning must match assignment courier/order/amount and delivery
+PASS O32 settlement requires same courier and exact total
+PASS O33 reversal creates one reusable credit, keeps original allocation and never re-earns commission
+PASS O34 financial resolution requires amount/reason/reference/evidence/actor/date
+PASS O35 NULL coverage cannot enable delivery
+PASS O36 catalog branch pointer belongs to chosen governorate
+PASS O37 privacy redacts personal snapshot without editing financial ledger
+PASS O38 cash ledger cannot collect transfer order
+PASS O39 cash remittance cannot silently deduct courier commission
+PASS O40 audit history remains immutable
+PASS O41 two cartons plus three pieces consume 27 and stock 26 rejects
+PASS O42 quote revalidation preserves immutable price and acceptance
+PASS O43 financial exception cannot close without documented resolution
+PASS O44 overpayment resolved externally yields exact net without editing approved money
+PASS O45 partial cash remains the actual amount and delivery needs a shortfall exception
+PASS O46 cash remittance cannot allocate another courier collection
+PASS O47 cash reversal preserves original remittance and reallocates one credit only
+PASS O48 delivery must be disabled before rule removal
+PASS O49 receipt attempts preserve owner/privacy and sequential reviewed history
+PASS O50 protected transfer cannot be bypassed by changing current quote or branch
+PASS O51 confirmed acceptance and confirmation timestamp remain historical
+Client transport with actual React Native polyfill:
+ok 1 - customer JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+ok 2 - admin JSON transport supports the actual React Native abort polyfill and aborts a stalled body
+# tests 2
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# duration_ms 1775.076787

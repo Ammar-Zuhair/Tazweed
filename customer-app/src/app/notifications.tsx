@@ -1,1 +1,1 @@
-export { NotificationsScreen as default } from '../customer/screens/account-screens';
+export { Deferred as default } from '../live/catalog';

@@ -70,8 +70,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       forcesRTL: true,
       appKind: "admin",
       environment,
-      dataMode: "fake",
-      phase: "03",
+      dataMode: "backend",
+      phase: "06",
     },
   };
 };

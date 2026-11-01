@@ -1,0 +1,140 @@
+{
+  "checkedAt": "2026-10-31T23:57:35.639Z",
+  "database": "isolated real PostgreSQL",
+  "otp": "in-process captured, no real messages",
+  "r2": "in-process transport, no real requests",
+  "nativePhoneTested": false,
+  "screenshots": 23,
+  "results": [
+    {
+      "scenario": "real UI login, catalog writes and processed image upload, required-property rejection,27pieces,filters/search,network failure",
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 360,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 360,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 360,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 360,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 360,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 360,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 390,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 390,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 390,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 390,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 390,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 1024,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 1024,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 1024,
+      "theme": "light",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "customer",
+      "width": 1024,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "admin",
+      "width": 1024,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    },
+    {
+      "role": "courier",
+      "width": 1024,
+      "theme": "dark",
+      "horizontalOverflow": false,
+      "passed": true
+    }
+  ]
+}

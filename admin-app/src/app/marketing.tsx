@@ -1,1 +1,1 @@
-export { MarketingScreen as default } from "../admin/screens/marketing";
+export { default } from '../live/workspace';

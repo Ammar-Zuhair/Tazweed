@@ -1,5 +1,7 @@
 # المعمارية
 
+> تنفيذ06: وحدات `src/catalog/{routes,contracts,stock,media,worker,openapi}.ts` فوق هوية05. PostgreSQL المصدر الوحيد لحقائق الكتالوج والأسعار والمخزون؛ لاfallback أو نجاح محلي عند تعذرالخادم. `ObjectStore` محولR2 حقيقي/غيرمهيأ؛ المحول التجريبي داخلtests فقط. proxy تطوير ثابت للـAPI عبرMetro، وSecureStore للجلسة الأصلية، ومسودةكمية محلية بلا سعر نهائي أوحجز. لاخدمات07/09. راجع [تقرير06](progress/phase-06.md).
+
 ## المنفذ حتى المرحلة05
 التطبيقات الثلاثة Expo Go57 بواجهات محلية02–04 وتحسينات العميل والخط اللاحقة. نفذت05 خادم هوية مستقلًا معPostgreSQL16 محلي حقيقي؛ لم تربط معاينات التطبيقات بحسابات الخادم ولا بدأت خدمات06. [تقرير05](progress/phase-05.md) و[OpenAPI المنفذ](openapi.phase05.json) و[التشغيل](../README.md).
 `config → Express/Helmet/CORS/requestId → Zod → identity/auth/access → pg transactions → PostgreSQL`؛ Argon2id، OTP مقيد/مشفر، JWT قصير وrefresh دوار مع كشف reuse، ملكية العناوين وRBAC حي وتدقيق. SQL migrations صريحة تحفظ69جدولًا وحراسها، وتضيف حماية الهوية فقط. حسابHTTP محدود ومنفصل عن مالك migrations، ودور تعميةNOLOGIN منفصل لا يملكه التطبيق.
