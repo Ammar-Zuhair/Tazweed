@@ -1,3 +1,4 @@
+import { cashState } from "../delivery/cash-state.js";
 import type pg from "pg";
 import { idempotent } from "../catalog/stock.js";
 import { requirePermission, type Identity } from "../identity/access.js";
@@ -96,7 +97,47 @@ export async function finance(
           ).rows[0],
           total = BigInt(q?.total_yer ?? 0),
           amount = BigInt(v.amountYer);
-        if (["confirmed", "on_the_way", "delivered"].includes(o.status)) {
+        const cod =
+          o.payment_kind === "cash_on_delivery" &&
+          ["cash_shortfall", "cash_uncollected", "overpayment"].includes(
+            e.kind,
+          );
+        if (cod) {
+          const state = await cashState(db, id, total);
+          if (
+            v.direction === "received_from_customer" &&
+            (amount === 0n || amount > state.gap)
+          )
+            throw conflict(
+              "RECEIVED_EXCEEDS_DUE",
+              "الاستلام لا يتجاوز فرق النقد الحالي",
+            );
+          if (
+            v.direction === "refund_to_customer" &&
+            (amount === 0n || amount > -state.gap)
+          )
+            throw conflict(
+              "REFUND_EXCEEDS_NET",
+              "الرد لا يتجاوز الزيادة النقدية الحالية",
+            );
+          if (
+            v.direction === "write_off" &&
+            (amount === 0n || amount > state.gap)
+          )
+            throw conflict(
+              "WRITE_OFF_EXCEEDS_DUE",
+              "الشطب لا يتجاوز العجز الحالي ولا يمثل نقدًا محصلًا",
+            );
+          if (v.direction === "other" && amount !== 0n)
+            throw conflict(
+              "OTHER_IS_NOT_MONEY",
+              "التوثيق دون حركة مال مبلغه صفر",
+            );
+        }
+        if (
+          !cod &&
+          ["confirmed", "on_the_way", "delivered"].includes(o.status)
+        ) {
           // External late money may be refunded; never change a confirmed invoice or invent a collection.
           if (
             v.direction === "received_from_customer" ||
@@ -108,6 +149,7 @@ export async function finance(
             );
         }
         if (
+          !cod &&
           v.direction === "refund_to_customer" &&
           (amount === 0n || amount > actual)
         )
@@ -116,6 +158,7 @@ export async function finance(
             "لا يتجاوز الرد صافي المال المعتمد",
           );
         if (
+          !cod &&
           v.direction === "received_from_customer" &&
           (o.payment_kind !== "transfer" ||
             o.status !== "pending_review" ||
@@ -162,8 +205,19 @@ export async function finance(
           ])
         ).rows[0],
         total = BigInt(q?.total_yer ?? 0);
+      if (
+        o.payment_kind === "cash_on_delivery" &&
+        ["cash_shortfall", "cash_uncollected", "overpayment"].includes(e.kind)
+      ) {
+        if ((await cashState(db, id, total)).gap !== 0n)
+          throw conflict(
+            "UNRESOLVED_CASH_DIFFERENCE",
+            "سوّ فرق النقد بإثبات قبل إغلاق الاستثناء",
+          );
+      }
       // write_off/other are evidence, not money. They cannot bypass the exact-net confirmation guard.
       if (
+        o.payment_kind === "transfer" &&
         ["overpayment", "underpayment"].includes(e.kind) &&
         actual !== total &&
         actual !== 0n

@@ -1,3 +1,4 @@
+import { Dispatch } from "./delivery";
 import { useCallback, useState } from "react";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { Image, View } from "react-native";
@@ -87,7 +88,17 @@ function OrdersView() {
   );
   return (
     <Page>
-      <Header title="إدارة الطلبات" subtitle="العرض والقبول والتحويل والنقد" />
+      <Header title="إدارة الطلبات" subtitle="العرض والقبول والتوصيل" />
+      <Action
+        secondary
+        title="الموصلون والدفاتر"
+        onPress={() => router.push("/couriers")}
+      />
+      <Action
+        secondary
+        title="الجودة والشكاوى"
+        onPress={() => router.push("/quality")}
+      />
       <Action
         secondary
         title="العودة إلى إدارة الكتالوج"
@@ -319,6 +330,27 @@ function OrderView() {
                   {data.privateDetails?.address_snapshot.description}
                 </Txt>
                 {data.cashNotice && <Txt>{data.cashNotice}</Txt>}
+                {data &&
+                  ["confirmed", "on_the_way", "delivered"].includes(
+                    o.status,
+                  ) && (
+                    <>
+                      <Dispatch data={data} onChanged={load} locked={locked} />
+                      <Action
+                        secondary
+                        title="تسجيل بلاغ على هذا الطلب"
+                        onPress={() =>
+                          router.push({
+                            pathname: "/quality",
+                            params: {
+                              orderId: o.id,
+                              orderNumber: o.order_number,
+                            },
+                          } as any)
+                        }
+                      />
+                    </>
+                  )}
                 {data.hasCustomerFlag && (
                   <Txt>يوجد تنبيه سابق على العميل؛ لا حظر تلقائي.</Txt>
                 )}

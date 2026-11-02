@@ -167,7 +167,7 @@ const detail = z
     ),
     hasCustomerFlag: z.boolean(),
     flags: z.array(row),
-    cashCollected: z.literal(false),
+    cashCollected: z.boolean(),
     cashNotice: z.string().nullable(),
   })
   .loose();

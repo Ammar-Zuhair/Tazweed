@@ -1,3 +1,4 @@
+import { canUploadProof,privateDeliveryMedia } from "../delivery/media-access.js";
 import {
   S3Client,
   PutObjectCommand,
@@ -265,8 +266,12 @@ export function mediaRouter(
     else if (v.purpose === "receipt" || v.purpose === "complaint") {
       if (i.kind !== "customer") throw forbidden();
     } else if (v.purpose === "financial_proof") {
-      const scope = await accessScope(pool, i, "financial-exceptions.resolve");
-      if (!scope.global && !scope.branchIds.length) throw forbidden();
+      await canUploadProof(pool,i);
+    } else if (v.purpose === "customer_flag") {
+      if(i.kind !== "courier") {
+        const scope=await accessScope(pool,i,"customer-flags.write");
+        if(!scope.global&&!scope.branchIds.length)throw forbidden();
+      }
     } else
       throw new ApiError(
         422,
@@ -383,7 +388,8 @@ export function mediaRouter(
         )
       ).rows[0];
     if (!m) throw notFound();
-    if (m.owner_id !== i.id || m.purpose === "financial_proof") {
+    const deliveryMedia = await privateDeliveryMedia(pool,i,m);
+    if (!deliveryMedia && (m.owner_id !== i.id || m.purpose === "financial_proof")) {
       if (m.visibility === "public") {
         await requirePermission(pool, i, "catalog.write", null);
       } else {

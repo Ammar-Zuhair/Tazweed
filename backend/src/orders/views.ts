@@ -1,5 +1,7 @@
 import type { Db } from "../db.js";
 import { accessScope, type Identity } from "../identity/access.js";
+import { cashState } from "../delivery/cash-state.js";
+import { cashTotal } from "../delivery/core.js";
 import { order, scopes, net } from "./core.js";
 export async function detail(
   db: Db,
@@ -135,7 +137,7 @@ export async function detail(
   if (!customer) {
     for (const f of (
       await db.query(
-        "SELECT f.id,f.details_ar,o.branch_id FROM customer_flags f LEFT JOIN orders o ON o.id=f.order_id WHERE f.customer_id=$1 AND f.status<>'dismissed'",
+        "SELECT f.id,f.details_ar,f.attachment_id,f.kind,f.status,f.admin_note,f.version,coalesce(o.branch_id,o.catalog_branch_id) branch_id FROM customer_flags f LEFT JOIN orders o ON o.id=f.order_id WHERE f.customer_id=$1 AND f.status<>'dismissed'",
         [o.customer_id],
       )
     ).rows) {
@@ -144,7 +146,7 @@ export async function detail(
         f.branch_id &&
         (await can("customer-flags.read", scopes(o, f.branch_id)))
       )
-        flags.push({ id: f.id, details_ar: f.details_ar });
+        flags.push(f);
     }
   }
   const current = quotes.find((q) => q.id === o.current_quote_id),
@@ -161,11 +163,31 @@ export async function detail(
       : new Date(current.expires_at).getTime() > Date.now()
         ? "valid"
         : "expired";
+  const cash = await cashTotal(db, id);
+  const cashOpen = (
+    await db.query(
+      "SELECT 1 FROM financial_exceptions WHERE order_id=$1 AND status='open' AND kind IN ('cash_shortfall','cash_uncollected','overpayment')",
+      [id],
+    )
+  ).rowCount;
+  const cashAccounting = await cashState(
+    db,
+    id,
+    BigInt(current?.total_yer ?? 0),
+  );
   const paymentStatus =
     current?.total_yer === "0"
       ? "no_payment_due"
       : o.payment_kind === "cash_on_delivery"
-        ? "awaiting_cash_collection"
+        ? cashOpen
+          ? "cash_exception"
+          : current && cash === BigInt(current.total_yer)
+            ? "collected"
+            : cashAccounting.gap === 0n
+              ? "cash_resolved"
+              : cash > 0n
+                ? "partially_collected"
+                : "awaiting_cash_collection"
         : payments.some((p) => p.status === "pending")
           ? "checking_receipt"
           : current && amount === BigInt(current.total_yer)
@@ -206,6 +228,36 @@ export async function detail(
       ])
         if (await can(p!, scopes(o))) allowedActions.push(a!);
   }
+  if (
+    !customer &&
+    o.status === "confirmed" &&
+    (await can("orders.assign", scopes(o)))
+  )
+    allowedActions.push("assign");
+  const assignment = !customer
+    ? (
+        await db.query(
+          "SELECT a.*,u.name_ar FROM order_assignments a JOIN users u ON u.id=a.courier_id WHERE order_id=$1 ORDER BY assigned_at",
+          [id],
+        )
+      ).rows
+    : [];
+  const review =
+    (
+      await db.query(
+        "SELECT rating,comment_ar,created_at FROM order_reviews WHERE order_id=$1",
+        [id],
+      )
+    ).rows[0] ?? null;
+  const complaints =
+    customer || (await can("complaints.manage", scopes(o)))
+      ? (
+          await db.query(
+            "SELECT id,details_ar,attachment_id,status,admin_response,version,created_at FROM complaints WHERE order_id=$1 ORDER BY created_at,id",
+            [id],
+          )
+        ).rows
+      : [];
   const availableAddresses =
     !customer && (await can("orders.reprice", scopes(o)))
       ? (
@@ -238,7 +290,14 @@ export async function detail(
     events,
     hasCustomerFlag,
     flags,
-    cashCollected: false,
+    assignments: assignment,
+    review,
+    complaints,
+    cashCollected: cash > 0n,
+    cashCollectedYer: cash.toString(),
+    cashExternalReceivedYer: cashAccounting.received.toString(),
+    cashRefundedYer: cashAccounting.refunded.toString(),
+    cashWrittenOffYer: cashAccounting.writtenOff.toString(),
     cashNotice:
       o.payment_kind === "cash_on_delivery"
         ? "المبلغ مستحق عند الاستلام؛ التأكيد لا يعني التحصيل."

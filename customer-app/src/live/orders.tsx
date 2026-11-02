@@ -217,6 +217,7 @@ function OrderView() {
         title="العودة إلى طلباتي"
         onPress={() => router.push("/orders")}
       />
+      {data?.order.status === "delivered" && <Card><Action title="تقييم الطلب" onPress={()=>router.push({pathname:"/review",params:{id}})}/><Action secondary title="شكوى ومتابعة الرد" onPress={()=>router.push({pathname:"/complaint",params:{id}})}/></Card>}
       {!user ? (
         <LoginPanel />
       ) : (

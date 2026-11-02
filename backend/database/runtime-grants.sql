@@ -66,3 +66,18 @@ GRANT EXECUTE ON FUNCTION guard_quote_items(),guard_quote_history(),guard_instru
  guard_payment_update(),guard_receipt_attempt(),protect_reported_transfer(),guard_receipt_review(),
  apply_receipt_review(),guard_protected_reservation(),guard_order_state(),guard_exception_closure(),
  guard_private_evidence() TO tazweed_app;
+
+-- Phase09: delivery and independent cash/commission ledgers. No ledger UPDATE/DELETE.
+GRANT SELECT ON order_assignments,courier_earnings,courier_settlements,courier_settlement_reversals,
+ settlement_items,cash_collections,cash_remittances,cash_remittance_reversals,cash_remittance_items,
+ order_reviews,complaints TO tazweed_app;
+GRANT INSERT ON order_assignments,courier_earnings,courier_settlements,courier_settlement_reversals,
+ settlement_items,cash_collections,cash_remittances,cash_remittance_reversals,cash_remittance_items,
+ order_reviews,complaints,customer_flags,courier_branches TO tazweed_app;
+GRANT DELETE ON courier_branches TO tazweed_app;
+GRANT UPDATE(ended_at) ON order_assignments TO tazweed_app;
+GRANT UPDATE(delivered_at) ON orders TO tazweed_app;
+GRANT UPDATE(status,admin_response,assigned_to,version) ON complaints TO tazweed_app;
+GRANT UPDATE(status,admin_note,version) ON customer_flags TO tazweed_app;
+GRANT EXECUTE ON FUNCTION guard_dispatch(),guard_earning_identity(),guard_cash_collection(),
+ guard_allocation_owner(),validate_payout_total() TO tazweed_app;

@@ -5,7 +5,9 @@ import * as c from "./identity/contracts.js";
 import { responseSchemas, responseName } from "./identity/responses.js";
 // Generated from the input contracts used by the actual handlers.
 import { addCatalogOpenapi } from "./catalog/openapi.js";
-export function openapi() {
+import { addDeliveryOpenapi } from "./delivery/openapi.js";
+export function openapi() { return addDeliveryOpenapi(baseOpenapi()); }
+function baseOpenapi() {
   const paths: Record<string, any> = {};
   const add = (
     method: string,

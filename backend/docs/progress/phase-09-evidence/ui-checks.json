@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-02T17:24:36.607Z",
+  "results": [
+    {
+      "name": "explicit percentage and courier configuration history",
+      "passed": true
+    },
+    {
+      "name": "dispatch, multiple tasks, real cash, lost delivery acknowledgement, one commission",
+      "passed": true
+    },
+    {
+      "name": "private courier attachment, prior flag warns before next confirmation",
+      "passed": true
+    },
+    {
+      "name": "once-only order review and private complaint with administrative response",
+      "passed": true
+    },
+    {
+      "name": "payout, private reversal proof, single reusable credit and independent cash remittance",
+      "passed": true
+    },
+    {
+      "name": "short cash delivery with explicit exception preserves actual collected amount",
+      "passed": true
+    },
+    {
+      "name": "theme light, width 360, three apps",
+      "passed": true
+    },
+    {
+      "name": "theme light, width 390, three apps",
+      "passed": true
+    },
+    {
+      "name": "theme light, width 1024, three apps",
+      "passed": true
+    },
+    {
+      "name": "theme dark, width 360, three apps",
+      "passed": true
+    },
+    {
+      "name": "theme dark, width 390, three apps",
+      "passed": true
+    },
+    {
+      "name": "theme dark, width 1024, three apps",
+      "passed": true
+    }
+  ],
+  "screenshots": 33,
+  "pageErrors": [],
+  "externalProviderRequests": 0,
+  "lostAcknowledgements": 1,
+  "backend": "real HTTP and disposable PostgreSQL with limited runtime role",
+  "adapters": [
+    "Capture OTP",
+    "TestRouting",
+    "TestStore"
+  ],
+  "nativeDevice": false
+}

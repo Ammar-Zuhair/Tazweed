@@ -1,1 +1,1 @@
-export {default} from '../live/standby';
+export { Report as default } from "../live/screens";

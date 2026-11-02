@@ -1,17 +1,18 @@
 # تطبيق تزويد — الموصل
 
-أساس Expo SDK57/React Native للمرحلة01: Tajawal محلي، RTL، مظهر فاتح/مظلم/حسب الجهاز محفوظ، وثلاث تبويبات تأسيسية. البيانات fake معلّمة ولا توجد خدمات تجارية متصلة. الشاشات التجارية في `docs/SCREENS.md` تبقى متطلبات لمراحلها، وليست منفذة هنا.
+Expo SDK57/React Native مع Tajawal وRTL وثيمين. نُفذت09: مهام الخادم والإسناد المتعدد وبدء الطريق والتسليم والتحصيل المستقل والعمولات والبلاغات، دون بيانات تشغيل بديلة. الحساب تنشئه الإدارة بنسبته وفروعه، والدخول يحتاج OTP. [السلوك والعقد](../backend/docs/DELIVERY.md)، [تقرير09](../backend/docs/progress/phase-09.md)، [روابط Go والأدلة](../backend/docs/progress/phase-09-evidence/README.md). لا Push أوتتبع خلفي في09؛ اختبار المزودات والهاتف مؤجل.
 
 ```bash
 npm ci
 npm run typecheck
-npm test
+# اختبارات الخادم والصلاحيات والدفاتر والطابور الحالي:
+npm run test:phase09 --prefix ../backend
 npm run web
 # Expo Go الموافقSDK57 عبر نفق الإنترنت، على منفذ التطبيق8091/8092/8093:
 npm start
 ```
 
-[دليل البناء والمعاينة وحدود الفحص](../backend/docs/PHASE01_BUILD.md) — [تقرير01 وأدلتها](../backend/docs/progress/phase-01.md).
+[دليل Expo Go الحالي](../backend/docs/EXPO_GO.md). ملفات المحاكاة وunit tests من04 محفوظة للتاريخ، ولا تُستعمل كخدمة أعمال عند انقطاع API.
 
 أصول `assets` الأصلية مدمجة عبر `app.config.ts`. معرفات الحزم للمعاينة مؤقتة، وملفات integration مراجع للمواءمة وليست مشاريع إضافية. لا أسرار خادم في الموبايل ولا EAS projectId مختلق. بناء production موقوف ما دامت البيانات fake.
 

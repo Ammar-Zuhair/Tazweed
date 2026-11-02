@@ -1,14 +1,14 @@
-import { Page, Header, Card, Txt } from "../ui/components";
+import { Page, Header, Card, Txt, Action } from "../ui/components";
+import { useRouter } from "expo-router";
 export default function Standby() {
+  const router = useRouter();
   return (
     <Page>
-      <Header title="تزويد — الموصل" subtitle="الخادم هو مصدر بيانات المهام" />
+      <Header title="تزويد — الموصل" subtitle="متابعة التوصيل" />
       <Card>
-        <Txt weight="bold">خدمة المهام قيد الربط</Txt>
-        <Txt>
-          لا توجد مهام أو أرصدة محلية معتمدة. ستتاح المهام والتحصيل والمستحقات
-          عند ربط خدمات الموصل.
-        </Txt>
+        <Txt weight="bold">هذه الصفحة غير متاحة حاليًا</Txt>
+        <Txt>يمكن متابعة مهامك ومستحقاتك ونقد المتجر من صفحاتها.</Txt>
+        <Action title="فتح المهام" onPress={() => router.replace("/")} />
       </Card>
     </Page>
   );

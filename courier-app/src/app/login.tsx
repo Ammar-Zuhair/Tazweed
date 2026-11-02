@@ -1,1 +1,1 @@
-export {default} from '../live/standby';
+export { Account as default } from "../live/screens";

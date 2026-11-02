@@ -27,6 +27,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ['expo-video', { supportsBackgroundPlayback: false, supportsPictureInPicture: false }],
     ],
     updates: { enabled: false, checkAutomatically: 'NEVER', fallbackToCacheTimeout: 0 },
-    extra: { supportsRTL: true, forcesRTL: true, appKind: 'customer', environment, dataMode: 'backend', phase: '08' },
+    extra: { supportsRTL: true, forcesRTL: true, appKind: 'customer', environment, dataMode: 'backend', phase: '09' },
   };
 };

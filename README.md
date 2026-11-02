@@ -1,4 +1,4 @@
-> الحالة الحالية: اكتملت08 فقط؛ العميل والإدارة متصلان بطلبات وعروض وقبول وتحويل يدوي ونقد عند الاستلام منbackend/PostgreSQL، والموصل ينتظر09. Expo Go57 محفوظ. [تقرير08](backend/docs/progress/phase-08.md)، [الفحوص](backend/docs/progress/phase-08-checks.json)، [الأدلة وروابط التشغيل](backend/docs/progress/phase-08-evidence/README.md). التوقف قبل09؛ المزودات الحقيقية والهاتف باقية وفق طلب المالك.
+> الحالة الحالية: اكتملت09 فقط؛ التطبيقات الثلاثة متصلة بالخادم للطلبات والإسناد والتوصيل والعمولة والتحصيل المستقل والجودة. Expo Go57 محفوظ. [تقرير09](backend/docs/progress/phase-09.md)، [الفحوص](backend/docs/progress/phase-09-checks.json)، [الأدلة وروابط التشغيل](backend/docs/progress/phase-09-evidence/README.md). التوقف قبل10؛ المزودات الحقيقية والهاتف باقية وفق طلب المالك.
 
 > إصلاح فيديو العميل محفوظ؛ [تقرير متابعة02](backend/docs/progress/phase-02-native-fix.md) و[دليل Expo Go](backend/docs/EXPO_GO.md).
 

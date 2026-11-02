@@ -1,1 +1,1 @@
-export { Deferred as default } from '../live/catalog';
+export { Review as default } from "../live/quality";

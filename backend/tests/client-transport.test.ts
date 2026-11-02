@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import http from "node:http";
 import { createRequire } from "node:module";
 import { jsonRequest as customer } from "../../customer-app/src/live/transport.js";
+import { jsonRequest as courier } from "../../courier-app/src/live/transport.js";
 import { jsonRequest as admin } from "../../admin-app/src/live/transport.js";
 const require = createRequire(
   new URL("../../customer-app/package.json", import.meta.url),
@@ -11,6 +12,7 @@ const NativeAbortController = require("abort-controller").AbortController;
 for (const [name, request] of [
   ["customer", customer],
   ["admin", admin],
+  ["courier", courier],
 ] as const)
   test(
     name +

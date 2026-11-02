@@ -502,6 +502,8 @@ function WorkspaceScreen() {
       ) : (
         <>
           <Action title="إدارة الطلبات والدفع" onPress={()=>router.push("/orders")}/>
+          <Action secondary title="الموصلون والعمولات" onPress={()=>router.push("/couriers")}/>
+          <Action secondary title="الجودة والشكاوى" onPress={()=>router.push("/quality")}/>
           <Action secondary title="وسائل التحويل" onPress={()=>router.push("/methods")}/>
           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
             {menus.map(([key, label]) => (

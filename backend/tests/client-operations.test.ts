@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-for (const app of ["customer", "admin"]) {
+for (const app of ["customer", "admin", "courier"]) {
   const { OperationQueue } = await import(
     `../../${app}-app/src/live/operation-queue.ts`
   );

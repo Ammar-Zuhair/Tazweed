@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider, useTheme } from "../ui/theme-provider";
 
+import { AuthProvider } from "../live/connection";
 import { AppBootstrap } from "../bootstrap/AppBootstrap";
 import { View, Text, Pressable } from "react-native";
 export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
@@ -42,7 +43,7 @@ function Routes() {
 function Navigation() {
   return (
     <AppBootstrap>
-      <Routes />
+      <AuthProvider><Routes /></AuthProvider>
     </AppBootstrap>
   );
 }

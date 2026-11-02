@@ -20,6 +20,7 @@ import {
 } from "./catalog/media.js";
 import { checkoutRouter } from "./checkout/routes.js";
 import { routingFromConfig, type RoutingProvider } from "./checkout/routing.js";
+import { deliveryRouter } from "./delivery/routes.js";
 import { ordersRouter } from "./orders/routes.js";
 export type AppOptions = {
   routingProvider?: RoutingProvider;
@@ -98,9 +99,9 @@ export function createApp({
   app.use(express.json({ limit: "16kb", strict: true }));
   const live = {
     service: "tazweed-backend",
-    phase: "08",
+    phase: "09",
     status: "ok",
-    businessServices: "identity-catalog-inventory-media-routing-orders-payments",
+    businessServices: "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality",
   };
   app.get(["/health", "/health/live"], (_req, res) => res.json(live));
   app.get("/health/ready", async (_req, res) => {
@@ -119,7 +120,7 @@ export function createApp({
       routing.mode !== "unconfigured";
     res.status(ready ? 200 : 503).json({
       service: "tazweed-backend",
-      phase: "08",
+      phase: "09",
       status: ready ? "ready" : "not-ready",
       database: database ? "connected" : "unavailable",
       migrations: migrations ? "current" : "unavailable",
@@ -141,6 +142,7 @@ export function createApp({
     checkoutRouter(pool, security, routing),
     mapsRouter(),
     ordersRouter(pool, security, routing, config),
+    deliveryRouter(pool, security),
   );
   app.use((_req, _res, next) =>
     next(new ApiError(404, "NOT_FOUND", "المسار غير موجود")),
