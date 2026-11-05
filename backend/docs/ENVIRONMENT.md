@@ -56,3 +56,21 @@ OTP وR2 وRouting تعاد الاستفادة من أسمائها السابق�
 ## إضافة09 — لا مفاتيح خدمات جديدة
 
 الإسناد والعمولة والنقد والتسويات والجودة تعمل في PostgreSQL. نسبة الموصل وفروعه في شاشة الإدارة، وليست إعدادات.env. صور البلاغات والشكاوى وإثباتات التصحيح/العكس تستخدم R2 الخاص السابق، والدخول يستخدم OTP السابق. أضيف تعليق توضيحي فقط إلىbackend/.env مع حفظ القيم وصلاحية600 واستبعاده منgit. لا أسماء إلزامية جديدة، ولا تهيئة Push في09؛ ذلك في10 عند طلبها. تبقى المفاتيح السابقة محجوزة واختبار OTP/R2/Routing الفعلي مؤجلًا إلى ما بعد إضافة القيم وطلب المالك فحصها معًا. [التوصيل والدفاتر](DELIVERY.md).
+
+## إضافة10 — Expo والإصدارات الأصلية
+
+أضيفت الأسماء التالية إلىbackend/.env فقط معحفظالقيموالصلاحية600/gitignore. لااختبارPush أوOTP/R2/Routing الحقيقي قبلإضافةالقيم وطلبالمالك.
+
+| الاسم | ما يضبطه المالك |
+|---|---|
+| `PUSH_PROVIDER` | يبقى`UNCONFIGURED` الآن؛ `expo` بعداكتمالالتهيئة وطلبالفحص. |
+| `EXPO_ACCESS_TOKEN` | توكنExpo server-side بعدتفعيلenhanced push security؛ لايصلللتطبيقات. |
+| `EXPO_CUSTOMER_PROJECT_ID` / `EXPO_ADMIN_PROJECT_ID` / `EXPO_COURIER_PROJECT_ID` | UUID لمشاريعEAS الثلاثةالمستقلة؛ معرّفاتعامة وليستمفاتيحسرية. |
+| `PUSH_TIMEOUT_MS` | `5000` افتراضيًا؛ مهلةمحولExpo. |
+| `CUSTOMER_API_URL` / `ADMIN_API_URL` / `COURIER_API_URL` | API HTTPS عامقابللوصولمنالهاتفدونبوابةremote؛ البياناتعامة. لاتستخدمعنوانالمعاينةالمحميكدليلربطbinary. |
+| `CUSTOMER_ANDROID_PACKAGE` / `ADMIN_ANDROID_PACKAGE` / `COURIER_ANDROID_PACKAGE` | أسماءAndroid المعتمدةوالمتاحةلدىالمالك؛ لاتختلقهويةإنتاجمناسممعاينة. |
+| `CUSTOMER_IOS_BUNDLE_IDENTIFIER` / `ADMIN_IOS_BUNDLE_IDENTIFIER` / `COURIER_IOS_BUNDLE_IDENTIFIER` | معرّفاتiOS المعتمدةللبناء. |
+
+FCMv1 service-account JSON وAPNs `.p8`/Key ID/Team ID ترفععبر **EAS Credentials** لكلتطبيق، وليستمتغيراتHTTP يحتاجهاهذاالمحول. ملفAndroid العام`google-services.json` للبناءيعطىعبرمتغيرملفEAS `GOOGLE_SERVICES_JSON`؛ ليسservice-account الخاص. لاتضفنسخًاعديمةالاستخداممنمفاتيحGoogle/APNs إلىfrontend أو.envتشغيلالخادم. التفاصيلفي[RELEASES](RELEASES.md)، والمصدر[تهيئةExpo Push](https://docs.expo.dev/push-notifications/push-notifications-setup/).
+
+لكلdeployment ملفاتDB/OTP/R2/Expo/CORS مستقلة. أداةprepare-native-config تقرأأسماءالبيئةالخادميةوتكتب **allowlist metadata العامةفقط**؛ لاEXPO_ACCESS_TOKENأوJWTأوDB فيحزمةالتطبيق. production/staging يرفضانالتهيئةالناقصة؛ previewيبقيGo57. readyيعرضpush=unconfigured ويرجع503معالنواقصالحقيقية؛ حتىجاهزية200لاتثبتجهازًاأومزودًا.

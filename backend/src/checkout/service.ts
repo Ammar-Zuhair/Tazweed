@@ -24,9 +24,9 @@ export async function catalogContext(db: Db, gov: string) {
     );
   return row;
 }
-export async function customerMaintenance(db: Db) {
+export async function customerMaintenance(db: Db, lock=false) {
   const m = (
-    await db.query("SELECT enabled,message_ar FROM customer_maintenance")
+    await db.query("SELECT enabled,message_ar FROM customer_maintenance"+(lock?" FOR SHARE":""))
   ).rows[0];
   if (m?.enabled) throw new ApiError(503, "MAINTENANCE", m.message_ar);
 }

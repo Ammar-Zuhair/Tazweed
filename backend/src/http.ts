@@ -76,6 +76,7 @@ export function errorHandler(
         ? new ApiError(503, "SERVICE_UNAVAILABLE", "الخدمة غير متاحة مؤقتًا")
         : new ApiError(500, "INTERNAL_ERROR", "تعذر إكمال العملية");
   }
+  if (e.code === "MAINTENANCE") res.set("Retry-After", "60");
   if (e.status === 429) res.set("Retry-After", "60");
   res.status(e.status).json({
     error: {

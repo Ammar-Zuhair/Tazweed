@@ -1,4 +1,4 @@
-> الحالة الحالية09: التطبيقات الثلاثة متصلة بالخادم؛ الموصل ينفذ المهام والتحصيل الفعلي المستقل ويقرأ العمولة، والإدارة تسند وتدير الدفاتر والجودة. [تقرير09](progress/phase-09.md)، [الروابط المفحوصة](progress/phase-09-tunnels.json)، وQR في [أدلة09](progress/phase-09-evidence/README.md). لا OTP/R2/Routing حقيقيين مختبرين ولا تجربة هاتف مثبتة.
+> الحالة الحالية09: التطبيقات الثلاثة متصلة بالخادم؛ الموصل ينفذ المهام والتحصيل الفعلي المستقل ويقرأ العمولة، والإدارة تسند وتدير الدفاتر والجودة. [تقرير09](progress/phase-10.md)، [الروابط المفحوصة](progress/phase-10-tunnels.json)، وQR في [أدلة09](progress/phase-10-evidence/README.md). لا OTP/R2/Routing حقيقيين مختبرين ولا تجربة هاتف مثبتة.
 
 
 > طلب المالك الأحدث أعاد التطبيقات الثلاثة إلى Expo Go على SDK57؛ أزيل إعداد development client للعميل وأبقي إصلاح الفيديو. [التقرير وروابط التشغيل المفحوصة](progress/phase-02-native-fix.md).
@@ -9,7 +9,7 @@
 
 ## الروابط الحالية
 
-الروابط ووقت آخر فحص في [دليل الأنفاق الحالي JSON](progress/phase-09-tunnels.json)، ورموز QR في [تقرير09](progress/phase-09.md). افتح رابط `exp://` من الهاتف مع نسخة Expo Go الموافقة لـSDK57، أو امسح QR من داخل Expo Go. يجب أن يبقى الخادم والنفق يعملان؛ هذه ليست إصدارات منشورة أو روابط دائمة.
+الروابط ووقت آخر فحص في [دليل الأنفاق الحالي JSON](progress/phase-10-tunnels.json)، ورموز QR في [تقرير09](progress/phase-10.md). افتح رابط `exp://` من الهاتف مع نسخة Expo Go الموافقة لـSDK57، أو امسح QR من داخل Expo Go. يجب أن يبقى الخادم والنفق يعملان؛ هذه ليست إصدارات منشورة أو روابط دائمة.
 
 تحقق من توافق نسخة الهاتف عبر [صفحة Expo Go الرسمية](https://expo.dev/go?sdkVersion=57&platform=android&device=true). على Android يمكن اختيار بناء SDK57 من الصفحة. على iPhone قد تحتاج نسخة Go مناسبة عبر مسار Expo الرسمي لـiOS؛ لا تفترض أن نسخة المتجر تطابق SDK57. [إرشادات اختلاف الإصدارات](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/) تشرح الخيارات. لا نحتاج حسابات أو مفاتيح EAS لإنشاء نفق Android الحالي؛ لا ندعي تجهيز توقيع/نسخة iOS على هاتف المالك.
 
@@ -23,7 +23,7 @@ npx expo start --tunnel --go --port 8091
 npm start
 ```
 
-أزل `expo-dev-client` من المشاريع وplugin الخاصة به، حتى يختار الأمر Expo Go افتراضيًا. مثبت `@expo/ngrok` محليًا وبإصدار محدد، فلا يحتاج CLI إلى تنزيل تفاعلي عالمي. ملف EAS الحالي يترك preview الداخلي فقط؛ بناء development client يحتاج إعدادًا صريحًا لاحقًا ولا يستخدم لهذه المعاينة.
+أزل `expo-dev-client` من المشاريع وplugin الخاصة به، حتى يختار الأمر Expo Go افتراضيًا. مثبت `@expo/ngrok` محليًا وبإصدار محدد، فلا يحتاج CLI إلى تنزيل تفاعلي عالمي. ملفeas.json الحالي يحتويstaging/production مشروطين بmetadata أصلية معتمدة؛ لا ينشئdevelopment client أو يغيرمعاينةGo تلقائيًا.
 
 **الفرق بين الأمر ومزود النفق:** SDK57 يستخدم ngrok عند `--tunnel`، وليس Cloudflare. جرب الأمر ونجح بمزوده الفعلي؛ لم يغير اسمه أو يصفه كـCloudflare. انظر [مرجع Expo CLI](https://docs.expo.dev/more/expo-cli/#tunneling). Cloudflare Quick Tunnel طريقة مختلفة بوسيط `cloudflared` وتهيئة عنوان Metro، ولم تضف طبقة نفق ثانية غير لازمة. لا نشر خارجي أو حساب Cloudflare أنشئ.
 
@@ -106,3 +106,8 @@ Expo Go يشغل المشروع داخل تطبيقه الأصلي؛ تغيير 
 ## تحديث07 — الخريطة
 
 بقيت التطبيقات على Expo Go57. خريطة العميل تستعمل MapLibre GL JS المثبت في backend داخل WebView13.16.1، مع Location57.0.22 للموقع عند الاستخدام فقط؛ لم تُضف MapLibre Native التي تحتاج بناءً خاصًا. إسناد OpenFreeMap/OpenMapTiles/OSM ظاهر. مفاتيح Routing في backend وحده؛ عنوان API يمر عبر proxy التطوير الحالي. تجربة الهاتف والدقة وWebGL باقية بعد تهيئة المزودات بطلب المالك، ولا تعوضها معاينة المتصفح أو Hermes.
+
+
+تنفيذ10 يبقيGo للمراجعة وinbox متصلبالخادم. remote Push وOTA للإصداراتالأصلية يحتاجانEAS/FCM/APNs وbinary موقّعًا وتجربةجهاز؛ المسارجاهزمحروس دوننشرأوادعاءأنGo يثبتذلك. [تهيئةالإصدارات](RELEASES.md) و[أسماءالبيئة](ENVIRONMENT.md).
+
+CLI المرفقة بحزمةexpo57.0.32 ضمنSDK57 قد يعيد `exps://` للنفقHTTPS؛ تُحفظالصيغةالفعليةفيQR وفحص10، ولا تحولها إلىscheme تطبيقأوdevelopment client. exps هوفتحHTTPS عبرGo ويحتاجشهادةTLS موثوقة؛ الفحصالعاملايعطلالشهادة. [مرجعExpo](https://docs.expo.dev/linking/into-your-app/).

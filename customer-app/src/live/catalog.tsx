@@ -378,6 +378,7 @@ export function LiveAccount() {
         onPress={() => router.push("/")}
       />
       <LoginPanel />
+      <Action secondary title="مركز الإشعارات" onPress={()=>router.push("/notifications")}/>
       {(
         [
           "addresses",

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-11-05T22:34:16.202Z",
+  "results": [
+    {
+      "name": "campaign draft lost acknowledgement retries same key once",
+      "passed": true
+    },
+    {
+      "name": "scheduled audience persisted in backend inbox with explicit push limit",
+      "passed": true
+    },
+    {
+      "name": "customer inbox read state and sound preference, Go/web limitation visible",
+      "passed": true
+    },
+    {
+      "name": "courier assignment inbox opens current scoped task",
+      "passed": true
+    },
+    {
+      "name": "staff inbox order event scoped to action and branch",
+      "passed": true
+    },
+    {
+      "name": "customer maintenance gates new catalog only, ongoing and courier/admin remain active",
+      "passed": true
+    },
+    {
+      "name": "required/optional native build config rendered by browser harness, no store or OTA contacted",
+      "passed": true
+    },
+    {
+      "name": "three apps light/dark at 360,390,1024 with no runtime errors",
+      "passed": true
+    }
+  ],
+  "screenshots": 31,
+  "pageErrors": [],
+  "externalProviderRequests": 0,
+  "lostAcknowledgements": 1,
+  "backend": "real HTTP/PostgreSQL, limited runtime role, isolated OTP/routing/storage adapters",
+  "nativeBuildGate": "browser forwards explicit native build numbers to real config API for gate screenshots",
+  "nativePhoneTested": false,
+  "realPushTested": false,
+  "otaPublished": false
+}

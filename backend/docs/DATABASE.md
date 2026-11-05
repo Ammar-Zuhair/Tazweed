@@ -2158,3 +2158,8 @@ SHA-256 للمخطط: `265a32085ac4da1ce1d5b9377bfb9f0bb6e6e155f95b900148a90c920
 نُفذ الإسناد المتعدد والطريق والتسليم والعمولة المثبتة والتحصيل الفعلي المستقل والصرف/التوريد وتخصيصاته والعكس وcredit مرة واحدة، والتقييم والشكوى والبلاغ والتنبيه للطلب التالي. [العقد والسلوك وحدود الصلاحيات](DELIVERY.md). migration0006 إضافي؛ تبقى الدفاتر والتخصيصات الأصلية append-only. لا مفاتيح خدمات جديدة؛ لا Push قبل10 ولا اختبار مزود حقيقي دون طلب المالك.
 
 `0006_delivery_quality.sql` يضيف `cash_collections.proof_media_id` وشرط وجوده علىadjustment وحارس verified/private، و`complaints.version` و`customer_flags.version/kind`، وفهارس المهام والبلاغات والشكاوى والمراجع المالية المطَبَّعة الفريدة لكل موصل. يضيف إذني `commissions.reverse` و`customer-flags.write` للدور العام. لا جداول جديدة؛72جدولًا و51trigger مع حراس المراحل السابقة. صلاحيات runtime للأعمدة التشغيلية فقط؛ لاUPDATE/DELETE للدفاتر والتخصيصات أو تعديل نص التقييم/الشكوى/البلاغ الأصلي. لا تعديل للمخطط المرجعي أوmigrations0001–0005.
+
+
+## إضافة التنفيذ10
+
+0007_engagement_releases.sql إضافية: session/project/sound/generation للرموز، وenvironment/version/audience cursor للحملات، ونطاقorder/branch/permission/assignment للمركز، وlease/token generation/receipt checks للمحاولات، وversion للصيانة والإصدارات وbinary_confirmed، وcursor لدفعاتoutbox. لا جدولمالي جديد ولا تعديل0001–0006؛72جدولًا و51trigger و7migrations. grants تحديثحالةتشغيليةمحدودة، دونتعديلعنوان/نصinbox أوحذفالحملات أوتعديلالدفاتر. [تفاصيل10](ENGAGEMENT.md).

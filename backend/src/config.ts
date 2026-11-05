@@ -51,6 +51,12 @@ const envSchema = z.object({
     .min(1)
     .max(1440)
     .default(60),
+  PUSH_PROVIDER: z.enum(["UNCONFIGURED", "expo"]).default("UNCONFIGURED"),
+  EXPO_ACCESS_TOKEN: z.string().optional(),
+  EXPO_CUSTOMER_PROJECT_ID: z.union([z.uuid(), z.literal("")]).optional(),
+  EXPO_ADMIN_PROJECT_ID: z.union([z.uuid(), z.literal("")]).optional(),
+  EXPO_COURIER_PROJECT_ID: z.union([z.uuid(), z.literal("")]).optional(),
+  PUSH_TIMEOUT_MS: z.coerce.number().int().min(500).max(10000).default(5000),
   ROUTING_PROVIDER: z.enum(["UNCONFIGURED", "osrm"]).default("UNCONFIGURED"),
   ROUTING_BASE_URL: z.preprocess(
     (v) => (v === "" ? undefined : v),
@@ -107,6 +113,8 @@ export function readConfig(input: NodeJS.ProcessEnv = process.env) {
       new URL(e.OTP_PROVIDER_URL).password)
   )
     throw new Error("OTP gateway requires HTTPS and a server token");
+  if (e.PUSH_PROVIDER === "expo" && (!e.EXPO_ACCESS_TOKEN || !e.EXPO_CUSTOMER_PROJECT_ID || !e.EXPO_ADMIN_PROJECT_ID || !e.EXPO_COURIER_PROJECT_ID))
+    throw new Error("Expo push requires enhanced-security token and three project IDs");
   if (e.R2_PUBLIC_BUCKET && e.R2_PUBLIC_BUCKET === e.R2_PRIVATE_BUCKET)
     throw new Error("R2 buckets must be separate");
   if (

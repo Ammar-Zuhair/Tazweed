@@ -1,3 +1,5 @@
+import { engagementRouter } from "./engagement/routes.js";
+import { pushFromConfig } from "./engagement/provider.js";
 import { mapsRouter } from "./checkout/maps.js";
 import express from "express";
 import helmet from "helmet";
@@ -99,9 +101,9 @@ export function createApp({
   app.use(express.json({ limit: "16kb", strict: true }));
   const live = {
     service: "tazweed-backend",
-    phase: "09",
+    phase: "10",
     status: "ok",
-    businessServices: "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality",
+    businessServices: "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality-notifications-operations",
   };
   app.get(["/health", "/health/live"], (_req, res) => res.json(live));
   app.get("/health/ready", async (_req, res) => {
@@ -117,10 +119,11 @@ export function createApp({
       runtimeRole &&
       provider.mode !== "unconfigured" &&
       store.mode !== "unconfigured" &&
-      routing.mode !== "unconfigured";
+      routing.mode !== "unconfigured" &&
+      pushFromConfig(config).mode !== "unconfigured";
     res.status(ready ? 200 : 503).json({
       service: "tazweed-backend",
-      phase: "09",
+      phase: "10",
       status: ready ? "ready" : "not-ready",
       database: database ? "connected" : "unavailable",
       migrations: migrations ? "current" : "unavailable",
@@ -128,6 +131,7 @@ export function createApp({
       otp: provider.mode,
       storage: store.mode,
       routing: routing.mode,
+      push: pushFromConfig(config).mode,
     });
   });
   app.get("/api/v1/openapi.json", (_req, res) => res.json(openapi()));
@@ -137,6 +141,7 @@ export function createApp({
   );
   app.use(
     "/api/v1",
+    engagementRouter(pool, security, config),
     catalogRouter(pool, security),
     mediaRouter(pool, security, store),
     checkoutRouter(pool, security, routing),

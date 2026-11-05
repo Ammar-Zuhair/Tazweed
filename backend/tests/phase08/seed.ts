@@ -7,7 +7,7 @@ export async function seed(f: Fixture, withLogins = true) {
     "TRUNCATE users,governorates,categories,promotions,outbox_events CASCADE",
   );
   await f.owner.query("DELETE FROM auth_rate_buckets");
-  await f.owner.query("UPDATE customer_maintenance SET enabled=false");
+  await f.owner.query("INSERT INTO customer_maintenance(singleton,enabled) VALUES(true,false) ON CONFLICT(singleton) DO UPDATE SET enabled=false");
   const customer = await f.user("770008001"),
     staff = await f.user("770008002", "staff");
   await f.owner.query(

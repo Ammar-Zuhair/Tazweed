@@ -1,24 +1,23 @@
+import { releaseConfig } from "./integration/release-config";
 import type { ExpoConfig, ConfigContext } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   const environment = process.env.EXPO_PUBLIC_APP_ENV ?? "preview";
-  if (environment === "production") {
-    throw new Error(
-      "Phase 04 uses fake repositories. Production builds are disabled until real services are implemented.",
-    );
-  }
+  const native = releaseConfig("courier", environment);
   return {
     ...config,
     name: "تزويد — الموصل",
     slug: "tazweed-courier",
-    scheme: "tazweed-courier-preview",
+    scheme: native ? "tazweed-courier" : "tazweed-courier-preview",
     version: "0.1.0",
     orientation: "portrait",
     userInterfaceStyle: "automatic",
     icon: "./assets/icon.png",
     ios: {
+      buildNumber: "1",
       supportsTablet: true,
-      bundleIdentifier: "com.tazweed.preview.courier",
+      bundleIdentifier:
+        native?.iosBundleIdentifier ?? "com.tazweed.preview.courier",
       icon: "./assets/icon.png",
       infoPlist: {
         CFBundleAllowMixedLocalizations: true,
@@ -27,7 +26,11 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       },
     },
     android: {
-      package: "com.tazweed.preview.courier",
+      versionCode: 1,
+      ...(process.env.GOOGLE_SERVICES_JSON
+        ? { googleServicesFile: process.env.GOOGLE_SERVICES_JSON }
+        : {}),
+      package: native?.androidPackage ?? "com.tazweed.preview.courier",
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-foreground.png",
         backgroundColor: "#FFFFFF",
@@ -40,6 +43,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       favicon: "./assets/icon.png",
     },
     plugins: [
+      ["expo-notifications", { defaultChannel: "tazweed-alerts-v1" }],
       "expo-router",
       [
         "expo-localization",
@@ -82,13 +86,29 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ],
     ],
 
+    runtimeVersion: native ? { policy: "fingerprint" } : undefined,
+    updates: native
+      ? {
+          enabled: true,
+          url: "https://u.expo.dev/" + native.projectId,
+          checkAutomatically: "NEVER",
+          fallbackToCacheTimeout: 0,
+        }
+      : {
+          enabled: false,
+          checkAutomatically: "NEVER",
+          fallbackToCacheTimeout: 0,
+        },
     extra: {
+      ...(native
+        ? { eas: { projectId: native.projectId }, apiUrl: native.apiUrl }
+        : {}),
       supportsRTL: true,
       forcesRTL: true,
       appKind: "courier",
       environment,
       dataMode: "backend",
-      phase: "09",
+      phase: "10",
     },
   };
 };

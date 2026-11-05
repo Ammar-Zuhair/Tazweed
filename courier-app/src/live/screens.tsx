@@ -21,6 +21,7 @@ function Nav() {
         ["نقد المتجر", "/cash"],
         ["العمليات المعلقة", "/pending"],
         ["الحساب", "/account"],
+        ["مركز الإشعارات", "/notifications"],
       ].map(([title, path]) => (
         <Action
           key={path}
@@ -38,6 +39,7 @@ export function Account() {
       <Header title="حساب الموصل" subtitle="حساب تنشئه الإدارة؛ تحقق آمن" />
       <Nav />
       <LoginPanel />
+
     </Page>
   );
 }

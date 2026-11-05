@@ -16,6 +16,8 @@ export const clientApp: "customer" | "admin" | "courier" = "courier";
 // Public routing metadata only. No provider, signing, DB or storage credentials belong here.
 export function apiBase() {
   if (Platform.OS === "web") return window.location.origin + "/api/v1";
+  const releaseApi = Constants.expoConfig?.extra?.apiUrl;
+  if (releaseApi) return releaseApi + "/api/v1";
   const host = Constants.expoConfig?.hostUri ?? "";
   if (!host) throw Error("رابط الخادم غير متاح");
   return (

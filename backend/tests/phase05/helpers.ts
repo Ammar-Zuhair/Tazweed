@@ -57,6 +57,7 @@ export async function fixture(extra:Record<string,any>={}) {
       .toString(),
     OTP_HMAC_SECRET: randomBytes(32).toString("hex"),
     CORS_ALLOWED_ORIGINS: "https://test.example",
+    ...extra.configOverrides,
   });
   const security = await Security.create(config),
     provider = new CaptureProvider(),

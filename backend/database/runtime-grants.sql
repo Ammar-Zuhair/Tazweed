@@ -81,3 +81,13 @@ GRANT UPDATE(status,admin_response,assigned_to,version) ON complaints TO tazweed
 GRANT UPDATE(status,admin_note,version) ON customer_flags TO tazweed_app;
 GRANT EXECUTE ON FUNCTION guard_dispatch(),guard_earning_identity(),guard_cash_collection(),
  guard_allocation_owner(),validate_payout_total() TO tazweed_app;
+
+-- Phase10 operational notification state only. Financial ledger grants unchanged.
+GRANT SELECT,INSERT ON push_tokens,notification_campaigns,notification_inbox,notification_deliveries,app_releases TO tazweed_app;
+GRANT UPDATE(user_id,app,environment,platform,active,updated_at,session_id,project_id,sound_enabled,version) ON push_tokens TO tazweed_app;
+GRANT UPDATE(status,scheduled_at,version,audience_cursor,finished_at,error_code) ON notification_campaigns TO tazweed_app;
+GRANT UPDATE(read_at) ON notification_inbox TO tazweed_app;
+GRANT UPDATE(ticket_id,status,attempts,error_code,next_attempt_at,token_version,lease_id,locked_until,receipt_checks,updated_at) ON notification_deliveries TO tazweed_app;
+GRANT UPDATE(state,attempts,available_at,locked_at,audience_cursor) ON outbox_events TO tazweed_app;
+GRANT UPDATE(enabled,message_ar,updated_by,updated_at,version) ON customer_maintenance TO tazweed_app;
+GRANT UPDATE(minimum_build,latest_build,latest_version,store_url,message_ar,updated_by,updated_at,version,binary_confirmed) ON app_releases TO tazweed_app;

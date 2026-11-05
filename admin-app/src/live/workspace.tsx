@@ -503,6 +503,9 @@ function WorkspaceScreen() {
         <>
           <Action title="إدارة الطلبات والدفع" onPress={()=>router.push("/orders")}/>
           <Action secondary title="الموصلون والعمولات" onPress={()=>router.push("/couriers")}/>
+          <Action secondary title="الصيانة والإصدارات" onPress={()=>router.push("/operations")}/>
+          <Action secondary title="البث والجدولة" onPress={()=>router.push("/campaigns")}/>
+          <Action secondary title="مركز الإشعارات" onPress={()=>router.push("/notifications")}/>
           <Action secondary title="الجودة والشكاوى" onPress={()=>router.push("/quality")}/>
           <Action secondary title="وسائل التحويل" onPress={()=>router.push("/methods")}/>
           <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>

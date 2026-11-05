@@ -35,6 +35,11 @@
         }
       }
     ],
-    "@maplibre/maplibre-react-native"
+    [
+      "expo-notifications",
+      {
+        "defaultChannel": "tazweed-alerts-v1"
+      }
+    ]
   ]
 }

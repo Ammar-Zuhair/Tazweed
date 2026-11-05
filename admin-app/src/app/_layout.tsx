@@ -1,3 +1,4 @@
+import {EngagementProvider} from '../live/engagement';
 import { Stack, LocaleProvider, type ErrorBoundaryProps } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -44,7 +45,7 @@ function Navigation() {
   return (
     <AppBootstrap>
       <AuthProvider>
-        <Routes />
+        <EngagementProvider><Routes /></EngagementProvider>
       </AuthProvider>
     </AppBootstrap>
   );

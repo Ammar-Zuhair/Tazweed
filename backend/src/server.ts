@@ -1,3 +1,5 @@
+import { startEngagement } from "./engagement/worker.js";
+import { pushFromConfig } from "./engagement/provider.js";
 import { createApp } from "./app.js";
 import { readServerConfig } from "./config.js";
 import { createPool } from "./db.js";
@@ -29,11 +31,12 @@ try {
     log: (entry) => console.log(JSON.stringify(entry)),
   }).listen(config.PORT, config.HOST, () =>
     console.log(
-      JSON.stringify({ event: "listening", port: config.PORT, phase: "09" }),
+      JSON.stringify({ event: "listening", port: config.PORT, phase: "10" }),
     ),
   );
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
+  const stopEngagement = startEngagement(pool, config, pushFromConfig(config));
   const stopAlerts = startReceiptAlerts(pool, config.RECEIPT_REVIEW_ALERT_MINUTES);
   const stopExpiry = startStockExpiry(pool);
   let stopping = false;
@@ -47,7 +50,7 @@ try {
       const timer = setTimeout(() => process.exit(1), 10000);
       timer.unref();
       server.close(() => {
-        void pool.end().then(() => {
+        void stopEngagement().then(() => pool.end()).then(() => {
           clearTimeout(timer);
           process.exit(0);
         });

@@ -528,6 +528,7 @@ export class AuthService {
         "UPDATE sessions SET revoked_at=coalesce(revoked_at,now()) WHERE id=$1 AND user_id=$2",
         [sessionId, userId],
       );
+      await db.query("UPDATE push_tokens SET active=false,version=version+1,updated_at=now() WHERE user_id=$1 AND session_id=$2 AND active",[userId,sessionId]);
       await audit(
         db,
         ctx.requestId,

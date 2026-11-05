@@ -1,4 +1,4 @@
-> الحالة الحالية: اكتملت09 فقط؛ التطبيقات الثلاثة متصلة بالخادم للطلبات والإسناد والتوصيل والعمولة والتحصيل المستقل والجودة. Expo Go57 محفوظ. [تقرير09](backend/docs/progress/phase-09.md)، [الفحوص](backend/docs/progress/phase-09-checks.json)، [الأدلة وروابط التشغيل](backend/docs/progress/phase-09-evidence/README.md). التوقف قبل10؛ المزودات الحقيقية والهاتف باقية وفق طلب المالك.
+> الحالة الحالية: نُفذ نطاق10: الإشعارات وinbox والبث المستهدف والمجدول والصيانة وحدود الإصدارات وتهيئةOTA للتشغيل التالي. [تقرير10](backend/docs/progress/phase-10.md)، [الفحوص](backend/docs/progress/phase-10-checks.json)، [الأدلة وروابط التشغيل](backend/docs/progress/phase-10-evidence/README.md). Go57 محفوظ؛ فحصPush/OTA علىالجهاز والمزوداتالحقيقية مؤجل حتىالمفاتيح وطلبالمالك. التوقف قبل11.
 
 > إصلاح فيديو العميل محفوظ؛ [تقرير متابعة02](backend/docs/progress/phase-02-native-fix.md) و[دليل Expo Go](backend/docs/EXPO_GO.md).
 

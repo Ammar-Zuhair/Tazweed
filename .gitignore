@@ -30,3 +30,7 @@ dist/
 .phase08-work/
 
 .phase09-work/
+
+.phase10-work/
+
+*-app/integration/release.*.local.json

@@ -1,0 +1,51 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+.expo/
+*.keystore
+*.jks
+*.p8
+*-service-account.json
+
+# Expo generated builds and native projects (config plugins are the source of truth)
+/*-app/dist-native/
+/*-app/android/
+/*-app/ios/
+
+# Local native toolchain caches and installable development artifacts
+/.android-sdk/
+/.gradle/
+/artifacts/
+
+# Phase05 local DB, secret configuration and temporary evidence work
+.postgresql/
+.phase05-work/
+
+.phase06-work/
+
+.phase07-work/
+
+.phase08-work/
+
+.phase09-work/
+
+.phase10-work/
+
+*-app/integration/release.*.local.json
+
+# EAS public metadata is intentionally uploaded; service credentials and local agent/DB state are not.
+.browser/
+.agents/
+credentials.json
+!integration/release.*.local.json
+!*-app/integration/release.*.local.json
+
+# These apps never import the server; exclude its entire runtime and operator configuration.
+/backend/
+.git/
+
+.codex/
+.claude/
+.minimax/

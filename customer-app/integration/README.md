@@ -1,13 +1,9 @@
-# دمج الافتتاح والتحديثات
-في01 أصبح `IntroScreen.tsx` مستخدمًا مباشرة من `src/bootstrap/AppBootstrap.tsx`، ومصدراه `../video/intro-light.mp4` و`../video/intro-dark.mp4`. لم تتغير بايتات الأصول ولم تشغل أداة التوليد؛ إخراجها الآن إلى video أيضًا. أما updates وconfig.fragment فمراجع للمواءمة اللاحقة، وليست خدمات مفعلة. لا يوجد إثبات اختبار جهاز أصلي في الحاوية. راجع [دليل البناء](../../backend/docs/PHASE01_BUILD.md).
+# ربط الإصدارات الأصلية في10
 
-1. التهيئة الحالية SDK57 ومعاينة Expo Go عبر `npm start`، والاعتماديات متوافقة ومثبتة في package/lock. دليل الهاتف في `backend/docs/EXPO_GO.md`؛ تعليمات البناء المستقل اللاحقة لا تغيّر نمط المعاينة الحالي.
-2. حمّل Tajawal والثيم من التخزين، ثم اعرض IntroScreen مرة واحدة من الـroot layout. حافظ على state `introFinished` في الجذر؛ لا تخزنه دائمًا بين تشغيلين ولا تعيده عند AppState active. JS reload بسبب التطوير أو crash recovery قد يعيد الجذر، وهو ليس رحلة استخدام عادية.
-3. شاشة النظام native splash ثابتة؛ الفيديو يبدأ بعد تهيئة React Native وإخفاء شاشة النظام، لا يمكن وضع ملف MP4 مكان splash.image. اجعل ألوانهما متسقة.
-4. عند مراحل الربط اربط onDone ببوابة إصدار/صيانة/الرئيسية. لا تربطها مباشرة دائمًا بالرئيسية وتتجاوز gates. في حال تعليق الشبكة، اعرض حالة قابلة لإعادة المحاولة؛ لا تطلب تسجيل دخول للتصفح.
-5. يحتفظ IntroScreen بالثيم أول العرض، ويوقف الصوت عند التخطي أو الخلفية، ويتجاوز الفيديو إذا تقليل الحركة مفعّل أو فشل التحميل. الصوت Enabled مبدئيًا، مع احترام سياسة كتم النظام؛ لا تفرض تشغيلًا في الوضع الصامت.
-6. `contentFit="contain"` والخلفية المطابقة يمنعان قص الشعار على أجهزة بنسبة مختلفة. اختبر notch وsafe area وAndroid/iOS والضغط على كل مساحة الشاشة.
-7. انقل updates.ts أيضًا للمدير والموصل عند تنفيذ مرحلة الإصدارات، ولا تنقل لهما IntroScreen أو فيديوهاته.
-8. Expo config fragment يدمج في جذر إعداد expo الصحيح، لا تنسخه كملف app.json كاملًا. أدخل EAS project ID الحقيقي لكل تطبيق/بيئة. تتغير الأيقونة ومكتبات native في build جديد فقط.
+ملف `app.config.ts` هو الإعداد الفعلي. تشغيل المعاينة الافتراضي `preview` يبقي Expo Go57، دون ادعاء remote Push أوOTA فيGo. ملفfragment مرجع للهوية فقط؛ لا تنسخه فوق الإعداد الفعلي.
 
-في01 ينتهي الافتتاح إلى الهيكل التجريبي فقط؛ بوابات الصيانة والإصدار تنفذ في مراحلها قبل ربط الخدمات. المراجع لا تبرر إدخال مشروع EAS وهمي أو تفعيل MapLibre قبل مرحلته.
+سجّل بيانات المشروع العامة المعتمدة فيbackend/.env، ثم شغّل `node backend/scripts/prepare-native-config.mjs --app customer --environment staging` من الجذر. يكتب فقط projectId وAPI HTTPS ومعرّفات الحزم العامة إلى `release.staging.local.json`؛ لا ينقل أي مفتاح. يرفض بناءstaging/production بلا هذا الملف. لبيئة أخرى استخدم ملف إعداد خادمي منفصلًا عبر `NATIVE_CONFIG_ENV_FILE`؛ لا تعِد استخدام قاعدة/أسرارstaging للإنتاج.
+
+ملفeas.json يربط channel staging ببيئةEAS preview، وproduction ببيئةproduction. ملف `.easignore` فيجذرالمستودع يبقي metadata العامة ضمن أرشيفالبناء رغمgitignore، ويستبعدdotenv والحزم والمخرجات. FCMv1 service-account وAPNs signing key فيEAS Credentials، وملفGoogle Services العام للبناء عبرمتغير ملفEAS `GOOGLE_SERVICES_JSON` عند تجهيزAndroid. لا أسرارخادم أوservice-account فيJS.
+
+OTA يفحص مرة عندبدءroot، وينزّل فقط، دونreload أوفحصكلforeground؛ يستخدمالتحديث المتوافق فيcold start لاحق. fingerprint يغيرruntime عندتغييرnative؛ البناءالأصلي واختبارforeground/background/closed والصوت وتبديلالرمز وOTA علىAndroid/iOS باقيةبعدالمفاتيح. لا نشرأوإنشاءحسابأوتقديممتاجر ضمن10. [دليلالإصدارات](../../backend/docs/RELEASES.md).

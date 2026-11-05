@@ -31,7 +31,7 @@ export async function submitOrder(
 ) {
   customerOnly(i);
   return idempotent(pool, i, "orders.submit", key, v, async (db) => {
-    await customerMaintenance(db);
+    await customerMaintenance(db,true);
     const b = await catalogContext(db, v.governorateId);
     const a = (
       await db.query(

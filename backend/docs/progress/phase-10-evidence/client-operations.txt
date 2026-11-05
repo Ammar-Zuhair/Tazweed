@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: customer: native persistence delay cannot turn a double tap into two submission keys
+ok 1 - customer: native persistence delay cannot turn a double tap into two submission keys
+  ---
+  duration_ms: 6.924754
+  type: 'test'
+  ...
+# Subtest: customer: lost acknowledgement persists content/key across controller recreation and retries the same operation
+ok 2 - customer: lost acknowledgement persists content/key across controller recreation and retries the same operation
+  ---
+  duration_ms: 4.979836
+  type: 'test'
+  ...
+# Subtest: customer: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+ok 3 - customer: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+  ---
+  duration_ms: 14.208639
+  type: 'test'
+  ...
+# Subtest: admin: native persistence delay cannot turn a double tap into two submission keys
+ok 4 - admin: native persistence delay cannot turn a double tap into two submission keys
+  ---
+  duration_ms: 4.278341
+  type: 'test'
+  ...
+# Subtest: admin: lost acknowledgement persists content/key across controller recreation and retries the same operation
+ok 5 - admin: lost acknowledgement persists content/key across controller recreation and retries the same operation
+  ---
+  duration_ms: 1.303996
+  type: 'test'
+  ...
+# Subtest: admin: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+ok 6 - admin: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+  ---
+  duration_ms: 0.646504
+  type: 'test'
+  ...
+# Subtest: courier: native persistence delay cannot turn a double tap into two submission keys
+ok 7 - courier: native persistence delay cannot turn a double tap into two submission keys
+  ---
+  duration_ms: 1.479152
+  type: 'test'
+  ...
+# Subtest: courier: lost acknowledgement persists content/key across controller recreation and retries the same operation
+ok 8 - courier: lost acknowledgement persists content/key across controller recreation and retries the same operation
+  ---
+  duration_ms: 1.345964
+  type: 'test'
+  ...
+# Subtest: courier: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+ok 9 - courier: storage failure sends nothing; definite rejection clears while an unavailable service keeps the command
+  ---
+  duration_ms: 1.738936
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 540.469409

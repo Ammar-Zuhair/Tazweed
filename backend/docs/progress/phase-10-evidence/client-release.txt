@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: customer release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+ok 1 - customer release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+  ---
+  duration_ms: 68.659498
+  type: 'test'
+  ...
+# Subtest: customer OTA downloads compatible update without a reload, preserves running version on failure
+ok 2 - customer OTA downloads compatible update without a reload, preserves running version on failure
+  ---
+  duration_ms: 10.700902
+  type: 'test'
+  ...
+# Subtest: admin release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+ok 3 - admin release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+  ---
+  duration_ms: 70.327732
+  type: 'test'
+  ...
+# Subtest: admin OTA downloads compatible update without a reload, preserves running version on failure
+ok 4 - admin OTA downloads compatible update without a reload, preserves running version on failure
+  ---
+  duration_ms: 127.969251
+  type: 'test'
+  ...
+# Subtest: courier release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+ok 5 - courier release config separates channels/identity, rejects missing metadata and uses fingerprint + next launch policy
+  ---
+  duration_ms: 86.116982
+  type: 'test'
+  ...
+# Subtest: courier OTA downloads compatible update without a reload, preserves running version on failure
+ok 6 - courier OTA downloads compatible update without a reload, preserves running version on failure
+  ---
+  duration_ms: 8.96445
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 726.944306

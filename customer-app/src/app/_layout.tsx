@@ -1,3 +1,4 @@
+import {EngagementProvider} from '../live/engagement';
 import { Stack, LocaleProvider, type ErrorBoundaryProps } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -32,7 +33,7 @@ function Navigation() {
   return (
     <AppBootstrap>
       <AuthProvider>
-        <CartProvider>
+        <EngagementProvider><CartProvider>
           <View style={{ flex: 1 }}>
             <StatusBar style={name === "dark" ? "light" : "dark"} />
             <Stack
@@ -42,7 +43,7 @@ function Navigation() {
               }}
             />
           </View>
-        </CartProvider>
+        </CartProvider></EngagementProvider>
       </AuthProvider>
     </AppBootstrap>
   );
