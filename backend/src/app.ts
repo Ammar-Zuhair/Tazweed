@@ -1,3 +1,7 @@
+import { policy } from "./privacy/policy.js";
+import { privacyRouter } from "./privacy/routes.js";
+import { DeletionService } from "./privacy/service.js";
+import { reportsRouter } from "./reports/routes.js";
 import { engagementRouter } from "./engagement/routes.js";
 import { pushFromConfig } from "./engagement/provider.js";
 import { mapsRouter } from "./checkout/maps.js";
@@ -61,6 +65,10 @@ export function createApp({
     (config.NODE_ENV !== "test" || config.production)
   )
     throw new Error("Test routing restricted");
+  if (config.production && !policy(config).approved)
+    throw new Error(
+      "Production requires owner-approved privacy policy and support metadata",
+    );
   const app = express();
   app.disable("x-powered-by");
   app.set("trust proxy", false);
@@ -81,11 +89,25 @@ export function createApp({
     );
     next();
   });
-  app.use(helmet());
   app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          "upgrade-insecure-requests": config.production ? [] : null,
+        },
+      },
+    }),
+  );
+  app.use((req, res, next) =>
     cors({
       origin: (origin, callback) => {
-        if (!origin || config.origins.includes(origin)) callback(null, true);
+        if (
+          !origin ||
+          config.origins.includes(origin) ||
+          origin === new URL(config.PUBLIC_BASE_URL).origin ||
+          origin === req.protocol + "://" + req.get("host")
+        )
+          callback(null, true);
         else callback(new ApiError(403, "ORIGIN_DENIED", "المصدر غير مسموح"));
       },
       credentials: false,
@@ -95,15 +117,17 @@ export function createApp({
         "Content-Type",
         "X-Client-App",
         "Idempotency-Key",
+        "X-Deletion-Flow",
       ],
-    }),
+    })(req, res, next),
   );
   app.use(express.json({ limit: "16kb", strict: true }));
   const live = {
     service: "tazweed-backend",
-    phase: "10",
+    phase: "11",
     status: "ok",
-    businessServices: "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality-notifications-operations",
+    businessServices:
+      "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality-notifications-operations-reports-privacy",
   };
   app.get(["/health", "/health/live"], (_req, res) => res.json(live));
   app.get("/health/ready", async (_req, res) => {
@@ -120,10 +144,11 @@ export function createApp({
       provider.mode !== "unconfigured" &&
       store.mode !== "unconfigured" &&
       routing.mode !== "unconfigured" &&
-      pushFromConfig(config).mode !== "unconfigured";
+      pushFromConfig(config).mode !== "unconfigured" &&
+      policy(config).approved;
     res.status(ready ? 200 : 503).json({
       service: "tazweed-backend",
-      phase: "10",
+      phase: "11",
       status: ready ? "ready" : "not-ready",
       database: database ? "connected" : "unavailable",
       migrations: migrations ? "current" : "unavailable",
@@ -132,8 +157,19 @@ export function createApp({
       storage: store.mode,
       routing: routing.mode,
       push: pushFromConfig(config).mode,
+      privacy: policy(config).approved ? "configured" : "unconfigured",
     });
   });
+  app.use(
+    privacyRouter(
+      new DeletionService(
+        new AuthService(pool, security, provider),
+        config,
+        store,
+      ),
+    ),
+  );
+  app.use("/api/v1", reportsRouter(pool, security, config));
   app.get("/api/v1/openapi.json", (_req, res) => res.json(openapi()));
   app.use(
     "/api/v1",

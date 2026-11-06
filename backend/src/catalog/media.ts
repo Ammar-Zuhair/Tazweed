@@ -383,7 +383,7 @@ export function mediaRouter(
       i = res.locals.identity as Identity,
       m = (
         await pool.query(
-          `SELECT * FROM media_objects WHERE id=$1 AND status='verified'`,
+          `SELECT * FROM media_objects m WHERE id=$1 AND status='verified' AND NOT EXISTS(SELECT 1 FROM privacy_file_deletions d WHERE d.media_id=m.id AND d.next_attempt_at<=now())`,
           [id],
         )
       ).rows[0];

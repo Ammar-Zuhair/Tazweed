@@ -110,3 +110,44 @@ for (const app of ["customer", "admin", "courier"]) {
     assert.equal(saved.body.quantity, 2);
   });
 }
+for (const app of ["customer", "admin", "courier"]) {
+  const { OperationQueue } = await import(
+    `../../${app}-app/src/live/operation-queue.ts`
+  );
+  test(`${app}: account erasure waits for a delayed native save, deletes it and prevents dispatch or resurrection`, async () => {
+    let release!: () => void,
+      saved: any = null,
+      sends = 0;
+    const delay = new Promise<void>((r) => {
+      release = r;
+    });
+    const q = new OperationQueue(
+      {
+        read: async () => null,
+        write: async (c: any) => {
+          await delay;
+          saved = c;
+        },
+        remove: async () => {
+          saved = null;
+        },
+      },
+      async () => {
+        sends++;
+      },
+      () => "isolated-erase-key",
+    );
+    await q.restore();
+    const pending = q.execute("/orders", { privateAddressId: "isolated-id" });
+    const rejected = assert.rejects(pending, /مسح/);
+    const erasing = q.erase();
+    release();
+    await rejected;
+    await erasing;
+    assert.equal(saved, null);
+    assert.equal(sends, 0);
+    assert.equal(q.snapshot().command, null);
+    assert.equal(q.snapshot().ready, false);
+    await assert.rejects(q.execute("/orders", {}));
+  });
+}

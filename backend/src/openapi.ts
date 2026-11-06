@@ -1,3 +1,4 @@
+import { addPrivacyOpenapi } from './privacy/openapi.js';
 import { addEngagementOpenapi } from "./engagement/openapi.js";
 import { addOrdersOpenapi } from "./orders/openapi.js";
 import { addCheckoutOpenapi } from "./checkout/openapi.js";
@@ -7,7 +8,7 @@ import { responseSchemas, responseName } from "./identity/responses.js";
 // Generated from the input contracts used by the actual handlers.
 import { addCatalogOpenapi } from "./catalog/openapi.js";
 import { addDeliveryOpenapi } from "./delivery/openapi.js";
-export function openapi() { return addEngagementOpenapi(addDeliveryOpenapi(baseOpenapi())); }
+export function openapi() { return addPrivacyOpenapi(addEngagementOpenapi(addDeliveryOpenapi(baseOpenapi()))); }
 function baseOpenapi() {
   const paths: Record<string, any> = {};
   const add = (

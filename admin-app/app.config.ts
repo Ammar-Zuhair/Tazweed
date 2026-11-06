@@ -91,7 +91,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       appKind: "admin",
       environment,
       dataMode: "backend",
-      phase: "10",
+      phase: "11",
     },
   };
 };

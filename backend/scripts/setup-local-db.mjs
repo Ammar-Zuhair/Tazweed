@@ -135,6 +135,7 @@ pg(
 SELECT 'CREATE ROLE tazweed_owner LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOBYPASSRLS' WHERE NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='tazweed_owner')\\gexec
 SELECT 'CREATE ROLE tazweed_app LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOBYPASSRLS' WHERE NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='tazweed_app')\\gexec
 SELECT 'CREATE ROLE tazweed_privacy NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOBYPASSRLS' WHERE NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='tazweed_privacy')\\gexec
+GRANT tazweed_privacy TO tazweed_owner WITH INHERIT TRUE;
 ALTER ROLE tazweed_owner PASSWORD '${ownerPassword}';
 ALTER ROLE tazweed_app PASSWORD '${appPassword}';
 SELECT 'CREATE DATABASE tazweed_staging OWNER tazweed_owner' WHERE NOT EXISTS(SELECT 1 FROM pg_database WHERE datname='tazweed_staging')\\gexec

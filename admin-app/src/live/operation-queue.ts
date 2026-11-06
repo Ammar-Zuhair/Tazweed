@@ -13,6 +13,8 @@ export type Storage = {
 export class OperationQueue {
   private command: Command | null = null;
   private busy = false;
+  private erased = false;
+  private settling: Promise<void> = Promise.resolve();
   private ready = false;
   private loading: Promise<void> | null = null;
   private listeners = new Set<(state: Snapshot) => void>();
@@ -38,8 +40,9 @@ export class OperationQueue {
     if (!this.loading)
       this.loading = (async () => {
         try {
-          this.command = await this.storage.read();
-          this.ready = true;
+          const saved = await this.storage.read();
+          if (!this.erased) this.command = saved;
+          this.ready = !this.erased;
           this.emit();
         } catch (e) {
           this.loading = null;
@@ -48,8 +51,19 @@ export class OperationQueue {
       })();
     return this.loading;
   }
+  async erase() {
+    this.erased = true;
+    this.ready = false;
+    this.emit();
+    await this.loading?.catch(() => {});
+    await this.settling;
+    await this.storage.remove();
+    this.command = null;
+    this.emit();
+  }
   async execute(path?: string, body?: unknown) {
-    if (!this.ready || this.busy) throw Error("انتظر انتهاء العملية الحالية");
+    if (this.erased || !this.ready || this.busy)
+      throw Error("انتظر انتهاء العملية الحالية");
     if (
       this.command &&
       path &&
@@ -61,10 +75,15 @@ export class OperationQueue {
     if (!command.path) throw Error("لا توجد عملية معلقة");
     // Synchronous lock and command assignment precede the first storage await (including native double taps).
     this.busy = true;
+    let finish!: () => void;
+    this.settling = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
     this.command = command;
     this.emit();
     try {
       await this.storage.write(command);
+      if (this.erased) throw Error("تم مسح عمليات الحساب بعد طلب حذفه");
       const result = await this.send(command);
       await this.storage.remove();
       this.command = null;
@@ -84,6 +103,7 @@ export class OperationQueue {
       throw e;
     } finally {
       this.busy = false;
+      finish();
       this.emit();
     }
   }

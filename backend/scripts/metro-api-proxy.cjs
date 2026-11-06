@@ -2,7 +2,9 @@
 const http = require("node:http");
 module.exports = function apiProxy(next) {
   return (req, res, nextMiddleware) => {
-    if (!req.url?.startsWith("/api/v1/")) return next(req, res, nextMiddleware);
+    const path=(req.url??'').split('?')[0];
+    const legal=['/privacy','/terms','/support','/delete-account','/assets/tajawal.ttf'].includes(path)||path.startsWith('/assets/legal/')||path.startsWith('/web/account-deletion/');
+    if (!req.url?.startsWith("/api/v1/") && !legal) return next(req, res, nextMiddleware);
     const headers = { ...req.headers, host: "127.0.0.1:8084" };
     delete headers.origin;
     delete headers.cookie;

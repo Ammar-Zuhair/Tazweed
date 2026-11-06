@@ -1,3 +1,6 @@
+import { startPhase11 } from './privacy/worker.js';
+import { DeletionService } from './privacy/service.js';
+import { AuthService } from './identity/auth.js';
 import { startEngagement } from "./engagement/worker.js";
 import { pushFromConfig } from "./engagement/provider.js";
 import { createApp } from "./app.js";
@@ -31,11 +34,12 @@ try {
     log: (entry) => console.log(JSON.stringify(entry)),
   }).listen(config.PORT, config.HOST, () =>
     console.log(
-      JSON.stringify({ event: "listening", port: config.PORT, phase: "10" }),
+      JSON.stringify({ event: "listening", port: config.PORT, phase: "11" }),
     ),
   );
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
+  const stopPhase11=startPhase11(pool,new DeletionService(new AuthService(pool,security,providerFromConfig(config)),config,objectStore));
   const stopEngagement = startEngagement(pool, config, pushFromConfig(config));
   const stopAlerts = startReceiptAlerts(pool, config.RECEIPT_REVIEW_ALERT_MINUTES);
   const stopExpiry = startStockExpiry(pool);
@@ -50,7 +54,7 @@ try {
       const timer = setTimeout(() => process.exit(1), 10000);
       timer.unref();
       server.close(() => {
-        void stopEngagement().then(() => pool.end()).then(() => {
+        void Promise.all([stopEngagement(),stopPhase11()]).then(() => pool.end()).then(() => {
           clearTimeout(timer);
           process.exit(0);
         });

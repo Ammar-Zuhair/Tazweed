@@ -55,3 +55,11 @@ export function useOperation(userId?: string) {
     },
   };
 }
+
+export async function eraseStoredOperations(userId: string) {
+  const q = queues.get(userId);
+  if (q) await q.erase();
+  if (Platform.OS !== "web")
+    await SecureStore.deleteItemAsync("tazweed.pending.v09." + userId);
+  queues.delete(userId);
+}

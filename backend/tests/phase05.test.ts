@@ -97,7 +97,7 @@ test("migrations retain all 69 tables and guards and reapplication is empty", as
       "SELECT tablename FROM pg_tables WHERE schemaname='public'",
     )
   ).rows;
-  assert.equal(rows.length, 72);
+  assert.equal(rows.length, 73);
   const ref = await readFile(
     new URL("../database/schema.sql", import.meta.url),
     "utf8",
@@ -1032,7 +1032,7 @@ test("rate limits persist in PostgreSQL; spoofed forwarding headers cannot bypas
 test("Helmet, exact CORS, JSON/body validation and request IDs remain safe; phase08 order contract", async () => {
   const live = await f.request("GET", "/health/live");
   assert.equal(live.status, 200);
-  assert.equal(live.body.phase, "10");
+  assert.equal(live.body.phase, "11");
   assert(live.headers.get("content-security-policy"));
   assert.equal(live.headers.get("x-powered-by"), null);
   assert.equal(live.headers.get("cache-control"), "no-store");

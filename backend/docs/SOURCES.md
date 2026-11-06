@@ -20,3 +20,5 @@
 | خط Tajawal | https://fonts.google.com/specimen/Tajawal |
 
 OpenFreeMap يعرض الخرائط ولا يوفّر تلقائيًا خدمة حساب طريق. لا نعد بأن استضافة المسارات أو OTP مجانية، ولا بأن تغطية الطرق في اليمن مكتملة. السياسات العامة ليست مشورة قانونية؛ نص الخصوصية النهائي يجب أن يطابق سلوك المشروع ومعلومات المالك الفعلية.
+
+مراجعة11 بتاريخ6نوفمبر2026: أعيد فتح مرجعي Apple وGoogle أعلاه للحذف من التطبيق والمتصفح والتحقق وإعلان الاحتفاظ، دون استنباط مدد محلية. PDF من[Playwright page.pdf](https://playwright.dev/docs/api/class-page#page-pdf)، والملف/المشاركة من[Expo FileSystem57](https://docs.expo.dev/versions/v57.0.0/sdk/filesystem/) و[Sharing57](https://docs.expo.dev/versions/v57.0.0/sdk/sharing/)، ومطابقة النسخ معbundledNativeModules المحلي لـ57.

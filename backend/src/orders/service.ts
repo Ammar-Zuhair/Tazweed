@@ -31,6 +31,8 @@ export async function submitOrder(
 ) {
   customerOnly(i);
   return idempotent(pool, i, "orders.submit", key, v, async (db) => {
+    const account = (await db.query("SELECT status,deletion_requested_at FROM users WHERE id=$1 FOR UPDATE",[i.id])).rows[0];
+    if(account?.status!=="active" || account.deletion_requested_at) throw new ApiError(409,"DELETION_PENDING","طلب حذف الحساب قيد المعالجة؛ تبقى متابعة الطلبات الجارية متاحة");
     await customerMaintenance(db,true);
     const b = await catalogContext(db, v.governorateId);
     const a = (

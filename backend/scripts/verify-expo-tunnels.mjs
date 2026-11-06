@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import QRCode from 'qrcode';
 
 const prefix = process.env.TAZWEED_EVIDENCE_PREFIX ?? 'phase-04';
-if (!/^(?:phase-(?:01-sdk57|02(?:-native-fix)?|03|04|06|07|08|09|10)|customer-ui-refresh|typography-glow)$/.test(prefix)) throw new Error('Invalid evidence prefix');
+if (!/^(?:phase-(?:01-sdk57|02(?:-native-fix)?|03|04|06|07|08|09|10|11)|customer-ui-refresh|typography-glow)$/.test(prefix)) throw new Error('Invalid evidence prefix');
 const output = fileURLToPath(new URL(`../docs/progress/${prefix}-evidence/`, import.meta.url));
 await mkdir(output, { recursive: true });
 const results = { checkedAt: new Date().toISOString(), projectSlug: 'tazweed', sdk: 57, nativePhoneTested: false, tunnels: [] };
@@ -38,13 +38,13 @@ for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
   for (const platform of ['android', 'ios']) {
     const manifest = await (await get(origin + '/', { accept: 'application/expo+json', 'expo-platform': platform, 'expo-protocol-version': '1' })).json();
     const client = manifest.extra.expoClient;
-    if (role === 'customer' && (prefix.startsWith('phase-02') || ['phase-03', 'phase-04', 'customer-ui-refresh', 'typography-glow'].includes(prefix))) { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, ['phase-06','phase-07','phase-08','phase-09','phase-10'].includes(prefix)?(['phase-09','phase-10'].includes(prefix)?'backend':(role==='courier'?'deferred':'backend')):'fake'); }
+    if (role === 'customer' && (prefix.startsWith('phase-02') || ['phase-03', 'phase-04', 'customer-ui-refresh', 'typography-glow'].includes(prefix))) { assert.equal(client.extra.phase, '02'); assert.equal(client.extra.dataMode, ['phase-06','phase-07','phase-08','phase-09','phase-10','phase-11'].includes(prefix)?(['phase-09','phase-10','phase-11'].includes(prefix)?'backend':(role==='courier'?'deferred':'backend')):'fake'); }
     if (role === 'admin' && ['phase-03', 'phase-04', 'customer-ui-refresh', 'typography-glow'].includes(prefix)) assert.equal(client.extra.phase, '03');
     if (role === 'courier' && ['phase-04', 'customer-ui-refresh', 'typography-glow'].includes(prefix)) assert.equal(client.extra.phase, '04');
     assert.equal(client.sdkVersion, '57.0.0'); assert.equal(manifest.runtimeVersion, 'exposdk:57.0.0');
-    if(['phase-06','phase-07','phase-08','phase-09','phase-10'].includes(prefix))assert.equal(client.extra.phase,prefix.slice(-2));
-    if(['phase-06','phase-07','phase-08','phase-09','phase-10'].includes(prefix)&&(role!=='courier'||['phase-09','phase-10'].includes(prefix)))assert.equal(client.hostUri,url.host,'native API must resolve to the verified public Metro host');
-    assert.equal(client.extra.appKind, role); assert.equal(client.extra.dataMode, ['phase-06','phase-07','phase-08','phase-09','phase-10'].includes(prefix)?(['phase-09','phase-10'].includes(prefix)?'backend':(role==='courier'?'deferred':'backend')):'fake');
+    if(['phase-06','phase-07','phase-08','phase-09','phase-10','phase-11'].includes(prefix))assert.equal(client.extra.phase,prefix.slice(-2));
+    if(['phase-06','phase-07','phase-08','phase-09','phase-10','phase-11'].includes(prefix)&&(role!=='courier'||['phase-09','phase-10','phase-11'].includes(prefix)))assert.equal(client.hostUri,url.host,'native API must resolve to the verified public Metro host');
+    assert.equal(client.extra.appKind, role); assert.equal(client.extra.dataMode, ['phase-06','phase-07','phase-08','phase-09','phase-10','phase-11'].includes(prefix)?(['phase-09','phase-10','phase-11'].includes(prefix)?'backend':(role==='courier'?'deferred':'backend')):'fake');
     assert.equal(client.extra.supportsRTL, true); assert.equal(client.extra.forcesRTL, true);
     const launchUrl = new URL(manifest.launchAsset.url);
     assert.equal(launchUrl.origin, origin); assert.equal(launchUrl.searchParams.get('platform'), platform);
@@ -54,7 +54,7 @@ for (const [index, role] of ['customer', 'admin', 'courier'].entries()) {
     const hermes = bundle.length >= 8 && bundle.readBigUInt64LE(0) === 0x1f1903c103bc1fc6n;
     const metroJavaScript = /javascript/.test(response.headers.get('content-type') ?? '') && bundle.includes(Buffer.from('__d('));
     assert(hermes || metroJavaScript, 'launch asset must contain actual Hermes or Metro JavaScript, not an HTML response');
-    manifests.push({ platform, sdkVersion: client.sdkVersion, runtimeVersion: manifest.runtimeVersion, manifestHttp: 200, launchAssetUrl: launchUrl.toString(), bundleHttp: 200, bundleBytes: bundle.length, bundleIsCode: true, bundleSha256: createHash('sha256').update(bundle).digest('hex'), rtlManifestFlags: true, ...(['phase-06','phase-07','phase-08','phase-09','phase-10'].includes(prefix)&&(role!=='courier'||['phase-09','phase-10'].includes(prefix))?{nativeApiHost:client.hostUri}:{}) });
+    manifests.push({ platform, sdkVersion: client.sdkVersion, runtimeVersion: manifest.runtimeVersion, manifestHttp: 200, launchAssetUrl: launchUrl.toString(), bundleHttp: 200, bundleBytes: bundle.length, bundleIsCode: true, bundleSha256: createHash('sha256').update(bundle).digest('hex'), rtlManifestFlags: true, ...(['phase-06','phase-07','phase-08','phase-09','phase-10','phase-11'].includes(prefix)&&(role!=='courier'||['phase-09','phase-10','phase-11'].includes(prefix))?{nativeApiHost:client.hostUri}:{}) });
     console.log(`${role}: ${platform} manifest and development bundle verified through public tunnel`);
   }
   await checkWebSocket(origin);

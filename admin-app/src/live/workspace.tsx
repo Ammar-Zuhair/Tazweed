@@ -501,6 +501,10 @@ function WorkspaceScreen() {
         </Txt>
       ) : (
         <>
+          <Action secondary title="التقرير الشهري PDF" onPress={()=>router.push("/reports" as any)}/>
+          <Action secondary title="طلبات حذف الحساب" onPress={()=>router.push("/privacy-requests" as any)}/>
+          <Action secondary title="الخصوصية والدعم" onPress={()=>router.push("/privacy" as any)}/>
+          <Action secondary title="حذف الحساب" onPress={()=>router.push("/delete" as any)}/>
           <Action title="إدارة الطلبات والدفع" onPress={()=>router.push("/orders")}/>
           <Action secondary title="الموصلون والعمولات" onPress={()=>router.push("/couriers")}/>
           <Action secondary title="الصيانة والإصدارات" onPress={()=>router.push("/operations")}/>

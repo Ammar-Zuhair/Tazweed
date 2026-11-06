@@ -1,0 +1,1114 @@
+{
+  "checkedAt": "2026-11-06T03:06:34.290Z",
+  "phase": "11",
+  "passed": true,
+  "fullSuiteTests": 188,
+  "baselineSqlTests": 73,
+  "additionalClientOperationTests": 3,
+  "targetedClientQueueChecks": {
+    "tests": 12,
+    "previousTestsRepeated": 9,
+    "newTests": 3
+  },
+  "totalTests": 264,
+  "uiScenarios": 9,
+  "screenshots": 27,
+  "lostReportAcknowledgements": 1,
+  "lostDeletionAcknowledgements": 1,
+  "expoQrs": 3,
+  "checks": [
+    {
+      "command": "backend-types",
+      "passed": true
+    },
+    {
+      "command": "customer-types",
+      "passed": true
+    },
+    {
+      "command": "admin-types",
+      "passed": true
+    },
+    {
+      "command": "courier-types",
+      "passed": true
+    },
+    {
+      "command": "backend-build",
+      "passed": true
+    },
+    {
+      "command": "customer-web",
+      "passed": true
+    },
+    {
+      "command": "admin-web",
+      "passed": true
+    },
+    {
+      "command": "courier-web",
+      "passed": true
+    },
+    {
+      "command": "customer-native",
+      "passed": true
+    },
+    {
+      "command": "admin-native",
+      "passed": true
+    },
+    {
+      "command": "courier-native",
+      "passed": true
+    },
+    {
+      "command": "expo-check",
+      "passed": true
+    }
+  ],
+  "database": {
+    "name": "tazweed_staging",
+    "tables": 73,
+    "triggers": 57,
+    "users": 0,
+    "products": 0,
+    "addresses": 0,
+    "orders": 0,
+    "quotes": 0,
+    "holds": 0,
+    "push_tokens": 0,
+    "campaigns": 0,
+    "inbox": 0,
+    "deliveries": 0,
+    "releases": 0,
+    "deletion_requests": 0,
+    "report_jobs": 0,
+    "privacy_file_deletions": 0,
+    "migrations": [
+      {
+        "name": "0001_reference_69.sql",
+        "sha256": "a4d39075b4293ed089e69af032ab03f9fd6d839f7e77fba147b3e210459976b4"
+      },
+      {
+        "name": "0002_identity_security.sql",
+        "sha256": "a6d50278db671e9923e02f029a37a2938fcff515734026c3fa59433c8ff10896"
+      },
+      {
+        "name": "0003_catalog_media.sql",
+        "sha256": "16006fdac55183aa0f044eacd5aea377e1efbca65e1f70f09774fb7ddeaa14a7"
+      },
+      {
+        "name": "0004_checkout_read_models.sql",
+        "sha256": "aedad6b26d1d2eadad6e35515668cd06ae1b6b9d80885d65046d1b457aa0a9eb"
+      },
+      {
+        "name": "0005_order_workflow.sql",
+        "sha256": "8197370e0bc0b6cac8ab80a462cf39ce4457e305be79e7d25e61bc41261147d7"
+      },
+      {
+        "name": "0006_delivery_quality.sql",
+        "sha256": "7adfedc19c1234e8cd1751c73884a1ff8e8333eccacc8c4ff88e2760fdfab54f"
+      },
+      {
+        "name": "0007_engagement_releases.sql",
+        "sha256": "dd394679a8b911202d239958f304e98327cbfab2e4c29ab7f1fd5c5f36478477"
+      },
+      {
+        "name": "0008_reports_privacy.sql",
+        "sha256": "7ce8c906594b2be232c626c35ee9118264171c905c23499ca478c08e6cf6f23f"
+      }
+    ],
+    "isolatedTestDatabasesRemaining": 0
+  },
+  "services": [
+    {
+      "unit": "tazweed-backend-8084",
+      "port": 8084,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-postgres-55432",
+      "port": 55432,
+      "listenAllInterfaces": false,
+      "privateLoopbackOnly": true,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-customer-expo-8091",
+      "port": 8091,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-admin-expo-8092",
+      "port": 8092,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-courier-expo-8093",
+      "port": 8093,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-customer-preview-8081",
+      "port": 8081,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-admin-preview-8082",
+      "port": 8082,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    },
+    {
+      "unit": "tazweed-courier-preview-8083",
+      "port": 8083,
+      "listenAllInterfaces": true,
+      "privateLoopbackOnly": false,
+      "recentStartupFailures": false,
+      "active": true,
+      "restarts": 0
+    }
+  ],
+  "health": {
+    "/health/live": {
+      "http": 200,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "11",
+        "status": "ok",
+        "businessServices": "identity-catalog-inventory-media-routing-orders-payments-delivery-cash-commission-quality-notifications-operations-reports-privacy"
+      }
+    },
+    "/health/ready": {
+      "http": 503,
+      "body": {
+        "service": "tazweed-backend",
+        "phase": "11",
+        "status": "not-ready",
+        "database": "connected",
+        "migrations": "current",
+        "runtimeRole": "limited",
+        "otp": "unconfigured",
+        "storage": "unconfigured",
+        "routing": "unconfigured",
+        "push": "unconfigured",
+        "privacy": "unconfigured"
+      }
+    }
+  },
+  "ingress": [
+    {
+      "url": "https://tazweed--8081.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8082.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8083.dev.remote-ammar.duckdns.org/",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    },
+    {
+      "url": "https://tazweed--8084.dev.remote-ammar.duckdns.org/health/live",
+      "http": 302,
+      "meaning": "remote login routing only; not an authenticated user check"
+    }
+  ],
+  "previews": [
+    {
+      "role": "customer",
+      "port": 8081,
+      "route": "/",
+      "http": 200,
+      "matchesExport": true,
+      "htmlSha256": "cf2286fedd18ae1747c52e7a9e0a74431274d973ca7fdd6d3b133896832f9a01",
+      "untrustedHostHttp": 403
+    },
+    {
+      "role": "admin",
+      "port": 8082,
+      "route": "/",
+      "http": 200,
+      "matchesExport": true,
+      "htmlSha256": "ce83c00a4e37a43768d240edf60d19573da5933b8a8698b18d5f3e43f537a2e1",
+      "untrustedHostHttp": 403
+    },
+    {
+      "role": "courier",
+      "port": 8083,
+      "route": "/",
+      "http": 200,
+      "matchesExport": true,
+      "htmlSha256": "abb7fe34008979357e1cad0a130f726e0663aaea020bc955a41a6cfbd2ab4478",
+      "untrustedHostHttp": 403
+    }
+  ],
+  "servedOpenapiMatchesExport": true,
+  "expoApi": [
+    {
+      "role": "customer",
+      "publicConfigHttp": 200,
+      "deploymentConfigHttp": 200,
+      "environment": "staging",
+      "releaseConfigured": false,
+      "mapPageHttp": 200,
+      "providerCredentialsReturned": false
+    },
+    {
+      "role": "admin",
+      "publicConfigHttp": 200,
+      "deploymentConfigHttp": 200,
+      "environment": "staging",
+      "releaseConfigured": false,
+      "mapPageHttp": 200,
+      "providerCredentialsReturned": false
+    },
+    {
+      "role": "courier",
+      "publicConfigHttp": 200,
+      "deploymentConfigHttp": 200,
+      "environment": "staging",
+      "releaseConfigured": false,
+      "mapPageHttp": 200,
+      "providerCredentialsReturned": false
+    }
+  ],
+  "publicDeletion": [
+    {
+      "role": "customer",
+      "url": "https://sfs3nam-anonymous-8091.exp.direct/delete-account",
+      "pageHttp": 200,
+      "scriptHttp": 200,
+      "missingFlowHeaderHttp": 403,
+      "noAppOrLoginRequired": true,
+      "providerNotInvoked": true
+    },
+    {
+      "role": "admin",
+      "url": "https://utjz9oi-anonymous-8092.exp.direct/delete-account",
+      "pageHttp": 200,
+      "scriptHttp": 200,
+      "missingFlowHeaderHttp": 403,
+      "noAppOrLoginRequired": true,
+      "providerNotInvoked": true
+    },
+    {
+      "role": "courier",
+      "url": "https://vsfhyqu-anonymous-8093.exp.direct/delete-account",
+      "pageHttp": 200,
+      "scriptHttp": 200,
+      "missingFlowHeaderHttp": 403,
+      "noAppOrLoginRequired": true,
+      "providerNotInvoked": true
+    }
+  ],
+  "clientSecretBoundary": {
+    "passed": true,
+    "backendSecretNames": [
+      "DATABASE_URL",
+      "MIGRATION_DATABASE_URL",
+      "JWT_PRIVATE_KEY",
+      "JWT_PUBLIC_KEY",
+      "OTP_HMAC_SECRET",
+      "OTP_PROVIDER_TOKEN",
+      "R2_ACCESS_KEY_ID",
+      "R2_SECRET_ACCESS_KEY",
+      "EXPO_ACCESS_TOKEN",
+      "ROUTING_API_KEY",
+      "RECEIPT_ATTEMPT_LIMIT_PER_HOUR",
+      "RECEIPT_REVIEW_ALERT_MINUTES"
+    ],
+    "secretValuesChecked": 9,
+    "files": 526,
+    "bundles": 311
+  },
+  "backendEnv": {
+    "path": "backend/.env",
+    "mode": "600",
+    "ignored": true,
+    "requiredNames": [
+      "STORE_LEGAL_NAME",
+      "STORE_SUPPORT_PHONE",
+      "PRIVACY_CONTACT_EMAIL",
+      "PRIVACY_POLICY_VERSION",
+      "PRIVACY_POLICY_APPROVED_AT",
+      "PRIVACY_PERSONAL_RETENTION_DAYS",
+      "TRANSACTION_RETENTION_DAYS",
+      "PRIVACY_SECURITY_RETENTION_DAYS",
+      "PRIVACY_BACKUP_RETENTION_DAYS",
+      "PRIVACY_REQUEST_TARGET_DAYS",
+      "REPORT_TIME_ZONE"
+    ],
+    "newNames": [
+      "STORE_LEGAL_NAME",
+      "PRIVACY_POLICY_VERSION",
+      "PRIVACY_POLICY_APPROVED_AT",
+      "PRIVACY_PERSONAL_RETENTION_DAYS",
+      "PRIVACY_SECURITY_RETENTION_DAYS",
+      "PRIVACY_BACKUP_RETENTION_DAYS",
+      "PRIVACY_REQUEST_TARGET_DAYS",
+      "REPORT_TIME_ZONE"
+    ],
+    "existingNamesUsedByPolicy": [
+      "STORE_SUPPORT_PHONE",
+      "PRIVACY_CONTACT_EMAIL",
+      "TRANSACTION_RETENTION_DAYS"
+    ],
+    "ownerGuide": {
+      "path": "backend/docs/ENV_KEYS_AR.md",
+      "documentedNames": 49,
+      "sha256": "f2ac7ee4c814863a48d0c1ca3a19392d2ea83abef33935493094faf1a2068864"
+    },
+    "valuesExcluded": true
+  },
+  "privacyPolicyOwnerApproved": false,
+  "phaseTechnicalScopeVerified": true,
+  "policyAcceptancePending": true,
+  "realProvidersTested": false,
+  "realStoreLocationsTested": false,
+  "nativePhoneTested": false,
+  "workflowPreview": "real HTTP/PostgreSQL with isolated OTP/routing/storage adapters; image verification real, not R2",
+  "newExternalServiceKeys": [],
+  "realPushTested": false,
+  "otaPublished": false,
+  "stoppedBeforePhase": "12",
+  "sources": [
+    {
+      "path": "backend/src/app.ts",
+      "sha256": "e2ddf963893b45891ffb323a7f3b5d2bdf6f1c63588beecae5c77c3f3e4dd7b7"
+    },
+    {
+      "path": "backend/src/bootstrap.ts",
+      "sha256": "1ca80d1530892745cafb20dba3331783c780f34471c0db51d2c70e51f1226980"
+    },
+    {
+      "path": "backend/src/catalog/contracts.ts",
+      "sha256": "26a2d216626e535066cfdda8064c117420f5f9018d0e587aa73b52ab08bdd644"
+    },
+    {
+      "path": "backend/src/catalog/media.ts",
+      "sha256": "30ce9f805a5924e00a3307eac15d54278cfaadd55376796eb7681d6ad95d0938"
+    },
+    {
+      "path": "backend/src/catalog/openapi.ts",
+      "sha256": "5b74878ccf2c524f48e69aeea84aa76ec981da85fded6dc9fabb05c7e606b999"
+    },
+    {
+      "path": "backend/src/catalog/routes.ts",
+      "sha256": "22de3b7bae8f4ddd3e185b0229f7c118fcc8b226f2ef113adcd91c8380b7ffc0"
+    },
+    {
+      "path": "backend/src/catalog/stock.ts",
+      "sha256": "5d5491679ac4b950195884b09c15054a1e3c84f1d432da4899cd66957094238d"
+    },
+    {
+      "path": "backend/src/catalog/worker.ts",
+      "sha256": "8a5b32ee166894b8b6829ecee47757b3fd8679e9d49591433fc486c47d86c07a"
+    },
+    {
+      "path": "backend/src/checkout/contracts.ts",
+      "sha256": "86778af94d1a8cc7a6db3e88f2482d6863fdae97087873fd0e4281e143f4243d"
+    },
+    {
+      "path": "backend/src/checkout/maps.ts",
+      "sha256": "105b8c02f7f6bee541227a4722c380fd6abf3421f154822957f9aa0e5ec66a70"
+    },
+    {
+      "path": "backend/src/checkout/openapi.ts",
+      "sha256": "ff7147a8af6e482328f2e65f872a9d7295c698b391c49ca22060ca1d38c91266"
+    },
+    {
+      "path": "backend/src/checkout/pricing.ts",
+      "sha256": "99481548af9c8c9723a4d99fe2a33f708d1e105ed9fb1574874d4fff6e3e5a6e"
+    },
+    {
+      "path": "backend/src/checkout/routes.ts",
+      "sha256": "38048250cb1e3e5682805108c9d44a55d71199f9bdcddc0ffc8996f7f99ef440"
+    },
+    {
+      "path": "backend/src/checkout/routing.ts",
+      "sha256": "c4d507d50cc95968ebc6c09fff463eda11a0a3ec583f01019a64ff915c26dcd5"
+    },
+    {
+      "path": "backend/src/checkout/service.ts",
+      "sha256": "fa56b842bc12926665db853a9a507997b7ca8f539a178b2bba90ebb5efb67dfd"
+    },
+    {
+      "path": "backend/src/config.ts",
+      "sha256": "4e153d13619856b0c19278f91a5c083d27447f30480b7108e5ace5b5eb6d8277"
+    },
+    {
+      "path": "backend/src/db.ts",
+      "sha256": "8b2eee583c4892497d7edda4673f6357d511b8a93ca818c5dd0553bafe8a932e"
+    },
+    {
+      "path": "backend/src/delivery/cash-state.ts",
+      "sha256": "7473b573217189222e82b4bdfe2b67a05731c268a671a839a2121acd4531ae24"
+    },
+    {
+      "path": "backend/src/delivery/contracts.ts",
+      "sha256": "4d9297e7d453e4c9ea1c73ebd5cf8c9a53f40c28c2c726d5f1b2423802e20e76"
+    },
+    {
+      "path": "backend/src/delivery/core.ts",
+      "sha256": "feef2fef79c7af808af4e9016e2116c32a0629a8d39d3e2398cf98c221418f18"
+    },
+    {
+      "path": "backend/src/delivery/ledger.ts",
+      "sha256": "9194c522d9d35195bf82f70ac3044d159c95d4ffe875730063b25d99bc32d380"
+    },
+    {
+      "path": "backend/src/delivery/management.ts",
+      "sha256": "7a2a6c361830319260600f3cc9502d14f9aee3b4e7cc3f6036c1a1b75402c94d"
+    },
+    {
+      "path": "backend/src/delivery/media-access.ts",
+      "sha256": "b9226f5da612740c794008df926284396202e84989aedfcc7586826a96f4000d"
+    },
+    {
+      "path": "backend/src/delivery/openapi.ts",
+      "sha256": "d68ff9f9057896df8854da9d3a692928a2532de6819ebc231e4158b9e289a820"
+    },
+    {
+      "path": "backend/src/delivery/quality.ts",
+      "sha256": "53b625f49b915a318e8481df5aab7037da1bedfe9862068234d8c11bfe2fb9db"
+    },
+    {
+      "path": "backend/src/delivery/routes.ts",
+      "sha256": "09a8478454c5c0389e4d6109ac42e02f25de013261a6a5afdfa18dbde15ac710"
+    },
+    {
+      "path": "backend/src/delivery/service.ts",
+      "sha256": "5a3f962b54e3dbf65b7840d631c53190cb6fddd45f3411da23beda47620e1b3e"
+    },
+    {
+      "path": "backend/src/delivery/views.ts",
+      "sha256": "d9569906f746517c43ea7f509324370905e0228e56e39c0cd37e5f3929dfc2bc"
+    },
+    {
+      "path": "backend/src/engagement/configuration.ts",
+      "sha256": "1111b3aa37b27cb56edc0c92581ee7cf6aec6a1f1e19a692d1244d1e331a20ee"
+    },
+    {
+      "path": "backend/src/engagement/contracts.ts",
+      "sha256": "982a74878fddf1308f9fa2dd79d5f0ea1ce372a26058b5b50c1885f89d18d7b2"
+    },
+    {
+      "path": "backend/src/engagement/openapi.ts",
+      "sha256": "c14e2fc058992b35eec4fc1ff358404ad664e3cd073211bd4cc3b9df0596fc9a"
+    },
+    {
+      "path": "backend/src/engagement/provider.ts",
+      "sha256": "abc4e191e97645c7f27b244c608978c0def93dee3d1e008e9848853eff848025"
+    },
+    {
+      "path": "backend/src/engagement/routes.ts",
+      "sha256": "d90aa25cbebd25005be4d14eb28b954c3218f7926a5f6cac48671e7636c1f4f4"
+    },
+    {
+      "path": "backend/src/engagement/service.ts",
+      "sha256": "2702ecf97ece72c57987ac5598a2417a45b06590141c3288f076a183505d6ffe"
+    },
+    {
+      "path": "backend/src/engagement/worker.ts",
+      "sha256": "7ab3478caf91058089bc8b6fa2dcaa960c6c26b615c50d26ee08cdf13570ba64"
+    },
+    {
+      "path": "backend/src/http.ts",
+      "sha256": "e8892e31200cfbcd869219413442f7dd0705b1c410e43aa58e6890a7ad1aadd7"
+    },
+    {
+      "path": "backend/src/identity/access.ts",
+      "sha256": "d4c080800f064eb5a92fe0eee889e3a3642e6827200c90d5e1ce9203ee5f4c43"
+    },
+    {
+      "path": "backend/src/identity/audit.ts",
+      "sha256": "3b6e58c2db061b633f8f73229691e01fb6f55b427240b8f7fcf0baec8f430548"
+    },
+    {
+      "path": "backend/src/identity/auth.ts",
+      "sha256": "563234901b1a0f5f4bfceb2ba27bb50d098faa994293c2087719a1078c737246"
+    },
+    {
+      "path": "backend/src/identity/contracts.ts",
+      "sha256": "7a9b5fef7f6ec71757d435539e151e0e8bd7865ac2b5cad6b6e3029a86ec4cfb"
+    },
+    {
+      "path": "backend/src/identity/provider.ts",
+      "sha256": "cb319ecd48c7c167c03ddd1ca79b194db45eab9e3d604e201c35a7270ee8d7a0"
+    },
+    {
+      "path": "backend/src/identity/rate-limit.ts",
+      "sha256": "61e2571e13a1984d33ccd86be90d5bc19a7e40dd304d330da5f02f1b6fafc0d1"
+    },
+    {
+      "path": "backend/src/identity/responses.ts",
+      "sha256": "671dd7368edad90d7ae245a40711e4fd539cf96ecfc0b1383752ba37f217654e"
+    },
+    {
+      "path": "backend/src/identity/routes.ts",
+      "sha256": "6ce66a92055070e5272dc25082667a20c1f0c539344a61eb13bf772e14251e5b"
+    },
+    {
+      "path": "backend/src/identity/security.ts",
+      "sha256": "6ce07e0427be81816268429b09abd767ea9c23568cfbe03a38adc469b4d803f6"
+    },
+    {
+      "path": "backend/src/migrate.ts",
+      "sha256": "a7adb177585ba7cd233b1675f06dd55fb93de04af7f8d85693c57bdac989e147"
+    },
+    {
+      "path": "backend/src/openapi.ts",
+      "sha256": "73c8ae02fad937fd2965dc9d8026601ff03e24ab5efdbecbbc5da93efd61f897"
+    },
+    {
+      "path": "backend/src/orders/contracts.ts",
+      "sha256": "f9b4b0ef7f344f33fe45c5d00a9f539b59b88b76006eb79df97276f31978d81a"
+    },
+    {
+      "path": "backend/src/orders/core.ts",
+      "sha256": "e198fefab4524a3de8828948957e1ee20c9fece4dd7cc30928c381f0a82c0455"
+    },
+    {
+      "path": "backend/src/orders/finance.ts",
+      "sha256": "3344af0ab69099c5db00fd85086c38671336f091118dc19808be06dcd63071db"
+    },
+    {
+      "path": "backend/src/orders/openapi.ts",
+      "sha256": "2a14ff11ffb955c6cc34729319943ef4ff48eede8327408692d106c9a9000344"
+    },
+    {
+      "path": "backend/src/orders/pricing.ts",
+      "sha256": "ca594c04c1e179409eda345a6733196a582d6c4bfd0d0618691fa89ce91c88cf"
+    },
+    {
+      "path": "backend/src/orders/routes.ts",
+      "sha256": "ecf6ecc29c266b8716c8e81fbab81229f04fa825f53014306483da3e49009c0b"
+    },
+    {
+      "path": "backend/src/orders/service.ts",
+      "sha256": "5b42ae32910a4142f67c1870c16b0979ea144a4973d1e0b248bf91f16c4f30a2"
+    },
+    {
+      "path": "backend/src/orders/views.ts",
+      "sha256": "9e4cd28e2a7191627b102257f26356b8949ad8cda92d19b18e22e66d6b62a786"
+    },
+    {
+      "path": "backend/src/orders/worker.ts",
+      "sha256": "61f0d3cd5cde6e7a1ee46770060066f17b6631055a564359e6c4235c17664500"
+    },
+    {
+      "path": "backend/src/privacy/contracts.ts",
+      "sha256": "da5b5b8419302cc5f6b5f77e0e0ce01c2e18141632cd7ab6b1cedc4255e9658e"
+    },
+    {
+      "path": "backend/src/privacy/openapi.ts",
+      "sha256": "587a5713047b324537b0b60c085c6f045cf7749f24c2c54712675322d7e7c387"
+    },
+    {
+      "path": "backend/src/privacy/policy.ts",
+      "sha256": "5f625bb85dde29a7aeec5a4500e98ddde7013878c45d2070cc081529c524f6e2"
+    },
+    {
+      "path": "backend/src/privacy/routes.ts",
+      "sha256": "c9a4f33ed2ba9a91c3f9d757207178f4f7beae5aa02e102d4fa983e571dc0850"
+    },
+    {
+      "path": "backend/src/privacy/service.ts",
+      "sha256": "07796f4fa245d33d760808fed5182f7cbfcdabbea381218d85052cb6e949e2a5"
+    },
+    {
+      "path": "backend/src/privacy/worker.ts",
+      "sha256": "02d2120aa687b22669e3dbc8b085ead47942141dad94edea5f2398b177d5d15d"
+    },
+    {
+      "path": "backend/src/prune-auth.ts",
+      "sha256": "22abc03a4441903ef35bc4c9df87928ec6f3231b4a6939853032c230877fbaa5"
+    },
+    {
+      "path": "backend/src/readiness.ts",
+      "sha256": "08a3ede8a499c35af6c2c58c03edca0e092a7a219075470ad6f5006b9c04a4b0"
+    },
+    {
+      "path": "backend/src/reports/routes.ts",
+      "sha256": "d1c367c266e89799cb6d16e1418e0419bef9fb51562b0b13724b5828daa22da6"
+    },
+    {
+      "path": "backend/src/reports/service.ts",
+      "sha256": "5e133aac0057ecec69fcad09668717cac98d3bf8a07350ea4cf255e9fd45b2e9"
+    },
+    {
+      "path": "backend/src/server.ts",
+      "sha256": "11297121bb090b58ad6da6acfc7ae4603e02cca749f63571949a8c38a77ec978"
+    },
+    {
+      "path": "backend/public/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "backend/public/legal/deletion.js",
+      "sha256": "5ae138485d178ad74d59a27a5e0f42c17f1ddc248cca60e42a98735d38475df1"
+    },
+    {
+      "path": "backend/public/legal/style.css",
+      "sha256": "f8c83aceb18ffe82e41b51d8e0283a1a1eedcc7a1591b376d296ce6057d164dc"
+    },
+    {
+      "path": "backend/public/maps/Tajawal-Medium.ttf",
+      "sha256": "1ff8bd943a261c9dd7906bdb1993cab87b6d925a7fb5f848cdb51ed301531090"
+    },
+    {
+      "path": "backend/public/maps/picker.css",
+      "sha256": "586d9775682055fb44b7b8f1306f7468780e3f8da779759dee3e06b7b9eb1ee9"
+    },
+    {
+      "path": "backend/public/maps/picker.html",
+      "sha256": "86966f5025bfdf43e9fc26b8c164116ec4e07134e72ea7a63bfb1d8fc1de916b"
+    },
+    {
+      "path": "backend/public/maps/picker.js",
+      "sha256": "6ffd76d22b8d870099556b443a4544c6682bfb9de66bf951d856fb4abc6c473d"
+    },
+    {
+      "path": "backend/database/migrations/0001_reference_69.sql",
+      "sha256": "a4d39075b4293ed089e69af032ab03f9fd6d839f7e77fba147b3e210459976b4"
+    },
+    {
+      "path": "backend/database/migrations/0002_identity_security.sql",
+      "sha256": "a6d50278db671e9923e02f029a37a2938fcff515734026c3fa59433c8ff10896"
+    },
+    {
+      "path": "backend/database/migrations/0003_catalog_media.sql",
+      "sha256": "16006fdac55183aa0f044eacd5aea377e1efbca65e1f70f09774fb7ddeaa14a7"
+    },
+    {
+      "path": "backend/database/migrations/0004_checkout_read_models.sql",
+      "sha256": "aedad6b26d1d2eadad6e35515668cd06ae1b6b9d80885d65046d1b457aa0a9eb"
+    },
+    {
+      "path": "backend/database/migrations/0005_order_workflow.sql",
+      "sha256": "8197370e0bc0b6cac8ab80a462cf39ce4457e305be79e7d25e61bc41261147d7"
+    },
+    {
+      "path": "backend/database/migrations/0006_delivery_quality.sql",
+      "sha256": "7adfedc19c1234e8cd1751c73884a1ff8e8333eccacc8c4ff88e2760fdfab54f"
+    },
+    {
+      "path": "backend/database/migrations/0007_engagement_releases.sql",
+      "sha256": "dd394679a8b911202d239958f304e98327cbfab2e4c29ab7f1fd5c5f36478477"
+    },
+    {
+      "path": "backend/database/migrations/0008_reports_privacy.sql",
+      "sha256": "7ce8c906594b2be232c626c35ee9118264171c905c23499ca478c08e6cf6f23f"
+    },
+    {
+      "path": "customer-app/src/live/MapPicker.tsx",
+      "sha256": "8f55fdd1bb07a09265a768014eee5c4490473b4185db7364a725ae5fdaeb5d01"
+    },
+    {
+      "path": "customer-app/src/live/MapPicker.web.tsx",
+      "sha256": "010b4ec230701f326845edea79ce61c2cb92422f467cc3d157712b5b9c6da3d6"
+    },
+    {
+      "path": "customer-app/src/live/addresses.tsx",
+      "sha256": "fc9a88f025724388fef1b27993735a70ce274f7a7cd357a0460f79774bb807a5"
+    },
+    {
+      "path": "customer-app/src/live/cart-state.tsx",
+      "sha256": "b35e4839a7129c1c6e9623ffbac470be12204441a7357791ee770da2c5da6a2a"
+    },
+    {
+      "path": "customer-app/src/live/catalog.tsx",
+      "sha256": "e44e408d63fa79d321aa7cf198e1faef442a22f7de9c8ce3af30339dbb7f076c"
+    },
+    {
+      "path": "customer-app/src/live/checkout.tsx",
+      "sha256": "a998a6dfda7e5de7e980721aed70beb21a0b7cbbe0c539a1410df4442c213db6"
+    },
+    {
+      "path": "customer-app/src/live/connection.tsx",
+      "sha256": "17c68c1ecad5129c7fdcec4cf17c5a658118b95c7a4c535e1057dae678e4737f"
+    },
+    {
+      "path": "customer-app/src/live/engagement.tsx",
+      "sha256": "a406b21754a1694eeee12c49cb65c48d4a9f617065f2ddf479549ccbc68e676d"
+    },
+    {
+      "path": "customer-app/src/live/legal.tsx",
+      "sha256": "e11ca3457063f728081b30d8cbe814e156548441434fab51411653dd7d7a3abd"
+    },
+    {
+      "path": "customer-app/src/live/operation-queue.ts",
+      "sha256": "3dd59663bf2bea2d8fb86c7a0f19c359121be40283b7dd6b18de7e7920189f1a"
+    },
+    {
+      "path": "customer-app/src/live/operations.ts",
+      "sha256": "efa2d9ffd25a8c345b9bbcfbb24e94d7decfb02f8026705cf077b8c051fc851f"
+    },
+    {
+      "path": "customer-app/src/live/orders.tsx",
+      "sha256": "292c2df342475868fa4196aa453b3a4b0857d4f18d4d6bbdbd8e094b4484588f"
+    },
+    {
+      "path": "customer-app/src/live/preferences.tsx",
+      "sha256": "0c41dca21cbb9c7d1e7bc001897f29f18c124142d9b07d99c5cc8039b50e05ee"
+    },
+    {
+      "path": "customer-app/src/live/quality.tsx",
+      "sha256": "6c23d54b03da72395bf1ea6857021ff5a5f8e06b54212c19c47b3bc68a0e4e0b"
+    },
+    {
+      "path": "customer-app/src/live/transport.ts",
+      "sha256": "cf35e3ed30073491a8b2bf4b41676bc5009a111b5d2a65aa651a1e2d90eb6046"
+    },
+    {
+      "path": "customer-app/src/live/upload.ts",
+      "sha256": "812a1cd7bba13d67adf2b5d3856208582c5d61b961b11623a8ed4e52db3f0cbe"
+    },
+    {
+      "path": "admin-app/src/live/connection.tsx",
+      "sha256": "91d6f634ffb8614ca697e052527cdbc3e5cc3d24489e1fdd4524fbfee9af8ffe"
+    },
+    {
+      "path": "admin-app/src/live/delivery.tsx",
+      "sha256": "c457145deec5155f463efeea96d1bcd3bff9bb9b8bf357ee936f5c7ecb206d0d"
+    },
+    {
+      "path": "admin-app/src/live/engagement-admin.tsx",
+      "sha256": "3f9d5e906da9222101f888b2f396f47c4a4211e771984b50818001cffc827631"
+    },
+    {
+      "path": "admin-app/src/live/engagement.tsx",
+      "sha256": "a406b21754a1694eeee12c49cb65c48d4a9f617065f2ddf479549ccbc68e676d"
+    },
+    {
+      "path": "admin-app/src/live/legal.tsx",
+      "sha256": "e11ca3457063f728081b30d8cbe814e156548441434fab51411653dd7d7a3abd"
+    },
+    {
+      "path": "admin-app/src/live/methods.tsx",
+      "sha256": "d9f502874a25dacac65e14a4e9aa6b9ace5ee48c5a604569c0743b25eb74ab4b"
+    },
+    {
+      "path": "admin-app/src/live/operation-queue.ts",
+      "sha256": "3dd59663bf2bea2d8fb86c7a0f19c359121be40283b7dd6b18de7e7920189f1a"
+    },
+    {
+      "path": "admin-app/src/live/operations.ts",
+      "sha256": "efa2d9ffd25a8c345b9bbcfbb24e94d7decfb02f8026705cf077b8c051fc851f"
+    },
+    {
+      "path": "admin-app/src/live/orders.tsx",
+      "sha256": "4c6f447d7baf71dec0559c57cf7f91a00b798df51f33a037f2f87ca440f86ee3"
+    },
+    {
+      "path": "admin-app/src/live/privacy-requests.tsx",
+      "sha256": "dc1504370a34a443c80a712e1482a928223032846b3599e832ff690a41f5d256"
+    },
+    {
+      "path": "admin-app/src/live/reports.tsx",
+      "sha256": "5e709975e8b87fb44da090d7d95257227e88cee7bfcc1e17e36cb70e3bf063b0"
+    },
+    {
+      "path": "admin-app/src/live/transport.ts",
+      "sha256": "cf35e3ed30073491a8b2bf4b41676bc5009a111b5d2a65aa651a1e2d90eb6046"
+    },
+    {
+      "path": "admin-app/src/live/upload.ts",
+      "sha256": "812a1cd7bba13d67adf2b5d3856208582c5d61b961b11623a8ed4e52db3f0cbe"
+    },
+    {
+      "path": "admin-app/src/live/workspace.tsx",
+      "sha256": "fdf507696895ce91b538d9aeeef7860f60e8deb8e11c621486ccd164ab5141f0"
+    },
+    {
+      "path": "courier-app/src/live/connection.tsx",
+      "sha256": "5f4ecdef6c5063cc915bb22c86972014818626a7dd827b9596dc5e8eede57d92"
+    },
+    {
+      "path": "courier-app/src/live/engagement.tsx",
+      "sha256": "a406b21754a1694eeee12c49cb65c48d4a9f617065f2ddf479549ccbc68e676d"
+    },
+    {
+      "path": "courier-app/src/live/legal.tsx",
+      "sha256": "e11ca3457063f728081b30d8cbe814e156548441434fab51411653dd7d7a3abd"
+    },
+    {
+      "path": "courier-app/src/live/operation-queue.ts",
+      "sha256": "3dd59663bf2bea2d8fb86c7a0f19c359121be40283b7dd6b18de7e7920189f1a"
+    },
+    {
+      "path": "courier-app/src/live/operations.ts",
+      "sha256": "357b0757c5cd3a86cee0797ccee576d5a18de4f3befa5d9998916d3b42f6b52c"
+    },
+    {
+      "path": "courier-app/src/live/screens.tsx",
+      "sha256": "879000ebd7a7b9fc88cbf3079b1e1db385b294549b32022cfd7b24730f87e4ad"
+    },
+    {
+      "path": "courier-app/src/live/standby.tsx",
+      "sha256": "2a67a6ea20449153d62f1d7e0b08ddb6f2f1fd3591b65706598f2423e9bb5757"
+    },
+    {
+      "path": "courier-app/src/live/transport.ts",
+      "sha256": "cf35e3ed30073491a8b2bf4b41676bc5009a111b5d2a65aa651a1e2d90eb6046"
+    },
+    {
+      "path": "courier-app/src/live/upload.ts",
+      "sha256": "812a1cd7bba13d67adf2b5d3856208582c5d61b961b11623a8ed4e52db3f0cbe"
+    },
+    {
+      "path": "customer-app/integration/IntroScreen.tsx",
+      "sha256": "44679e71d89bd4b216891dedd0d40000f3c84000a416d34b63142e58a64d4015"
+    },
+    {
+      "path": "customer-app/integration/eas.example.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "customer-app/integration/expo-config.fragment.json",
+      "sha256": "6ea009dbb22d16a671d747732219f0fd830f47f65214237615386851ca4918a9"
+    },
+    {
+      "path": "customer-app/integration/intro-lifecycle.ts",
+      "sha256": "ddaacfad961c46125bb2ed147a155f6dff1011a0b963f7e315b18fd79af3812c"
+    },
+    {
+      "path": "customer-app/integration/release-config.d.ts",
+      "sha256": "647386eb00884e09fa0fd0f8f2ffdd91d4d2aef728532f342a7813c06e7cd31a"
+    },
+    {
+      "path": "customer-app/integration/release-config.js",
+      "sha256": "e9a2d3eeda14a8bfcd46fe8cfa38064a7180206884b55cca3cfbb0b042e319d7"
+    },
+    {
+      "path": "customer-app/integration/update-policy.ts",
+      "sha256": "b741c376028ba8140b4b68b009de06cad3d4b627aac99e730e448cdfcec181ae"
+    },
+    {
+      "path": "customer-app/integration/updates.ts",
+      "sha256": "f3df63154e90a54ac41ecb439c2264658002c64225f624d76ed1f1a4ab2df4c9"
+    },
+    {
+      "path": "admin-app/integration/eas.example.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "admin-app/integration/expo-config.fragment.json",
+      "sha256": "234e04c2b0569ac7120786f37e778252bfa303b95638c59f195ca10e29efb466"
+    },
+    {
+      "path": "admin-app/integration/release-config.d.ts",
+      "sha256": "647386eb00884e09fa0fd0f8f2ffdd91d4d2aef728532f342a7813c06e7cd31a"
+    },
+    {
+      "path": "admin-app/integration/release-config.js",
+      "sha256": "e9a2d3eeda14a8bfcd46fe8cfa38064a7180206884b55cca3cfbb0b042e319d7"
+    },
+    {
+      "path": "admin-app/integration/update-policy.ts",
+      "sha256": "b741c376028ba8140b4b68b009de06cad3d4b627aac99e730e448cdfcec181ae"
+    },
+    {
+      "path": "admin-app/integration/updates.ts",
+      "sha256": "f3df63154e90a54ac41ecb439c2264658002c64225f624d76ed1f1a4ab2df4c9"
+    },
+    {
+      "path": "courier-app/integration/eas.example.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "courier-app/integration/expo-config.fragment.json",
+      "sha256": "ec55edb15d867c7802336a7e734c3256db3d81b61eadc1ec14c196cde0b772a7"
+    },
+    {
+      "path": "courier-app/integration/release-config.d.ts",
+      "sha256": "647386eb00884e09fa0fd0f8f2ffdd91d4d2aef728532f342a7813c06e7cd31a"
+    },
+    {
+      "path": "courier-app/integration/release-config.js",
+      "sha256": "e9a2d3eeda14a8bfcd46fe8cfa38064a7180206884b55cca3cfbb0b042e319d7"
+    },
+    {
+      "path": "courier-app/integration/update-policy.ts",
+      "sha256": "b741c376028ba8140b4b68b009de06cad3d4b627aac99e730e448cdfcec181ae"
+    },
+    {
+      "path": "courier-app/integration/updates.ts",
+      "sha256": "f3df63154e90a54ac41ecb439c2264658002c64225f624d76ed1f1a4ab2df4c9"
+    },
+    {
+      "path": ".easignore",
+      "sha256": "fc59ec60886053948029dc23d865d039d600626bfdb9e0d204b267521bfe2134"
+    },
+    {
+      "path": "backend/database/runtime-grants.sql",
+      "sha256": "303791634256bd1358cabd815452f85774797207802902ffe03b231c6f2b00b0"
+    },
+    {
+      "path": "backend/scripts/check-client-boundary.mjs",
+      "sha256": "c7cf9b7d4f0430de7c88171eee5c65fb89a5d0142c8f9aeca98254350870c20d"
+    },
+    {
+      "path": "backend/scripts/capture-phase11-checks.mjs",
+      "sha256": "e6def1e1709b38ec8defd2ac7bcf7b19f69dee065c73c430f9cabf5ae35b36f8"
+    },
+    {
+      "path": "backend/scripts/export-openapi.ts",
+      "sha256": "0bc1442ce48f1641b0b7c5c88b6c4bf3a818c967a61c69c33760b9c9e5b8643b"
+    },
+    {
+      "path": "backend/scripts/prepare-native-config.mjs",
+      "sha256": "09c82ef6b6bd10c712e5d55907b15fdc48fbdf811186348b2813239115917c57"
+    },
+    {
+      "path": "backend/scripts/test-phase05.mjs",
+      "sha256": "1f645a8c1fe958259225816935f66d7f6d25ad4500fc396e74a99011436e8ff9"
+    },
+    {
+      "path": "backend/scripts/test-phase11-ui.ts",
+      "sha256": "5b3a568cea9f99f6883313b7b9806a0775118480590aa1c6d4155f58e19892ed"
+    },
+    {
+      "path": "backend/scripts/verify-expo-tunnels.mjs",
+      "sha256": "41158f6a50e312d7b85af1fe50e2da79b263cbfb73f13e21d70c47fde7685dc2"
+    },
+    {
+      "path": "backend/tests/phase11.test.ts",
+      "sha256": "b36aeb8e6463220977ed8dbe99aeb3bff63021338c82919426d4e82aa4de92fb"
+    },
+    {
+      "path": "backend/tests/client-release.test.ts",
+      "sha256": "453be218bd77e564456103474eebac34802682bda2da7ce86ba84e16cb1e5aef"
+    },
+    {
+      "path": "backend/tests/client-transport.test.ts",
+      "sha256": "3dcccbe2ce2ca83b4be8fd29bd679dded374875a77825464c8aa732167507051"
+    },
+    {
+      "path": "backend/tests/client-operations.test.ts",
+      "sha256": "404381dbb54ca2c08a531830800fec482417a83d16b8e3e07b8092e128d5d9ef"
+    },
+    {
+      "path": "backend/tests/phase05/helpers.ts",
+      "sha256": "a54d6108d7a3dc964a40cdba0e93e1d831825cce5d0b34dee281f6081c70952f"
+    },
+    {
+      "path": "backend/tests/phase08/seed.ts",
+      "sha256": "086a4ff72f5a9c880cd78aac6f36332365d369d7cfacdeaeab3290a4dc137284"
+    },
+    {
+      "path": "backend/tests/phase09/seed.ts",
+      "sha256": "9888e6ac4548b1282f52bf73c5e7e98528e80fd82e9bc5286f3c78cf9650ee1a"
+    },
+    {
+      "path": "backend/package-lock.json",
+      "sha256": "a3b2ead38862fca1a280f5591d9a7987c7f0fd3bd08cd5add2e4fa4734f897d7"
+    },
+    {
+      "path": "customer-app/package-lock.json",
+      "sha256": "d944fbe870498b6bf5ba862fd33539de3d558cdd11fb035bed370be95a0e6913"
+    },
+    {
+      "path": "customer-app/app.config.ts",
+      "sha256": "10fc40ef5bfadcd7f644050c379c20e4e28500544d2c8d2187361a3efd281148"
+    },
+    {
+      "path": "customer-app/eas.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "customer-app/src/app/_layout.tsx",
+      "sha256": "206fb48c20d66d0b0890010681a873b9d88a78fb44798ff8ef55e1fd8441b61e"
+    },
+    {
+      "path": "customer-app/src/app/notifications.tsx",
+      "sha256": "fa0a77dce8420883d49f45d66766bc44c38425e97bfda3146f6c3ee889cd1703"
+    },
+    {
+      "path": "admin-app/package-lock.json",
+      "sha256": "f67af17384e617e9bfb4a3e417cf767eb59e4acb7b2384c79997ac0c000c13d5"
+    },
+    {
+      "path": "admin-app/app.config.ts",
+      "sha256": "859b643134e46cdcc8b9405222b7d8de1f11c3a8e59f92d2befe0d188ee121be"
+    },
+    {
+      "path": "admin-app/eas.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "admin-app/src/app/_layout.tsx",
+      "sha256": "2c22d2a36ac817e5087ec9e199d57df87882a7c47393c3c8c48a3493a854db50"
+    },
+    {
+      "path": "admin-app/src/app/notifications.tsx",
+      "sha256": "fa0a77dce8420883d49f45d66766bc44c38425e97bfda3146f6c3ee889cd1703"
+    },
+    {
+      "path": "courier-app/package-lock.json",
+      "sha256": "9e35771a660a514f09476ba81a797c9c1ba4122892e107cf2d9cc7a7466a26ef"
+    },
+    {
+      "path": "courier-app/app.config.ts",
+      "sha256": "b7a4dae26a5597d5f5450b005f3dba3ea922bb1b4993128814033032c54e2b50"
+    },
+    {
+      "path": "courier-app/eas.json",
+      "sha256": "51b8f5832badbb5e31c73dbf641d78f664c3b910fa8549ad64871df120e682d1"
+    },
+    {
+      "path": "courier-app/src/app/_layout.tsx",
+      "sha256": "7769886bf344abc253fd90b8550fa28aade87b56285addda0e45d9d9f72b5a6b"
+    },
+    {
+      "path": "courier-app/src/app/notifications.tsx",
+      "sha256": "fa0a77dce8420883d49f45d66766bc44c38425e97bfda3146f6c3ee889cd1703"
+    },
+    {
+      "path": "admin-app/src/app/operations.tsx",
+      "sha256": "5093644c74e48bc4b8a1b5e3d97bc5ca7b4db0c544500a89f7b3797b7768c4be"
+    },
+    {
+      "path": "admin-app/src/app/campaigns.tsx",
+      "sha256": "95668ac1db9febfed6e26b1cb12234c8bedb6d7c36b7a3fd45b7e0cf7fbb5f9e"
+    },
+    {
+      "path": "customer-app/src/app/(tabs)/account.tsx",
+      "sha256": "3a701b0abbb8eb5997dc36b49443b4d77bbb1af3625c44ac19e8b54c2b906ea2"
+    },
+    {
+      "path": "courier-app/metro.config.js",
+      "sha256": "1cd3d35905e70a4ec1807ef94010af5be34aa9753127acdd12a874c92fedec6f"
+    }
+  ]
+}

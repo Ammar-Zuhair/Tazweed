@@ -65,3 +65,7 @@
 ## قبول10 المنفذ والمؤجل
 
 [تقرير10](progress/phase-10.md) و[الفحوص](progress/phase-10-checks.json) يغطيانجدولةمتنافسة ودفعاتالمركز/الإبطال/فقدالإقرار ونطاقالمهمة والبيئة والمهلةوالretry والreceipt، وصيانةالخادم وبواباتbuild رقمية، وسياسةcheck/fetch بلاreload. لاتُحسبمحولاتExpo أوweb gate screenshots أوHermes تجربةforeground/background/closed أوFCM/APNs أوOTA منشور؛ المصفوفةالأصلية مؤجلةحسبطلبالمالك في[RELEASES](RELEASES.md).
+
+## قبول11
+
+التقرير يفتح عربيًا بخط محلي وتواريخ الفترة/المنطقة، ويفصل المبيعات المسلّمة وحركات المال والخصم والعمولة والعكس؛ report scope والفروع وصاحب الملف والصلاحية الحية إلزامية، لا إيصالات عامة أو raw stock counts. تحقق browser-only/app deletion وOTP failure/wrong/purpose/device/replay، إبطال الجلسات ومنع الجديد مع استقبال طلب ذي التزامات، تعمية أحادية الاتجاه وعدم تغيير المال، retryR2 وتأخرPUT وعدم إعلان completed مبكرًا. لا يغلق معيار السياسة المكتملة بأسماء ومدد فعلية دون إعداد واعتماد المالك D19/D20، ولا D15 من تسمية UTC للمعاينة. [الحدود](REPORTS_PRIVACY.md) و[نتائج11](progress/phase-11.md).

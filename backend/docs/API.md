@@ -1,3 +1,5 @@
+> تنفيذ11: [OpenAPI11](openapi.phase11.json) هو العقد الحالي؛ [REPORTS_PRIVACY](REPORTS_PRIVACY.md) يشرح التقرير الخاص والحذف من التطبيق والمتصفح وgates السياسة والالتزامات. GET صفحات Express العامة لا يحتاج تطبيقًا؛ سياسة المالك غير مهيأة فلا ادعاء قبول قانوني نهائي.
+
 > تنفيذ10: [OpenAPI10](openapi.phase10.json) العقد الحالي؛ `/devices/push-tokens` و`/notifications` و`/admin/campaigns` و`/admin/customer-maintenance` و`/admin/app-releases` و`/public/config` متصلة. [السلوك والنطاق](ENGAGEMENT.md). ملاحظات المراحل السابقة أدناه تاريخية وليست وصفًا لحالة10.
 
 > تنفيذ08: [OpenAPI08](openapi.phase08.json) هو العقد الحالي، و[دورة الطلب](ORDERS.md) تشرح المعاملات والمال والخصوصية. حقول الأوامر `expectedVersion` و`Idempotency-Key`، والرد معرّف وإصدار مقتضبان ثمGET للتفاصيل. الطلبات والعروض والحجوزات والإيصالات والاستثناءات متصلة؛ الإسناد والتحصيل والعمولات في09 غير متاحة بعد. ملاحظات07 أدناه تاريخ المعاينة التي بقيتREAD ONLY.

@@ -125,7 +125,7 @@ export async function api(
   checkOwner();
   let result = await send(path, body, method, key);
   checkOwner();
-  if (result.r.status === 401 && tokens && !path.startsWith("/auth/")) {
+  if (result.r.status === 401 && tokens && !path.startsWith("/auth/") && !path.startsWith("/account-deletion/")) {
     await rotate();
     checkOwner();
     result = await send(path, body, method, key);
@@ -192,6 +192,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       accountId = profile.id;
       setUser(profile);
     },
+    forget: async () => { await save(null); setUser(null); },
     logout: async () => {
       const epoch = authEpoch;
       try {

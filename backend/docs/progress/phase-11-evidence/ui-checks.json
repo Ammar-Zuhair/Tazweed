@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-06T02:06:10.718Z",
+  "passed": true,
+  "results": [
+    {
+      "name": "private Arabic PDF with saved idempotency after lost acknowledgement and authenticated download",
+      "passed": true
+    },
+    {
+      "name": "live Arabic privacy content in customer, both themes at 360/390/1024",
+      "passed": true
+    },
+    {
+      "name": "in-app deletion accepts ongoing order, lost acknowledgement retries once, session revoked, truthful review state",
+      "passed": true
+    },
+    {
+      "name": "in-app full account deletion removes identity and survives page reload with receipt only",
+      "passed": true
+    },
+    {
+      "name": "browser-only deletion with wrong OTP then correct OTP, no app or login required",
+      "passed": true
+    },
+    {
+      "name": "OTP outage surfaces error and creates no successful deletion",
+      "passed": true
+    },
+    {
+      "name": "public Express RTL legal pages and courier live legal screen, both themes and three widths",
+      "passed": true
+    },
+    {
+      "name": "report refresh refuses revoked permission instead of stale financial access",
+      "passed": true
+    },
+    {
+      "name": "administrator privacy review cannot override the existing operational obligation",
+      "passed": true
+    }
+  ],
+  "screenshots": 27,
+  "pageErrors": [],
+  "externalProviderRequests": 0,
+  "realProvidersTested": false,
+  "nativePhoneTested": false,
+  "droppedReports": 1,
+  "droppedDeletions": 1
+}

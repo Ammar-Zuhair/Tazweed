@@ -1,1 +1,1 @@
-export {default} from '../live/preferences';
+export { Legal as default } from '../live/legal';

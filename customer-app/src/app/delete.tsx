@@ -1,1 +1,1 @@
-export { Deferred as default } from '../live/catalog';
+export { DeleteAccount as default } from '../live/legal';

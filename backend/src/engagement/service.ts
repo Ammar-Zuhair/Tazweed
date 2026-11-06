@@ -24,6 +24,8 @@ export async function registerToken(
       "إعداد مشروع الإشعارات لهذا التطبيق غير متاح",
     );
   return transaction(pool, async (db) => {
+    const account=(await db.query("SELECT deletion_requested_at,status FROM users WHERE id=$1 FOR UPDATE",[i.id])).rows[0];
+    if(!account||account.status!=="active"||account.deletion_requested_at)throw new ApiError(409,"DELETION_PENDING","تسجيل إشعارات جديدة متوقف أثناء حذف الحساب");
     await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1,1011))", [
       v.token,
     ]);

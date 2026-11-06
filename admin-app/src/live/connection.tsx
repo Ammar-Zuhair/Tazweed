@@ -125,7 +125,7 @@ export async function api(
   checkOwner();
   let result = await send(path, body, method, key);
   checkOwner();
-  if (result.r.status === 401 && tokens && !path.startsWith("/auth/")) {
+  if (result.r.status === 401 && tokens && !path.startsWith("/auth/") && !path.startsWith("/account-deletion/")) {
     await rotate();
     checkOwner();
     result = await send(path, body, method, key);
@@ -192,6 +192,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       accountId = profile.id;
       setUser(profile);
     },
+    forget: async () => { await save(null); setUser(null); },
     logout: async () => {
       const epoch = authEpoch;
       try {
@@ -403,4 +404,16 @@ export function LoginPanel() {
       </Txt>
     </Card>
   );
+}
+
+// Authenticated bytes stay behind the same account-epoch and refresh checks as JSON.
+export async function apiBytes(path:string,expectedUserId:string){
+ const epoch=authEpoch,check=()=>{if(epoch!==authEpoch||accountId!==expectedUserId)throw accountChanged();};
+ const sendBytes=async()=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{
+  check();const r=await fetch(apiBase()+path,{headers:{Authorization:'Bearer '+tokens?.accessToken,'X-Client-App':clientApp},signal:controller.signal});
+  const bytes=new Uint8Array(await r.arrayBuffer());check();return {r,bytes};
+ }catch(e){if(controller.signal.aborted)throw Error('انتهت مهلة تنزيل التقرير؛ حاول مجددًا');throw e;}finally{clearTimeout(timer);}};
+ check();let result=await sendBytes();if(result.r.status===401&&tokens){await rotate();check();result=await sendBytes();}check();
+ if(!result.r.ok)throw Error('تعذر تنزيل التقرير؛ تحقق من حالته وصلاحياتك');
+ if(!result.r.headers.get('content-type')?.includes('application/pdf'))throw Error('رد التقرير غير صالح');return result.bytes;
 }

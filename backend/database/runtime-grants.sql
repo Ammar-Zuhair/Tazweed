@@ -91,3 +91,30 @@ GRANT UPDATE(ticket_id,status,attempts,error_code,next_attempt_at,token_version,
 GRANT UPDATE(state,attempts,available_at,locked_at,audience_cursor) ON outbox_events TO tazweed_app;
 GRANT UPDATE(enabled,message_ar,updated_by,updated_at,version) ON customer_maintenance TO tazweed_app;
 GRANT UPDATE(minimum_build,latest_build,latest_version,store_url,message_ar,updated_by,updated_at,version,binary_confirmed) ON app_releases TO tazweed_app;
+
+-- Phase11: private report content and verified deletion state; never ledger mutation.
+GRANT SELECT,INSERT ON report_jobs,deletion_requests,privacy_file_deletions TO tazweed_app;
+GRANT UPDATE(state,error_message,pdf_bytes,summary,completed_at) ON report_jobs TO tazweed_app;
+GRANT UPDATE(challenge_id,proof_digest,receipt_digest,status,verified_at,completed_at,retention_notice,policy_snapshot,account_erased_at,retained_until,review_code,next_attempt_at) ON deletion_requests TO tazweed_app;
+GRANT UPDATE(state,attempts,next_attempt_at,deleted_at) ON privacy_file_deletions TO tazweed_app;
+GRANT SELECT ON deletion_requests,users,orders,financial_exceptions,payments,stock_reservations,complaints,order_assignments,
+ cash_collections,cash_remittance_reversals,cash_remittances,courier_earnings,courier_settlement_reversals,courier_settlements,
+ staff_grants,roles,order_events,media_objects,payment_receipt_attempts,privacy_file_deletions,notification_inbox,push_tokens,sessions TO tazweed_privacy;
+GRANT SELECT ON addresses,notification_deliveries,session_refresh_tokens,otp_challenges,idempotency_records,order_reviews,customer_flags,courier_profiles TO tazweed_privacy;
+GRANT DELETE ON addresses,notification_deliveries,push_tokens,notification_inbox,session_refresh_tokens,sessions,otp_challenges,idempotency_records,order_reviews,complaints,customer_flags TO tazweed_privacy;
+GRANT UPDATE(status,name_ar,phone_e164,password_hash,phone_verified_at,deleted_at) ON users TO tazweed_privacy;
+GRANT UPDATE(active) ON courier_profiles TO tazweed_privacy;
+GRANT UPDATE(status,account_erased_at,review_code,retained_until) ON deletion_requests TO tazweed_privacy;
+GRANT INSERT ON privacy_file_deletions TO tazweed_privacy;
+GRANT CREATE ON SCHEMA public TO tazweed_privacy;
+ALTER FUNCTION privacy_erase_account(uuid) OWNER TO tazweed_privacy;
+ALTER FUNCTION privacy_redact_retained(uuid) OWNER TO tazweed_privacy;
+GRANT EXECUTE ON FUNCTION privacy_erase_account(uuid),privacy_redact_retained(uuid) TO tazweed_app;
+
+REVOKE CREATE ON SCHEMA public FROM tazweed_privacy;
+GRANT SELECT,DELETE ON auth_rate_buckets TO tazweed_privacy;
+GRANT CREATE ON SCHEMA public TO tazweed_privacy;
+ALTER FUNCTION privacy_prune_security(integer) OWNER TO tazweed_privacy;
+GRANT EXECUTE ON FUNCTION privacy_prune_security(integer) TO tazweed_app;
+REVOKE CREATE ON SCHEMA public FROM tazweed_privacy;
+GRANT EXECUTE ON FUNCTION privacy_guard_media_reference() TO tazweed_app;

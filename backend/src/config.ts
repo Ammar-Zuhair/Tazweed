@@ -1,7 +1,19 @@
 import { readFileSync } from "node:fs";
 import { parseEnv } from "node:util";
 import { z } from "zod";
+const days = (min = 0) => z.preprocess(v => v === "" ? undefined : v, z.coerce.number().int().min(min).max(36500).optional());
 const envSchema = z.object({
+  STORE_LEGAL_NAME: z.string().max(160).default(""),
+  STORE_SUPPORT_PHONE: z.string().regex(/^(?:\+967[0-9]{9})?$/).default(""),
+  PRIVACY_CONTACT_EMAIL: z.union([z.email(), z.literal("")]).default(""),
+  PRIVACY_POLICY_VERSION: z.string().max(40).default(""),
+  PRIVACY_POLICY_APPROVED_AT: z.union([z.iso.date(), z.literal("")]).default(""),
+  PRIVACY_PERSONAL_RETENTION_DAYS: days(),
+  TRANSACTION_RETENTION_DAYS: days(),
+  PRIVACY_SECURITY_RETENTION_DAYS: days(),
+  PRIVACY_BACKUP_RETENTION_DAYS: days(),
+  PRIVACY_REQUEST_TARGET_DAYS: days(1),
+  REPORT_TIME_ZONE: z.string().default("UTC").refine(v => {try {new Intl.DateTimeFormat('ar',{timeZone:v});return true;}catch{return false;}}),
   NODE_ENV: z
     .enum(["development", "test", "production"])
     .default("development"),

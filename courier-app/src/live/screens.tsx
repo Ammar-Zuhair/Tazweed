@@ -22,6 +22,8 @@ function Nav() {
         ["العمليات المعلقة", "/pending"],
         ["الحساب", "/account"],
         ["مركز الإشعارات", "/notifications"],
+        ["الخصوصية والدعم", "/privacy"],
+        ["حذف الحساب", "/delete"],
       ].map(([title, path]) => (
         <Action
           key={path}

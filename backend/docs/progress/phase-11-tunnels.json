@@ -1,0 +1,135 @@
+{
+  "checkedAt": "2026-11-06T02:07:42.922Z",
+  "projectSlug": "tazweed",
+  "sdk": 57,
+  "nativePhoneTested": false,
+  "tunnels": [
+    {
+      "role": "customer",
+      "port": 8091,
+      "unit": "tazweed-customer-expo-8091",
+      "active": true,
+      "restarts": 0,
+      "stableDuringVerification": true,
+      "provider": "ngrok via Expo CLI --tunnel",
+      "runtime": "expo",
+      "expoGoUrl": "exps://sfs3nam-anonymous-8091.exp.direct",
+      "httpsOrigin": "https://sfs3nam-anonymous-8091.exp.direct",
+      "publicStatusHttp": 200,
+      "publicWebSocket": "opened",
+      "manifests": [
+        {
+          "platform": "android",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://sfs3nam-anonymous-8091.exp.direct/node_modules/expo-router/entry.bundle?platform=android&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 7118978,
+          "bundleIsCode": true,
+          "bundleSha256": "79ee17a462da4fc7676334482c4e2c3f865c6edb4305dc4f162a2b48ae26989d",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "sfs3nam-anonymous-8091.exp.direct"
+        },
+        {
+          "platform": "ios",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://sfs3nam-anonymous-8091.exp.direct/node_modules/expo-router/entry.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 6489521,
+          "bundleIsCode": true,
+          "bundleSha256": "4442359485d030e508d51cea09f281a34614c6e007beac04285822c4c501a420",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "sfs3nam-anonymous-8091.exp.direct"
+        }
+      ]
+    },
+    {
+      "role": "admin",
+      "port": 8092,
+      "unit": "tazweed-admin-expo-8092",
+      "active": true,
+      "restarts": 0,
+      "stableDuringVerification": true,
+      "provider": "ngrok via Expo CLI --tunnel",
+      "runtime": "expo",
+      "expoGoUrl": "exps://utjz9oi-anonymous-8092.exp.direct",
+      "httpsOrigin": "https://utjz9oi-anonymous-8092.exp.direct",
+      "publicStatusHttp": 200,
+      "publicWebSocket": "opened",
+      "manifests": [
+        {
+          "platform": "android",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://utjz9oi-anonymous-8092.exp.direct/node_modules/expo-router/entry.bundle?platform=android&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 6841743,
+          "bundleIsCode": true,
+          "bundleSha256": "114719de8f363da57a66f95930a6fb18490f21651fd06a523785c3dada4d7c80",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "utjz9oi-anonymous-8092.exp.direct"
+        },
+        {
+          "platform": "ios",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://utjz9oi-anonymous-8092.exp.direct/node_modules/expo-router/entry.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 6213529,
+          "bundleIsCode": true,
+          "bundleSha256": "c473847d946cb7ae4ff78e9b34da667483aac2744e64bea2ed68dcaa43bc2338",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "utjz9oi-anonymous-8092.exp.direct"
+        }
+      ]
+    },
+    {
+      "role": "courier",
+      "port": 8093,
+      "unit": "tazweed-courier-expo-8093",
+      "active": true,
+      "restarts": 0,
+      "stableDuringVerification": true,
+      "provider": "ngrok via Expo CLI --tunnel",
+      "runtime": "expo",
+      "expoGoUrl": "exps://vsfhyqu-anonymous-8093.exp.direct",
+      "httpsOrigin": "https://vsfhyqu-anonymous-8093.exp.direct",
+      "publicStatusHttp": 200,
+      "publicWebSocket": "opened",
+      "manifests": [
+        {
+          "platform": "android",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://vsfhyqu-anonymous-8093.exp.direct/node_modules/expo-router/entry.bundle?platform=android&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 6581001,
+          "bundleIsCode": true,
+          "bundleSha256": "763f1ca035e79b93a5cef11c7d30d3ec2f6157b4cc71fda45bffd8acaa5ed4cf",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "vsfhyqu-anonymous-8093.exp.direct"
+        },
+        {
+          "platform": "ios",
+          "sdkVersion": "57.0.0",
+          "runtimeVersion": "exposdk:57.0.0",
+          "manifestHttp": 200,
+          "launchAssetUrl": "https://vsfhyqu-anonymous-8093.exp.direct/node_modules/expo-router/entry.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=src%2Fapp&unstable_transformProfile=hermes-stable",
+          "bundleHttp": 200,
+          "bundleBytes": 5952783,
+          "bundleIsCode": true,
+          "bundleSha256": "bddfdd3d4125cc389027aeb19f78c442dd9b347ff24903b5bdfb874b874b2d1e",
+          "rtlManifestFlags": true,
+          "nativeApiHost": "vsfhyqu-anonymous-8093.exp.direct"
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

@@ -61,7 +61,9 @@ try {
       `CREATE DATABASE ${n} OWNER tazweed_owner; REVOKE ALL ON DATABASE ${n} FROM PUBLIC; GRANT CONNECT ON DATABASE ${n} TO tazweed_owner,tazweed_app;`,
     );
   await run(
-    process.argv.includes("--ui10")
+    process.argv.includes("--ui11")
+      ? ["--import", "tsx", "scripts/test-phase11-ui.ts"]
+      : process.argv.includes("--ui10")
       ? ["--import", "tsx", "scripts/test-phase10-ui.ts"]
       : process.argv.includes("--ui09")
       ? ["--import", "tsx", "scripts/test-phase09-ui.ts"]
@@ -78,7 +80,9 @@ try {
                   "tsx",
                   "--test",
                   "--test-concurrency=1",
-                  process.argv.includes("--only10")
+                  process.argv.includes("--only11")
+                    ? "tests/phase11.test.ts"
+                    : process.argv.includes("--only10")
                     ? "tests/phase10.test.ts"
                     : process.argv.includes("--only09")
                     ? "tests/phase09.test.ts"
@@ -94,6 +98,7 @@ try {
     },
   );
   if (
+    !process.argv.includes("--ui11") &&
     !process.argv.includes("--ui10") &&
     !process.argv.includes("--ui09") &&
     !process.argv.includes("--ui") &&
